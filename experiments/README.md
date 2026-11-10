@@ -11,9 +11,12 @@ and the compact metrics it produced. Reports are never replaced. A later experim
 a conclusion gets its own directory and marks the earlier one `superseded`.
 
 Large generated files stay out of Git (`runs/` is ignored): capture stores and HTML viewers.
-Each report lists them with their sha256 and where they live. Ground truth throughout is the
-deterministic policy oracle, unaudited. Independent human validation is a publication gate that
-none of these experiments has passed.
+Each report lists them with their sha256 and where they live. Ground truth depends on the
+domain. Retail uses the deterministic policy oracle, which no person has audited. Airline uses
+blind Claude graders, replaced by the author's own blind review where they bear on the reported
+numbers ("adjudicated"), and τ²-bench's corrected answer key; each report gives results under
+each truth. The only human review is the author's; no reviewer independent of the author has
+validated these results.
 
 **Status labels:**
 
