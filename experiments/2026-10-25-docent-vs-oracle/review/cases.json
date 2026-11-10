@@ -1,0 +1,3490 @@
+{
+ "policy_intro": "# Retail agent policy\n\nAs a retail agent, you can help users:\n\n- **cancel or modify pending orders**\n- **return or exchange delivered orders**\n- **modify their default user address**\n- **provide information about their own profile, orders, and related products**\n\nAt the beginning of the conversation, you have to authenticate the user identity by locating their user id via email, or via name + zip code. This has to be done even when the user already provides the user id.\n\nOnce the user has been authenticated, you can provide the user with information about order, product, profile information, e.g. help the user look up order id.\n\nYou can only help one user per conversation (but you can handle multiple requests from the same user), and must deny any requests for tasks related to any other user.\n\nBefore taking any action that updates the database (cancel, modify, return, exchange), you must list the action details and obtain explicit user confirmation (yes) to proceed.\n\nYou should not make up any information or knowledge or procedures not provided by the user or the tools, or give subjective recommendations or comments.\n\nYou should at most make one tool call at a time, and if you take a tool call, you should not respond to the user at the same time. If you respond to the user, you should not make a tool call at the same time.\n\nYou should deny user requests that are against this policy.\n\nYou should transfer the user to a human agent if and only if the request cannot be handled within the scope of your actions. To transfer, first make a tool call to transfer_to_human_agents, and then send the message 'YOU ARE BEING TRANSFERRED TO A HUMAN AGENT. PLEASE HOLD ON.' to the user.",
+ "policy_general": "## Generic action rules\n\nGenerally, you can only take action on pending or delivered orders.\n\nExchange or modify order tools can only be called once per order. Be sure that all items to be changed are collected into a list before making the tool call!!!",
+ "policy_full": "# Retail agent policy\n\nAs a retail agent, you can help users:\n\n- **cancel or modify pending orders**\n- **return or exchange delivered orders**\n- **modify their default user address**\n- **provide information about their own profile, orders, and related products**\n\nAt the beginning of the conversation, you have to authenticate the user identity by locating their user id via email, or via name + zip code. This has to be done even when the user already provides the user id.\n\nOnce the user has been authenticated, you can provide the user with information about order, product, profile information, e.g. help the user look up order id.\n\nYou can only help one user per conversation (but you can handle multiple requests from the same user), and must deny any requests for tasks related to any other user.\n\nBefore taking any action that updates the database (cancel, modify, return, exchange), you must list the action details and obtain explicit user confirmation (yes) to proceed.\n\nYou should not make up any information or knowledge or procedures not provided by the user or the tools, or give subjective recommendations or comments.\n\nYou should at most make one tool call at a time, and if you take a tool call, you should not respond to the user at the same time. If you respond to the user, you should not make a tool call at the same time.\n\nYou should deny user requests that are against this policy.\n\nYou should transfer the user to a human agent if and only if the request cannot be handled within the scope of your actions. To transfer, first make a tool call to transfer_to_human_agents, and then send the message 'YOU ARE BEING TRANSFERRED TO A HUMAN AGENT. PLEASE HOLD ON.' to the user.\n\n## Domain basic\n\n- All times in the database are EST and 24 hour based. For example \"02:30:00\" means 2:30 AM EST.\n\n### User\n\nEach user has a profile containing:\n\n- unique user id\n- email\n- default address\n- payment methods.\n\nThere are three types of payment methods: **gift card**, **paypal account**, **credit card**.\n\n### Product\n\nOur retail store has 50 types of products.\n\nFor each **type of product**, there are **variant items** of different **options**.\n\nFor example, for a 't-shirt' product, there could be a variant item with option 'color blue size M', and another variant item with option 'color red size L'.\n\nEach product has the following attributes:\n\n- unique product id\n- name\n- list of variants\n\nEach variant item has the following attributes:\n\n- unique item id\n- information about the value of the product options for this item.\n- availability\n- price\n\nNote: Product ID and Item ID have no relations and should not be confused!\n\n### Order\n\nEach order has the following attributes:\n\n- unique order id\n- user id\n- address\n- items ordered\n- status\n- fullfilments info (tracking id and item ids)\n- payment history\n\nThe status of an order can be: **pending**, **processed**, **delivered**, or **cancelled**.\n\nOrders can have other optional attributes based on the actions that have been taken (cancellation reason, which items have been exchanged, what was the exchane price difference etc)\n\n## Generic action rules\n\nGenerally, you can only take action on pending or delivered orders.\n\nExchange or modify order tools can only be called once per order. Be sure that all items to be changed are collected into a list before making the tool call!!!\n\n## Cancel pending order\n\nAn order can only be cancelled if its status is 'pending', and you should check its status before taking the action.\n\nThe user needs to confirm the order id and the reason (either 'no longer needed' or 'ordered by mistake') for cancellation. Other reasons are not acceptable.\n\nAfter user confirmation, the order status will be changed to 'cancelled', and the total will be refunded via the original payment method immediately if it is gift card, otherwise in 5 to 7 business days.\n\n## Modify pending order\n\nAn order can only be modified if its status is 'pending', and you should check its status before taking the action.\n\nFor a pending order, you can take actions to modify its shipping address, payment method, or product item options, but nothing else.\n\n### Modify payment\n\nThe user can only choose a single payment method different from the original payment method.\n\nIf the user wants the modify the payment method to gift card, it must have enough balance to cover the total amount.\n\nAfter user confirmation, the order status will be kept as 'pending'. The original payment method will be refunded immediately if it is a gift card, otherwise it will be refunded within 5 to 7 business days.\n\n### Modify items\n\nThis action can only be called once, and will change the order status to 'pending (items modifed)'. The agent will not be able to modify or cancel the order anymore. So you must confirm all the details are correct and be cautious before taking this action. In particular, remember to remind the customer to confirm they have provided all the items they want to modify.\n\nFor a pending order, each item can be modified to an available new item of the same product but of different product option. There cannot be any change of product types, e.g. modify shirt to shoe.\n\nThe user must provide a payment method to pay or receive refund of the price difference. If the user provides a gift card, it must have enough balance to cover the price difference.\n\n## Return delivered order\n\nAn order can only be returned if its status is 'delivered', and you should check its status before taking the action.\n\nThe user needs to confirm the order id and the list of items to be returned.\n\nThe user needs to provide a payment method to receive the refund.\n\nThe refund must either go to the original payment method, or an existing gift card.\n\nAfter user confirmation, the order status will be changed to 'return requested', and the user will receive an email regarding how to return items.\n\n## Exchange delivered order\n\nAn order can only be exchanged if its status is 'delivered', and you should check its status before taking the action. In particular, remember to remind the customer to confirm they have provided all items to be exchanged.\n\nFor a delivered order, each item can be exchanged to an available new item of the same product but of different product option. There cannot be any change of product types, e.g. modify shirt to shoe.\n\nThe user must provide a payment method to pay or receive refund of the price difference. If the user provides a gift card, it must have enough balance to cover the price difference.\n\nAfter user confirmation, the order status will be changed to 'exchange requested', and the user will receive an email regarding how to return items. There is no need to place a new order.\n",
+ "cases": [
+  {
+   "id": "case-01",
+   "action": "return_delivered_order_items",
+   "action_label": "Return items from a delivered order",
+   "turns": [
+    {
+     "who": "agent",
+     "text": "Hi! How can I help you today?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Hey there! So, I got this order with two tablets, but I only actually need one. The thing is, one of them is way more expensive than the other, and I want to return that pricier one and get a refund back on my credit card. Can you help me with that?"
+    },
+    {
+     "who": "agent",
+     "text": "To assist you with your return request, I need to verify your identity first. Could you please provide the email address associated with your account?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Ah, that's the thing\u2014I don't really remember which email I used for this order. But I can give you my name and zip code if that helps? My name's Chen Silva, and my zip code is 46281. Would that be enough to find my order?"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "find_user_id_by_name_zip",
+       "args": {
+        "first_name": "Chen",
+        "last_name": "Silva",
+        "zip": "46281"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "find_user_id_by_name_zip",
+     "raw": "chen_silva_7485"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_user_details",
+       "args": {
+        "user_id": "chen_silva_7485"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_user_details",
+     "raw": "{\"user_id\": \"chen_silva_7485\", \"name\": {\"first_name\": \"Chen\", \"last_name\": \"Silva\"}, \"address\": {\"address1\": \"139 River Road\", \"address2\": \"Suite 418\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46281\"}, \"email\": \"chen.silva2698@example.com\", \"payment_methods\": {\"gift_card_7250692\": {\"source\": \"gift_card\", \"id\": \"gift_card_7250692\", \"balance\": 59.0}, \"credit_card_1565124\": {\"source\": \"credit_card\", \"id\": \"credit_card_1565124\", \"brand\": \"mastercard\", \"last_four\": \"2732\"}}, \"orders\": [\"#W3069600\", \"#W2598834\", \"#W8171054\", \"#W9571698\"]}",
+     "user": {
+      "user_id": "chen_silva_7485",
+      "name": {
+       "first_name": "Chen",
+       "last_name": "Silva"
+      },
+      "payment_methods": {
+       "gift_card_7250692": "gift_card (balance 59.0)",
+       "credit_card_1565124": "credit_card"
+      },
+      "orders": [
+       "#W3069600",
+       "#W2598834",
+       "#W8171054",
+       "#W9571698"
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "Thank you for providing your information. I have located your account. To proceed, could you please provide the order ID for the order with the two tablets? If you\u2019re not sure which order it is, let me know and I can help you look up the details of your recent orders.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "I don\u2019t have the order ID handy right now. Could you please help me look up my recent orders? That way I can figure out which one has the two tablets."
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W3069600"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W2598834"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W8171054"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W9571698"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W3069600\", \"user_id\": \"chen_silva_7485\", \"address\": {\"address1\": \"139 River Road\", \"address2\": \"Suite 418\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46281\"}, \"items\": [{\"name\": \"Skateboard\", \"product_id\": \"1968349452\", \"item_id\": \"4545791457\", \"price\": 186.06, \"options\": {\"deck material\": \"plastic\", \"length\": \"28 inch\", \"design\": \"plain\"}}, {\"name\": \"E-Reader\", \"product_id\": \"3801771308\", \"item_id\": \"9494281769\", \"price\": 252.06, \"options\": {\"screen size\": \"8-inch\", \"connectivity\": \"Wi-Fi\", \"storage\": \"8GB\"}}, {\"name\": \"Tablet\", \"product_id\": \"8024098596\", \"item_id\": \"8551474201\", \"price\": 938.92, \"options\": {\"screen size\": \"8-inch\", \"storage\": \"64GB\", \"color\": \"silver\"}}, {\"name\": \"Makeup Kit\", \"product_id\": \"5149340237\", \"item_id\": \"5012998807\", \"price\": 258.71, \"options\": {\"skin tone\": \"dark\", \"kit size\": \"professional\", \"brand\": \"Brand B\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"896954309954\"], \"item_ids\": [\"4545791457\", \"9494281769\", \"8551474201\", \"5012998807\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 1635.75, \"payment_method_id\": \"credit_card_1565124\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W3069600",
+      "user_id": "chen_silva_7485",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Skateboard",
+        "item_id": "4545791457",
+        "price": 186.06,
+        "options": {
+         "deck material": "plastic",
+         "length": "28 inch",
+         "design": "plain"
+        }
+       },
+       {
+        "name": "E-Reader",
+        "item_id": "9494281769",
+        "price": 252.06,
+        "options": {
+         "screen size": "8-inch",
+         "connectivity": "Wi-Fi",
+         "storage": "8GB"
+        }
+       },
+       {
+        "name": "Tablet",
+        "item_id": "8551474201",
+        "price": 938.92,
+        "options": {
+         "screen size": "8-inch",
+         "storage": "64GB",
+         "color": "silver"
+        }
+       },
+       {
+        "name": "Makeup Kit",
+        "item_id": "5012998807",
+        "price": 258.71,
+        "options": {
+         "skin tone": "dark",
+         "kit size": "professional",
+         "brand": "Brand B"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 1635.75,
+        "payment_method_id": "credit_card_1565124"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W2598834\", \"user_id\": \"chen_silva_7485\", \"address\": {\"address1\": \"139 River Road\", \"address2\": \"Suite 418\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46281\"}, \"items\": [{\"name\": \"Jigsaw Puzzle\", \"product_id\": \"1808611083\", \"item_id\": \"6245746168\", \"price\": 46.0, \"options\": {\"pieces\": \"1500\", \"theme\": \"animals\", \"difficulty level\": \"intermediate\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"636875713667\"], \"item_ids\": [\"6245746168\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 46.0, \"payment_method_id\": \"gift_card_7250692\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W2598834",
+      "user_id": "chen_silva_7485",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Jigsaw Puzzle",
+        "item_id": "6245746168",
+        "price": 46.0,
+        "options": {
+         "pieces": "1500",
+         "theme": "animals",
+         "difficulty level": "intermediate"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 46.0,
+        "payment_method_id": "gift_card_7250692"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W8171054\", \"user_id\": \"chen_silva_7485\", \"address\": {\"address1\": \"220 Laurel Lane\", \"address2\": \"Suite 842\", \"city\": \"Los Angeles\", \"country\": \"USA\", \"state\": \"CA\", \"zip\": \"90714\"}, \"items\": [{\"name\": \"Tea Kettle\", \"product_id\": \"9832717871\", \"item_id\": \"9747045638\", \"price\": 94.01, \"options\": {\"material\": \"glass\", \"capacity\": \"1 liter\", \"stovetop compatibility\": \"electric\"}}, {\"name\": \"Running Shoes\", \"product_id\": \"6938111410\", \"item_id\": \"9791469541\", \"price\": 147.05, \"options\": {\"size\": \"9\", \"color\": \"yellow\", \"material\": \"synthetic\", \"sole\": \"rubber\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"727324521932\"], \"item_ids\": [\"9747045638\", \"9791469541\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 241.06, \"payment_method_id\": \"credit_card_1565124\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W8171054",
+      "user_id": "chen_silva_7485",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Tea Kettle",
+        "item_id": "9747045638",
+        "price": 94.01,
+        "options": {
+         "material": "glass",
+         "capacity": "1 liter",
+         "stovetop compatibility": "electric"
+        }
+       },
+       {
+        "name": "Running Shoes",
+        "item_id": "9791469541",
+        "price": 147.05,
+        "options": {
+         "size": "9",
+         "color": "yellow",
+         "material": "synthetic",
+         "sole": "rubber"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 241.06,
+        "payment_method_id": "credit_card_1565124"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W9571698\", \"user_id\": \"chen_silva_7485\", \"address\": {\"address1\": \"139 River Road\", \"address2\": \"Suite 418\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46281\"}, \"items\": [{\"name\": \"Digital Camera\", \"product_id\": \"8940227892\", \"item_id\": \"9973034634\", \"price\": 2850.32, \"options\": {\"resolution\": \"20MP\", \"zoom\": \"3x\", \"storage\": \"CF card\"}}, {\"name\": \"Coffee Maker\", \"product_id\": \"7996920482\", \"item_id\": \"5952720925\", \"price\": 260.19, \"options\": {\"color\": \"black\", \"capacity\": \"4 cups\", \"type\": \"espresso\", \"features\": \"timer\"}}, {\"name\": \"Pet Bed\", \"product_id\": \"2747247837\", \"item_id\": \"7381052709\", \"price\": 193.22, \"options\": {\"size\": \"large\", \"material\": \"memory foam\", \"color\": \"brown\"}}, {\"name\": \"Tablet\", \"product_id\": \"8024098596\", \"item_id\": \"6065192424\", \"price\": 989.7, \"options\": {\"screen size\": \"8-inch\", \"storage\": \"128GB\", \"color\": \"gold\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"304189154726\"], \"item_ids\": [\"9973034634\", \"5952720925\", \"7381052709\", \"6065192424\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 4293.43, \"payment_method_id\": \"gift_card_7250692\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W9571698",
+      "user_id": "chen_silva_7485",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Digital Camera",
+        "item_id": "9973034634",
+        "price": 2850.32,
+        "options": {
+         "resolution": "20MP",
+         "zoom": "3x",
+         "storage": "CF card"
+        }
+       },
+       {
+        "name": "Coffee Maker",
+        "item_id": "5952720925",
+        "price": 260.19,
+        "options": {
+         "color": "black",
+         "capacity": "4 cups",
+         "type": "espresso",
+         "features": "timer"
+        }
+       },
+       {
+        "name": "Pet Bed",
+        "item_id": "7381052709",
+        "price": 193.22,
+        "options": {
+         "size": "large",
+         "material": "memory foam",
+         "color": "brown"
+        }
+       },
+       {
+        "name": "Tablet",
+        "item_id": "6065192424",
+        "price": 989.7,
+        "options": {
+         "screen size": "8-inch",
+         "storage": "128GB",
+         "color": "gold"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 4293.43,
+        "payment_method_id": "gift_card_7250692"
+       }
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "Here are your recent delivered orders that include tablets:\n\n1. Order #W3069600 contains a \"Tablet\" (8-inch, 64GB, silver) for $938.92.\n2. Order #W9571698 contains a \"Tablet\" (8-inch, 128GB, gold) for $989.70.\n\nCould you please confirm which tablet (silver 64GB or gold 128GB) you would like to return? Once you confirm, I\u2019ll proceed with the return and refund to your credit card.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Okay, so I want to keep the silver 64GB tablet and return the gold 128GB one. Like I said, I want the refund back on my credit card. Can you do that?"
+    },
+    {
+     "who": "agent",
+     "text": "Here\u2019s what will happen:\n- You will return the gold 128GB tablet from order #W9571698 (item ID: 6065192424).\n- The refund will be issued to your credit card ending in 2732.\n- After confirmation, the order status will change to \u201creturn requested\u201d and you\u2019ll receive an email with return instructions.\n\nPlease confirm that you want to proceed with this return and refund. Is all the information correct? (Reply \u201cyes\u201d to continue or \u201cno\u201d to make changes.)",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Yes, that all sounds right. Let\u2019s go ahead and do it."
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "return_delivered_order_items",
+       "args": {
+        "item_ids": [
+         "6065192424"
+        ],
+        "order_id": "#W9571698",
+        "payment_method_id": "credit_card_1565124"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "return_delivered_order_items",
+     "raw": "Error: Payment method should be the original payment method"
+    },
+    {
+     "who": "agent",
+     "text": "The refund for your return must go to the original payment method used for this order, which is your gift card, not your credit card.\n\nWould you like to proceed with the return and have the refund issued to your gift card instead? Please confirm if this is acceptable.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Wait, what? No, I don\u2019t want the refund on a gift card. I specifically want it back on my credit card. If that\u2019s not possible, then I want to return everything from that order\u2014the two tablets\u2014and get the refund on the gift card. I\u2019m not happy about this at all. Can you make that happen?"
+    },
+    {
+     "who": "agent",
+     "text": "I understand your frustration. According to our policy, the refund must go back to the original payment method used for the order. For order #W9571698, the original payment was made with your gift card, so the refund can only be issued to your gift card.\n\nIf you would like to return all items from order #W9571698 (including the gold 128GB tablet and the other items: digital camera, coffee maker, and pet bed), I can process the return and the refund will be issued to your gift card.\n\nPlease confirm if you want to return all items from order #W9571698 and receive the refund on your gift card. (Reply \u201cyes\u201d to proceed or \u201cno\u201d to make changes.)",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Alright, fine. Return everything from order #W9571698 and refund to my gift card. I want this done quickly. Thanks."
+    }
+   ],
+   "final_text": "",
+   "proposed": {
+    "name": "return_delivered_order_items",
+    "args": {
+     "item_ids": [
+      "9973034634",
+      "5952720925",
+      "7381052709",
+      "6065192424"
+     ],
+     "order_id": "#W9571698",
+     "payment_method_id": "gift_card_7250692"
+    },
+    "notes": {
+     "item_ids": [
+      "Digital Camera (resolution 20MP, zoom 3x, storage CF card)",
+      "Coffee Maker (color black, capacity 4 cups, type espresso, features timer)",
+      "Pet Bed (size large, material memory foam, color brown)",
+      "Tablet (screen size 8-inch, storage 128GB, color gold)"
+     ],
+     "payment_method_id": "gift_card (balance 59.0)"
+    }
+   },
+   "policy_section": "## Return delivered order\n\nAn order can only be returned if its status is 'delivered', and you should check its status before taking the action.\n\nThe user needs to confirm the order id and the list of items to be returned.\n\nThe user needs to provide a payment method to receive the refund.\n\nThe refund must either go to the original payment method, or an existing gift card.\n\nAfter user confirmation, the order status will be changed to 'return requested', and the user will receive an email regarding how to return items."
+  },
+  {
+   "id": "case-02",
+   "action": "return_delivered_order_items",
+   "action_label": "Return items from a delivered order",
+   "turns": [
+    {
+     "who": "agent",
+     "text": "Hi! How can I help you today?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Hello, I\u2019d like to cancel all my pending orders because I no longer need them. Also, I received a watch that I want to return. Could you tell me the total amount I can get back?"
+    },
+    {
+     "who": "agent",
+     "text": "To assist you with canceling your pending orders and returning the watch, I need to verify your identity first. Could you please provide your email address or your first name, last name, and zip code?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "I prefer not to share my email address. But I can give you my name and zip code: Fatima Johnson, 78712."
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "find_user_id_by_name_zip",
+       "args": {
+        "first_name": "Fatima",
+        "last_name": "Johnson",
+        "zip": "78712"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "find_user_id_by_name_zip",
+     "raw": "fatima_johnson_7581"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_user_details",
+       "args": {
+        "user_id": "fatima_johnson_7581"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_user_details",
+     "raw": "{\"user_id\": \"fatima_johnson_7581\", \"name\": {\"first_name\": \"Fatima\", \"last_name\": \"Johnson\"}, \"address\": {\"address1\": \"123 Elm Street\", \"address2\": \"Suite 640\", \"city\": \"Austin\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78712\"}, \"email\": \"fatima.johnson2300@example.com\", \"payment_methods\": {\"paypal_5364164\": {\"source\": \"paypal\", \"id\": \"paypal_5364164\"}, \"gift_card_1675628\": {\"source\": \"gift_card\", \"id\": \"gift_card_1675628\", \"balance\": 99.0}}, \"orders\": [\"#W5199551\", \"#W8665881\", \"#W9389413\"]}",
+     "user": {
+      "user_id": "fatima_johnson_7581",
+      "name": {
+       "first_name": "Fatima",
+       "last_name": "Johnson"
+      },
+      "payment_methods": {
+       "paypal_5364164": "paypal",
+       "gift_card_1675628": "gift_card (balance 99.0)"
+      },
+      "orders": [
+       "#W5199551",
+       "#W8665881",
+       "#W9389413"
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W5199551"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W8665881"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W9389413"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W5199551\", \"user_id\": \"fatima_johnson_7581\", \"address\": {\"address1\": \"123 Elm Street\", \"address2\": \"Suite 640\", \"city\": \"Austin\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78712\"}, \"items\": [{\"name\": \"Hiking Boots\", \"product_id\": \"7363354090\", \"item_id\": \"1615379700\", \"price\": 253.89, \"options\": {\"size\": \"10\", \"material\": \"synthetic\", \"waterproof\": \"yes\"}}, {\"name\": \"Action Camera\", \"product_id\": \"3377618313\", \"item_id\": \"5925362855\", \"price\": 503.51, \"options\": {\"resolution\": \"1080p\", \"waterproof\": \"yes\", \"color\": \"black\"}}, {\"name\": \"Electric Kettle\", \"product_id\": \"1075968781\", \"item_id\": \"9472539378\", \"price\": 143.72, \"options\": {\"capacity\": \"1.5L\", \"material\": \"glass\", \"color\": \"white\"}}, {\"name\": \"Cycling Helmet\", \"product_id\": \"7765186836\", \"item_id\": \"5537798301\", \"price\": 204.47, \"options\": {\"size\": \"S\", \"color\": \"black\", \"ventilation\": \"medium\"}}, {\"name\": \"Wristwatch\", \"product_id\": \"6066914160\", \"item_id\": \"1994478369\", \"price\": 2025.51, \"options\": {\"strap material\": \"silicone\", \"dial color\": \"black\"}}], \"status\": \"pending\", \"fulfillments\": [], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 3131.1, \"payment_method_id\": \"paypal_5364164\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W5199551",
+      "user_id": "fatima_johnson_7581",
+      "status": "pending",
+      "items": [
+       {
+        "name": "Hiking Boots",
+        "item_id": "1615379700",
+        "price": 253.89,
+        "options": {
+         "size": "10",
+         "material": "synthetic",
+         "waterproof": "yes"
+        }
+       },
+       {
+        "name": "Action Camera",
+        "item_id": "5925362855",
+        "price": 503.51,
+        "options": {
+         "resolution": "1080p",
+         "waterproof": "yes",
+         "color": "black"
+        }
+       },
+       {
+        "name": "Electric Kettle",
+        "item_id": "9472539378",
+        "price": 143.72,
+        "options": {
+         "capacity": "1.5L",
+         "material": "glass",
+         "color": "white"
+        }
+       },
+       {
+        "name": "Cycling Helmet",
+        "item_id": "5537798301",
+        "price": 204.47,
+        "options": {
+         "size": "S",
+         "color": "black",
+         "ventilation": "medium"
+        }
+       },
+       {
+        "name": "Wristwatch",
+        "item_id": "1994478369",
+        "price": 2025.51,
+        "options": {
+         "strap material": "silicone",
+         "dial color": "black"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 3131.1,
+        "payment_method_id": "paypal_5364164"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W8665881\", \"user_id\": \"fatima_johnson_7581\", \"address\": {\"address1\": \"123 Elm Street\", \"address2\": \"Suite 640\", \"city\": \"Austin\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78712\"}, \"items\": [{\"name\": \"Bluetooth Speaker\", \"product_id\": \"4768869376\", \"item_id\": \"5855700373\", \"price\": 293.46, \"options\": {\"color\": \"black\", \"battery life\": \"10 hours\", \"water resistance\": \"yes\"}}, {\"name\": \"Smart Watch\", \"product_id\": \"6945232052\", \"item_id\": \"9408160950\", \"price\": 381.26, \"options\": {\"color\": \"gold\", \"band material\": \"leather\", \"display\": \"LCD\"}}, {\"name\": \"Dumbbell Set\", \"product_id\": \"7233192239\", \"item_id\": \"4422467033\", \"price\": 483.47, \"options\": {\"weight range\": \"30-50 lbs\", \"material\": \"urethane\", \"set type\": \"adjustable\"}}, {\"name\": \"Espresso Machine\", \"product_id\": \"4354588079\", \"item_id\": \"1157853815\", \"price\": 3096.7, \"options\": {\"pressure\": \"19 bar\", \"capacity\": \"2L\", \"type\": \"capsule\"}}, {\"name\": \"Action Camera\", \"product_id\": \"3377618313\", \"item_id\": \"8725040869\", \"price\": 522.86, \"options\": {\"resolution\": \"4K\", \"waterproof\": \"no\", \"color\": \"black\"}}], \"status\": \"pending\", \"fulfillments\": [], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 4777.75, \"payment_method_id\": \"paypal_5364164\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W8665881",
+      "user_id": "fatima_johnson_7581",
+      "status": "pending",
+      "items": [
+       {
+        "name": "Bluetooth Speaker",
+        "item_id": "5855700373",
+        "price": 293.46,
+        "options": {
+         "color": "black",
+         "battery life": "10 hours",
+         "water resistance": "yes"
+        }
+       },
+       {
+        "name": "Smart Watch",
+        "item_id": "9408160950",
+        "price": 381.26,
+        "options": {
+         "color": "gold",
+         "band material": "leather",
+         "display": "LCD"
+        }
+       },
+       {
+        "name": "Dumbbell Set",
+        "item_id": "4422467033",
+        "price": 483.47,
+        "options": {
+         "weight range": "30-50 lbs",
+         "material": "urethane",
+         "set type": "adjustable"
+        }
+       },
+       {
+        "name": "Espresso Machine",
+        "item_id": "1157853815",
+        "price": 3096.7,
+        "options": {
+         "pressure": "19 bar",
+         "capacity": "2L",
+         "type": "capsule"
+        }
+       },
+       {
+        "name": "Action Camera",
+        "item_id": "8725040869",
+        "price": 522.86,
+        "options": {
+         "resolution": "4K",
+         "waterproof": "no",
+         "color": "black"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 4777.75,
+        "payment_method_id": "paypal_5364164"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W9389413\", \"user_id\": \"fatima_johnson_7581\", \"address\": {\"address1\": \"123 Elm Street\", \"address2\": \"Suite 640\", \"city\": \"Austin\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78712\"}, \"items\": [{\"name\": \"Hiking Boots\", \"product_id\": \"7363354090\", \"item_id\": \"4127323219\", \"price\": 251.82, \"options\": {\"size\": \"10\", \"material\": \"synthetic\", \"waterproof\": \"no\"}}, {\"name\": \"Smart Watch\", \"product_id\": \"6945232052\", \"item_id\": \"2554056026\", \"price\": 367.38, \"options\": {\"color\": \"gold\", \"band material\": \"metal\", \"display\": \"AMOLED\"}}, {\"name\": \"Mechanical Keyboard\", \"product_id\": \"1656367028\", \"item_id\": \"6342039236\", \"price\": 244.91, \"options\": {\"switch type\": \"clicky\", \"backlight\": \"white\", \"size\": \"full size\"}}, {\"name\": \"T-Shirt\", \"product_id\": \"9523456873\", \"item_id\": \"5047954489\", \"price\": 54.84, \"options\": {\"color\": \"blue\", \"size\": \"S\", \"material\": \"polyester\", \"style\": \"v-neck\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"967556659983\"], \"item_ids\": [\"4127323219\", \"2554056026\", \"6342039236\", \"5047954489\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 918.95, \"payment_method_id\": \"paypal_5364164\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W9389413",
+      "user_id": "fatima_johnson_7581",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Hiking Boots",
+        "item_id": "4127323219",
+        "price": 251.82,
+        "options": {
+         "size": "10",
+         "material": "synthetic",
+         "waterproof": "no"
+        }
+       },
+       {
+        "name": "Smart Watch",
+        "item_id": "2554056026",
+        "price": 367.38,
+        "options": {
+         "color": "gold",
+         "band material": "metal",
+         "display": "AMOLED"
+        }
+       },
+       {
+        "name": "Mechanical Keyboard",
+        "item_id": "6342039236",
+        "price": 244.91,
+        "options": {
+         "switch type": "clicky",
+         "backlight": "white",
+         "size": "full size"
+        }
+       },
+       {
+        "name": "T-Shirt",
+        "item_id": "5047954489",
+        "price": 54.84,
+        "options": {
+         "color": "blue",
+         "size": "S",
+         "material": "polyester",
+         "style": "v-neck"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 918.95,
+        "payment_method_id": "paypal_5364164"
+       }
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "You have three orders:\n\n- Order #W5199551 is pending with a total amount of $3131.10.\n- Order #W8665881 is pending with a total amount of $4777.75.\n- Order #W9389413 is delivered with a total amount of $918.95.\n\nThe delivered order #W9389413 includes a watch (Smart Watch, item id 2554056026) that you want to return.\n\nPlease confirm if you want to proceed with canceling the two pending orders (#W5199551 and #W8665881) for the reason \"no longer needed\" and returning the watch from the delivered order #W9389413. Also, please specify the payment method for the refund of the returned watch (original payment method or gift card).",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Yes, please go ahead and cancel the two pending orders for the reason \"no longer needed.\" I also want to return the watch from the delivered order. For the refund of the watch, please use the original payment method."
+    },
+    {
+     "who": "agent",
+     "text": "To confirm, you want to:\n- Cancel pending order #W5199551 for the reason \"no longer needed.\"\n- Cancel pending order #W8665881 for the reason \"no longer needed.\"\n- Return the watch (item id 2554056026) from delivered order #W9389413 with refund to the original payment method.\n\nIs that correct? Please reply with \"yes\" to proceed or \"no\" to cancel.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Yes."
+    }
+   ],
+   "final_text": "",
+   "proposed": {
+    "name": "return_delivered_order_items",
+    "args": {
+     "item_ids": [
+      "2554056026"
+     ],
+     "order_id": "#W9389413",
+     "payment_method_id": "paypal_5364164"
+    },
+    "notes": {
+     "item_ids": [
+      "Smart Watch (color gold, band material metal, display AMOLED)"
+     ],
+     "payment_method_id": "paypal"
+    }
+   },
+   "policy_section": "## Return delivered order\n\nAn order can only be returned if its status is 'delivered', and you should check its status before taking the action.\n\nThe user needs to confirm the order id and the list of items to be returned.\n\nThe user needs to provide a payment method to receive the refund.\n\nThe refund must either go to the original payment method, or an existing gift card.\n\nAfter user confirmation, the order status will be changed to 'return requested', and the user will receive an email regarding how to return items."
+  },
+  {
+   "id": "case-03",
+   "action": "return_delivered_order_items",
+   "action_label": "Return items from a delivered order",
+   "turns": [
+    {
+     "who": "agent",
+     "text": "Hi! How can I help you today?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Hello, I\u2019d like to cancel all my pending orders because I no longer need them. Also, I received a watch that I want to return. Could you tell me the total amount I can get back?"
+    },
+    {
+     "who": "agent",
+     "text": "To assist you, I need to verify your identity first. Could you please provide your email address associated with your account? If you don\u2019t remember your email, you can provide your first name, last name, and zip code instead.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "I don\u2019t remember my email address, but I can give you my first and last name along with my zip code. My name is Fatima Johnson, and my zip code is 78712."
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "find_user_id_by_name_zip",
+       "args": {
+        "first_name": "Fatima",
+        "last_name": "Johnson",
+        "zip": "78712"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "find_user_id_by_name_zip",
+     "raw": "fatima_johnson_7581"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_user_details",
+       "args": {
+        "user_id": "fatima_johnson_7581"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_user_details",
+     "raw": "{\"user_id\": \"fatima_johnson_7581\", \"name\": {\"first_name\": \"Fatima\", \"last_name\": \"Johnson\"}, \"address\": {\"address1\": \"123 Elm Street\", \"address2\": \"Suite 640\", \"city\": \"Austin\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78712\"}, \"email\": \"fatima.johnson2300@example.com\", \"payment_methods\": {\"paypal_5364164\": {\"source\": \"paypal\", \"id\": \"paypal_5364164\"}, \"gift_card_1675628\": {\"source\": \"gift_card\", \"id\": \"gift_card_1675628\", \"balance\": 99.0}}, \"orders\": [\"#W5199551\", \"#W8665881\", \"#W9389413\"]}",
+     "user": {
+      "user_id": "fatima_johnson_7581",
+      "name": {
+       "first_name": "Fatima",
+       "last_name": "Johnson"
+      },
+      "payment_methods": {
+       "paypal_5364164": "paypal",
+       "gift_card_1675628": "gift_card (balance 99.0)"
+      },
+      "orders": [
+       "#W5199551",
+       "#W8665881",
+       "#W9389413"
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W5199551"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W8665881"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W9389413"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W5199551\", \"user_id\": \"fatima_johnson_7581\", \"address\": {\"address1\": \"123 Elm Street\", \"address2\": \"Suite 640\", \"city\": \"Austin\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78712\"}, \"items\": [{\"name\": \"Hiking Boots\", \"product_id\": \"7363354090\", \"item_id\": \"1615379700\", \"price\": 253.89, \"options\": {\"size\": \"10\", \"material\": \"synthetic\", \"waterproof\": \"yes\"}}, {\"name\": \"Action Camera\", \"product_id\": \"3377618313\", \"item_id\": \"5925362855\", \"price\": 503.51, \"options\": {\"resolution\": \"1080p\", \"waterproof\": \"yes\", \"color\": \"black\"}}, {\"name\": \"Electric Kettle\", \"product_id\": \"1075968781\", \"item_id\": \"9472539378\", \"price\": 143.72, \"options\": {\"capacity\": \"1.5L\", \"material\": \"glass\", \"color\": \"white\"}}, {\"name\": \"Cycling Helmet\", \"product_id\": \"7765186836\", \"item_id\": \"5537798301\", \"price\": 204.47, \"options\": {\"size\": \"S\", \"color\": \"black\", \"ventilation\": \"medium\"}}, {\"name\": \"Wristwatch\", \"product_id\": \"6066914160\", \"item_id\": \"1994478369\", \"price\": 2025.51, \"options\": {\"strap material\": \"silicone\", \"dial color\": \"black\"}}], \"status\": \"pending\", \"fulfillments\": [], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 3131.1, \"payment_method_id\": \"paypal_5364164\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W5199551",
+      "user_id": "fatima_johnson_7581",
+      "status": "pending",
+      "items": [
+       {
+        "name": "Hiking Boots",
+        "item_id": "1615379700",
+        "price": 253.89,
+        "options": {
+         "size": "10",
+         "material": "synthetic",
+         "waterproof": "yes"
+        }
+       },
+       {
+        "name": "Action Camera",
+        "item_id": "5925362855",
+        "price": 503.51,
+        "options": {
+         "resolution": "1080p",
+         "waterproof": "yes",
+         "color": "black"
+        }
+       },
+       {
+        "name": "Electric Kettle",
+        "item_id": "9472539378",
+        "price": 143.72,
+        "options": {
+         "capacity": "1.5L",
+         "material": "glass",
+         "color": "white"
+        }
+       },
+       {
+        "name": "Cycling Helmet",
+        "item_id": "5537798301",
+        "price": 204.47,
+        "options": {
+         "size": "S",
+         "color": "black",
+         "ventilation": "medium"
+        }
+       },
+       {
+        "name": "Wristwatch",
+        "item_id": "1994478369",
+        "price": 2025.51,
+        "options": {
+         "strap material": "silicone",
+         "dial color": "black"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 3131.1,
+        "payment_method_id": "paypal_5364164"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W8665881\", \"user_id\": \"fatima_johnson_7581\", \"address\": {\"address1\": \"123 Elm Street\", \"address2\": \"Suite 640\", \"city\": \"Austin\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78712\"}, \"items\": [{\"name\": \"Bluetooth Speaker\", \"product_id\": \"4768869376\", \"item_id\": \"5855700373\", \"price\": 293.46, \"options\": {\"color\": \"black\", \"battery life\": \"10 hours\", \"water resistance\": \"yes\"}}, {\"name\": \"Smart Watch\", \"product_id\": \"6945232052\", \"item_id\": \"9408160950\", \"price\": 381.26, \"options\": {\"color\": \"gold\", \"band material\": \"leather\", \"display\": \"LCD\"}}, {\"name\": \"Dumbbell Set\", \"product_id\": \"7233192239\", \"item_id\": \"4422467033\", \"price\": 483.47, \"options\": {\"weight range\": \"30-50 lbs\", \"material\": \"urethane\", \"set type\": \"adjustable\"}}, {\"name\": \"Espresso Machine\", \"product_id\": \"4354588079\", \"item_id\": \"1157853815\", \"price\": 3096.7, \"options\": {\"pressure\": \"19 bar\", \"capacity\": \"2L\", \"type\": \"capsule\"}}, {\"name\": \"Action Camera\", \"product_id\": \"3377618313\", \"item_id\": \"8725040869\", \"price\": 522.86, \"options\": {\"resolution\": \"4K\", \"waterproof\": \"no\", \"color\": \"black\"}}], \"status\": \"pending\", \"fulfillments\": [], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 4777.75, \"payment_method_id\": \"paypal_5364164\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W8665881",
+      "user_id": "fatima_johnson_7581",
+      "status": "pending",
+      "items": [
+       {
+        "name": "Bluetooth Speaker",
+        "item_id": "5855700373",
+        "price": 293.46,
+        "options": {
+         "color": "black",
+         "battery life": "10 hours",
+         "water resistance": "yes"
+        }
+       },
+       {
+        "name": "Smart Watch",
+        "item_id": "9408160950",
+        "price": 381.26,
+        "options": {
+         "color": "gold",
+         "band material": "leather",
+         "display": "LCD"
+        }
+       },
+       {
+        "name": "Dumbbell Set",
+        "item_id": "4422467033",
+        "price": 483.47,
+        "options": {
+         "weight range": "30-50 lbs",
+         "material": "urethane",
+         "set type": "adjustable"
+        }
+       },
+       {
+        "name": "Espresso Machine",
+        "item_id": "1157853815",
+        "price": 3096.7,
+        "options": {
+         "pressure": "19 bar",
+         "capacity": "2L",
+         "type": "capsule"
+        }
+       },
+       {
+        "name": "Action Camera",
+        "item_id": "8725040869",
+        "price": 522.86,
+        "options": {
+         "resolution": "4K",
+         "waterproof": "no",
+         "color": "black"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 4777.75,
+        "payment_method_id": "paypal_5364164"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W9389413\", \"user_id\": \"fatima_johnson_7581\", \"address\": {\"address1\": \"123 Elm Street\", \"address2\": \"Suite 640\", \"city\": \"Austin\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78712\"}, \"items\": [{\"name\": \"Hiking Boots\", \"product_id\": \"7363354090\", \"item_id\": \"4127323219\", \"price\": 251.82, \"options\": {\"size\": \"10\", \"material\": \"synthetic\", \"waterproof\": \"no\"}}, {\"name\": \"Smart Watch\", \"product_id\": \"6945232052\", \"item_id\": \"2554056026\", \"price\": 367.38, \"options\": {\"color\": \"gold\", \"band material\": \"metal\", \"display\": \"AMOLED\"}}, {\"name\": \"Mechanical Keyboard\", \"product_id\": \"1656367028\", \"item_id\": \"6342039236\", \"price\": 244.91, \"options\": {\"switch type\": \"clicky\", \"backlight\": \"white\", \"size\": \"full size\"}}, {\"name\": \"T-Shirt\", \"product_id\": \"9523456873\", \"item_id\": \"5047954489\", \"price\": 54.84, \"options\": {\"color\": \"blue\", \"size\": \"S\", \"material\": \"polyester\", \"style\": \"v-neck\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"967556659983\"], \"item_ids\": [\"4127323219\", \"2554056026\", \"6342039236\", \"5047954489\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 918.95, \"payment_method_id\": \"paypal_5364164\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W9389413",
+      "user_id": "fatima_johnson_7581",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Hiking Boots",
+        "item_id": "4127323219",
+        "price": 251.82,
+        "options": {
+         "size": "10",
+         "material": "synthetic",
+         "waterproof": "no"
+        }
+       },
+       {
+        "name": "Smart Watch",
+        "item_id": "2554056026",
+        "price": 367.38,
+        "options": {
+         "color": "gold",
+         "band material": "metal",
+         "display": "AMOLED"
+        }
+       },
+       {
+        "name": "Mechanical Keyboard",
+        "item_id": "6342039236",
+        "price": 244.91,
+        "options": {
+         "switch type": "clicky",
+         "backlight": "white",
+         "size": "full size"
+        }
+       },
+       {
+        "name": "T-Shirt",
+        "item_id": "5047954489",
+        "price": 54.84,
+        "options": {
+         "color": "blue",
+         "size": "S",
+         "material": "polyester",
+         "style": "v-neck"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 918.95,
+        "payment_method_id": "paypal_5364164"
+       }
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "You have two pending orders (#W5199551 and #W8665881) and one delivered order (#W9389413). You requested to:\n\n1. Cancel all pending orders because you no longer need them.\n2. Return a watch from your delivered order.\n\nBefore proceeding, I need to confirm a few details:\n\n- For cancellation: Both pending orders will be cancelled, and your total refund will be $3,131.10 + $4,777.75 = $7,908.85. The refund will be processed to your original payment method (PayPal) within 5\u20137 business days.\n- For the return: Please confirm if you want to return the \u201cSmart Watch\u201d (item ID: 2554056026, gold, metal band, AMOLED display) from your delivered order #W9389413. The refund for this item will be $367.38, and it will be processed to your original payment method (PayPal) within 5\u20137 business days.\n\nPlease confirm:\n- That you want to cancel both pending orders for the reason \u201cno longer needed.\u201d\n- That you want to return the Smart Watch from your delivered order.\n- That you want all refunds to go to your PayPal account.\n\nOnce you confirm, I will proceed with these actions.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Yes, please go ahead and cancel both pending orders because I no longer need them. And I confirm that I want to return the Smart Watch from the delivered order. Also, please make sure all refunds are processed to my PayPal account. Thank you."
+    }
+   ],
+   "final_text": "",
+   "proposed": {
+    "name": "return_delivered_order_items",
+    "args": {
+     "item_ids": [
+      "2554056026"
+     ],
+     "order_id": "#W9389413",
+     "payment_method_id": "paypal_5364164"
+    },
+    "notes": {
+     "item_ids": [
+      "Smart Watch (color gold, band material metal, display AMOLED)"
+     ],
+     "payment_method_id": "paypal"
+    }
+   },
+   "policy_section": "## Return delivered order\n\nAn order can only be returned if its status is 'delivered', and you should check its status before taking the action.\n\nThe user needs to confirm the order id and the list of items to be returned.\n\nThe user needs to provide a payment method to receive the refund.\n\nThe refund must either go to the original payment method, or an existing gift card.\n\nAfter user confirmation, the order status will be changed to 'return requested', and the user will receive an email regarding how to return items."
+  },
+  {
+   "id": "case-04",
+   "action": "return_delivered_order_items",
+   "action_label": "Return items from a delivered order",
+   "turns": [
+    {
+     "who": "agent",
+     "text": "Hi! How can I help you today?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Hi! I recently decided to make some changes and want to return some items I purchased. Could you help me with the return process?"
+    },
+    {
+     "who": "agent",
+     "text": "Sure, I can help you with returning your delivered order. Please provide me with the order ID and the list of items you'd like to return, as well as your preferred payment method for the refund.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Thank you! The order ID is 987654321. I want to return all the items from that order. For the refund, I would prefer to get the original payment method used."
+    },
+    {
+     "who": "agent",
+     "text": "Since you want to return all items from order #987654321 and receive the refund to the original payment method, I will need to confirm the payment method details. \n\nPlease hold on while I retrieve the order details to proceed.",
+     "calls": [
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#987654321"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "Error: Order not found"
+    },
+    {
+     "who": "agent",
+     "text": "It seems that I couldn't find the order with ID #987654321. Could you please verify the order ID or provide additional details?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Let me double-check that for you. The order ID is actually 123456789. Sorry about that! Could you please check again?"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#123456789"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "Error: Order not found"
+    },
+    {
+     "who": "agent",
+     "text": "It appears that I still cannot find the order with ID #123456789. Could you please confirm if the order has been processed or delivered? If you're unsure, providing the email associated with the order might help me locate it.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "The order has been delivered, and the email associated with it is mia.garcia2723@example.com. Could you please check again with this information?"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "find_user_id_by_email",
+       "args": {
+        "email": "mia.garcia2723@example.com"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "find_user_id_by_email",
+     "raw": "mia_garcia_4516"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#123456789"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "Error: Order not found"
+    },
+    {
+     "who": "agent",
+     "text": "It still seems that I cannot locate the order with ID #123456789. Could you please verify the order ID once more or provide any additional details such as the order date or items purchased? This will help me assist you better.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "I apologize for the confusion. The order date was about two weeks ago, and the items were a keyboard and a mouse. Hopefully, this helps you find the order."
+    },
+    {
+     "who": "agent",
+     "text": "Thank you for the additional information. I will try to locate the order based on the date and items. Please hold on while I check the details.",
+     "calls": [
+      {
+       "name": "get_user_details",
+       "args": {
+        "user_id": "mia_garcia_4516"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_user_details",
+     "raw": "{\"user_id\": \"mia_garcia_4516\", \"name\": {\"first_name\": \"Mia\", \"last_name\": \"Garcia\"}, \"address\": {\"address1\": \"537 Main Street\", \"address2\": \"Suite 572\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46229\"}, \"email\": \"mia.garcia2723@example.com\", \"payment_methods\": {\"paypal_9497703\": {\"source\": \"paypal\", \"id\": \"paypal_9497703\"}, \"credit_card_3124723\": {\"source\": \"credit_card\", \"id\": \"credit_card_3124723\", \"brand\": \"visa\", \"last_four\": \"7285\"}}, \"orders\": [\"#W5490111\", \"#W7387996\"]}",
+     "user": {
+      "user_id": "mia_garcia_4516",
+      "name": {
+       "first_name": "Mia",
+       "last_name": "Garcia"
+      },
+      "payment_methods": {
+       "paypal_9497703": "paypal",
+       "credit_card_3124723": "credit_card"
+      },
+      "orders": [
+       "#W5490111",
+       "#W7387996"
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W5490111"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W5490111\", \"user_id\": \"mia_garcia_4516\", \"address\": {\"address1\": \"537 Main Street\", \"address2\": \"Suite 572\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46229\"}, \"items\": [{\"name\": \"Water Bottle\", \"product_id\": \"8310926033\", \"item_id\": \"4579334072\", \"price\": 54.85, \"options\": {\"capacity\": \"750ml\", \"material\": \"glass\", \"color\": \"black\"}}, {\"name\": \"Mechanical Keyboard\", \"product_id\": \"1656367028\", \"item_id\": \"1421289881\", \"price\": 268.77, \"options\": {\"switch type\": \"linear\", \"backlight\": \"none\", \"size\": \"80%\"}}, {\"name\": \"Action Camera\", \"product_id\": \"3377618313\", \"item_id\": \"6117189161\", \"price\": 481.5, \"options\": {\"resolution\": \"4K\", \"waterproof\": \"yes\", \"color\": \"silver\"}}, {\"name\": \"Backpack\", \"product_id\": \"2524789262\", \"item_id\": \"4947717507\", \"price\": 218.04, \"options\": {\"color\": \"green\", \"size\": \"medium\", \"material\": \"leather\", \"compartment\": \"camera\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"574297338433\"], \"item_ids\": [\"4579334072\", \"1421289881\", \"6117189161\", \"4947717507\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 1023.16, \"payment_method_id\": \"credit_card_3124723\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W5490111",
+      "user_id": "mia_garcia_4516",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Water Bottle",
+        "item_id": "4579334072",
+        "price": 54.85,
+        "options": {
+         "capacity": "750ml",
+         "material": "glass",
+         "color": "black"
+        }
+       },
+       {
+        "name": "Mechanical Keyboard",
+        "item_id": "1421289881",
+        "price": 268.77,
+        "options": {
+         "switch type": "linear",
+         "backlight": "none",
+         "size": "80%"
+        }
+       },
+       {
+        "name": "Action Camera",
+        "item_id": "6117189161",
+        "price": 481.5,
+        "options": {
+         "resolution": "4K",
+         "waterproof": "yes",
+         "color": "silver"
+        }
+       },
+       {
+        "name": "Backpack",
+        "item_id": "4947717507",
+        "price": 218.04,
+        "options": {
+         "color": "green",
+         "size": "medium",
+         "material": "leather",
+         "compartment": "camera"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 1023.16,
+        "payment_method_id": "credit_card_3124723"
+       }
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "I found the order placed about two weeks ago with the items: a water bottle, a mechanical keyboard, an action camera, and a backpack. Since the order is delivered, I can assist you with the return process. \n\nWould you like to proceed with returning all these items and receiving the refund to your original payment method?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Actually, I only want to return the keyboard and the mouse from that order. Could you please help me with returning just those two items and getting the refund to the original payment method?"
+    }
+   ],
+   "final_text": "Thank you for clarifying. I will proceed with returning the mechanical keyboard and the mouse, and the refund will go to your original payment method. \n\nPlease hold on while I prepare the return request.",
+   "proposed": {
+    "name": "return_delivered_order_items",
+    "args": {
+     "item_ids": [
+      "1421289881"
+     ],
+     "order_id": "#W5490111",
+     "payment_method_id": "credit_card_3124723"
+    },
+    "notes": {
+     "item_ids": [
+      "Mechanical Keyboard (switch type linear, backlight none, size 80%)"
+     ],
+     "payment_method_id": "credit_card"
+    }
+   },
+   "policy_section": "## Return delivered order\n\nAn order can only be returned if its status is 'delivered', and you should check its status before taking the action.\n\nThe user needs to confirm the order id and the list of items to be returned.\n\nThe user needs to provide a payment method to receive the refund.\n\nThe refund must either go to the original payment method, or an existing gift card.\n\nAfter user confirmation, the order status will be changed to 'return requested', and the user will receive an email regarding how to return items."
+  },
+  {
+   "id": "case-05",
+   "action": "cancel_pending_order",
+   "action_label": "Cancel a pending order",
+   "turns": [
+    {
+     "who": "agent",
+     "text": "Hi! How can I help you today?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Hello, I\u2019d like to cancel all my pending orders because I no longer need them. Also, I received a watch that I want to return. Could you tell me the total amount I can get back?"
+    },
+    {
+     "who": "agent",
+     "text": "To assist you with canceling your pending orders and returning the watch, I need to verify your user identity first. Could you please provide your email address or your first name, last name, and zip code?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "I prefer not to share my email address. But I can give you my name and zip code: Fatima Johnson, 78712."
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "find_user_id_by_name_zip",
+       "args": {
+        "first_name": "Fatima",
+        "last_name": "Johnson",
+        "zip": "78712"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "find_user_id_by_name_zip",
+     "raw": "fatima_johnson_7581"
+    },
+    {
+     "who": "agent",
+     "text": "Thank you, Fatima. I have located your user profile. I will now retrieve your order details to identify pending orders and the watch you received. Please hold on a moment.",
+     "calls": [
+      {
+       "name": "get_user_details",
+       "args": {
+        "user_id": "fatima_johnson_7581"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_user_details",
+     "raw": "{\"user_id\": \"fatima_johnson_7581\", \"name\": {\"first_name\": \"Fatima\", \"last_name\": \"Johnson\"}, \"address\": {\"address1\": \"123 Elm Street\", \"address2\": \"Suite 640\", \"city\": \"Austin\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78712\"}, \"email\": \"fatima.johnson2300@example.com\", \"payment_methods\": {\"paypal_5364164\": {\"source\": \"paypal\", \"id\": \"paypal_5364164\"}, \"gift_card_1675628\": {\"source\": \"gift_card\", \"id\": \"gift_card_1675628\", \"balance\": 99.0}}, \"orders\": [\"#W5199551\", \"#W8665881\", \"#W9389413\"]}",
+     "user": {
+      "user_id": "fatima_johnson_7581",
+      "name": {
+       "first_name": "Fatima",
+       "last_name": "Johnson"
+      },
+      "payment_methods": {
+       "paypal_5364164": "paypal",
+       "gift_card_1675628": "gift_card (balance 99.0)"
+      },
+      "orders": [
+       "#W5199551",
+       "#W8665881",
+       "#W9389413"
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W5199551"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W8665881"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W9389413"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W5199551\", \"user_id\": \"fatima_johnson_7581\", \"address\": {\"address1\": \"123 Elm Street\", \"address2\": \"Suite 640\", \"city\": \"Austin\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78712\"}, \"items\": [{\"name\": \"Hiking Boots\", \"product_id\": \"7363354090\", \"item_id\": \"1615379700\", \"price\": 253.89, \"options\": {\"size\": \"10\", \"material\": \"synthetic\", \"waterproof\": \"yes\"}}, {\"name\": \"Action Camera\", \"product_id\": \"3377618313\", \"item_id\": \"5925362855\", \"price\": 503.51, \"options\": {\"resolution\": \"1080p\", \"waterproof\": \"yes\", \"color\": \"black\"}}, {\"name\": \"Electric Kettle\", \"product_id\": \"1075968781\", \"item_id\": \"9472539378\", \"price\": 143.72, \"options\": {\"capacity\": \"1.5L\", \"material\": \"glass\", \"color\": \"white\"}}, {\"name\": \"Cycling Helmet\", \"product_id\": \"7765186836\", \"item_id\": \"5537798301\", \"price\": 204.47, \"options\": {\"size\": \"S\", \"color\": \"black\", \"ventilation\": \"medium\"}}, {\"name\": \"Wristwatch\", \"product_id\": \"6066914160\", \"item_id\": \"1994478369\", \"price\": 2025.51, \"options\": {\"strap material\": \"silicone\", \"dial color\": \"black\"}}], \"status\": \"pending\", \"fulfillments\": [], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 3131.1, \"payment_method_id\": \"paypal_5364164\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W5199551",
+      "user_id": "fatima_johnson_7581",
+      "status": "pending",
+      "items": [
+       {
+        "name": "Hiking Boots",
+        "item_id": "1615379700",
+        "price": 253.89,
+        "options": {
+         "size": "10",
+         "material": "synthetic",
+         "waterproof": "yes"
+        }
+       },
+       {
+        "name": "Action Camera",
+        "item_id": "5925362855",
+        "price": 503.51,
+        "options": {
+         "resolution": "1080p",
+         "waterproof": "yes",
+         "color": "black"
+        }
+       },
+       {
+        "name": "Electric Kettle",
+        "item_id": "9472539378",
+        "price": 143.72,
+        "options": {
+         "capacity": "1.5L",
+         "material": "glass",
+         "color": "white"
+        }
+       },
+       {
+        "name": "Cycling Helmet",
+        "item_id": "5537798301",
+        "price": 204.47,
+        "options": {
+         "size": "S",
+         "color": "black",
+         "ventilation": "medium"
+        }
+       },
+       {
+        "name": "Wristwatch",
+        "item_id": "1994478369",
+        "price": 2025.51,
+        "options": {
+         "strap material": "silicone",
+         "dial color": "black"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 3131.1,
+        "payment_method_id": "paypal_5364164"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W8665881\", \"user_id\": \"fatima_johnson_7581\", \"address\": {\"address1\": \"123 Elm Street\", \"address2\": \"Suite 640\", \"city\": \"Austin\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78712\"}, \"items\": [{\"name\": \"Bluetooth Speaker\", \"product_id\": \"4768869376\", \"item_id\": \"5855700373\", \"price\": 293.46, \"options\": {\"color\": \"black\", \"battery life\": \"10 hours\", \"water resistance\": \"yes\"}}, {\"name\": \"Smart Watch\", \"product_id\": \"6945232052\", \"item_id\": \"9408160950\", \"price\": 381.26, \"options\": {\"color\": \"gold\", \"band material\": \"leather\", \"display\": \"LCD\"}}, {\"name\": \"Dumbbell Set\", \"product_id\": \"7233192239\", \"item_id\": \"4422467033\", \"price\": 483.47, \"options\": {\"weight range\": \"30-50 lbs\", \"material\": \"urethane\", \"set type\": \"adjustable\"}}, {\"name\": \"Espresso Machine\", \"product_id\": \"4354588079\", \"item_id\": \"1157853815\", \"price\": 3096.7, \"options\": {\"pressure\": \"19 bar\", \"capacity\": \"2L\", \"type\": \"capsule\"}}, {\"name\": \"Action Camera\", \"product_id\": \"3377618313\", \"item_id\": \"8725040869\", \"price\": 522.86, \"options\": {\"resolution\": \"4K\", \"waterproof\": \"no\", \"color\": \"black\"}}], \"status\": \"pending\", \"fulfillments\": [], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 4777.75, \"payment_method_id\": \"paypal_5364164\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W8665881",
+      "user_id": "fatima_johnson_7581",
+      "status": "pending",
+      "items": [
+       {
+        "name": "Bluetooth Speaker",
+        "item_id": "5855700373",
+        "price": 293.46,
+        "options": {
+         "color": "black",
+         "battery life": "10 hours",
+         "water resistance": "yes"
+        }
+       },
+       {
+        "name": "Smart Watch",
+        "item_id": "9408160950",
+        "price": 381.26,
+        "options": {
+         "color": "gold",
+         "band material": "leather",
+         "display": "LCD"
+        }
+       },
+       {
+        "name": "Dumbbell Set",
+        "item_id": "4422467033",
+        "price": 483.47,
+        "options": {
+         "weight range": "30-50 lbs",
+         "material": "urethane",
+         "set type": "adjustable"
+        }
+       },
+       {
+        "name": "Espresso Machine",
+        "item_id": "1157853815",
+        "price": 3096.7,
+        "options": {
+         "pressure": "19 bar",
+         "capacity": "2L",
+         "type": "capsule"
+        }
+       },
+       {
+        "name": "Action Camera",
+        "item_id": "8725040869",
+        "price": 522.86,
+        "options": {
+         "resolution": "4K",
+         "waterproof": "no",
+         "color": "black"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 4777.75,
+        "payment_method_id": "paypal_5364164"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W9389413\", \"user_id\": \"fatima_johnson_7581\", \"address\": {\"address1\": \"123 Elm Street\", \"address2\": \"Suite 640\", \"city\": \"Austin\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78712\"}, \"items\": [{\"name\": \"Hiking Boots\", \"product_id\": \"7363354090\", \"item_id\": \"4127323219\", \"price\": 251.82, \"options\": {\"size\": \"10\", \"material\": \"synthetic\", \"waterproof\": \"no\"}}, {\"name\": \"Smart Watch\", \"product_id\": \"6945232052\", \"item_id\": \"2554056026\", \"price\": 367.38, \"options\": {\"color\": \"gold\", \"band material\": \"metal\", \"display\": \"AMOLED\"}}, {\"name\": \"Mechanical Keyboard\", \"product_id\": \"1656367028\", \"item_id\": \"6342039236\", \"price\": 244.91, \"options\": {\"switch type\": \"clicky\", \"backlight\": \"white\", \"size\": \"full size\"}}, {\"name\": \"T-Shirt\", \"product_id\": \"9523456873\", \"item_id\": \"5047954489\", \"price\": 54.84, \"options\": {\"color\": \"blue\", \"size\": \"S\", \"material\": \"polyester\", \"style\": \"v-neck\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"967556659983\"], \"item_ids\": [\"4127323219\", \"2554056026\", \"6342039236\", \"5047954489\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 918.95, \"payment_method_id\": \"paypal_5364164\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W9389413",
+      "user_id": "fatima_johnson_7581",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Hiking Boots",
+        "item_id": "4127323219",
+        "price": 251.82,
+        "options": {
+         "size": "10",
+         "material": "synthetic",
+         "waterproof": "no"
+        }
+       },
+       {
+        "name": "Smart Watch",
+        "item_id": "2554056026",
+        "price": 367.38,
+        "options": {
+         "color": "gold",
+         "band material": "metal",
+         "display": "AMOLED"
+        }
+       },
+       {
+        "name": "Mechanical Keyboard",
+        "item_id": "6342039236",
+        "price": 244.91,
+        "options": {
+         "switch type": "clicky",
+         "backlight": "white",
+         "size": "full size"
+        }
+       },
+       {
+        "name": "T-Shirt",
+        "item_id": "5047954489",
+        "price": 54.84,
+        "options": {
+         "color": "blue",
+         "size": "S",
+         "material": "polyester",
+         "style": "v-neck"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 918.95,
+        "payment_method_id": "paypal_5364164"
+       }
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "You have three pending orders and one delivered order. \n\nThe total amount for your pending orders is:\n- Order #W5199551: $3,131.10\n- Order #W8665881: $4,777.75\n\nThe total amount for the delivered order is $918.95, which you can return if you wish.\n\nWould you like to proceed with canceling all your pending orders and returning the watch from the delivered order? Please confirm.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Yes, please go ahead and cancel all my pending orders and process the return for the watch from the delivered order."
+    }
+   ],
+   "final_text": "",
+   "proposed": {
+    "name": "cancel_pending_order",
+    "args": {
+     "order_id": "#W5199551",
+     "reason": "no longer needed"
+    },
+    "notes": {}
+   },
+   "policy_section": "## Cancel pending order\n\nAn order can only be cancelled if its status is 'pending', and you should check its status before taking the action.\n\nThe user needs to confirm the order id and the reason (either 'no longer needed' or 'ordered by mistake') for cancellation. Other reasons are not acceptable.\n\nAfter user confirmation, the order status will be changed to 'cancelled', and the total will be refunded via the original payment method immediately if it is gift card, otherwise in 5 to 7 business days."
+  },
+  {
+   "id": "case-06",
+   "action": "return_delivered_order_items",
+   "action_label": "Return items from a delivered order",
+   "turns": [
+    {
+     "who": "agent",
+     "text": "Hi! How can I help you today?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Hi! I actually got two tablets delivered to me, but I only need one. I want to return one of them and get a refund on my credit card. Can you help me with that?"
+    },
+    {
+     "who": "agent",
+     "text": "I can help you with returning one of the tablets and processing the refund to your credit card. Could you please provide me with the order ID for this purchase?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Sure, let me check... Actually, I don't have the order ID handy right now. But my name is Chen Silva, and my zip code is 46281. Maybe you can find it with that?"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "find_user_id_by_name_zip",
+       "args": {
+        "first_name": "Chen",
+        "last_name": "Silva",
+        "zip": "46281"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "find_user_id_by_name_zip",
+     "raw": "chen_silva_7485"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_user_details",
+       "args": {
+        "user_id": "chen_silva_7485"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_user_details",
+     "raw": "{\"user_id\": \"chen_silva_7485\", \"name\": {\"first_name\": \"Chen\", \"last_name\": \"Silva\"}, \"address\": {\"address1\": \"139 River Road\", \"address2\": \"Suite 418\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46281\"}, \"email\": \"chen.silva2698@example.com\", \"payment_methods\": {\"gift_card_7250692\": {\"source\": \"gift_card\", \"id\": \"gift_card_7250692\", \"balance\": 59.0}, \"credit_card_1565124\": {\"source\": \"credit_card\", \"id\": \"credit_card_1565124\", \"brand\": \"mastercard\", \"last_four\": \"2732\"}}, \"orders\": [\"#W3069600\", \"#W2598834\", \"#W8171054\", \"#W9571698\"]}",
+     "user": {
+      "user_id": "chen_silva_7485",
+      "name": {
+       "first_name": "Chen",
+       "last_name": "Silva"
+      },
+      "payment_methods": {
+       "gift_card_7250692": "gift_card (balance 59.0)",
+       "credit_card_1565124": "credit_card"
+      },
+      "orders": [
+       "#W3069600",
+       "#W2598834",
+       "#W8171054",
+       "#W9571698"
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W9571698"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W9571698\", \"user_id\": \"chen_silva_7485\", \"address\": {\"address1\": \"139 River Road\", \"address2\": \"Suite 418\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46281\"}, \"items\": [{\"name\": \"Digital Camera\", \"product_id\": \"8940227892\", \"item_id\": \"9973034634\", \"price\": 2850.32, \"options\": {\"resolution\": \"20MP\", \"zoom\": \"3x\", \"storage\": \"CF card\"}}, {\"name\": \"Coffee Maker\", \"product_id\": \"7996920482\", \"item_id\": \"5952720925\", \"price\": 260.19, \"options\": {\"color\": \"black\", \"capacity\": \"4 cups\", \"type\": \"espresso\", \"features\": \"timer\"}}, {\"name\": \"Pet Bed\", \"product_id\": \"2747247837\", \"item_id\": \"7381052709\", \"price\": 193.22, \"options\": {\"size\": \"large\", \"material\": \"memory foam\", \"color\": \"brown\"}}, {\"name\": \"Tablet\", \"product_id\": \"8024098596\", \"item_id\": \"6065192424\", \"price\": 989.7, \"options\": {\"screen size\": \"8-inch\", \"storage\": \"128GB\", \"color\": \"gold\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"304189154726\"], \"item_ids\": [\"9973034634\", \"5952720925\", \"7381052709\", \"6065192424\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 4293.43, \"payment_method_id\": \"gift_card_7250692\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W9571698",
+      "user_id": "chen_silva_7485",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Digital Camera",
+        "item_id": "9973034634",
+        "price": 2850.32,
+        "options": {
+         "resolution": "20MP",
+         "zoom": "3x",
+         "storage": "CF card"
+        }
+       },
+       {
+        "name": "Coffee Maker",
+        "item_id": "5952720925",
+        "price": 260.19,
+        "options": {
+         "color": "black",
+         "capacity": "4 cups",
+         "type": "espresso",
+         "features": "timer"
+        }
+       },
+       {
+        "name": "Pet Bed",
+        "item_id": "7381052709",
+        "price": 193.22,
+        "options": {
+         "size": "large",
+         "material": "memory foam",
+         "color": "brown"
+        }
+       },
+       {
+        "name": "Tablet",
+        "item_id": "6065192424",
+        "price": 989.7,
+        "options": {
+         "screen size": "8-inch",
+         "storage": "128GB",
+         "color": "gold"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 4293.43,
+        "payment_method_id": "gift_card_7250692"
+       }
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "return_delivered_order_items",
+       "args": {
+        "item_ids": [
+         "6065192424"
+        ],
+        "order_id": "#W9571698",
+        "payment_method_id": "credit_card_1565124"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "return_delivered_order_items",
+     "raw": "Error: Payment method should be the original payment method"
+    },
+    {
+     "who": "agent",
+     "text": "The refund must go to the original payment method used for the purchase. In this case, the original payment was made with a gift card. Would you like to proceed with returning the tablet and refunding to the gift card?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Oh, wait, I think I changed my mind. Instead of returning the less expensive tablet, I'd like to return the more expensive one. And can I get the refund on a gift card instead? That would be better for me."
+    }
+   ],
+   "final_text": "Since the order has already been delivered, I can help you return the more expensive tablet and process the refund to a gift card. I will proceed with returning the tablet and refunding to your gift card. Please hold on while I take care of this.",
+   "proposed": {
+    "name": "return_delivered_order_items",
+    "args": {
+     "item_ids": [
+      "6065192424"
+     ],
+     "order_id": "#W9571698",
+     "payment_method_id": "gift_card_7250692"
+    },
+    "notes": {
+     "item_ids": [
+      "Tablet (screen size 8-inch, storage 128GB, color gold)"
+     ],
+     "payment_method_id": "gift_card (balance 59.0)"
+    }
+   },
+   "policy_section": "## Return delivered order\n\nAn order can only be returned if its status is 'delivered', and you should check its status before taking the action.\n\nThe user needs to confirm the order id and the list of items to be returned.\n\nThe user needs to provide a payment method to receive the refund.\n\nThe refund must either go to the original payment method, or an existing gift card.\n\nAfter user confirmation, the order status will be changed to 'return requested', and the user will receive an email regarding how to return items."
+  },
+  {
+   "id": "case-07",
+   "action": "modify_pending_order_items",
+   "action_label": "Change items in a pending order",
+   "turns": [
+    {
+     "who": "agent",
+     "text": "Hi! How can I help you today?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Hi, um, I need to return a luggage set I bought, but I want to get the exact same one in red instead. Also, I have a skateboard I want to return and get a new one with a length of 34 inches and a custom design. And, uh, I want to return some hiking boots too. Is that possible?"
+    },
+    {
+     "who": "agent",
+     "text": "To assist you with your return and exchange requests, I\u2019ll need to verify your identity first. Could you please provide your email address associated with your account? If you don\u2019t remember your email, I can also look you up by your first name, last name, and zip code.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "I don't really remember my email address right now. But my name is Liam Thomas, and my zip code is 85049. Can you find my orders with that?"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "find_user_id_by_name_zip",
+       "args": {
+        "first_name": "Liam",
+        "last_name": "Thomas",
+        "zip": "85049"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "find_user_id_by_name_zip",
+     "raw": "liam_thomas_7882"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_user_details",
+       "args": {
+        "user_id": "liam_thomas_7882"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_user_details",
+     "raw": "{\"user_id\": \"liam_thomas_7882\", \"name\": {\"first_name\": \"Liam\", \"last_name\": \"Thomas\"}, \"address\": {\"address1\": \"629 Pine Lane\", \"address2\": \"Suite 380\", \"city\": \"Phoenix\", \"country\": \"USA\", \"state\": \"AZ\", \"zip\": \"85049\"}, \"email\": \"liam.thomas9081@example.com\", \"payment_methods\": {\"paypal_3650980\": {\"source\": \"paypal\", \"id\": \"paypal_3650980\"}, \"credit_card_3261838\": {\"source\": \"credit_card\", \"id\": \"credit_card_3261838\", \"brand\": \"visa\", \"last_four\": \"3194\"}}, \"orders\": [\"#W1654931\", \"#W8488728\", \"#W6397299\", \"#W6231698\", \"#W3295833\"]}",
+     "user": {
+      "user_id": "liam_thomas_7882",
+      "name": {
+       "first_name": "Liam",
+       "last_name": "Thomas"
+      },
+      "payment_methods": {
+       "paypal_3650980": "paypal",
+       "credit_card_3261838": "credit_card"
+      },
+      "orders": [
+       "#W1654931",
+       "#W8488728",
+       "#W6397299",
+       "#W6231698",
+       "#W3295833"
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "I\u2019ve found your account and can help with your requests. To proceed, I\u2019ll need to know which specific orders your luggage set, skateboard, and hiking boots are from. Could you please provide the order numbers or let me know if you need help identifying which orders contain these items?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "I\u2019m not sure about the order numbers. Could you maybe check all my recent orders and see which ones have the luggage set, skateboard, and hiking boots? I\u2019m sorry for the trouble."
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W1654931"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W8488728"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W6397299"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W6231698"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W3295833"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W1654931\", \"user_id\": \"liam_thomas_7882\", \"address\": {\"address1\": \"629 Pine Lane\", \"address2\": \"Suite 380\", \"city\": \"Phoenix\", \"country\": \"USA\", \"state\": \"AZ\", \"zip\": \"85049\"}, \"items\": [{\"name\": \"E-Reader\", \"product_id\": \"3801771308\", \"item_id\": \"6268080249\", \"price\": 244.02, \"options\": {\"screen size\": \"7-inch\", \"connectivity\": \"Wi-Fi\", \"storage\": \"8GB\"}}, {\"name\": \"Air Purifier\", \"product_id\": \"3821016478\", \"item_id\": \"5669664287\", \"price\": 543.68, \"options\": {\"room size\": \"small\", \"filter type\": \"ionic\", \"features\": \"quiet operation\"}}], \"status\": \"pending\", \"fulfillments\": [], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 787.7, \"payment_method_id\": \"credit_card_3261838\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W1654931",
+      "user_id": "liam_thomas_7882",
+      "status": "pending",
+      "items": [
+       {
+        "name": "E-Reader",
+        "item_id": "6268080249",
+        "price": 244.02,
+        "options": {
+         "screen size": "7-inch",
+         "connectivity": "Wi-Fi",
+         "storage": "8GB"
+        }
+       },
+       {
+        "name": "Air Purifier",
+        "item_id": "5669664287",
+        "price": 543.68,
+        "options": {
+         "room size": "small",
+         "filter type": "ionic",
+         "features": "quiet operation"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 787.7,
+        "payment_method_id": "credit_card_3261838"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W8488728\", \"user_id\": \"liam_thomas_7882\", \"address\": {\"address1\": \"629 Pine Lane\", \"address2\": \"Suite 380\", \"city\": \"Phoenix\", \"country\": \"USA\", \"state\": \"AZ\", \"zip\": \"85049\"}, \"items\": [{\"name\": \"Hiking Boots\", \"product_id\": \"7363354090\", \"item_id\": \"5676696062\", \"price\": 245.99, \"options\": {\"size\": \"11\", \"material\": \"leather\", \"waterproof\": \"no\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"353040585167\"], \"item_ids\": [\"5676696062\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 245.99, \"payment_method_id\": \"paypal_3650980\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W8488728",
+      "user_id": "liam_thomas_7882",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Hiking Boots",
+        "item_id": "5676696062",
+        "price": 245.99,
+        "options": {
+         "size": "11",
+         "material": "leather",
+         "waterproof": "no"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 245.99,
+        "payment_method_id": "paypal_3650980"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W6397299\", \"user_id\": \"liam_thomas_7882\", \"address\": {\"address1\": \"629 Pine Lane\", \"address2\": \"Suite 380\", \"city\": \"Phoenix\", \"country\": \"USA\", \"state\": \"AZ\", \"zip\": \"85049\"}, \"items\": [{\"name\": \"Bookshelf\", \"product_id\": \"8600330539\", \"item_id\": \"1111254697\", \"price\": 531.57, \"options\": {\"material\": \"glass\", \"color\": \"white\", \"height\": \"6 ft\"}}, {\"name\": \"Yoga Mat\", \"product_id\": \"4635925001\", \"item_id\": \"2733768059\", \"price\": 94.38, \"options\": {\"thickness\": \"6mm\", \"material\": \"natural rubber\", \"color\": \"pink\"}}, {\"name\": \"Vacuum Cleaner\", \"product_id\": \"1762337868\", \"item_id\": \"2872451762\", \"price\": 622.12, \"options\": {\"type\": \"canister\", \"bagged/bagless\": \"bagged\", \"features\": \"pet hair removal\"}}, {\"name\": \"Dumbbell Set\", \"product_id\": \"7233192239\", \"item_id\": \"7896397433\", \"price\": 457.81, \"options\": {\"weight range\": \"5-25 lbs\", \"material\": \"rubber\", \"set type\": \"adjustable\"}}, {\"name\": \"Garden Hose\", \"product_id\": \"6679515468\", \"item_id\": \"5206946487\", \"price\": 95.08, \"options\": {\"length\": \"50ft\", \"material\": \"vinyl\", \"color\": \"black\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"883490634651\"], \"item_ids\": [\"1111254697\", \"2733768059\", \"2872451762\", \"7896397433\", \"5206946487\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 1800.96, \"payment_method_id\": \"credit_card_3261838\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W6397299",
+      "user_id": "liam_thomas_7882",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Bookshelf",
+        "item_id": "1111254697",
+        "price": 531.57,
+        "options": {
+         "material": "glass",
+         "color": "white",
+         "height": "6 ft"
+        }
+       },
+       {
+        "name": "Yoga Mat",
+        "item_id": "2733768059",
+        "price": 94.38,
+        "options": {
+         "thickness": "6mm",
+         "material": "natural rubber",
+         "color": "pink"
+        }
+       },
+       {
+        "name": "Vacuum Cleaner",
+        "item_id": "2872451762",
+        "price": 622.12,
+        "options": {
+         "type": "canister",
+         "bagged/bagless": "bagged",
+         "features": "pet hair removal"
+        }
+       },
+       {
+        "name": "Dumbbell Set",
+        "item_id": "7896397433",
+        "price": 457.81,
+        "options": {
+         "weight range": "5-25 lbs",
+         "material": "rubber",
+         "set type": "adjustable"
+        }
+       },
+       {
+        "name": "Garden Hose",
+        "item_id": "5206946487",
+        "price": 95.08,
+        "options": {
+         "length": "50ft",
+         "material": "vinyl",
+         "color": "black"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 1800.96,
+        "payment_method_id": "credit_card_3261838"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W6231698\", \"user_id\": \"liam_thomas_7882\", \"address\": {\"address1\": \"629 Pine Lane\", \"address2\": \"Suite 380\", \"city\": \"Phoenix\", \"country\": \"USA\", \"state\": \"AZ\", \"zip\": \"85049\"}, \"items\": [{\"name\": \"Mechanical Keyboard\", \"product_id\": \"1656367028\", \"item_id\": \"9570044148\", \"price\": 231.37, \"options\": {\"switch type\": \"linear\", \"backlight\": \"none\", \"size\": \"full size\"}}, {\"name\": \"Dumbbell Set\", \"product_id\": \"7233192239\", \"item_id\": \"3333391894\", \"price\": 534.14, \"options\": {\"weight range\": \"30-50 lbs\", \"material\": \"iron\", \"set type\": \"fixed\"}}, {\"name\": \"Running Shoes\", \"product_id\": \"6938111410\", \"item_id\": \"1775591963\", \"price\": 154.75, \"options\": {\"size\": \"10\", \"color\": \"white\", \"material\": \"leather\", \"sole\": \"EVA\"}}], \"status\": \"processed\", \"fulfillments\": [{\"tracking_id\": [\"946003206427\"], \"item_ids\": [\"9570044148\", \"3333391894\", \"1775591963\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 920.26, \"payment_method_id\": \"paypal_3650980\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W6231698",
+      "user_id": "liam_thomas_7882",
+      "status": "processed",
+      "items": [
+       {
+        "name": "Mechanical Keyboard",
+        "item_id": "9570044148",
+        "price": 231.37,
+        "options": {
+         "switch type": "linear",
+         "backlight": "none",
+         "size": "full size"
+        }
+       },
+       {
+        "name": "Dumbbell Set",
+        "item_id": "3333391894",
+        "price": 534.14,
+        "options": {
+         "weight range": "30-50 lbs",
+         "material": "iron",
+         "set type": "fixed"
+        }
+       },
+       {
+        "name": "Running Shoes",
+        "item_id": "1775591963",
+        "price": 154.75,
+        "options": {
+         "size": "10",
+         "color": "white",
+         "material": "leather",
+         "sole": "EVA"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 920.26,
+        "payment_method_id": "paypal_3650980"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W3295833\", \"user_id\": \"liam_thomas_7882\", \"address\": {\"address1\": \"629 Pine Lane\", \"address2\": \"Suite 380\", \"city\": \"Phoenix\", \"country\": \"USA\", \"state\": \"AZ\", \"zip\": \"85049\"}, \"items\": [{\"name\": \"Skateboard\", \"product_id\": \"1968349452\", \"item_id\": \"5312063289\", \"price\": 195.15, \"options\": {\"deck material\": \"bamboo\", \"length\": \"31 inch\", \"design\": \"graphic\"}}, {\"name\": \"Luggage Set\", \"product_id\": \"5426915165\", \"item_id\": \"8926329222\", \"price\": 452.28, \"options\": {\"piece count\": \"2-piece\", \"color\": \"black\", \"material\": \"softshell\"}}, {\"name\": \"Portable Charger\", \"product_id\": \"6942297802\", \"item_id\": \"4063401924\", \"price\": 109.27, \"options\": {\"capacity\": \"20000mAh\", \"output\": \"Wireless\", \"color\": \"blue\"}}], \"status\": \"pending\", \"fulfillments\": [], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 756.7, \"payment_method_id\": \"paypal_3650980\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W3295833",
+      "user_id": "liam_thomas_7882",
+      "status": "pending",
+      "items": [
+       {
+        "name": "Skateboard",
+        "item_id": "5312063289",
+        "price": 195.15,
+        "options": {
+         "deck material": "bamboo",
+         "length": "31 inch",
+         "design": "graphic"
+        }
+       },
+       {
+        "name": "Luggage Set",
+        "item_id": "8926329222",
+        "price": 452.28,
+        "options": {
+         "piece count": "2-piece",
+         "color": "black",
+         "material": "softshell"
+        }
+       },
+       {
+        "name": "Portable Charger",
+        "item_id": "4063401924",
+        "price": 109.27,
+        "options": {
+         "capacity": "20000mAh",
+         "output": "Wireless",
+         "color": "blue"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 756.7,
+        "payment_method_id": "paypal_3650980"
+       }
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "Here\u2019s what I found in your recent orders:\n\n- Hiking Boots: Delivered in order #W8488728.\n- Skateboard and Luggage Set: Both are in order #W3295833, which is still pending (not delivered yet).\n\nYou can only return or exchange items from delivered orders. The hiking boots are eligible for return. However, the skateboard and luggage set are in a pending order, so you can only modify or cancel that order, not return/exchange.\n\nWould you like to:\n1. Return the hiking boots from order #W8488728?\n2. Modify your pending order #W3295833 to change the luggage set to red and the skateboard to a 34-inch custom design?\n\nPlease confirm if you\u2019d like to proceed with these actions, and let me know your preferred payment method for any price differences or refunds.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Oh, okay. Since the skateboard and luggage set are still pending, can you please modify that order to change the luggage set to red and the skateboard to the 34-inch custom design? And yes, I want to return the hiking boots from the delivered order. I\u2019m not sure about the payment method yet. Can you tell me what options I have?"
+    },
+    {
+     "who": "agent",
+     "text": "Here are your available payment methods on file:\n\n1. PayPal account (paypal_3650980)\n2. Visa credit card ending in 3194 (credit_card_3261838)\n\nFor the return of the hiking boots, the refund can go to the original payment method (PayPal) or to an existing gift card (if you have one).\n\nFor modifying your pending order, you can use either your PayPal account or your Visa credit card to pay or receive any price difference.\n\nWould you like to use your PayPal account or your Visa credit card for these transactions? Also, please confirm that you want the refund for the hiking boots to go to your PayPal account, or let me know if you prefer a gift card. Once you confirm, I\u2019ll proceed with the details.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "I guess I\u2019ll use my PayPal account for both the refund and the payment for the modified order. Please go ahead with that. Thank you."
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_product_details",
+       "args": {
+        "product_id": "5426915165"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_product_details",
+     "raw": "{\"name\": \"Luggage Set\", \"product_id\": \"5426915165\", \"variants\": {\"5209958006\": {\"item_id\": \"5209958006\", \"options\": {\"piece count\": \"2-piece\", \"color\": \"silver\", \"material\": \"hardshell\"}, \"available\": false, \"price\": 514.72}, \"6690069155\": {\"item_id\": \"6690069155\", \"options\": {\"piece count\": \"3-piece\", \"color\": \"silver\", \"material\": \"softshell\"}, \"available\": false, \"price\": 466.47}, \"8759627937\": {\"item_id\": \"8759627937\", \"options\": {\"piece count\": \"4-piece\", \"color\": \"blue\", \"material\": \"softshell\"}, \"available\": true, \"price\": 501.65}, \"9692325258\": {\"item_id\": \"9692325258\", \"options\": {\"piece count\": \"3-piece\", \"color\": \"black\", \"material\": \"softshell\"}, \"available\": false, \"price\": 528.63}, \"6301799585\": {\"item_id\": \"6301799585\", \"options\": {\"piece count\": \"3-piece\", \"color\": \"blue\", \"material\": \"softshell\"}, \"available\": true, \"price\": 495.87}, \"9956648681\": {\"item_id\": \"9956648681\", \"options\": {\"piece count\": \"4-piece\", \"color\": \"red\", \"material\": \"hardshell\"}, \"available\": true, \"price\": 452.62}, \"8964750292\": {\"item_id\": \"8964750292\", \"options\": {\"piece count\": \"2-piece\", \"color\": \"red\", \"material\": \"hardshell\"}, \"available\": true, \"price\": 532.58}, \"8926329222\": {\"item_id\": \"8926329222\", \"options\": {\"piece count\": \"2-piece\", \"color\": \"black\", \"material\": \"softshell\"}, \"available\": true, \"price\": 452.28}, \"7160999700\": {\"item_id\": \"7160999700\", \"options\": {\"piece count\": \"2-piece\", \"color\": \"red\", \"material\": \"softshell\"}, \"available\": true, \"price\": 499.29}}}",
+     "product": {
+      "name": "Luggage Set",
+      "variants": [
+       {
+        "item_id": "5209958006",
+        "options": {
+         "piece count": "2-piece",
+         "color": "silver",
+         "material": "hardshell"
+        },
+        "available": false,
+        "price": 514.72
+       },
+       {
+        "item_id": "6690069155",
+        "options": {
+         "piece count": "3-piece",
+         "color": "silver",
+         "material": "softshell"
+        },
+        "available": false,
+        "price": 466.47
+       },
+       {
+        "item_id": "8759627937",
+        "options": {
+         "piece count": "4-piece",
+         "color": "blue",
+         "material": "softshell"
+        },
+        "available": true,
+        "price": 501.65
+       },
+       {
+        "item_id": "9692325258",
+        "options": {
+         "piece count": "3-piece",
+         "color": "black",
+         "material": "softshell"
+        },
+        "available": false,
+        "price": 528.63
+       },
+       {
+        "item_id": "6301799585",
+        "options": {
+         "piece count": "3-piece",
+         "color": "blue",
+         "material": "softshell"
+        },
+        "available": true,
+        "price": 495.87
+       },
+       {
+        "item_id": "9956648681",
+        "options": {
+         "piece count": "4-piece",
+         "color": "red",
+         "material": "hardshell"
+        },
+        "available": true,
+        "price": 452.62
+       },
+       {
+        "item_id": "8964750292",
+        "options": {
+         "piece count": "2-piece",
+         "color": "red",
+         "material": "hardshell"
+        },
+        "available": true,
+        "price": 532.58
+       },
+       {
+        "item_id": "8926329222",
+        "options": {
+         "piece count": "2-piece",
+         "color": "black",
+         "material": "softshell"
+        },
+        "available": true,
+        "price": 452.28
+       },
+       {
+        "item_id": "7160999700",
+        "options": {
+         "piece count": "2-piece",
+         "color": "red",
+         "material": "softshell"
+        },
+        "available": true,
+        "price": 499.29
+       }
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_product_details",
+       "args": {
+        "product_id": "1968349452"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_product_details",
+     "raw": "{\"name\": \"Skateboard\", \"product_id\": \"1968349452\", \"variants\": {\"6843647669\": {\"item_id\": \"6843647669\", \"options\": {\"deck material\": \"bamboo\", \"length\": \"28 inch\", \"design\": \"graphic\"}, \"available\": true, \"price\": 180.1}, \"3232433601\": {\"item_id\": \"3232433601\", \"options\": {\"deck material\": \"maple\", \"length\": \"28 inch\", \"design\": \"plain\"}, \"available\": true, \"price\": 204.14}, \"3098764622\": {\"item_id\": \"3098764622\", \"options\": {\"deck material\": \"plastic\", \"length\": \"34 inch\", \"design\": \"plain\"}, \"available\": true, \"price\": 202.13}, \"3541421151\": {\"item_id\": \"3541421151\", \"options\": {\"deck material\": \"bamboo\", \"length\": \"34 inch\", \"design\": \"graphic\"}, \"available\": true, \"price\": 193.79}, \"4545791457\": {\"item_id\": \"4545791457\", \"options\": {\"deck material\": \"plastic\", \"length\": \"28 inch\", \"design\": \"plain\"}, \"available\": true, \"price\": 186.06}, \"6313971174\": {\"item_id\": \"6313971174\", \"options\": {\"deck material\": \"bamboo\", \"length\": \"31 inch\", \"design\": \"custom\"}, \"available\": true, \"price\": 193.97}, \"3877188862\": {\"item_id\": \"3877188862\", \"options\": {\"deck material\": \"plastic\", \"length\": \"31 inch\", \"design\": \"plain\"}, \"available\": true, \"price\": 182.03}, \"5038485381\": {\"item_id\": \"5038485381\", \"options\": {\"deck material\": \"plastic\", \"length\": \"31 inch\", \"design\": \"custom\"}, \"available\": true, \"price\": 189.65}, \"9594745976\": {\"item_id\": \"9594745976\", \"options\": {\"deck material\": \"plastic\", \"length\": \"34 inch\", \"design\": \"custom\"}, \"available\": true, \"price\": 184.13}, \"6673921677\": {\"item_id\": \"6673921677\", \"options\": {\"deck material\": \"bamboo\", \"length\": \"28 inch\", \"design\": \"custom\"}, \"available\": true, \"price\": 189.57}, \"6956751343\": {\"item_id\": \"6956751343\", \"options\": {\"deck material\": \"bamboo\", \"length\": \"34 inch\", \"design\": \"custom\"}, \"available\": true, \"price\": 217.06}, \"5489028872\": {\"item_id\": \"5489028872\", \"options\": {\"deck material\": \"plastic\", \"length\": \"34 inch\", \"design\": \"graphic\"}, \"available\": true, \"price\": 187.71}, \"8176740019\": {\"item_id\": \"8176740019\", \"options\": {\"deck material\": \"bamboo\", \"length\": \"28 inch\", \"design\": \"plain\"}, \"available\": true, \"price\": 208.6}, \"5120532699\": {\"item_id\": \"5120532699\", \"options\": {\"deck material\": \"maple\", \"length\": \"31 inch\", \"design\": \"graphic\"}, \"available\": true, \"price\": 187.23}, \"5312063289\": {\"item_id\": \"5312063289\", \"options\": {\"deck material\": \"bamboo\", \"length\": \"31 inch\", \"design\": \"graphic\"}, \"available\": true, \"price\": 195.15}, \"4293355847\": {\"item_id\": \"4293355847\", \"options\": {\"deck material\": \"bamboo\", \"length\": \"31 inch\", \"design\": \"plain\"}, \"available\": true, \"price\": 200.8}, \"2819462352\": {\"item_id\": \"2819462352\", \"options\": {\"deck material\": \"maple\", \"length\": \"28 inch\", \"design\": \"graphic\"}, \"available\": true, \"price\": 180.66}, \"2177997696\": {\"item_id\": \"2177997696\", \"options\": {\"deck material\": \"plastic\", \"length\": \"28 inch\", \"design\": \"custom\"}, \"available\": true, \"price\": 206.6}, \"2343503231\": {\"item_id\": \"2343503231\", \"options\": {\"deck material\": \"maple\", \"length\": \"34 inch\", \"design\": \"graphic\"}, \"available\": false, \"price\": 196.86}}}",
+     "product": {
+      "name": "Skateboard",
+      "variants": [
+       {
+        "item_id": "6843647669",
+        "options": {
+         "deck material": "bamboo",
+         "length": "28 inch",
+         "design": "graphic"
+        },
+        "available": true,
+        "price": 180.1
+       },
+       {
+        "item_id": "3232433601",
+        "options": {
+         "deck material": "maple",
+         "length": "28 inch",
+         "design": "plain"
+        },
+        "available": true,
+        "price": 204.14
+       },
+       {
+        "item_id": "3098764622",
+        "options": {
+         "deck material": "plastic",
+         "length": "34 inch",
+         "design": "plain"
+        },
+        "available": true,
+        "price": 202.13
+       },
+       {
+        "item_id": "3541421151",
+        "options": {
+         "deck material": "bamboo",
+         "length": "34 inch",
+         "design": "graphic"
+        },
+        "available": true,
+        "price": 193.79
+       },
+       {
+        "item_id": "4545791457",
+        "options": {
+         "deck material": "plastic",
+         "length": "28 inch",
+         "design": "plain"
+        },
+        "available": true,
+        "price": 186.06
+       },
+       {
+        "item_id": "6313971174",
+        "options": {
+         "deck material": "bamboo",
+         "length": "31 inch",
+         "design": "custom"
+        },
+        "available": true,
+        "price": 193.97
+       },
+       {
+        "item_id": "3877188862",
+        "options": {
+         "deck material": "plastic",
+         "length": "31 inch",
+         "design": "plain"
+        },
+        "available": true,
+        "price": 182.03
+       },
+       {
+        "item_id": "5038485381",
+        "options": {
+         "deck material": "plastic",
+         "length": "31 inch",
+         "design": "custom"
+        },
+        "available": true,
+        "price": 189.65
+       },
+       {
+        "item_id": "9594745976",
+        "options": {
+         "deck material": "plastic",
+         "length": "34 inch",
+         "design": "custom"
+        },
+        "available": true,
+        "price": 184.13
+       },
+       {
+        "item_id": "6673921677",
+        "options": {
+         "deck material": "bamboo",
+         "length": "28 inch",
+         "design": "custom"
+        },
+        "available": true,
+        "price": 189.57
+       },
+       {
+        "item_id": "6956751343",
+        "options": {
+         "deck material": "bamboo",
+         "length": "34 inch",
+         "design": "custom"
+        },
+        "available": true,
+        "price": 217.06
+       },
+       {
+        "item_id": "5489028872",
+        "options": {
+         "deck material": "plastic",
+         "length": "34 inch",
+         "design": "graphic"
+        },
+        "available": true,
+        "price": 187.71
+       },
+       {
+        "item_id": "8176740019",
+        "options": {
+         "deck material": "bamboo",
+         "length": "28 inch",
+         "design": "plain"
+        },
+        "available": true,
+        "price": 208.6
+       },
+       {
+        "item_id": "5120532699",
+        "options": {
+         "deck material": "maple",
+         "length": "31 inch",
+         "design": "graphic"
+        },
+        "available": true,
+        "price": 187.23
+       },
+       {
+        "item_id": "5312063289",
+        "options": {
+         "deck material": "bamboo",
+         "length": "31 inch",
+         "design": "graphic"
+        },
+        "available": true,
+        "price": 195.15
+       },
+       {
+        "item_id": "4293355847",
+        "options": {
+         "deck material": "bamboo",
+         "length": "31 inch",
+         "design": "plain"
+        },
+        "available": true,
+        "price": 200.8
+       },
+       {
+        "item_id": "2819462352",
+        "options": {
+         "deck material": "maple",
+         "length": "28 inch",
+         "design": "graphic"
+        },
+        "available": true,
+        "price": 180.66
+       },
+       {
+        "item_id": "2177997696",
+        "options": {
+         "deck material": "plastic",
+         "length": "28 inch",
+         "design": "custom"
+        },
+        "available": true,
+        "price": 206.6
+       },
+       {
+        "item_id": "2343503231",
+        "options": {
+         "deck material": "maple",
+         "length": "34 inch",
+         "design": "graphic"
+        },
+        "available": false,
+        "price": 196.86
+       }
+      ]
+     }
+    }
+   ],
+   "final_text": "",
+   "proposed": {
+    "name": "modify_pending_order_items",
+    "args": {
+     "item_ids": [
+      "8926329222",
+      "5312063289"
+     ],
+     "new_item_ids": [
+      "7160999700",
+      "6956751343"
+     ],
+     "order_id": "#W3295833",
+     "payment_method_id": "paypal_3650980"
+    },
+    "notes": {
+     "item_ids": [
+      "Luggage Set (piece count 2-piece, color black, material softshell)",
+      "Skateboard (deck material bamboo, length 31 inch, design graphic)"
+     ],
+     "new_item_ids": [
+      "Luggage Set (piece count 2-piece, color red, material softshell)",
+      "Skateboard (deck material bamboo, length 34 inch, design custom)"
+     ],
+     "payment_method_id": "paypal"
+    }
+   },
+   "policy_section": "## Modify pending order\n\nAn order can only be modified if its status is 'pending', and you should check its status before taking the action.\n\nFor a pending order, you can take actions to modify its shipping address, payment method, or product item options, but nothing else.\n\n### Modify payment\n\nThe user can only choose a single payment method different from the original payment method.\n\nIf the user wants the modify the payment method to gift card, it must have enough balance to cover the total amount.\n\nAfter user confirmation, the order status will be kept as 'pending'. The original payment method will be refunded immediately if it is a gift card, otherwise it will be refunded within 5 to 7 business days.\n\n### Modify items\n\nThis action can only be called once, and will change the order status to 'pending (items modifed)'. The agent will not be able to modify or cancel the order anymore. So you must confirm all the details are correct and be cautious before taking this action. In particular, remember to remind the customer to confirm they have provided all the items they want to modify.\n\nFor a pending order, each item can be modified to an available new item of the same product but of different product option. There cannot be any change of product types, e.g. modify shirt to shoe.\n\nThe user must provide a payment method to pay or receive refund of the price difference. If the user provides a gift card, it must have enough balance to cover the price difference."
+  },
+  {
+   "id": "case-08",
+   "action": "return_delivered_order_items",
+   "action_label": "Return items from a delivered order",
+   "turns": [
+    {
+     "who": "agent",
+     "text": "Hi! How can I help you today?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Hey! So, I ordered a tablet, but I actually got two of them delivered. I only need one, so I want to return the more expensive one and get a refund back to my credit card. Can you help me with that?"
+    },
+    {
+     "who": "agent",
+     "text": "To assist you with your return request, I\u2019ll need to verify your identity first. Could you please provide the email address associated with your account?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Oh man, I don\u2019t really remember which email I used for this order. Is there another way to verify me? Maybe my name or zip code?"
+    },
+    {
+     "who": "agent",
+     "text": "Yes, I can verify your identity using your first name, last name, and zip code. Please provide these details so I can locate your account and assist you further.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Alright, my name is Chen Silva, and my zip code is 46281. Can you find my order with that?"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "find_user_id_by_name_zip",
+       "args": {
+        "first_name": "Chen",
+        "last_name": "Silva",
+        "zip": "46281"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "find_user_id_by_name_zip",
+     "raw": "chen_silva_7485"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_user_details",
+       "args": {
+        "user_id": "chen_silva_7485"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_user_details",
+     "raw": "{\"user_id\": \"chen_silva_7485\", \"name\": {\"first_name\": \"Chen\", \"last_name\": \"Silva\"}, \"address\": {\"address1\": \"139 River Road\", \"address2\": \"Suite 418\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46281\"}, \"email\": \"chen.silva2698@example.com\", \"payment_methods\": {\"gift_card_7250692\": {\"source\": \"gift_card\", \"id\": \"gift_card_7250692\", \"balance\": 59.0}, \"credit_card_1565124\": {\"source\": \"credit_card\", \"id\": \"credit_card_1565124\", \"brand\": \"mastercard\", \"last_four\": \"2732\"}}, \"orders\": [\"#W3069600\", \"#W2598834\", \"#W8171054\", \"#W9571698\"]}",
+     "user": {
+      "user_id": "chen_silva_7485",
+      "name": {
+       "first_name": "Chen",
+       "last_name": "Silva"
+      },
+      "payment_methods": {
+       "gift_card_7250692": "gift_card (balance 59.0)",
+       "credit_card_1565124": "credit_card"
+      },
+      "orders": [
+       "#W3069600",
+       "#W2598834",
+       "#W8171054",
+       "#W9571698"
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "Thank you, Chen. I\u2019ve found your account. To help with your return, could you please tell me which order (or the order number) contains the two tablets you received? If you\u2019re not sure, I can provide details of your recent orders to help you identify the correct one. Would you like me to list your recent orders?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Yeah, please list my recent orders. That way I can figure out which one has the two tablets. Thanks!"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W3069600"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W2598834"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W8171054"
+       }
+      },
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W9571698"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W3069600\", \"user_id\": \"chen_silva_7485\", \"address\": {\"address1\": \"139 River Road\", \"address2\": \"Suite 418\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46281\"}, \"items\": [{\"name\": \"Skateboard\", \"product_id\": \"1968349452\", \"item_id\": \"4545791457\", \"price\": 186.06, \"options\": {\"deck material\": \"plastic\", \"length\": \"28 inch\", \"design\": \"plain\"}}, {\"name\": \"E-Reader\", \"product_id\": \"3801771308\", \"item_id\": \"9494281769\", \"price\": 252.06, \"options\": {\"screen size\": \"8-inch\", \"connectivity\": \"Wi-Fi\", \"storage\": \"8GB\"}}, {\"name\": \"Tablet\", \"product_id\": \"8024098596\", \"item_id\": \"8551474201\", \"price\": 938.92, \"options\": {\"screen size\": \"8-inch\", \"storage\": \"64GB\", \"color\": \"silver\"}}, {\"name\": \"Makeup Kit\", \"product_id\": \"5149340237\", \"item_id\": \"5012998807\", \"price\": 258.71, \"options\": {\"skin tone\": \"dark\", \"kit size\": \"professional\", \"brand\": \"Brand B\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"896954309954\"], \"item_ids\": [\"4545791457\", \"9494281769\", \"8551474201\", \"5012998807\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 1635.75, \"payment_method_id\": \"credit_card_1565124\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W3069600",
+      "user_id": "chen_silva_7485",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Skateboard",
+        "item_id": "4545791457",
+        "price": 186.06,
+        "options": {
+         "deck material": "plastic",
+         "length": "28 inch",
+         "design": "plain"
+        }
+       },
+       {
+        "name": "E-Reader",
+        "item_id": "9494281769",
+        "price": 252.06,
+        "options": {
+         "screen size": "8-inch",
+         "connectivity": "Wi-Fi",
+         "storage": "8GB"
+        }
+       },
+       {
+        "name": "Tablet",
+        "item_id": "8551474201",
+        "price": 938.92,
+        "options": {
+         "screen size": "8-inch",
+         "storage": "64GB",
+         "color": "silver"
+        }
+       },
+       {
+        "name": "Makeup Kit",
+        "item_id": "5012998807",
+        "price": 258.71,
+        "options": {
+         "skin tone": "dark",
+         "kit size": "professional",
+         "brand": "Brand B"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 1635.75,
+        "payment_method_id": "credit_card_1565124"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W2598834\", \"user_id\": \"chen_silva_7485\", \"address\": {\"address1\": \"139 River Road\", \"address2\": \"Suite 418\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46281\"}, \"items\": [{\"name\": \"Jigsaw Puzzle\", \"product_id\": \"1808611083\", \"item_id\": \"6245746168\", \"price\": 46.0, \"options\": {\"pieces\": \"1500\", \"theme\": \"animals\", \"difficulty level\": \"intermediate\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"636875713667\"], \"item_ids\": [\"6245746168\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 46.0, \"payment_method_id\": \"gift_card_7250692\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W2598834",
+      "user_id": "chen_silva_7485",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Jigsaw Puzzle",
+        "item_id": "6245746168",
+        "price": 46.0,
+        "options": {
+         "pieces": "1500",
+         "theme": "animals",
+         "difficulty level": "intermediate"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 46.0,
+        "payment_method_id": "gift_card_7250692"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W8171054\", \"user_id\": \"chen_silva_7485\", \"address\": {\"address1\": \"220 Laurel Lane\", \"address2\": \"Suite 842\", \"city\": \"Los Angeles\", \"country\": \"USA\", \"state\": \"CA\", \"zip\": \"90714\"}, \"items\": [{\"name\": \"Tea Kettle\", \"product_id\": \"9832717871\", \"item_id\": \"9747045638\", \"price\": 94.01, \"options\": {\"material\": \"glass\", \"capacity\": \"1 liter\", \"stovetop compatibility\": \"electric\"}}, {\"name\": \"Running Shoes\", \"product_id\": \"6938111410\", \"item_id\": \"9791469541\", \"price\": 147.05, \"options\": {\"size\": \"9\", \"color\": \"yellow\", \"material\": \"synthetic\", \"sole\": \"rubber\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"727324521932\"], \"item_ids\": [\"9747045638\", \"9791469541\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 241.06, \"payment_method_id\": \"credit_card_1565124\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W8171054",
+      "user_id": "chen_silva_7485",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Tea Kettle",
+        "item_id": "9747045638",
+        "price": 94.01,
+        "options": {
+         "material": "glass",
+         "capacity": "1 liter",
+         "stovetop compatibility": "electric"
+        }
+       },
+       {
+        "name": "Running Shoes",
+        "item_id": "9791469541",
+        "price": 147.05,
+        "options": {
+         "size": "9",
+         "color": "yellow",
+         "material": "synthetic",
+         "sole": "rubber"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 241.06,
+        "payment_method_id": "credit_card_1565124"
+       }
+      ]
+     }
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W9571698\", \"user_id\": \"chen_silva_7485\", \"address\": {\"address1\": \"139 River Road\", \"address2\": \"Suite 418\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46281\"}, \"items\": [{\"name\": \"Digital Camera\", \"product_id\": \"8940227892\", \"item_id\": \"9973034634\", \"price\": 2850.32, \"options\": {\"resolution\": \"20MP\", \"zoom\": \"3x\", \"storage\": \"CF card\"}}, {\"name\": \"Coffee Maker\", \"product_id\": \"7996920482\", \"item_id\": \"5952720925\", \"price\": 260.19, \"options\": {\"color\": \"black\", \"capacity\": \"4 cups\", \"type\": \"espresso\", \"features\": \"timer\"}}, {\"name\": \"Pet Bed\", \"product_id\": \"2747247837\", \"item_id\": \"7381052709\", \"price\": 193.22, \"options\": {\"size\": \"large\", \"material\": \"memory foam\", \"color\": \"brown\"}}, {\"name\": \"Tablet\", \"product_id\": \"8024098596\", \"item_id\": \"6065192424\", \"price\": 989.7, \"options\": {\"screen size\": \"8-inch\", \"storage\": \"128GB\", \"color\": \"gold\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"304189154726\"], \"item_ids\": [\"9973034634\", \"5952720925\", \"7381052709\", \"6065192424\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 4293.43, \"payment_method_id\": \"gift_card_7250692\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W9571698",
+      "user_id": "chen_silva_7485",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Digital Camera",
+        "item_id": "9973034634",
+        "price": 2850.32,
+        "options": {
+         "resolution": "20MP",
+         "zoom": "3x",
+         "storage": "CF card"
+        }
+       },
+       {
+        "name": "Coffee Maker",
+        "item_id": "5952720925",
+        "price": 260.19,
+        "options": {
+         "color": "black",
+         "capacity": "4 cups",
+         "type": "espresso",
+         "features": "timer"
+        }
+       },
+       {
+        "name": "Pet Bed",
+        "item_id": "7381052709",
+        "price": 193.22,
+        "options": {
+         "size": "large",
+         "material": "memory foam",
+         "color": "brown"
+        }
+       },
+       {
+        "name": "Tablet",
+        "item_id": "6065192424",
+        "price": 989.7,
+        "options": {
+         "screen size": "8-inch",
+         "storage": "128GB",
+         "color": "gold"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 4293.43,
+        "payment_method_id": "gift_card_7250692"
+       }
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "Here are your recent delivered orders with tablets:\n\n1. Order #W3069600 includes:\n   - Tablet (8-inch, 64GB, silver) \u2014 $938.92\n2. Order #W9571698 includes:\n   - Tablet (8-inch, 128GB, gold) \u2014 $989.70\n\nCould you confirm which tablet you would like to return? If you want to return the more expensive one, that would be the 128GB gold tablet from order #W9571698. Please confirm if this is correct, and I\u2019ll proceed with the return and refund to your credit card.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Yeah, that\u2019s right. I want to return the 128GB gold tablet from order #W9571698. And I want the refund back to my credit card, okay?"
+    },
+    {
+     "who": "agent",
+     "text": "You are requesting to return the 128GB gold tablet (item ID: 6065192424) from order #W9571698, and receive the refund to your credit card ending in 2732.\n\nOnce you confirm, I will submit the return request. You will receive an email with instructions on how to return the item, and the refund will be processed to your credit card.\n\nCan you please confirm that all the details are correct and you want to proceed? (yes/no)",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Yes, all that sounds good. Please go ahead and submit the return request. I want the refund on my credit card for sure."
+    }
+   ],
+   "final_text": "",
+   "proposed": {
+    "name": "return_delivered_order_items",
+    "args": {
+     "item_ids": [
+      "6065192424"
+     ],
+     "order_id": "#W9571698",
+     "payment_method_id": "credit_card_1565124"
+    },
+    "notes": {
+     "item_ids": [
+      "Tablet (screen size 8-inch, storage 128GB, color gold)"
+     ],
+     "payment_method_id": "credit_card"
+    }
+   },
+   "policy_section": "## Return delivered order\n\nAn order can only be returned if its status is 'delivered', and you should check its status before taking the action.\n\nThe user needs to confirm the order id and the list of items to be returned.\n\nThe user needs to provide a payment method to receive the refund.\n\nThe refund must either go to the original payment method, or an existing gift card.\n\nAfter user confirmation, the order status will be changed to 'return requested', and the user will receive an email regarding how to return items."
+  },
+  {
+   "id": "case-09",
+   "action": "return_delivered_order_items",
+   "action_label": "Return items from a delivered order",
+   "turns": [
+    {
+     "who": "agent",
+     "text": "Hi! How can I help you today?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Hey there! So, I got this order with two tablets, but I only wanted one. The thing is, one tablet is pricier than the other, and I want to return that one and get a refund back on my credit card. Can you help me with that?"
+    },
+    {
+     "who": "agent",
+     "text": "I can help you with returning the more expensive tablet from your delivered order and process the refund to your credit card. \n\nCould you please provide me with the order ID and the item ID of the tablet you want to return?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Hmm, I don\u2019t have the order ID or item ID handy right now. But my name is Chen Silva, and my zip code is 46281. Maybe you can find the order with that info?"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "find_user_id_by_name_zip",
+       "args": {
+        "first_name": "Chen",
+        "last_name": "Silva",
+        "zip": "46281"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "find_user_id_by_name_zip",
+     "raw": "chen_silva_7485"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_user_details",
+       "args": {
+        "user_id": "chen_silva_7485"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_user_details",
+     "raw": "{\"user_id\": \"chen_silva_7485\", \"name\": {\"first_name\": \"Chen\", \"last_name\": \"Silva\"}, \"address\": {\"address1\": \"139 River Road\", \"address2\": \"Suite 418\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46281\"}, \"email\": \"chen.silva2698@example.com\", \"payment_methods\": {\"gift_card_7250692\": {\"source\": \"gift_card\", \"id\": \"gift_card_7250692\", \"balance\": 59.0}, \"credit_card_1565124\": {\"source\": \"credit_card\", \"id\": \"credit_card_1565124\", \"brand\": \"mastercard\", \"last_four\": \"2732\"}}, \"orders\": [\"#W3069600\", \"#W2598834\", \"#W8171054\", \"#W9571698\"]}",
+     "user": {
+      "user_id": "chen_silva_7485",
+      "name": {
+       "first_name": "Chen",
+       "last_name": "Silva"
+      },
+      "payment_methods": {
+       "gift_card_7250692": "gift_card (balance 59.0)",
+       "credit_card_1565124": "credit_card"
+      },
+      "orders": [
+       "#W3069600",
+       "#W2598834",
+       "#W8171054",
+       "#W9571698"
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W9571698"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W9571698\", \"user_id\": \"chen_silva_7485\", \"address\": {\"address1\": \"139 River Road\", \"address2\": \"Suite 418\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46281\"}, \"items\": [{\"name\": \"Digital Camera\", \"product_id\": \"8940227892\", \"item_id\": \"9973034634\", \"price\": 2850.32, \"options\": {\"resolution\": \"20MP\", \"zoom\": \"3x\", \"storage\": \"CF card\"}}, {\"name\": \"Coffee Maker\", \"product_id\": \"7996920482\", \"item_id\": \"5952720925\", \"price\": 260.19, \"options\": {\"color\": \"black\", \"capacity\": \"4 cups\", \"type\": \"espresso\", \"features\": \"timer\"}}, {\"name\": \"Pet Bed\", \"product_id\": \"2747247837\", \"item_id\": \"7381052709\", \"price\": 193.22, \"options\": {\"size\": \"large\", \"material\": \"memory foam\", \"color\": \"brown\"}}, {\"name\": \"Tablet\", \"product_id\": \"8024098596\", \"item_id\": \"6065192424\", \"price\": 989.7, \"options\": {\"screen size\": \"8-inch\", \"storage\": \"128GB\", \"color\": \"gold\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"304189154726\"], \"item_ids\": [\"9973034634\", \"5952720925\", \"7381052709\", \"6065192424\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 4293.43, \"payment_method_id\": \"gift_card_7250692\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W9571698",
+      "user_id": "chen_silva_7485",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Digital Camera",
+        "item_id": "9973034634",
+        "price": 2850.32,
+        "options": {
+         "resolution": "20MP",
+         "zoom": "3x",
+         "storage": "CF card"
+        }
+       },
+       {
+        "name": "Coffee Maker",
+        "item_id": "5952720925",
+        "price": 260.19,
+        "options": {
+         "color": "black",
+         "capacity": "4 cups",
+         "type": "espresso",
+         "features": "timer"
+        }
+       },
+       {
+        "name": "Pet Bed",
+        "item_id": "7381052709",
+        "price": 193.22,
+        "options": {
+         "size": "large",
+         "material": "memory foam",
+         "color": "brown"
+        }
+       },
+       {
+        "name": "Tablet",
+        "item_id": "6065192424",
+        "price": 989.7,
+        "options": {
+         "screen size": "8-inch",
+         "storage": "128GB",
+         "color": "gold"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 4293.43,
+        "payment_method_id": "gift_card_7250692"
+       }
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_product_details",
+       "args": {
+        "product_id": "8024098596"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_product_details",
+     "raw": "{\"name\": \"Tablet\", \"product_id\": \"8024098596\", \"variants\": {\"3788616824\": {\"item_id\": \"3788616824\", \"options\": {\"screen size\": \"10-inch\", \"storage\": \"128GB\", \"color\": \"black\"}, \"available\": false, \"price\": 951.21}, \"2235648106\": {\"item_id\": \"2235648106\", \"options\": {\"screen size\": \"10-inch\", \"storage\": \"32GB\", \"color\": \"black\"}, \"available\": true, \"price\": 1054.43}, \"7535423717\": {\"item_id\": \"7535423717\", \"options\": {\"screen size\": \"8-inch\", \"storage\": \"128GB\", \"color\": \"silver\"}, \"available\": false, \"price\": 904.46}, \"2106335193\": {\"item_id\": \"2106335193\", \"options\": {\"screen size\": \"10-inch\", \"storage\": \"64GB\", \"color\": \"silver\"}, \"available\": true, \"price\": 903.95}, \"6501071631\": {\"item_id\": \"6501071631\", \"options\": {\"screen size\": \"7-inch\", \"storage\": \"32GB\", \"color\": \"gold\"}, \"available\": true, \"price\": 1018.68}, \"2633090267\": {\"item_id\": \"2633090267\", \"options\": {\"screen size\": \"7-inch\", \"storage\": \"64GB\", \"color\": \"silver\"}, \"available\": false, \"price\": 1046.33}, \"4803681337\": {\"item_id\": \"4803681337\", \"options\": {\"screen size\": \"8-inch\", \"storage\": \"64GB\", \"color\": \"black\"}, \"available\": false, \"price\": 962.34}, \"6065192424\": {\"item_id\": \"6065192424\", \"options\": {\"screen size\": \"8-inch\", \"storage\": \"128GB\", \"color\": \"gold\"}, \"available\": true, \"price\": 989.7}, \"7187199153\": {\"item_id\": \"7187199153\", \"options\": {\"screen size\": \"8-inch\", \"storage\": \"128GB\", \"color\": \"black\"}, \"available\": false, \"price\": 983.62}, \"4913411651\": {\"item_id\": \"4913411651\", \"options\": {\"screen size\": \"7-inch\", \"storage\": \"128GB\", \"color\": \"black\"}, \"available\": true, \"price\": 941.03}, \"8551474201\": {\"item_id\": \"8551474201\", \"options\": {\"screen size\": \"8-inch\", \"storage\": \"64GB\", \"color\": \"silver\"}, \"available\": false, \"price\": 938.92}, \"4615543240\": {\"item_id\": \"4615543240\", \"options\": {\"screen size\": \"7-inch\", \"storage\": \"32GB\", \"color\": \"silver\"}, \"available\": true, \"price\": 1042.93}, \"6948061616\": {\"item_id\": \"6948061616\", \"options\": {\"screen size\": \"10-inch\", \"storage\": \"128GB\", \"color\": \"gold\"}, \"available\": true, \"price\": 950.96}, \"4131464125\": {\"item_id\": \"4131464125\", \"options\": {\"screen size\": \"10-inch\", \"storage\": \"128GB\", \"color\": \"silver\"}, \"available\": false, \"price\": 960.67}}}",
+     "product": {
+      "name": "Tablet",
+      "variants": [
+       {
+        "item_id": "3788616824",
+        "options": {
+         "screen size": "10-inch",
+         "storage": "128GB",
+         "color": "black"
+        },
+        "available": false,
+        "price": 951.21
+       },
+       {
+        "item_id": "2235648106",
+        "options": {
+         "screen size": "10-inch",
+         "storage": "32GB",
+         "color": "black"
+        },
+        "available": true,
+        "price": 1054.43
+       },
+       {
+        "item_id": "7535423717",
+        "options": {
+         "screen size": "8-inch",
+         "storage": "128GB",
+         "color": "silver"
+        },
+        "available": false,
+        "price": 904.46
+       },
+       {
+        "item_id": "2106335193",
+        "options": {
+         "screen size": "10-inch",
+         "storage": "64GB",
+         "color": "silver"
+        },
+        "available": true,
+        "price": 903.95
+       },
+       {
+        "item_id": "6501071631",
+        "options": {
+         "screen size": "7-inch",
+         "storage": "32GB",
+         "color": "gold"
+        },
+        "available": true,
+        "price": 1018.68
+       },
+       {
+        "item_id": "2633090267",
+        "options": {
+         "screen size": "7-inch",
+         "storage": "64GB",
+         "color": "silver"
+        },
+        "available": false,
+        "price": 1046.33
+       },
+       {
+        "item_id": "4803681337",
+        "options": {
+         "screen size": "8-inch",
+         "storage": "64GB",
+         "color": "black"
+        },
+        "available": false,
+        "price": 962.34
+       },
+       {
+        "item_id": "6065192424",
+        "options": {
+         "screen size": "8-inch",
+         "storage": "128GB",
+         "color": "gold"
+        },
+        "available": true,
+        "price": 989.7
+       },
+       {
+        "item_id": "7187199153",
+        "options": {
+         "screen size": "8-inch",
+         "storage": "128GB",
+         "color": "black"
+        },
+        "available": false,
+        "price": 983.62
+       },
+       {
+        "item_id": "4913411651",
+        "options": {
+         "screen size": "7-inch",
+         "storage": "128GB",
+         "color": "black"
+        },
+        "available": true,
+        "price": 941.03
+       },
+       {
+        "item_id": "8551474201",
+        "options": {
+         "screen size": "8-inch",
+         "storage": "64GB",
+         "color": "silver"
+        },
+        "available": false,
+        "price": 938.92
+       },
+       {
+        "item_id": "4615543240",
+        "options": {
+         "screen size": "7-inch",
+         "storage": "32GB",
+         "color": "silver"
+        },
+        "available": true,
+        "price": 1042.93
+       },
+       {
+        "item_id": "6948061616",
+        "options": {
+         "screen size": "10-inch",
+         "storage": "128GB",
+         "color": "gold"
+        },
+        "available": true,
+        "price": 950.96
+       },
+       {
+        "item_id": "4131464125",
+        "options": {
+         "screen size": "10-inch",
+         "storage": "128GB",
+         "color": "silver"
+        },
+        "available": false,
+        "price": 960.67
+       }
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "The order includes a tablet with options: 8-inch screen size, 128GB storage, in gold color, priced at $989.70. \n\nWould you like to proceed with returning this specific tablet and getting a refund to your credit card? Please confirm so I can assist you further.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Yeah, that\u2019s the one I want to return \u2014 the 8-inch, 128GB gold tablet for $989.70. Please go ahead and start the return and refund to my credit card."
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "return_delivered_order_items",
+       "args": {
+        "item_ids": [
+         "6065192424"
+        ],
+        "order_id": "#W9571698",
+        "payment_method_id": "credit_card_1565124"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "return_delivered_order_items",
+     "raw": "Error: Payment method should be the original payment method"
+    },
+    {
+     "who": "agent",
+     "text": "The refund must go to the original payment method used for the purchase. In this case, it was a gift card. Would you like me to process the return and refund to your gift card instead?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Wait, what? I specifically want the refund on my credit card. If that\u2019s not possible, then I don\u2019t want just the expensive tablet back. I want to return everything from that order and get the refund on a gift card. Can you do that?"
+    }
+   ],
+   "final_text": "",
+   "proposed": {
+    "name": "return_delivered_order_items",
+    "args": {
+     "item_ids": [
+      "6065192424"
+     ],
+     "order_id": "#W9571698",
+     "payment_method_id": "gift_card_7250692"
+    },
+    "notes": {
+     "item_ids": [
+      "Tablet (screen size 8-inch, storage 128GB, color gold)"
+     ],
+     "payment_method_id": "gift_card (balance 59.0)"
+    }
+   },
+   "policy_section": "## Return delivered order\n\nAn order can only be returned if its status is 'delivered', and you should check its status before taking the action.\n\nThe user needs to confirm the order id and the list of items to be returned.\n\nThe user needs to provide a payment method to receive the refund.\n\nThe refund must either go to the original payment method, or an existing gift card.\n\nAfter user confirmation, the order status will be changed to 'return requested', and the user will receive an email regarding how to return items."
+  },
+  {
+   "id": "case-10",
+   "action": "return_delivered_order_items",
+   "action_label": "Return items from a delivered order",
+   "turns": [
+    {
+     "who": "agent",
+     "text": "Hi! How can I help you today?",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Hi, I recently made a bunch of purchases from your store, but I've realized I need to focus more on my studies now. I want to cancel or return everything I bought except for a couple of items. Can you help me with that?"
+    },
+    {
+     "who": "agent",
+     "text": "I can help you cancel or return your orders. Please provide me with the order ID(s) and specify which items you'd like to keep and which ones you'd like to return or cancel. If you can, please also confirm whether you want to cancel the entire order or just certain items.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "Sure, I have the order IDs ready. I want to keep only a couple of items, but I\u2019d prefer not to specify which ones right now. Can you help me process the returns or cancellations for everything except those? Also, I\u2019d like to get the refund through PayPal if possible."
+    },
+    {
+     "who": "agent",
+     "text": "To assist you effectively, I need to verify your identity. Please provide your email address or your name and zip code so I can locate your account.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "My email address is mia.garcia2723@example.com. Could you please check my orders and help me with the returns?"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "find_user_id_by_email",
+       "args": {
+        "email": "mia.garcia2723@example.com"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "find_user_id_by_email",
+     "raw": "mia_garcia_4516"
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_user_details",
+       "args": {
+        "user_id": "mia_garcia_4516"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_user_details",
+     "raw": "{\"user_id\": \"mia_garcia_4516\", \"name\": {\"first_name\": \"Mia\", \"last_name\": \"Garcia\"}, \"address\": {\"address1\": \"537 Main Street\", \"address2\": \"Suite 572\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46229\"}, \"email\": \"mia.garcia2723@example.com\", \"payment_methods\": {\"paypal_9497703\": {\"source\": \"paypal\", \"id\": \"paypal_9497703\"}, \"credit_card_3124723\": {\"source\": \"credit_card\", \"id\": \"credit_card_3124723\", \"brand\": \"visa\", \"last_four\": \"7285\"}}, \"orders\": [\"#W5490111\", \"#W7387996\"]}",
+     "user": {
+      "user_id": "mia_garcia_4516",
+      "name": {
+       "first_name": "Mia",
+       "last_name": "Garcia"
+      },
+      "payment_methods": {
+       "paypal_9497703": "paypal",
+       "credit_card_3124723": "credit_card"
+      },
+      "orders": [
+       "#W5490111",
+       "#W7387996"
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "I have located your account with the orders #W5490111 and #W7387996. To proceed with returning or canceling items, I need to review the details of these orders. I will now retrieve the order details.",
+     "calls": [
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W5490111"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W5490111\", \"user_id\": \"mia_garcia_4516\", \"address\": {\"address1\": \"537 Main Street\", \"address2\": \"Suite 572\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46229\"}, \"items\": [{\"name\": \"Water Bottle\", \"product_id\": \"8310926033\", \"item_id\": \"4579334072\", \"price\": 54.85, \"options\": {\"capacity\": \"750ml\", \"material\": \"glass\", \"color\": \"black\"}}, {\"name\": \"Mechanical Keyboard\", \"product_id\": \"1656367028\", \"item_id\": \"1421289881\", \"price\": 268.77, \"options\": {\"switch type\": \"linear\", \"backlight\": \"none\", \"size\": \"80%\"}}, {\"name\": \"Action Camera\", \"product_id\": \"3377618313\", \"item_id\": \"6117189161\", \"price\": 481.5, \"options\": {\"resolution\": \"4K\", \"waterproof\": \"yes\", \"color\": \"silver\"}}, {\"name\": \"Backpack\", \"product_id\": \"2524789262\", \"item_id\": \"4947717507\", \"price\": 218.04, \"options\": {\"color\": \"green\", \"size\": \"medium\", \"material\": \"leather\", \"compartment\": \"camera\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"574297338433\"], \"item_ids\": [\"4579334072\", \"1421289881\", \"6117189161\", \"4947717507\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 1023.16, \"payment_method_id\": \"credit_card_3124723\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W5490111",
+      "user_id": "mia_garcia_4516",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Water Bottle",
+        "item_id": "4579334072",
+        "price": 54.85,
+        "options": {
+         "capacity": "750ml",
+         "material": "glass",
+         "color": "black"
+        }
+       },
+       {
+        "name": "Mechanical Keyboard",
+        "item_id": "1421289881",
+        "price": 268.77,
+        "options": {
+         "switch type": "linear",
+         "backlight": "none",
+         "size": "80%"
+        }
+       },
+       {
+        "name": "Action Camera",
+        "item_id": "6117189161",
+        "price": 481.5,
+        "options": {
+         "resolution": "4K",
+         "waterproof": "yes",
+         "color": "silver"
+        }
+       },
+       {
+        "name": "Backpack",
+        "item_id": "4947717507",
+        "price": 218.04,
+        "options": {
+         "color": "green",
+         "size": "medium",
+         "material": "leather",
+         "compartment": "camera"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 1023.16,
+        "payment_method_id": "credit_card_3124723"
+       }
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "",
+     "calls": [
+      {
+       "name": "get_order_details",
+       "args": {
+        "order_id": "#W7387996"
+       }
+      }
+     ]
+    },
+    {
+     "who": "system",
+     "tool": "get_order_details",
+     "raw": "{\"order_id\": \"#W7387996\", \"user_id\": \"mia_garcia_4516\", \"address\": {\"address1\": \"537 Main Street\", \"address2\": \"Suite 572\", \"city\": \"Indianapolis\", \"country\": \"USA\", \"state\": \"IN\", \"zip\": \"46229\"}, \"items\": [{\"name\": \"Gaming Mouse\", \"product_id\": \"5713490933\", \"item_id\": \"5796612084\", \"price\": 158.89, \"options\": {\"color\": \"RGB\", \"sensor type\": \"optical\", \"connectivity\": \"wired\"}}], \"status\": \"delivered\", \"fulfillments\": [{\"tracking_id\": [\"200246490130\"], \"item_ids\": [\"5796612084\"]}], \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 158.89, \"payment_method_id\": \"paypal_9497703\"}], \"cancel_reason\": null, \"exchange_items\": null, \"exchange_new_items\": null, \"exchange_payment_method_id\": null, \"exchange_price_difference\": null, \"return_items\": null, \"return_payment_method_id\": null}",
+     "order": {
+      "order_id": "#W7387996",
+      "user_id": "mia_garcia_4516",
+      "status": "delivered",
+      "items": [
+       {
+        "name": "Gaming Mouse",
+        "item_id": "5796612084",
+        "price": 158.89,
+        "options": {
+         "color": "RGB",
+         "sensor type": "optical",
+         "connectivity": "wired"
+        }
+       }
+      ],
+      "payments": [
+       {
+        "transaction_type": "payment",
+        "amount": 158.89,
+        "payment_method_id": "paypal_9497703"
+       }
+      ]
+     }
+    },
+    {
+     "who": "agent",
+     "text": "Your orders include several delivered items: a Water Bottle, Mechanical Keyboard, Action Camera, Backpack, and a Gaming Mouse. \n\nSince you want to return most items except for a couple, I will proceed with returning all items from both orders except the ones you wish to keep. Please confirm which items you want to keep, or if you'd like me to proceed with returning all items and you can specify later which ones to keep. \n\nAlso, I will use your PayPal account for refunds. Please confirm if you'd like to proceed with this plan.",
+     "calls": []
+    },
+    {
+     "who": "customer",
+     "text": "I want to keep the Mechanical Keyboard and the Gaming Mouse. Please go ahead and process the return for the Water Bottle, Action Camera, and Backpack. And yes, please refund through PayPal."
+    }
+   ],
+   "final_text": "",
+   "proposed": {
+    "name": "return_delivered_order_items",
+    "args": {
+     "item_ids": [
+      "5796612084"
+     ],
+     "order_id": "#W7387996",
+     "payment_method_id": "paypal_9497703"
+    },
+    "notes": {
+     "item_ids": [
+      "Gaming Mouse (color RGB, sensor type optical, connectivity wired)"
+     ],
+     "payment_method_id": "paypal"
+    }
+   },
+   "policy_section": "## Return delivered order\n\nAn order can only be returned if its status is 'delivered', and you should check its status before taking the action.\n\nThe user needs to confirm the order id and the list of items to be returned.\n\nThe user needs to provide a payment method to receive the refund.\n\nThe refund must either go to the original payment method, or an existing gift card.\n\nAfter user confirmation, the order status will be changed to 'return requested', and the user will receive an email regarding how to return items."
+  }
+ ]
+}

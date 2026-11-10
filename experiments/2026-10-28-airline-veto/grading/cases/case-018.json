@@ -1,0 +1,147 @@
+{
+ "case": "case-018",
+ "action": "cancel_reservation",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hello! I realized I accidentally booked two flights for the same day, May 17. I need to cancel one of them. Can you help me with that?",
+   "role": "user"
+  },
+  {
+   "content": "To assist you with canceling one of your flights on May 17, I need to know your user ID and the reservation ID of the flight you want to cancel. Could you please provide those details? If you don't know the reservation ID, I can help you locate it.",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure, my user ID is mohamed_hernandez_5188. I want to cancel the flight from ATL to JFK on May 17. I don't have the reservation ID handy, can you help me find it?",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "mohamed_hernandez_5188"
+     },
+     "function": "get_user_details",
+     "id": "call_4h9H90e8fqvOWGobrDviJo9R"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"mohamed_hernandez_5188\", \"name\": {\"first_name\": \"Mohamed\", \"last_name\": \"Hernandez\"}, \"address\": {\"address1\": \"916 River Road\", \"address2\": \"Suite 153\", \"city\": \"Dallas\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"75236\"}, \"email\": \"mohamed.hernandez8983@example.com\", \"dob\": \"1996-10-16\", \"payment_methods\": {\"credit_card_5417084\": {\"source\": \"credit_card\", \"id\": \"credit_card_5417084\", \"brand\": \"mastercard\", \"last_four\": \"7393\"}, \"certificate_6623588\": {\"source\": \"certificate\", \"id\": \"certificate_6623588\", \"amount\": 250.0}, \"certificate_6969088\": {\"source\": \"certificate\", \"id\": \"certificate_6969088\", \"amount\": 500.0}}, \"saved_passengers\": [{\"first_name\": \"Evelyn\", \"last_name\": \"Rossi\", \"dob\": \"1972-09-13\"}, {\"first_name\": \"James\", \"last_name\": \"Sanchez\", \"dob\": \"1952-09-13\"}], \"membership\": \"silver\", \"reservations\": [\"35V5SM\", \"XXDC1M\", \"V5EMZH\", \"D1EW9B\", \"9HBUV8\", \"DGZSYX\"]}",
+   "role": "tool",
+   "tool_call_id": "call_4h9H90e8fqvOWGobrDviJo9R"
+  },
+  {
+   "content": "You have several reservations. To find the specific flight from ATL to JFK on May 17, I will check the details of your reservations. Please hold on for a moment.",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "35V5SM"
+     },
+     "function": "get_reservation_details",
+     "id": "call_kE6ufdi3Tu8pVBgka0xHAsVg"
+    },
+    {
+     "arguments": {
+      "reservation_id": "XXDC1M"
+     },
+     "function": "get_reservation_details",
+     "id": "call_7pRJWoxypT7fADOemNCNsiJB"
+    },
+    {
+     "arguments": {
+      "reservation_id": "V5EMZH"
+     },
+     "function": "get_reservation_details",
+     "id": "call_4YIhH9PUI8phEb9fx0qQJAW2"
+    },
+    {
+     "arguments": {
+      "reservation_id": "D1EW9B"
+     },
+     "function": "get_reservation_details",
+     "id": "call_k7lzp1jVbTRFOufsvOw37zBO"
+    },
+    {
+     "arguments": {
+      "reservation_id": "9HBUV8"
+     },
+     "function": "get_reservation_details",
+     "id": "call_Hd3jUoqp99V8Ajjh0HCN9g77"
+    },
+    {
+     "arguments": {
+      "reservation_id": "DGZSYX"
+     },
+     "function": "get_reservation_details",
+     "id": "call_grPNcQ5vS48HNu8TyiYLSqO1"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"35V5SM\", \"user_id\": \"mohamed_hernandez_5188\", \"origin\": \"LAX\", \"destination\": \"SFO\", \"flight_type\": \"round_trip\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT155\", \"origin\": \"LAX\", \"destination\": \"SFO\", \"date\": \"2024-05-24\", \"price\": 1480}, {\"flight_number\": \"HAT163\", \"origin\": \"SFO\", \"destination\": \"LAX\", \"date\": \"2024-05-29\", \"price\": 812}], \"passengers\": [{\"first_name\": \"Yusuf\", \"last_name\": \"Lee\", \"dob\": \"1951-07-12\"}], \"payment_history\": [{\"payment_id\": \"credit_card_5417084\", \"amount\": 2292}], \"created_at\": \"2024-05-06T17:41:02\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_kE6ufdi3Tu8pVBgka0xHAsVg"
+  },
+  {
+   "content": "{\"reservation_id\": \"XXDC1M\", \"user_id\": \"mohamed_hernandez_5188\", \"origin\": \"DEN\", \"destination\": \"PHX\", \"flight_type\": \"round_trip\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT084\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"date\": \"2024-05-21\", \"price\": 76}, {\"flight_number\": \"HAT244\", \"origin\": \"LAS\", \"destination\": \"PHX\", \"date\": \"2024-05-21\", \"price\": 62}, {\"flight_number\": \"HAT027\", \"origin\": \"PHX\", \"destination\": \"LAS\", \"date\": \"2024-05-22\", \"price\": 53}, {\"flight_number\": \"HAT162\", \"origin\": \"LAS\", \"destination\": \"DEN\", \"date\": \"2024-05-22\", \"price\": 87}], \"passengers\": [{\"first_name\": \"Mohamed\", \"last_name\": \"Hernandez\", \"dob\": \"1996-10-16\"}, {\"first_name\": \"Olivia\", \"last_name\": \"Smith\", \"dob\": \"1974-06-23\"}, {\"first_name\": \"Harper\", \"last_name\": \"Li\", \"dob\": \"1967-01-23\"}], \"payment_history\": [{\"payment_id\": \"credit_card_5417084\", \"amount\": 834}], \"created_at\": \"2024-05-04T17:06:02\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_7pRJWoxypT7fADOemNCNsiJB"
+  },
+  {
+   "content": "{\"reservation_id\": \"V5EMZH\", \"user_id\": \"mohamed_hernandez_5188\", \"origin\": \"CLT\", \"destination\": \"BOS\", \"flight_type\": \"round_trip\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT064\", \"origin\": \"CLT\", \"destination\": \"BOS\", \"date\": \"2024-05-27\", \"price\": 58}, {\"flight_number\": \"HAT277\", \"origin\": \"BOS\", \"destination\": \"CLT\", \"date\": \"2024-05-29\", \"price\": 80}], \"passengers\": [{\"first_name\": \"Mohamed\", \"last_name\": \"Hernandez\", \"dob\": \"1996-10-16\"}], \"payment_history\": [{\"payment_id\": \"credit_card_5417084\", \"amount\": 168}], \"created_at\": \"2024-05-08T22:33:35\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_4YIhH9PUI8phEb9fx0qQJAW2"
+  },
+  {
+   "content": "{\"reservation_id\": \"D1EW9B\", \"user_id\": \"mohamed_hernandez_5188\", \"origin\": \"ATL\", \"destination\": \"JFK\", \"flight_type\": \"one_way\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT285\", \"origin\": \"ATL\", \"destination\": \"JFK\", \"date\": \"2024-05-17\", \"price\": 54}], \"passengers\": [{\"first_name\": \"Mohamed\", \"last_name\": \"Hernandez\", \"dob\": \"1996-10-16\"}], \"payment_history\": [{\"payment_id\": \"credit_card_5417084\", \"amount\": 54}], \"created_at\": \"2024-05-04T07:38:29\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_k7lzp1jVbTRFOufsvOw37zBO"
+  },
+  {
+   "content": "{\"reservation_id\": \"9HBUV8\", \"user_id\": \"mohamed_hernandez_5188\", \"origin\": \"DEN\", \"destination\": \"BOS\", \"flight_type\": \"one_way\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT130\", \"origin\": \"DEN\", \"destination\": \"MIA\", \"date\": \"2024-05-17\", \"price\": 57}, {\"flight_number\": \"HAT184\", \"origin\": \"MIA\", \"destination\": \"BOS\", \"date\": \"2024-05-17\", \"price\": 72}], \"passengers\": [{\"first_name\": \"Mohamed\", \"last_name\": \"Hernandez\", \"dob\": \"1996-10-16\"}], \"payment_history\": [{\"payment_id\": \"credit_card_5417084\", \"amount\": 159}], \"created_at\": \"2024-05-12T17:08:42\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_Hd3jUoqp99V8Ajjh0HCN9g77"
+  },
+  {
+   "content": "{\"reservation_id\": \"DGZSYX\", \"user_id\": \"mohamed_hernandez_5188\", \"origin\": \"JFK\", \"destination\": \"LAS\", \"flight_type\": \"one_way\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT014\", \"origin\": \"JFK\", \"destination\": \"MIA\", \"date\": \"2024-05-06\", \"price\": 1678}, {\"flight_number\": \"HAT288\", \"origin\": \"MIA\", \"destination\": \"LAS\", \"date\": \"2024-05-06\", \"price\": 1690}], \"passengers\": [{\"first_name\": \"Mohamed\", \"last_name\": \"Hernandez\", \"dob\": \"1996-10-16\"}], \"payment_history\": [{\"payment_id\": \"credit_card_5417084\", \"amount\": 3368}], \"created_at\": \"2024-05-04T19:48:34\", \"total_baggages\": 1, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_grPNcQ5vS48HNu8TyiYLSqO1"
+  },
+  {
+   "content": "I found your reservation for the flight from ATL to JFK on May 17. The reservation ID is D1EW9B. \n\nBefore proceeding with the cancellation, may I know the reason for cancellation? (Options: change of plan, airline cancelled flight, or other reasons)",
+   "role": "assistant"
+  },
+  {
+   "content": "The reason is a change of plan. I accidentally booked two flights for the same day and want to keep only one. Can you please proceed with canceling the ATL to JFK flight?",
+   "role": "user"
+  },
+  {
+   "content": "To confirm, you want to cancel your reservation with ID D1EW9B for the flight from ATL to JFK on May 17 due to a change of plan. Is that correct? Please confirm with a \"yes\" to proceed.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, that's correct. Please go ahead and cancel that flight.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "D1EW9B"
+     },
+     "function": "cancel_reservation",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

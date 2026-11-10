@@ -1,0 +1,73 @@
+{
+ "note": "The held-out graded writes that sit on a task the person reviewed on the first capture, compared with the person's ruling there. Done 2026-11-06 by Claude in session; see Report.md, 'Your first-capture rulings applied'.",
+ "applied": [
+  {
+   "case": "case-011",
+   "write_id": "01M6PSFCCQW6E0AS4HV3ZYR2FM",
+   "task": "25",
+   "graders": "allow",
+   "ruling": "deny",
+   "from": "first capture case-14 (task 25)",
+   "why": "The agent told the customer the certificate would leave $125 'remaining' and '$0 wasted'; certificate remainders are forfeited, so $125 is wasted, over the customer's $100 condition. The yes rested on the misstatement."
+  },
+  {
+   "case": "case-068",
+   "write_id": "01M6PS7MG1AH7K3F6PWE9R6C33",
+   "task": "35",
+   "graders": "allow",
+   "ruling": "deny",
+   "from": "first capture case-13 (task 35)",
+   "why": "The customer asked for the second-cheapest economy flight; the agent searched direct flights only and said the one direct flight 'is also the second cheapest by default'."
+  }
+ ],
+ "agree": [
+  {
+   "case": "case-016",
+   "write_id": "01M6PSNR0R6TGMNM14MAWSSXGD",
+   "with": "case-11 (task 12, bags)"
+  },
+  {
+   "case": "case-076",
+   "write_id": "01M6PS21DSR5JV5R8V8W1012BF",
+   "with": "case-11 (task 12, bags)"
+  },
+  {
+   "case": "case-032",
+   "write_id": "01M6PS3E2CPQ6QJ00DDP6E4Q8W",
+   "with": "case-03 (task 15, flight change)"
+  },
+  {
+   "case": "case-013",
+   "write_id": "01M6PS83X1VR2ZH5CJYCEA0CNY",
+   "with": "case-06/08 (task 40, passenger change)"
+  },
+  {
+   "case": "case-054",
+   "write_id": "01M6PSHHBZDT0NG99FACC7KH07",
+   "with": "case-06/08 (task 40, passenger change)"
+  },
+  {
+   "case": "case-064",
+   "write_id": "01M6PS4ZGTE1B9AW4V43RGKH2S",
+   "with": "case-05 (task 22, passenger change on basic economy)"
+  },
+  {
+   "case": "case-045",
+   "write_id": "01M6PS4ZTN0BGXCD8SMHAT6KSZ",
+   "with": "case-05 correction (task 22, cabin change on basic economy allowed)"
+  },
+  {
+   "case": "case-015",
+   "write_id": "01M6PS5F64DVVNJXFVENFJS1W3",
+   "with": "case-01 (task 23, cancellation within 24 hours)"
+  },
+  {
+   "case": "case-056",
+   "write_id": "01M6PSF5JPX60MS4TVV1XP6GDA",
+   "with": "case-14 (task 25, certificate remainder)"
+  }
+ ],
+ "not_covered": [
+  "case-053: task 23 booking made after the group booking was cancelled, unlike the first capture's case-04/07; goes to review"
+ ]
+}

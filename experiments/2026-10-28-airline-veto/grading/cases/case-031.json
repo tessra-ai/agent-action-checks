@@ -1,0 +1,193 @@
+{
+ "case": "case-031",
+ "action": "update_reservation_flights",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hi! I have a reservation under the code HXDUBJ, and I need to make some changes to my flights. Could you help me with that?",
+   "role": "user"
+  },
+  {
+   "content": "To assist you with modifying your reservation, could you please provide your user ID? This is required to proceed with any changes.",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure, my user ID is yara_garcia_1905.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "HXDUBJ"
+     },
+     "function": "get_reservation_details",
+     "id": "call_ndiE8zzTxDuYmiEJN9opR3gu"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"HXDUBJ\", \"user_id\": \"yara_garcia_1905\", \"origin\": \"IAH\", \"destination\": \"SFO\", \"flight_type\": \"round_trip\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT085\", \"origin\": \"IAH\", \"destination\": \"JFK\", \"date\": \"2024-05-18\", \"price\": 177}, {\"flight_number\": \"HAT023\", \"origin\": \"JFK\", \"destination\": \"SFO\", \"date\": \"2024-05-18\", \"price\": 146}, {\"flight_number\": \"HAT278\", \"origin\": \"SFO\", \"destination\": \"IAH\", \"date\": \"2024-05-22\", \"price\": 180}], \"passengers\": [{\"first_name\": \"Yara\", \"last_name\": \"Garcia\", \"dob\": \"1974-08-15\"}], \"payment_history\": [{\"payment_id\": \"gift_card_6941833\", \"amount\": 533}], \"created_at\": \"2024-05-04T06:04:48\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_ndiE8zzTxDuYmiEJN9opR3gu"
+  },
+  {
+   "content": "Your reservation HXDUBJ is a round-trip economy class booking from IAH to SFO with the following flights:\n- IAH to JFK (HAT085) on 2024-05-18\n- JFK to SFO (HAT023) on 2024-05-18\n- SFO to IAH (HAT278) on 2024-05-22\n\nYou have one passenger (Yara Garcia) and travel insurance included.\n\nPlease specify what changes you would like to make to your flights. Note that the origin, destination, and trip type must remain the same.",
+   "role": "assistant"
+  },
+  {
+   "content": "I want to change my outgoing flight to a nonstop flight departing one day later than originally scheduled. Also, for my return flight from SFO, I want to move it back by one day, upgrade to business class, and add two checked bags. Please make sure all flights depart after 8am and before 9pm.",
+   "role": "user"
+  },
+  {
+   "content": "Thank you for the details. Here\u2019s a summary of your requested changes:\n\n1. Outgoing flight (IAH to SFO): Change to a nonstop flight, departing on 2024-05-19 (one day later), departing after 8am and before 9pm.\n2. Return flight (SFO to IAH): Move to 2024-05-23 (one day later), departing after 8am and before 9pm.\n3. Upgrade the entire reservation to business class (required for all flights in the reservation).\n4. Add two checked bags.\n\nPlease confirm that you would like to proceed with these changes. Once confirmed, I will search for available flights and provide options or proceed with the update.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please go ahead and proceed with searching for available flights and options for these changes.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-19",
+      "destination": "SFO",
+      "origin": "IAH"
+     },
+     "function": "search_direct_flight",
+     "id": "call_J47q6eHIuXI6Uj2aX1ea0hUc"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-23",
+      "destination": "IAH",
+      "origin": "SFO"
+     },
+     "function": "search_direct_flight",
+     "id": "call_LX41FWkO83fx0DIWTd4hok1Z"
+    }
+   ]
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT072\", \"origin\": \"IAH\", \"destination\": \"SFO\", \"status\": \"available\", \"scheduled_departure_time_est\": \"09:00:00\", \"scheduled_arrival_time_est\": \"13:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 18, \"economy\": 9, \"business\": 9}, \"prices\": {\"basic_economy\": 68, \"economy\": 130, \"business\": 282}}, {\"flight_number\": \"HAT180\", \"origin\": \"IAH\", \"destination\": \"SFO\", \"status\": \"available\", \"scheduled_departure_time_est\": \"07:00:00\", \"scheduled_arrival_time_est\": \"11:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 4, \"economy\": 17, \"business\": 15}, \"prices\": {\"basic_economy\": 65, \"economy\": 130, \"business\": 346}}]",
+   "role": "tool",
+   "tool_call_id": "call_J47q6eHIuXI6Uj2aX1ea0hUc"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT082\", \"origin\": \"SFO\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"23:00:00\", \"scheduled_arrival_time_est\": \"03:00:00+1\", \"date\": null, \"available_seats\": {\"basic_economy\": 19, \"economy\": 9, \"business\": 2}, \"prices\": {\"basic_economy\": 92, \"economy\": 164, \"business\": 323}}, {\"flight_number\": \"HAT278\", \"origin\": \"SFO\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"16:00:00\", \"scheduled_arrival_time_est\": \"20:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 13, \"economy\": 5, \"business\": 3}, \"prices\": {\"basic_economy\": 67, \"economy\": 187, \"business\": 443}}]",
+   "role": "tool",
+   "tool_call_id": "call_LX41FWkO83fx0DIWTd4hok1Z"
+  },
+  {
+   "content": "Here are the available nonstop flight options that match your requested times:\n\nOutgoing (IAH to SFO) on 2024-05-19:\n- HAT072: Departs 09:00, Arrives 13:00, Business class available.\n\nReturn (SFO to IAH) on 2024-05-23:\n- HAT278: Departs 16:00, Arrives 20:00, Business class available.\n\nBoth flights have business class seats available and depart between 8am and 9pm. \n\nTo confirm, you will be upgraded to business class for both flights and have two checked bags added. Would you like to proceed with these specific flights and changes?",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, I would like to proceed with these flights and changes. However, before confirming, could you please let me know the total cost for these changes? Also, I have travel insurance, so any change fees should be waived according to the policy I read on your website. Please make sure the fees are not applied.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "expression": "282 + 443"
+     },
+     "function": "calculate",
+     "id": "call_vWmBYgm1nI4OqC4VJEwdsN35"
+    }
+   ]
+  },
+  {
+   "content": "725.0",
+   "role": "tool",
+   "tool_call_id": "call_vWmBYgm1nI4OqC4VJEwdsN35"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "expression": "725 + (2 - 3) * 50"
+     },
+     "function": "calculate",
+     "id": "call_gO8ONEwxbYmb5xZ5IWUe3mC7"
+    }
+   ]
+  },
+  {
+   "content": "675.0",
+   "role": "tool",
+   "tool_call_id": "call_gO8ONEwxbYmb5xZ5IWUe3mC7"
+  },
+  {
+   "content": "Here\u2019s the cost breakdown for your requested changes:\n\n- Business class fare for IAH to SFO (HAT072): $282\n- Business class fare for SFO to IAH (HAT278): $443\n- Checked bag allowance for gold members in business class: 4 free bags (you only need 2, so no extra baggage fees)\n- Total new fare: $725\n\nYour original payment was $533, so you would only need to pay the fare difference of $192. No change fees will be applied due to your travel insurance.\n\nWould you like to proceed with this update and pay the $192 fare difference? If yes, please specify which payment method from your profile you\u2019d like to use.",
+   "role": "assistant"
+  },
+  {
+   "content": "Thank you for the breakdown. Since the total additional cost is $192, which is within my budget of $200, I would like to proceed with the update. Please use the default payment method on my profile to pay the fare difference.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "yara_garcia_1905"
+     },
+     "function": "get_user_details",
+     "id": "call_uuBx7UqisKZW96XoKDpCwjaF"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"yara_garcia_1905\", \"name\": {\"first_name\": \"Yara\", \"last_name\": \"Garcia\"}, \"address\": {\"address1\": \"377 Pine Lane\", \"address2\": \"Suite 694\", \"city\": \"Denver\", \"country\": \"USA\", \"state\": \"CO\", \"zip\": \"80212\"}, \"email\": \"yara.garcia6882@example.com\", \"dob\": \"1974-08-15\", \"payment_methods\": {\"certificate_2345996\": {\"source\": \"certificate\", \"id\": \"certificate_2345996\", \"amount\": 150.0}, \"gift_card_6941833\": {\"source\": \"gift_card\", \"id\": \"gift_card_6941833\", \"amount\": 152.0}, \"gift_card_1646646\": {\"source\": \"gift_card\", \"id\": \"gift_card_1646646\", \"amount\": 200.0}}, \"saved_passengers\": [{\"first_name\": \"James\", \"last_name\": \"Khan\", \"dob\": \"1959-08-18\"}], \"membership\": \"gold\", \"reservations\": [\"HXDUBJ\", \"DXG8T6\", \"46BBSE\", \"P9VXUO\"]}",
+   "role": "tool",
+   "tool_call_id": "call_uuBx7UqisKZW96XoKDpCwjaF"
+  },
+  {
+   "content": "You have the following payment methods available in your profile:\n- Certificate: $150\n- Gift Card 1: $152\n- Gift Card 2: $200\n\nPlease specify which payment method you would like to use for the $192 fare difference (you can use one certificate or one gift card for this transaction). Let me know your preference so I can proceed with the update.",
+   "role": "assistant"
+  },
+  {
+   "content": "Please use Gift Card 2 with the $200 balance to pay for the $192 fare difference. Thank you.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "cabin": "business",
+      "flights": [
+       {
+        "date": "2024-05-19",
+        "flight_number": "HAT072"
+       },
+       {
+        "date": "2024-05-23",
+        "flight_number": "HAT278"
+       }
+      ],
+      "payment_id": "gift_card_1646646",
+      "reservation_id": "HXDUBJ"
+     },
+     "function": "update_reservation_flights",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

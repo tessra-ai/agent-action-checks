@@ -1,0 +1,123 @@
+{
+ "code_sha256": {
+  "data/profiles.json": "455fe0c82ace363f80536f37eb57a4f3a3c9c7cb608360904cf75052a41706e8",
+  "data/synthetic_policy.json": "d656dc9886f23024422d56c79297acab8b422cda8f75d9b6888672c13a4cf351",
+  "evaluate.py": "384b783771ec9fee51123de274bc7d15bc22a770008580887b444a3169d713e4",
+  "model.py": "21c12e4ebe9f6b7c0411eb291238e29172f4e9b691067b9a1166d6bf94343b75",
+  "partitions.py": "5cbe29ea14c72a61bde749d4938b3bc1cbbf87050f12596747bf9897dcb282a5",
+  "realdata.py": "f90a16317bddac6ceeb80e1d3277f1207635a094e31ac1938ef0987588cd0e65",
+  "realmap.py": "560a7e893624ee0b45eb519d7ae543841b80f4359cacb6986616bcbc98a0a810",
+  "run.py": "f8ebdc68b986db96261cd8212dd57189eb6d91e80efe65e28a1938a53f7f033d",
+  "schema.py": "40282ef74b17b381753914f3a1b5ed5f188022c743fbae5aa13694f33285312f",
+  "seal.py": "d92c8a1ca299a459d2689a95fc311a52f51085de4c0d85d1fa3ef99686b7c55a",
+  "sources.py": "997f49b60af7369386a32eba6b216274a55777fbed6edd9bed23f6c6da2ea27f",
+  "synthetic.py": "a56663b09a45f0badc9edc092066817c126873d11a32a14e0198295f97af7019"
+ },
+ "concept_source": "authoritative",
+ "control_seed": 99,
+ "freeze_sha256": "17f09a53072e2816c213768a0a31c685034b29f4ff05471da28b6e61e94857a0",
+ "gate": {
+  "adapt_k": [
+   5,
+   10,
+   25
+  ],
+  "bootstrap": {
+   "interval": 0.9,
+   "resamples": 1000,
+   "seed": 7
+  },
+  "controls": [
+   "shuffled_labels",
+   "no_shared_effect"
+  ],
+  "min_class": 10,
+  "over_escalation_reduction": 0.2,
+  "slices": [
+   "syn_final",
+   "syn_holdout_action",
+   "syn_holdout_domain"
+  ],
+  "transfer_measures": [
+   "syn_holdout_action",
+   "syn_holdout_domain",
+   "p3_k5"
+  ]
+ },
+ "hatchway_commit": "f4117779ae59b83415dcd548261ca83e793a9858",
+ "model_spec": {
+  "adaptation": "fit on the target organization's records, prior centered at the pretrained coefficients",
+  "calibration": "none: the logistic output is the score",
+  "class_weights": "balanced when both classes are present, else uniform",
+  "dc_rule": "ALLOW iff every applicable concept except reversibility is satisfied (unknown counts as not satisfied)",
+  "family": "G1 (L2 logistic regression)",
+  "feature_rules": [
+   "per applicable concept: satisfied, not_satisfied and unknown indicators, and confidence x (satisfied - not_satisfied)",
+   "an inapplicable concept contributes zeros; it is never read as satisfied",
+   "no action, domain, family, organization, verdict, reason code, backend result, task outcome or trace result"
+  ],
+  "features": [
+   "actor_identified:satisfied",
+   "actor_identified:not_satisfied",
+   "actor_identified:unknown",
+   "actor_identified:signed_confidence",
+   "action_requested:satisfied",
+   "action_requested:not_satisfied",
+   "action_requested:unknown",
+   "action_requested:signed_confidence",
+   "terms_disclosed:satisfied",
+   "terms_disclosed:not_satisfied",
+   "terms_disclosed:unknown",
+   "terms_disclosed:signed_confidence",
+   "consent_obtained:satisfied",
+   "consent_obtained:not_satisfied",
+   "consent_obtained:unknown",
+   "consent_obtained:signed_confidence",
+   "ownership_authority:satisfied",
+   "ownership_authority:not_satisfied",
+   "ownership_authority:unknown",
+   "ownership_authority:signed_confidence",
+   "prerequisites_satisfied:satisfied",
+   "prerequisites_satisfied:not_satisfied",
+   "prerequisites_satisfied:unknown",
+   "prerequisites_satisfied:signed_confidence",
+   "potential_harm:satisfied",
+   "potential_harm:not_satisfied",
+   "potential_harm:unknown",
+   "potential_harm:signed_confidence",
+   "reversibility:satisfied",
+   "reversibility:not_satisfied",
+   "reversibility:unknown",
+   "reversibility:signed_confidence",
+   "evidence_uncertainty:satisfied",
+   "evidence_uncertainty:not_satisfied",
+   "evidence_uncertainty:unknown",
+   "evidence_uncertainty:signed_confidence"
+  ],
+  "hard_rules": "applied before every model; never overridden",
+  "lambda_adapt": 1.0,
+  "preprocessing": "none: the features are bounded indicators (no standardization)",
+  "pretraining": "fit on the synthetic pretraining partition, prior centered at 0",
+  "promotion_rule": "G-synthetic seeds G-combined only if, on synthetic promotion, it has no more false allows than DC and lets at least one should-run record through; otherwise G-combined starts from a zero prior",
+  "regularization": {
+   "lambda": 1.0,
+   "lambda_intercept": 0.001
+  },
+  "seed": 0,
+  "selection_sets": {
+   "G-retail / G-combined (retail)": "family-grouped out-of-fold scores on retail adaptation (up to 5 folds, seed 0) plus scores on retail promotion",
+   "G-synthetic": "synthetic promotion partition",
+   "G-target(P) / G-combined(P), P in P1, P2": "synthetic promotion records of profile P",
+   "held-out profile at k": "the k adaptation records themselves (k = 0 keeps the pretrained threshold; G-target escalates everything at k = 0)"
+  },
+  "solver": "Newton's method, 50 iterations at most, tolerance 1e-10",
+  "threshold_rule": "on the selection set, the cut with zero false allows that lets through the most should-run records; ties go to the higher cut; none admissible means escalate everything",
+  "version": "drb-model-1"
+ },
+ "model_spec_sha256": "14e490f3a53d7cb0605974a9a2174a0278335e649dac36a7e6c8394961161377",
+ "oracle_version": "tau2-oracle-1:41ee37217182",
+ "policy_sha256": "cd28bff5048b27ff9487fc445236338f3ec66cd0f75bf927739987bde9e4dcc7",
+ "retail_manifest_sha256": "c327ba196f6df9268cf6d426fcf1e3d22b285c93a860c2ef6f9bd35a2f6625b7",
+ "synthetic_manifest_sha256": "b6eba8f22cfd2b792f05f41d981847cd09ed58302667ae793f57b2998d0854d3",
+ "telecom_seal_sha256": "ff645fd7630647c5c6415a52bbc0310b00ec5b969b4190e4d5c35cdcce06ff0d"
+}

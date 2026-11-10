@@ -1,0 +1,40 @@
+# The example policy from SPEC.md, verbatim. It must always load.
+version: 1
+judges: [jev, openai_decisions]
+store: sqlite:///hatchway.db
+
+defaults:
+  mode: shadow
+  initial_audit_rate: 0.10
+  initial_audit_decisions: 200
+  audit_rate: 0.02
+  deny_audit_rate: 0.05
+  judge_timeout_s: 3
+  approval_timeout_s: 3600   # unanswered ASKs stay blocked with outcome='unknown'
+  max_auto_per_session: 3
+  redact: [args.card_number, args.email]
+
+actions:
+  get_order:
+    kind: read
+  refund_order:
+    kind: write
+    mode: ask
+    hard_rules:
+      deny_if: 'args.amount > 500'
+      ask_if: 'args.method != context.original_payment_method'
+    questions:
+      policy_ok:
+        type: yes_no
+        text: 'This refund follows the refund policy.'
+      matches_request:
+        type: yes_no
+        text: 'This action matches what the customer asked for.'
+      risk:
+        type: choice
+        options: [low, medium, high]
+    promotion:
+      min_candidate_allows: 100
+      max_miss_bound: 0.03
+      demote_on_misses: 4
+      demote_window: 50   # non-overlapping inspection blocks

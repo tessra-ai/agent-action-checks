@@ -1,0 +1,234 @@
+{
+ "case": "case-010",
+ "action": "update_reservation_baggages",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hi, I need to change the return flight for my upcoming trip from Houston to Denver. I want to make sure the return flight is the fastest possible, including any stopover time, and I want to return on the same day as my departure, May 27. Can you help me with that?",
+   "role": "user"
+  },
+  {
+   "content": "To assist you with changing the return flight for your trip from Houston to Denver on May 27, I will need your user ID and the reservation ID for the trip. Could you please provide those?",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure, my user ID is sofia_kim_7287. Unfortunately, I don't remember my reservation ID. Is there another way to find my booking?",
+   "role": "user"
+  },
+  {
+   "content": "I can help you locate your reservation using your user ID. I will retrieve the details of your reservations now.",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "sofia_kim_7287"
+     },
+     "function": "get_user_details",
+     "id": "call_lTj9NutTUgi4T576D5qgrlAc"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"sofia_kim_7287\", \"name\": {\"first_name\": \"Sofia\", \"last_name\": \"Kim\"}, \"address\": {\"address1\": \"825 Laurel Lane\", \"address2\": \"Suite 595\", \"city\": \"Houston\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"77243\"}, \"email\": \"sofia.kim1937@example.com\", \"dob\": \"1950-06-24\", \"payment_methods\": {\"certificate_8544743\": {\"source\": \"certificate\", \"id\": \"certificate_8544743\", \"amount\": 250.0}, \"credit_card_9879898\": {\"source\": \"credit_card\", \"id\": \"credit_card_9879898\", \"brand\": \"mastercard\", \"last_four\": \"9725\"}, \"gift_card_7091239\": {\"source\": \"gift_card\", \"id\": \"gift_card_7091239\", \"amount\": 157.0}, \"gift_card_6276644\": {\"source\": \"gift_card\", \"id\": \"gift_card_6276644\", \"amount\": 113.0}, \"gift_card_7480005\": {\"source\": \"gift_card\", \"id\": \"gift_card_7480005\", \"amount\": 6.0}, \"certificate_9932251\": {\"source\": \"certificate\", \"id\": \"certificate_9932251\", \"amount\": 250.0}}, \"saved_passengers\": [{\"first_name\": \"Mia\", \"last_name\": \"Jackson\", \"dob\": \"1986-05-05\"}], \"membership\": \"silver\", \"reservations\": [\"OI5L9G\", \"AQLBTL\", \"KA7I60\", \"I57WUD\", \"OBUT9V\", \"4BMN53\", \"Q0ZF0J\"]}",
+   "role": "tool",
+   "tool_call_id": "call_lTj9NutTUgi4T576D5qgrlAc"
+  },
+  {
+   "content": "You have multiple reservations under your user ID sofia_kim_7287. Could you please provide any additional details about your trip from Houston to Denver, such as the date of departure or any other information that might help me identify the correct reservation?",
+   "role": "assistant"
+  },
+  {
+   "content": "The departure date for my trip is May 27. That's the only detail I have right now. Can you find the reservation with that?",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "OI5L9G"
+     },
+     "function": "get_reservation_details",
+     "id": "call_ZbPJP2lj5o7Ya0OwB9i71b9f"
+    },
+    {
+     "arguments": {
+      "reservation_id": "AQLBTL"
+     },
+     "function": "get_reservation_details",
+     "id": "call_srDDIvbmnG8mVh1MCu1htXML"
+    },
+    {
+     "arguments": {
+      "reservation_id": "KA7I60"
+     },
+     "function": "get_reservation_details",
+     "id": "call_2SwKMOW50A6hZKl5SNW2upXZ"
+    },
+    {
+     "arguments": {
+      "reservation_id": "I57WUD"
+     },
+     "function": "get_reservation_details",
+     "id": "call_cGOy8CLsSsY9JAbPNCUS1UCz"
+    },
+    {
+     "arguments": {
+      "reservation_id": "OBUT9V"
+     },
+     "function": "get_reservation_details",
+     "id": "call_XUZQPjCuTJSFSYqC6iqAlHJ3"
+    },
+    {
+     "arguments": {
+      "reservation_id": "4BMN53"
+     },
+     "function": "get_reservation_details",
+     "id": "call_A0Na6Ma9TsmbcTSUIuEotzNU"
+    },
+    {
+     "arguments": {
+      "reservation_id": "Q0ZF0J"
+     },
+     "function": "get_reservation_details",
+     "id": "call_SS73emvB4qU20Gg8dXoW9gtp"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"OI5L9G\", \"user_id\": \"sofia_kim_7287\", \"origin\": \"MCO\", \"destination\": \"CLT\", \"flight_type\": \"one_way\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT017\", \"origin\": \"MCO\", \"destination\": \"BOS\", \"date\": \"2024-05-25\", \"price\": 523}, {\"flight_number\": \"HAT277\", \"origin\": \"BOS\", \"destination\": \"CLT\", \"date\": \"2024-05-25\", \"price\": 501}], \"passengers\": [{\"first_name\": \"Sofia\", \"last_name\": \"Kim\", \"dob\": \"1950-06-24\"}, {\"first_name\": \"Mia\", \"last_name\": \"Jackson\", \"dob\": \"1986-05-05\"}], \"payment_history\": [{\"payment_id\": \"gift_card_6276644\", \"amount\": 2048}], \"created_at\": \"2024-05-01T09:08:54\", \"total_baggages\": 2, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_ZbPJP2lj5o7Ya0OwB9i71b9f"
+  },
+  {
+   "content": "{\"reservation_id\": \"AQLBTL\", \"user_id\": \"sofia_kim_7287\", \"origin\": \"LAX\", \"destination\": \"LAX\", \"flight_type\": \"round_trip\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT249\", \"origin\": \"LAX\", \"destination\": \"SFO\", \"date\": \"2024-05-19\", \"price\": 127}, {\"flight_number\": \"HAT273\", \"origin\": \"SFO\", \"destination\": \"LAX\", \"date\": \"2024-05-19\", \"price\": 156}, {\"flight_number\": \"HAT228\", \"origin\": \"LAX\", \"destination\": \"EWR\", \"date\": \"2024-05-26\", \"price\": 145}, {\"flight_number\": \"HAT041\", \"origin\": \"EWR\", \"destination\": \"LAX\", \"date\": \"2024-05-27\", \"price\": 138}], \"passengers\": [{\"first_name\": \"Sofia\", \"last_name\": \"Kim\", \"dob\": \"1950-06-24\"}], \"payment_history\": [{\"payment_id\": \"gift_card_7480005\", \"amount\": 596}], \"created_at\": \"2024-05-01T16:22:47\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_srDDIvbmnG8mVh1MCu1htXML"
+  },
+  {
+   "content": "{\"reservation_id\": \"KA7I60\", \"user_id\": \"sofia_kim_7287\", \"origin\": \"DEN\", \"destination\": \"DTW\", \"flight_type\": \"round_trip\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT160\", \"origin\": \"DEN\", \"destination\": \"CLT\", \"date\": \"2024-05-26\", \"price\": 169}, {\"flight_number\": \"HAT167\", \"origin\": \"CLT\", \"destination\": \"DTW\", \"date\": \"2024-05-26\", \"price\": 142}, {\"flight_number\": \"HAT191\", \"origin\": \"DTW\", \"destination\": \"CLT\", \"date\": \"2024-05-28\", \"price\": 107}, {\"flight_number\": \"HAT262\", \"origin\": \"CLT\", \"destination\": \"DEN\", \"date\": \"2024-05-28\", \"price\": 137}], \"passengers\": [{\"first_name\": \"Sofia\", \"last_name\": \"Kim\", \"dob\": \"1950-06-24\"}], \"payment_history\": [{\"payment_id\": \"gift_card_7480005\", \"amount\": 555}], \"created_at\": \"2024-05-07T16:05:48\", \"total_baggages\": 1, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_2SwKMOW50A6hZKl5SNW2upXZ"
+  },
+  {
+   "content": "{\"reservation_id\": \"I57WUD\", \"user_id\": \"sofia_kim_7287\", \"origin\": \"DFW\", \"destination\": \"DFW\", \"flight_type\": \"round_trip\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT128\", \"origin\": \"DFW\", \"destination\": \"ATL\", \"date\": \"2024-05-18\", \"price\": 1247}, {\"flight_number\": \"HAT297\", \"origin\": \"ATL\", \"destination\": \"DFW\", \"date\": \"2024-05-18\", \"price\": 983}, {\"flight_number\": \"HAT067\", \"origin\": \"DFW\", \"destination\": \"SEA\", \"date\": \"2024-05-22\", \"price\": 1207}, {\"flight_number\": \"HAT221\", \"origin\": \"SEA\", \"destination\": \"DFW\", \"date\": \"2024-05-23\", \"price\": 1135}], \"passengers\": [{\"first_name\": \"Sofia\", \"last_name\": \"Kim\", \"dob\": \"1950-06-24\"}, {\"first_name\": \"Mia\", \"last_name\": \"Jackson\", \"dob\": \"1986-05-05\"}, {\"first_name\": \"Ava\", \"last_name\": \"Kim\", \"dob\": \"1962-04-02\"}], \"payment_history\": [{\"payment_id\": \"gift_card_7480005\", \"amount\": 13716}], \"created_at\": \"2024-05-01T11:03:53\", \"total_baggages\": 4, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_cGOy8CLsSsY9JAbPNCUS1UCz"
+  },
+  {
+   "content": "{\"reservation_id\": \"OBUT9V\", \"user_id\": \"sofia_kim_7287\", \"origin\": \"IAH\", \"destination\": \"DEN\", \"flight_type\": \"round_trip\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT078\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"date\": \"2024-05-27\", \"price\": 146}, {\"flight_number\": \"HAT118\", \"origin\": \"ORD\", \"destination\": \"DEN\", \"date\": \"2024-05-27\", \"price\": 167}, {\"flight_number\": \"HAT084\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"date\": \"2024-05-28\", \"price\": 122}, {\"flight_number\": \"HAT266\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"date\": \"2024-05-28\", \"price\": 131}], \"passengers\": [{\"first_name\": \"Sofia\", \"last_name\": \"Kim\", \"dob\": \"1950-06-24\"}], \"payment_history\": [{\"payment_id\": \"gift_card_7091239\", \"amount\": 566}], \"created_at\": \"2024-05-07T16:32:35\", \"total_baggages\": 1, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_XUZQPjCuTJSFSYqC6iqAlHJ3"
+  },
+  {
+   "content": "{\"reservation_id\": \"4BMN53\", \"user_id\": \"sofia_kim_7287\", \"origin\": \"LGA\", \"destination\": \"LAS\", \"flight_type\": \"one_way\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT201\", \"origin\": \"LGA\", \"destination\": \"PHX\", \"date\": \"2024-05-22\", \"price\": 173}, {\"flight_number\": \"HAT173\", \"origin\": \"PHX\", \"destination\": \"LAS\", \"date\": \"2024-05-22\", \"price\": 156}], \"passengers\": [{\"first_name\": \"Juan\", \"last_name\": \"Wilson\", \"dob\": \"1982-12-20\"}], \"payment_history\": [{\"payment_id\": \"gift_card_7480005\", \"amount\": 359}], \"created_at\": \"2024-05-10T11:36:51\", \"total_baggages\": 1, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_A0Na6Ma9TsmbcTSUIuEotzNU"
+  },
+  {
+   "content": "{\"reservation_id\": \"Q0ZF0J\", \"user_id\": \"sofia_kim_7287\", \"origin\": \"LGA\", \"destination\": \"MCO\", \"flight_type\": \"round_trip\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT201\", \"origin\": \"LGA\", \"destination\": \"PHX\", \"date\": \"2024-05-28\", \"price\": 1002}, {\"flight_number\": \"HAT181\", \"origin\": \"PHX\", \"destination\": \"MCO\", \"date\": \"2024-05-28\", \"price\": 1413}, {\"flight_number\": \"HAT161\", \"origin\": \"MCO\", \"destination\": \"PHX\", \"date\": \"2024-05-30\", \"price\": 1540}, {\"flight_number\": \"HAT066\", \"origin\": \"PHX\", \"destination\": \"LGA\", \"date\": \"2024-05-30\", \"price\": 1920}], \"passengers\": [{\"first_name\": \"Sofia\", \"last_name\": \"Kim\", \"dob\": \"1950-06-24\"}, {\"first_name\": \"Ethan\", \"last_name\": \"Patel\", \"dob\": \"1968-11-03\"}], \"payment_history\": [{\"payment_id\": \"gift_card_7480005\", \"amount\": 11750}], \"created_at\": \"2024-05-09T12:27:05\", \"total_baggages\": 3, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_SS73emvB4qU20Gg8dXoW9gtp"
+  },
+  {
+   "content": "I found a reservation for a round trip from Houston (IAH) to Denver (DEN) with departure on May 27, reservation ID OBUT9V. Is this the reservation you want to change the return flight for? If yes, I will proceed to find the fastest possible return flight on the same day for you.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, that's the reservation I want to change. Please go ahead and find the fastest return flight on the same day for me.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-27",
+      "destination": "IAH",
+      "origin": "DEN"
+     },
+     "function": "search_direct_flight",
+     "id": "call_w0kjSm4l4ztANTTwDPXcSI4V"
+    }
+   ]
+  },
+  {
+   "content": "[]",
+   "role": "tool",
+   "tool_call_id": "call_w0kjSm4l4ztANTTwDPXcSI4V"
+  },
+  {
+   "content": "There are no direct flights available from Denver to Houston on May 27. Would you like me to search for one-stop flights on the same day instead?",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please search for one-stop flights on the same day and find the fastest option for me.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-27",
+      "destination": "IAH",
+      "origin": "DEN"
+     },
+     "function": "search_onestop_flight",
+     "id": "call_9lR9XHxiS1WRBL5Rb6E2ZihF"
+    }
+   ]
+  },
+  {
+   "content": "[[{\"flight_number\": \"HAT084\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"04:00:00\", \"scheduled_arrival_time_est\": \"06:00:00\", \"date\": \"2024-05-27\", \"available_seats\": {\"basic_economy\": 0, \"economy\": 20, \"business\": 20}, \"prices\": {\"basic_economy\": 50, \"economy\": 112, \"business\": 438}}, {\"flight_number\": \"HAT175\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"17:00:00\", \"scheduled_arrival_time_est\": \"20:00:00\", \"date\": \"2024-05-27\", \"available_seats\": {\"basic_economy\": 7, \"economy\": 16, \"business\": 1}, \"prices\": {\"basic_economy\": 95, \"economy\": 170, \"business\": 246}}], [{\"flight_number\": \"HAT084\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"04:00:00\", \"scheduled_arrival_time_est\": \"06:00:00\", \"date\": \"2024-05-27\", \"available_seats\": {\"basic_economy\": 0, \"economy\": 20, \"business\": 20}, \"prices\": {\"basic_economy\": 50, \"economy\": 112, \"business\": 438}}, {\"flight_number\": \"HAT266\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"13:00:00\", \"scheduled_arrival_time_est\": \"16:00:00\", \"date\": \"2024-05-27\", \"available_seats\": {\"basic_economy\": 12, \"economy\": 5, \"business\": 8}, \"prices\": {\"basic_economy\": 80, \"economy\": 130, \"business\": 378}}], [{\"flight_number\": \"HAT229\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"13:00:00\", \"date\": \"2024-05-27\", \"available_seats\": {\"basic_economy\": 19, \"economy\": 0, \"business\": 5}, \"prices\": {\"basic_economy\": 80, \"economy\": 109, \"business\": 338}}, {\"flight_number\": \"HAT175\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"17:00:00\", \"scheduled_arrival_time_est\": \"20:00:00\", \"date\": \"2024-05-27\", \"available_seats\": {\"basic_economy\": 7, \"economy\": 16, \"business\": 1}, \"prices\": {\"basic_economy\": 95, \"economy\": 170, \"business\": 246}}], [{\"flight_number\": \"HAT229\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"13:00:00\", \"date\": \"2024-05-27\", \"available_seats\": {\"basic_economy\": 19, \"economy\": 0, \"business\": 5}, \"prices\": {\"basic_economy\": 80, \"economy\": 109, \"business\": 338}}, {\"flight_number\": \"HAT266\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"13:00:00\", \"scheduled_arrival_time_est\": \"16:00:00\", \"date\": \"2024-05-27\", \"available_seats\": {\"basic_economy\": 12, \"economy\": 5, \"business\": 8}, \"prices\": {\"basic_economy\": 80, \"economy\": 130, \"business\": 378}}], [{\"flight_number\": \"HAT290\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"14:00:00\", \"scheduled_arrival_time_est\": \"16:00:00\", \"date\": \"2024-05-27\", \"available_seats\": {\"basic_economy\": 3, \"economy\": 12, \"business\": 8}, \"prices\": {\"basic_economy\": 66, \"economy\": 142, \"business\": 297}}, {\"flight_number\": \"HAT175\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"17:00:00\", \"scheduled_arrival_time_est\": \"20:00:00\", \"date\": \"2024-05-27\", \"available_seats\": {\"basic_economy\": 7, \"economy\": 16, \"business\": 1}, \"prices\": {\"basic_economy\": 95, \"economy\": 170, \"business\": 246}}]]",
+   "role": "tool",
+   "tool_call_id": "call_9lR9XHxiS1WRBL5Rb6E2ZihF"
+  },
+  {
+   "content": "I found several one-stop return flight options from Denver to Houston on May 27. The fastest option is:\n\n- Flight HAT229 from Denver to Las Vegas, departing at 11:00 AM and arriving at 1:00 PM\n- Connecting to Flight HAT266 from Las Vegas to Houston, departing at 1:00 PM and arriving at 4:00 PM\n\nThis option has the shortest total travel time including the stopover. Your current reservation is in economy class. Would you like to change your return flight to this option in economy class? If yes, please confirm so I can proceed with the change.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please change my return flight to that option in economy class. Also, I want to add one more checked bag to my reservation. Can you do that as well?",
+   "role": "user"
+  },
+  {
+   "content": "To proceed with changing your return flight to the fastest one-stop option on May 27 in economy class and adding one more checked bag to your reservation OBUT9V, here are the details:\n\n- Current reservation: round trip Houston (IAH) to Denver (DEN), economy class\n- New return flights: \n  - DEN to LAS, flight HAT229, May 27, 11:00 AM - 1:00 PM\n  - LAS to IAH, flight HAT266, May 27, 1:00 PM - 4:00 PM\n- Adding one more checked bag (total checked bags will be 2)\n- Cabin class remains economy\n- Payment method for any price difference or baggage fee will be from your saved payment methods (please specify which one you want to use: credit card or gift card)\n\nPlease confirm if you agree with these changes and specify the payment method to use. Then I will proceed.",
+   "role": "assistant"
+  },
+  {
+   "content": "I want to use my gift card for the payment, but please make sure to use the gift card with the smallest balance first. Please go ahead and proceed with the changes.",
+   "role": "user"
+  },
+  {
+   "content": "To confirm, you want to:\n\n- Change your return flight on May 27 to the fastest one-stop option in economy class:\n  - Flight HAT229 from Denver to Las Vegas (11:00 AM - 1:00 PM)\n  - Flight HAT266 from Las Vegas to Houston (1:00 PM - 4:00 PM)\n- Add one more checked bag to your reservation (total 2 checked bags)\n- Use the gift card with the smallest balance for any payment required\n\nPlease confirm with a \"yes\" to proceed with these changes.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please proceed with these changes. I want to get this done as soon as possible.",
+   "role": "user"
+  },
+  {
+   "content": "The gift card with the smallest balance in your profile is gift_card_7480005 with $6.00 available. I will proceed with the flight change and adding one more checked bag using this gift card for payment.",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "nonfree_baggages": 1,
+      "payment_id": "gift_card_7480005",
+      "reservation_id": "OBUT9V",
+      "total_baggages": 2
+     },
+     "function": "update_reservation_baggages",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

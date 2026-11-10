@@ -1,0 +1,2417 @@
+{
+ "dataset_sha256": "17ce6f9e3b853a0ec9af7d4e8094ac0460323511bdf34b4f2655c358e50a7b00",
+ "file_sha256": "e97d39d070e2820a87a12985ad979a271c525255c9868a12bb28cd8928574277",
+ "generator_version": "drb-synthetic-1",
+ "held_out": {
+  "action": "issue_reimbursement",
+  "adapt_k": [
+   0,
+   5,
+   10,
+   25
+  ],
+  "domain": "access",
+  "profile": "P3"
+ },
+ "manifest": "synthetic",
+ "partitions": {
+  "syn_final": {
+   "families": [
+    "syn/expenses/approve_expense_claim/f3",
+    "syn/marketing/increase_campaign_budget/f3",
+    "syn/marketing/pause_campaign/f1",
+    "syn/procurement/create_purchase_order/x0",
+    "syn/procurement/update_vendor_bank_details/f3",
+    "syn/support/change_shipping_address/f3",
+    "syn/support/issue_refund/x0"
+   ],
+   "hard_rule": 0,
+   "records": 45,
+   "sha256": "b2c01696b980e26ce06c6cb248fcf7436831f13d37c9771a4d5c2f7a29f55107",
+   "should_escalate": 29,
+   "should_run": 16
+  },
+  "syn_hard": {
+   "families": [
+    "syn/access/grant_system_access/hard",
+    "syn/access/reset_mfa/hard",
+    "syn/expenses/approve_expense_claim/hard",
+    "syn/expenses/issue_reimbursement/hard",
+    "syn/marketing/increase_campaign_budget/hard",
+    "syn/marketing/pause_campaign/hard",
+    "syn/procurement/create_purchase_order/hard",
+    "syn/procurement/update_vendor_bank_details/hard",
+    "syn/support/change_shipping_address/hard",
+    "syn/support/issue_refund/hard"
+   ],
+   "hard_rule": 20,
+   "records": 20,
+   "sha256": "da0d742c382308f5023764fd3de6c9898058d10ba70605517ccc5ac2cd5f4ef0",
+   "should_escalate": 20,
+   "should_run": 0
+  },
+  "syn_holdout_action": {
+   "families": [
+    "syn/expenses/issue_reimbursement/f0",
+    "syn/expenses/issue_reimbursement/f1",
+    "syn/expenses/issue_reimbursement/f2",
+    "syn/expenses/issue_reimbursement/f3",
+    "syn/expenses/issue_reimbursement/x0"
+   ],
+   "hard_rule": 0,
+   "records": 30,
+   "sha256": "4cf390bb3bbf5aaa633f5cf91758c825428272f0374bd6a795de6474592a0ba3",
+   "should_escalate": 13,
+   "should_run": 17
+  },
+  "syn_holdout_domain": {
+   "families": [
+    "syn/access/grant_system_access/f0",
+    "syn/access/grant_system_access/f1",
+    "syn/access/grant_system_access/f2",
+    "syn/access/grant_system_access/f3",
+    "syn/access/grant_system_access/x0",
+    "syn/access/reset_mfa/f0",
+    "syn/access/reset_mfa/f1",
+    "syn/access/reset_mfa/f2",
+    "syn/access/reset_mfa/f3",
+    "syn/access/reset_mfa/x0"
+   ],
+   "hard_rule": 0,
+   "records": 60,
+   "sha256": "d339c951b3faed37b58e20ce4c5557fcbaccc8fe213bd5ce873f35dee07e690f",
+   "should_escalate": 27,
+   "should_run": 33
+  },
+  "syn_p3_adapt": {
+   "families": [
+    "syn/expenses/approve_expense_claim/p3-0",
+    "syn/expenses/approve_expense_claim/p3-7",
+    "syn/marketing/increase_campaign_budget/p3-1",
+    "syn/marketing/increase_campaign_budget/p3-8",
+    "syn/procurement/create_purchase_order/p3-3"
+   ],
+   "hard_rule": 0,
+   "records": 25,
+   "sha256": "95cff6018804f9d1315d95caa50689769dafd388cfe8c50076cbb2b684037c11",
+   "should_escalate": 9,
+   "should_run": 16
+  },
+  "syn_p3_eval": {
+   "families": [
+    "syn/marketing/pause_campaign/p3-2",
+    "syn/marketing/pause_campaign/p3-9",
+    "syn/procurement/create_purchase_order/p3-10",
+    "syn/procurement/update_vendor_bank_details/p3-4",
+    "syn/support/change_shipping_address/p3-5",
+    "syn/support/issue_refund/p3-6"
+   ],
+   "hard_rule": 0,
+   "records": 30,
+   "sha256": "33ad4f77e31a36b1eccd81eb2338609628c4c11bb377e721238ce655a866f4cb",
+   "should_escalate": 19,
+   "should_run": 11
+  },
+  "syn_pretrain": {
+   "families": [
+    "syn/expenses/approve_expense_claim/f0",
+    "syn/expenses/approve_expense_claim/f1",
+    "syn/expenses/approve_expense_claim/x0",
+    "syn/marketing/increase_campaign_budget/f1",
+    "syn/marketing/increase_campaign_budget/f2",
+    "syn/marketing/increase_campaign_budget/x0",
+    "syn/marketing/pause_campaign/f2",
+    "syn/marketing/pause_campaign/f3",
+    "syn/marketing/pause_campaign/x0",
+    "syn/procurement/create_purchase_order/f1",
+    "syn/procurement/create_purchase_order/f2",
+    "syn/procurement/create_purchase_order/f3",
+    "syn/procurement/update_vendor_bank_details/f1",
+    "syn/procurement/update_vendor_bank_details/f2",
+    "syn/procurement/update_vendor_bank_details/x0",
+    "syn/support/change_shipping_address/f1",
+    "syn/support/change_shipping_address/f2",
+    "syn/support/change_shipping_address/x0",
+    "syn/support/issue_refund/f1",
+    "syn/support/issue_refund/f2",
+    "syn/support/issue_refund/f3"
+   ],
+   "hard_rule": 0,
+   "records": 130,
+   "sha256": "e729becd52630873494bfe49deeb9246239704e99fd0cf7b488615c42cc45830",
+   "should_escalate": 75,
+   "should_run": 55
+  },
+  "syn_promotion": {
+   "families": [
+    "syn/expenses/approve_expense_claim/f2",
+    "syn/marketing/increase_campaign_budget/f0",
+    "syn/marketing/pause_campaign/f0",
+    "syn/procurement/create_purchase_order/f0",
+    "syn/procurement/update_vendor_bank_details/f0",
+    "syn/support/change_shipping_address/f0",
+    "syn/support/issue_refund/f0"
+   ],
+   "hard_rule": 0,
+   "records": 35,
+   "sha256": "15414c91619a9748e1526bf40e1ba42f2613bda8f8619dec7cbf7383f82c2b86",
+   "should_escalate": 22,
+   "should_run": 13
+  }
+ },
+ "policy_version": "drb-synth-policy-1",
+ "profiles_version": "drb-profiles-1",
+ "records": [
+  {
+   "family_id": "syn/access/grant_system_access/f0",
+   "record_hash": "0d9d95b20fe8baf66fb1450185b834f0d8fdc78ff8fd19e8846a74d8a3d4b446",
+   "record_id": "syn/access/grant_system_access/f0/base/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f0",
+   "record_hash": "3dd8b95eb02ccfb494003132a4a68da08ab90ed0cf99cda773e006cea1674e05",
+   "record_id": "syn/access/grant_system_access/f0/cf-prerequisite_met/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f0",
+   "record_hash": "c8c3a150635f4e2fac5adf1fb0a3a1142098cf5d4c2b1db5338dcab1afd26d2e",
+   "record_id": "syn/access/grant_system_access/f0/cf-reversible/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f0",
+   "record_hash": "e0b47275a197334cf4277b689ddf427a11ba94850900d4097382bf0bea72bf26",
+   "record_id": "syn/access/grant_system_access/f0/irrelevant/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f0",
+   "record_hash": "7cce7a62ba4505deb9e3c67c3ab4d6cdde572ac3d96e41193740afcf06254cba",
+   "record_id": "syn/access/grant_system_access/f0/paraphrase/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f1",
+   "record_hash": "3898fc534c56e9ab3f0d245d95891637484e2656503f5e0cdf20c1b80459816e",
+   "record_id": "syn/access/grant_system_access/f1/base/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f1",
+   "record_hash": "d5d5a6b9bf4058fb7659b2d2ce0d4f40a7a0158db11359a924e1bd46070cb6d8",
+   "record_id": "syn/access/grant_system_access/f1/cf-evidence_clear/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f1",
+   "record_hash": "b55c22390e6f9b20ff6673467c57437ac5d8c402a05a90bc8d0d018522829dbf",
+   "record_id": "syn/access/grant_system_access/f1/cf-impact/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f1",
+   "record_hash": "352f4fd7c7bd91bd6ffea86b48369cde5bec5365dd7a7ab9e318f74efbb179e3",
+   "record_id": "syn/access/grant_system_access/f1/irrelevant/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f1",
+   "record_hash": "9686808ccb2bd7e0ddf844a10646d9fad7d9827165559e64e0c91fdf2bc7a5e8",
+   "record_id": "syn/access/grant_system_access/f1/paraphrase/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f2",
+   "record_hash": "16b9edf64c63ed203dc1483173d0b933442a74285d94936f4e57afccca956a86",
+   "record_id": "syn/access/grant_system_access/f2/base/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f2",
+   "record_hash": "3776db452a4193eb8127c93790a6083d5d6c709e3c218c085e43250d3cddf2ee",
+   "record_id": "syn/access/grant_system_access/f2/cf-actor_verified/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f2",
+   "record_hash": "71c6243252178270e86ba923865fe5356dc49f6e07f21c51c8bd1cf78da2038f",
+   "record_id": "syn/access/grant_system_access/f2/cf-impact/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f2",
+   "record_hash": "f0b6278e4e9c58fc45ac1f2de0f3a572428d1675d4fbe44310d6c57beab5b0b1",
+   "record_id": "syn/access/grant_system_access/f2/irrelevant/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f2",
+   "record_hash": "472fe319594e3b9d28e6808f6ed772da212a72b93b88b6a280ab5530109589c7",
+   "record_id": "syn/access/grant_system_access/f2/paraphrase/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f3",
+   "record_hash": "2a05a8e6aa6d08b62ca2c15186cbfd4c6db59610ab68693e07de5d6c29c275ec",
+   "record_id": "syn/access/grant_system_access/f3/base/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f3",
+   "record_hash": "c44ae1a1d8996b8aea62e28b786106ee62b0643664438b76b881e9225ddcf453",
+   "record_id": "syn/access/grant_system_access/f3/cf-actor_verified/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f3",
+   "record_hash": "844f185636a332fdfcf04dcecc56e76a68d99e3ff596788a0bbaceabd84fa4be",
+   "record_id": "syn/access/grant_system_access/f3/cf-consent/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f3",
+   "record_hash": "087862204c7051b73bc846a91e1dc2d67a1e291ee5334c902c5d852f27b97a6d",
+   "record_id": "syn/access/grant_system_access/f3/irrelevant/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/f3",
+   "record_hash": "e5101aba25e30f1c8a5ecdaeed25bdd5ff4c6b953dc509004dcffe24eb8b20b3",
+   "record_id": "syn/access/grant_system_access/f3/paraphrase/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/hard",
+   "record_hash": "41bb6f510562f873b4844ee3d0d3b8662749de5ace751a8bdc02243718fc36e3",
+   "record_id": "syn/access/grant_system_access/hard/prohibited/P1",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/hard",
+   "record_hash": "f7ee1f87644b23e42c4fffd863900af79462f9a691f1cc41b4d77843caff0d10",
+   "record_id": "syn/access/grant_system_access/hard/prohibited/P2",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/x0",
+   "record_hash": "5638156abe256a005149a25ccffb8c27352d78513ecc8ec7d8bd92a36f27eca6",
+   "record_id": "syn/access/grant_system_access/x0/base/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/x0",
+   "record_hash": "7f2af3511f3ae9f6b304e7e9426a8de708c524a83eced8c6ba47942f19496fc5",
+   "record_id": "syn/access/grant_system_access/x0/base/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/x0",
+   "record_hash": "b6f87c52349691e663905944101fdf101b1df128dfc05e669c2c0b8147eff000",
+   "record_id": "syn/access/grant_system_access/x0/cf-actor_verified/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/x0",
+   "record_hash": "8187fea77e6c3bc38b32f73c6f45538a361cadad505033f6ee8e0c3d8e14eac5",
+   "record_id": "syn/access/grant_system_access/x0/cf-actor_verified/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/x0",
+   "record_hash": "141f81e1a31a1c699ad0a3e99ee906541a90abc86a2a15ee3cda3340b62bd707",
+   "record_id": "syn/access/grant_system_access/x0/cf-prerequisite_met/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/x0",
+   "record_hash": "8bdf60907116a517e19aebf31da5b7f862233840e97d494e45d7a85fbf63bbd1",
+   "record_id": "syn/access/grant_system_access/x0/cf-prerequisite_met/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/x0",
+   "record_hash": "7c08ec17e859f16291f7d09d7e841748112d11364675459858e64b054642d4ab",
+   "record_id": "syn/access/grant_system_access/x0/irrelevant/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/x0",
+   "record_hash": "9fad4cfd73e660228d421794bc7eb759f36b96f91d65b0d9859dfbae5d1f0d4a",
+   "record_id": "syn/access/grant_system_access/x0/irrelevant/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/x0",
+   "record_hash": "b8266ce6338aefbf5994962bcfef6aa79d9e2132d1d801a4907bdf2d63458821",
+   "record_id": "syn/access/grant_system_access/x0/paraphrase/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/grant_system_access/x0",
+   "record_hash": "36046e37ed0c7097b1a9782948d1b8c3afdd368a0afa49c496ce4d7bef3a0aae",
+   "record_id": "syn/access/grant_system_access/x0/paraphrase/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f0",
+   "record_hash": "3d7916c8201e75684f48d68c2d94562d3a32d6c25e5cf5f3a1883d0b5de2846e",
+   "record_id": "syn/access/reset_mfa/f0/base/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f0",
+   "record_hash": "f8c58a87e4f5f65e2b0e818a377b9ad5bd1a72bee146ee7ddb9f846e980983fc",
+   "record_id": "syn/access/reset_mfa/f0/cf-actor_verified/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f0",
+   "record_hash": "f5b8d00cce2072d793a02a1bfe146e681ca0f66f8cc6e4ed3efec09b97ee9ab8",
+   "record_id": "syn/access/reset_mfa/f0/cf-owner_correct/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f0",
+   "record_hash": "0ddea11f527905c67c1116bd4f1c3b25a9cee301af1715dfed2897cbb234da13",
+   "record_id": "syn/access/reset_mfa/f0/irrelevant/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f0",
+   "record_hash": "7ebe32b7cf13a951aa9520a178059405000c3da33a3bab3bc567ab99b1b63820",
+   "record_id": "syn/access/reset_mfa/f0/paraphrase/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f1",
+   "record_hash": "def50b3d93f5984e1ce9c2bc189dce79dc2e84bc6b7a05c59be885e1326f4de0",
+   "record_id": "syn/access/reset_mfa/f1/base/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f1",
+   "record_hash": "8e3364049887525db2ffed3f6e6d951f12d06b429cb8e07d3d06fb68cd9de698",
+   "record_id": "syn/access/reset_mfa/f1/cf-actor_verified/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f1",
+   "record_hash": "d9beff377342984af64b4f3d93020c01f11a92bc1068b03046227be5fcb4f553",
+   "record_id": "syn/access/reset_mfa/f1/cf-impact/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f1",
+   "record_hash": "d293a375d1420be0182a64aa67ac3c5dcf9cb9ed142460f76372a2a6423336f2",
+   "record_id": "syn/access/reset_mfa/f1/irrelevant/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f1",
+   "record_hash": "e91556ae63d9009a556101f6c2c945d67a860d7f6daf0250685f919807773f89",
+   "record_id": "syn/access/reset_mfa/f1/paraphrase/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f2",
+   "record_hash": "bc493a9fb7132a5522da22e20e967f38f299d7229b0df23bbf305c94e53394f0",
+   "record_id": "syn/access/reset_mfa/f2/base/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f2",
+   "record_hash": "00ccef3ce7ee81b0ebdf113ca75ecaec4763146ab4c3c57daecc636f29121278",
+   "record_id": "syn/access/reset_mfa/f2/cf-consent/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f2",
+   "record_hash": "a0a3732e432c734dcee23b850fc47923ed25ee45dd81334d76aab5f8a976e8fe",
+   "record_id": "syn/access/reset_mfa/f2/cf-requested/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f2",
+   "record_hash": "e050b4af74bbbaccfe1b75e0419cf432124fbb51893d7671b80b14f8e70bd70c",
+   "record_id": "syn/access/reset_mfa/f2/irrelevant/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f2",
+   "record_hash": "eef55ddafe30ab8ae09c65f40f8826794cc76c514c24a98d1804d32a66b7ff9a",
+   "record_id": "syn/access/reset_mfa/f2/paraphrase/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f3",
+   "record_hash": "2649ff194b64dc5217edf60e150b47fe6355d15989c574cf78e623c2eff9f824",
+   "record_id": "syn/access/reset_mfa/f3/base/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f3",
+   "record_hash": "f031ec0cedd0bd0f2e7fc1f3b9e5829cc62cbe72bd477ff4c18746db2fc8dd06",
+   "record_id": "syn/access/reset_mfa/f3/cf-owner_correct/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f3",
+   "record_hash": "f7cd37785f23c9b741666f9272875b33739eafed15bd49ff6eacd932dc51d6de",
+   "record_id": "syn/access/reset_mfa/f3/cf-reversible/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f3",
+   "record_hash": "660cc23e2ebe793bc17e5dc5015ac56c66bb7bb86b9b5ca2387d41be36a81ffe",
+   "record_id": "syn/access/reset_mfa/f3/irrelevant/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/f3",
+   "record_hash": "c780e4e210d17d19f3dba5566f479ea81345e187d09549bf0c8886a0e64afce4",
+   "record_id": "syn/access/reset_mfa/f3/paraphrase/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/hard",
+   "record_hash": "0e237f5935b89d212d5acf58c005da0ad909a046db894616806b59f03300a594",
+   "record_id": "syn/access/reset_mfa/hard/prohibited/P1",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/hard",
+   "record_hash": "5c27b39b90ad450e7625c630b000da424d49933fb40bb44e2748b24be67836cf",
+   "record_id": "syn/access/reset_mfa/hard/prohibited/P2",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/x0",
+   "record_hash": "777205be67f8d8f3d532f48128eaed8f8bed412ffa5007a83c2ec83e17070350",
+   "record_id": "syn/access/reset_mfa/x0/base/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/x0",
+   "record_hash": "4a3b2c75712c34bf92d15a5aecd8995b02cbf2cb22964a5b74f9bc8ca62ee9c8",
+   "record_id": "syn/access/reset_mfa/x0/base/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/x0",
+   "record_hash": "fcec93fe896c98468626b4faeff890d522a93e40e6e8dce953d85c2af3ed71be",
+   "record_id": "syn/access/reset_mfa/x0/cf-consent/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/x0",
+   "record_hash": "c352a665653558835b76f9e0d8e68ff0da7165e28b299929c9385c982ab89ea0",
+   "record_id": "syn/access/reset_mfa/x0/cf-consent/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/x0",
+   "record_hash": "13b6289725a6b6c3cf39aa547b331682b68a4d5c001adb537240be4b1d9e846a",
+   "record_id": "syn/access/reset_mfa/x0/cf-reversible/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/x0",
+   "record_hash": "e822d8af02616977db184e2ee5bc502a30a9c8c115046213d217b01d9f250f6b",
+   "record_id": "syn/access/reset_mfa/x0/cf-reversible/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/x0",
+   "record_hash": "d0f28fb5dfba414c21cbe5a23ee42861b243777e8cd79b94313ae47f7e503c73",
+   "record_id": "syn/access/reset_mfa/x0/irrelevant/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/x0",
+   "record_hash": "9f94bb62aadc650531aa2244bb10d0362c020817aa6196dafb3cb1214acfa2a3",
+   "record_id": "syn/access/reset_mfa/x0/irrelevant/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/x0",
+   "record_hash": "90bb98b8a33c2fac5dd215de1bd67b2fcb3c8dda0b7db9e2c183352aa7e9e7b0",
+   "record_id": "syn/access/reset_mfa/x0/paraphrase/P1",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/access/reset_mfa/x0",
+   "record_hash": "7f5abe3e4e44908ab12912388032529d0de15f7d03c42e0917c2d354e51f5ca3",
+   "record_id": "syn/access/reset_mfa/x0/paraphrase/P2",
+   "split": "syn_holdout_domain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f0",
+   "record_hash": "da532bd2d898f1261558de85381e7a8f96b71ab3f81038c244eab4cbb0d237c5",
+   "record_id": "syn/expenses/approve_expense_claim/f0/base/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f0",
+   "record_hash": "b4933904a6d0ab5c01337329f83103aa4cf44745941b0d18da067b78d0328d04",
+   "record_id": "syn/expenses/approve_expense_claim/f0/cf-consent/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f0",
+   "record_hash": "15c8d261d534a09f2eb676afbb4f61c9b5d7cee0b74ca70c712f3650a85ceb7d",
+   "record_id": "syn/expenses/approve_expense_claim/f0/cf-evidence_clear/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f0",
+   "record_hash": "ed59f622c9a2c0437c841a7ca2a2ecbf558c9578c4ef1aca69c6624fecbe384c",
+   "record_id": "syn/expenses/approve_expense_claim/f0/irrelevant/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f0",
+   "record_hash": "7ff2caee38f453021210b69b44b07806a01f14027d18b0917dbc3127f38914cc",
+   "record_id": "syn/expenses/approve_expense_claim/f0/paraphrase/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f1",
+   "record_hash": "ef77d0343cb1bbb6a08871a5dc2d7cb5291b629bf412acd9a8401e4aee3e0cc1",
+   "record_id": "syn/expenses/approve_expense_claim/f1/base/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f1",
+   "record_hash": "ea8f2d4a4372af3948b80f6208c960dfe8eaba02a3ab8bd0040594cb4da20c1b",
+   "record_id": "syn/expenses/approve_expense_claim/f1/cf-evidence_clear/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f1",
+   "record_hash": "a375b841d37fb88382c05f7e144d5caee4b698ce8ff129505860a27b3170e6c7",
+   "record_id": "syn/expenses/approve_expense_claim/f1/cf-requested/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f1",
+   "record_hash": "5878612b84b8bb2ab7c11d3e67414d7e33df711de02c4ea54507b2e9e05c6516",
+   "record_id": "syn/expenses/approve_expense_claim/f1/irrelevant/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f1",
+   "record_hash": "f1cfcc1506440cf69966e3931467ea37c6592cba3139f84d1901ce95d722c596",
+   "record_id": "syn/expenses/approve_expense_claim/f1/paraphrase/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f2",
+   "record_hash": "3dbf3121843e7ec06f3f3a67e25e97b18be54d21dbef521e3dd17426abfb2c36",
+   "record_id": "syn/expenses/approve_expense_claim/f2/base/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f2",
+   "record_hash": "ef5f0989d82a753d8789e12c0450d94c8bcabc47838b9aaaf863d0f5785eb66e",
+   "record_id": "syn/expenses/approve_expense_claim/f2/cf-consent/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f2",
+   "record_hash": "844f8fec59b94ec585462a805799ad3c522b16770b377de75f7126a60e983235",
+   "record_id": "syn/expenses/approve_expense_claim/f2/cf-terms_disclosed/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f2",
+   "record_hash": "1ede42748271dd98144d8b153d81678343266c4ed55f2b2af909ebb91055f14a",
+   "record_id": "syn/expenses/approve_expense_claim/f2/irrelevant/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f2",
+   "record_hash": "b5bf49bd93e7d022e2810e7109868876e301b9f5a69cb14e3371681a601fea58",
+   "record_id": "syn/expenses/approve_expense_claim/f2/paraphrase/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f3",
+   "record_hash": "c34400e34ff664aff5a837533f54924b9f0f8a8476346eda9517544418e9cbac",
+   "record_id": "syn/expenses/approve_expense_claim/f3/base/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f3",
+   "record_hash": "4de0fa5012ddc1c9eb666544621044041f825f88b60703e35c390a00c6ba3d8d",
+   "record_id": "syn/expenses/approve_expense_claim/f3/cf-impact/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f3",
+   "record_hash": "8c1c0862f7ec635303dc6ff6d7e1e5e94cd765f4b2cd988127533b0bb7218f00",
+   "record_id": "syn/expenses/approve_expense_claim/f3/cf-owner_correct/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f3",
+   "record_hash": "a8640a60cb43f0c4f3455990c39a3347e3cf14a3a64c7eb4b67a2c57790835eb",
+   "record_id": "syn/expenses/approve_expense_claim/f3/irrelevant/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/f3",
+   "record_hash": "50b1cabf7786fb1ae097156fb79f2faa46812d13be7bc9e210d728083c2e330b",
+   "record_id": "syn/expenses/approve_expense_claim/f3/paraphrase/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/hard",
+   "record_hash": "7439e5329ba6fe7798dce9cf622856e483c3e9d56346caa61f25c718799a56bc",
+   "record_id": "syn/expenses/approve_expense_claim/hard/prohibited/P1",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/hard",
+   "record_hash": "716f6067ea876a031128213d1a41dfc245f8543c2f9e12e2a369ac8b0c7358dd",
+   "record_id": "syn/expenses/approve_expense_claim/hard/prohibited/P2",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/p3-0",
+   "record_hash": "5f6028f6afdc6bcf704c0e3917badcea5d28e26c8f5c39ad22fcc501e53f288e",
+   "record_id": "syn/expenses/approve_expense_claim/p3-0/base/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/p3-0",
+   "record_hash": "dd3de59f8056fa9b0b64f01c5247468001845f0e4fb0de181237f89346540f54",
+   "record_id": "syn/expenses/approve_expense_claim/p3-0/cf-impact/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/p3-0",
+   "record_hash": "320564f462c00e9f2ec1cc870399a2c8a0466b5019b877f54f40629523d1e863",
+   "record_id": "syn/expenses/approve_expense_claim/p3-0/cf-prerequisite_met/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/p3-0",
+   "record_hash": "5a512f5ab9bd9095e542a7e4cd326403897f891110dfc2c5eb91dec31d6d7be2",
+   "record_id": "syn/expenses/approve_expense_claim/p3-0/irrelevant/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/p3-0",
+   "record_hash": "89bd040f024686828c855f28f76e5cde25ddce7db4f1d347b09621ba9565e124",
+   "record_id": "syn/expenses/approve_expense_claim/p3-0/paraphrase/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/p3-7",
+   "record_hash": "cc276da5a0e052cfddff4afe19afc7bcb6671d3f809f41a695a7ef31679543cd",
+   "record_id": "syn/expenses/approve_expense_claim/p3-7/base/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/p3-7",
+   "record_hash": "6013f76625015f38b077b6f41ea46fac2afd41c6e137de25e06b0f4feec3a9e6",
+   "record_id": "syn/expenses/approve_expense_claim/p3-7/cf-impact/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/p3-7",
+   "record_hash": "2f9d0056a89ca81bd343c260ccf4c68ba8907c3ffae4f5c0c168eed200d6dd19",
+   "record_id": "syn/expenses/approve_expense_claim/p3-7/cf-requested/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/p3-7",
+   "record_hash": "a48ae790f41f715397bdfe047e5ec1a7da5fdde5dc059d1eccf77db94c3bb882",
+   "record_id": "syn/expenses/approve_expense_claim/p3-7/irrelevant/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/p3-7",
+   "record_hash": "03faed9eaf07bc97e1edd61c8d7a5c54b68f62057e4051c8d91d69bcfe90c4fc",
+   "record_id": "syn/expenses/approve_expense_claim/p3-7/paraphrase/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/x0",
+   "record_hash": "2000bb82dd0af062391402eb87e90ebba2a70cd9200d1e75b80eb12cdac1a62a",
+   "record_id": "syn/expenses/approve_expense_claim/x0/base/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/x0",
+   "record_hash": "d27cfed61861a9071bf906935535c13d0edf0357436230141348633e8a33f513",
+   "record_id": "syn/expenses/approve_expense_claim/x0/base/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/x0",
+   "record_hash": "47e21851a70c5d954277210df6434143d72af257234f8faf5a46651e65cfb7c6",
+   "record_id": "syn/expenses/approve_expense_claim/x0/cf-owner_correct/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/x0",
+   "record_hash": "421f94fd2bd3a98ce3fb03d63cd74dfe2797f97c9ae67ff399180a3f0d2aed83",
+   "record_id": "syn/expenses/approve_expense_claim/x0/cf-owner_correct/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/x0",
+   "record_hash": "1eab4c1f798a641254e317067ebaa5be41d61e6d84a9b5769340f7e8feb2c140",
+   "record_id": "syn/expenses/approve_expense_claim/x0/cf-terms_disclosed/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/x0",
+   "record_hash": "cdc023452825fe39d59111b031daa5535a8d648af4c889cfe7d021f052e555b3",
+   "record_id": "syn/expenses/approve_expense_claim/x0/cf-terms_disclosed/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/x0",
+   "record_hash": "549913da810aeaec2b2ce6038e825ff737c1b800691eca726b4919dcf26e9304",
+   "record_id": "syn/expenses/approve_expense_claim/x0/irrelevant/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/x0",
+   "record_hash": "29d9d25918c711dadd7901de2a3b6858ed7c92a2db3cee219d7fee62d2035475",
+   "record_id": "syn/expenses/approve_expense_claim/x0/irrelevant/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/x0",
+   "record_hash": "dfe08bf200fa067b457dc6b1ae6732686c6d21bffe77a87bc9c5fb8516a4088f",
+   "record_id": "syn/expenses/approve_expense_claim/x0/paraphrase/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/approve_expense_claim/x0",
+   "record_hash": "c639cb9c6fb81d3ef5b000fa52811676ea9acdb7df4cf2d389412cd560a36d51",
+   "record_id": "syn/expenses/approve_expense_claim/x0/paraphrase/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f0",
+   "record_hash": "ede0d0280e88a649778ebbf4a57f8b47002457f12feaff5bdbdaf9f567cf504c",
+   "record_id": "syn/expenses/issue_reimbursement/f0/base/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f0",
+   "record_hash": "d83e71931b5ddf0cb0e797e67348f1fd3a8501680d818ea3b77a727e5476dabb",
+   "record_id": "syn/expenses/issue_reimbursement/f0/cf-actor_verified/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f0",
+   "record_hash": "279df91b02da398b5f2ee998e009a216915e218a60382bb22b0966a842e42be9",
+   "record_id": "syn/expenses/issue_reimbursement/f0/cf-impact/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f0",
+   "record_hash": "cbf358daf7e27cc1fd73a3947cf82620d2d11b76b8059f1e7c315ee7ff37bd07",
+   "record_id": "syn/expenses/issue_reimbursement/f0/irrelevant/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f0",
+   "record_hash": "a6ccf27a36654cf4ccbcd6ee2740900a5c36cb36dace8c1c786a234a53fdb520",
+   "record_id": "syn/expenses/issue_reimbursement/f0/paraphrase/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f1",
+   "record_hash": "7d4564d3c0e8d4a0553d816ee523a70b9083875723ef6351219dcee3be185f9c",
+   "record_id": "syn/expenses/issue_reimbursement/f1/base/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f1",
+   "record_hash": "022eb3a0d695310b994b30e6c3b5d01d9bd595b9dcec4c0e87cfa926fdc5e838",
+   "record_id": "syn/expenses/issue_reimbursement/f1/cf-actor_verified/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f1",
+   "record_hash": "f9128cd0af2dac49dccef09d9d6053d9188e848efed407d4f1835dcb4199514d",
+   "record_id": "syn/expenses/issue_reimbursement/f1/cf-consent/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f1",
+   "record_hash": "44bf7d978bd3449c56ded53106cc9eaeccf48f7fb67b93b2ba43c385a62d628c",
+   "record_id": "syn/expenses/issue_reimbursement/f1/irrelevant/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f1",
+   "record_hash": "4d806fca806be3564de23fd15d01221fdc0a7b9d42ea3759415afa218b0868f8",
+   "record_id": "syn/expenses/issue_reimbursement/f1/paraphrase/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f2",
+   "record_hash": "9f4da08913cd03abdd897cd30a1f1bcf2ae5e0262c88974e948ed2b1035e7b10",
+   "record_id": "syn/expenses/issue_reimbursement/f2/base/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f2",
+   "record_hash": "8fe8e9cb4ae0b9d6503f757287b6890c42301b090bd5cf3f61689007d4d46f2a",
+   "record_id": "syn/expenses/issue_reimbursement/f2/cf-evidence_clear/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f2",
+   "record_hash": "5221a7c40d711fc99da71305fac3a722a919a61eb71be3ee5a94a5f867b7fe77",
+   "record_id": "syn/expenses/issue_reimbursement/f2/cf-requested/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f2",
+   "record_hash": "ce9df0dd340c54d9ca6171d12a69a43d081ce8368fc6c0ebd7136be3dffea5bd",
+   "record_id": "syn/expenses/issue_reimbursement/f2/irrelevant/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f2",
+   "record_hash": "696833e88af0ae8a66a3ba1e6a3c08acfef64f273104fa1b456828ed0470d831",
+   "record_id": "syn/expenses/issue_reimbursement/f2/paraphrase/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f3",
+   "record_hash": "5ca58f677ab0522d8b5c455b9fb02673c3d67f57343b2325d7459a7eb03ad071",
+   "record_id": "syn/expenses/issue_reimbursement/f3/base/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f3",
+   "record_hash": "dc3d56f5d43fdc0a140e89db6612e90de629681a287ef72f1abe569d38a2a9dc",
+   "record_id": "syn/expenses/issue_reimbursement/f3/cf-evidence_clear/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f3",
+   "record_hash": "7729168c9711abf659a08b71cca761d5d2ad4f30bfbd137f8c0d5be29246953c",
+   "record_id": "syn/expenses/issue_reimbursement/f3/cf-impact/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f3",
+   "record_hash": "07cedc9f816760be5ae468732b072b3626496a050c7cba9555f02baa0878513b",
+   "record_id": "syn/expenses/issue_reimbursement/f3/irrelevant/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/f3",
+   "record_hash": "418bb5e1759609c2cf272523954afc0da00c832e6e21a7d3a47622374fada925",
+   "record_id": "syn/expenses/issue_reimbursement/f3/paraphrase/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/hard",
+   "record_hash": "456304ad8e0f45bb8fe90e16a0e46c0be45194646b59aca9b974386f346a5e4c",
+   "record_id": "syn/expenses/issue_reimbursement/hard/prohibited/P1",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/hard",
+   "record_hash": "e839f136eddc7eeffbe5fe65be4f119d1541326c71118c515f5884e91d88ce1b",
+   "record_id": "syn/expenses/issue_reimbursement/hard/prohibited/P2",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/x0",
+   "record_hash": "e5ae882c72ffa4e4952f819629c7afc8e072020891c964e3ed7f2a6cb06ba2c3",
+   "record_id": "syn/expenses/issue_reimbursement/x0/base/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/x0",
+   "record_hash": "d685ece8d0701d83e3029f8c3f1cf26dc7a57607043322dda123f809fb58a6aa",
+   "record_id": "syn/expenses/issue_reimbursement/x0/base/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/x0",
+   "record_hash": "26e61beed2a2d389d113eb0c46c939c2598838e82e07b4245bef671290d26543",
+   "record_id": "syn/expenses/issue_reimbursement/x0/cf-requested/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/x0",
+   "record_hash": "53f89adcdde2d7d903e04f6a7a8f9f3e0ab0791eff08d1ebc23973fe9864a6b9",
+   "record_id": "syn/expenses/issue_reimbursement/x0/cf-requested/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/x0",
+   "record_hash": "b38fa9f7f87b487a26e4b773df44ce8f640cd3c404330810eeceebebcde6c926",
+   "record_id": "syn/expenses/issue_reimbursement/x0/cf-terms_disclosed/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/x0",
+   "record_hash": "1ff0c643d2e674ea3a3ba32e796becdb8fb439e823a3e97e565bded9dfafdad2",
+   "record_id": "syn/expenses/issue_reimbursement/x0/cf-terms_disclosed/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/x0",
+   "record_hash": "f44c5fe5648317df50a70aa58822d8ccb4668caf574936978995ec7e526d685b",
+   "record_id": "syn/expenses/issue_reimbursement/x0/irrelevant/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/x0",
+   "record_hash": "5b7ef3355102c50a269d7b14b43742a9c8cc2ea67bcb0190961e99f4b95c6d46",
+   "record_id": "syn/expenses/issue_reimbursement/x0/irrelevant/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/x0",
+   "record_hash": "edcdae1d430e2cb35ee54154020f42c5f64b4de0e92b82112017c8e0932a0ef4",
+   "record_id": "syn/expenses/issue_reimbursement/x0/paraphrase/P1",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/expenses/issue_reimbursement/x0",
+   "record_hash": "c3b73231855abdea59285039ce833992825fa3a71a43ce2b2218167a2157d74c",
+   "record_id": "syn/expenses/issue_reimbursement/x0/paraphrase/P2",
+   "split": "syn_holdout_action"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f0",
+   "record_hash": "597b9c2e8c27010c225f6dcce27f6c334d8ef098d0d80b1510e73e3a3309dc53",
+   "record_id": "syn/marketing/increase_campaign_budget/f0/base/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f0",
+   "record_hash": "c081b558310c5c61d110204d41abdf067d9babe445aa75fd1b8cc03a6362fc08",
+   "record_id": "syn/marketing/increase_campaign_budget/f0/cf-evidence_clear/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f0",
+   "record_hash": "a4dd480fd56bd45f885243cfe6134102ccde41ac274619033b677c97bc319627",
+   "record_id": "syn/marketing/increase_campaign_budget/f0/cf-terms_disclosed/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f0",
+   "record_hash": "d9aa9421cb782dcff33acd4c3b8f4675ec4e244c8ed87d3605bfef6d2edf987e",
+   "record_id": "syn/marketing/increase_campaign_budget/f0/irrelevant/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f0",
+   "record_hash": "eed77d58269cca758c5ee7116e84f93c83cf4a79f935c4dc92fab9850924569a",
+   "record_id": "syn/marketing/increase_campaign_budget/f0/paraphrase/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f1",
+   "record_hash": "e6c60d7c7ac260bdfa98f28c75ac3122204d99591d2d43e2e57275fef1cb005a",
+   "record_id": "syn/marketing/increase_campaign_budget/f1/base/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f1",
+   "record_hash": "ad65fe97a55b99b3413f729e4d55a4629235bb31dd4471c96082fd749fb8500d",
+   "record_id": "syn/marketing/increase_campaign_budget/f1/cf-owner_correct/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f1",
+   "record_hash": "4439a17f3698cdfe9ad3eb2a891dca6802c81c9c747fbd1e7397afbd58520fca",
+   "record_id": "syn/marketing/increase_campaign_budget/f1/cf-prerequisite_met/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f1",
+   "record_hash": "63842d215fa29a4d2507bdff98980b5bd4162e736760394a7251824e898a2355",
+   "record_id": "syn/marketing/increase_campaign_budget/f1/irrelevant/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f1",
+   "record_hash": "cd68bd386702aef6275298ae8bf422f4767af7cf3e1a34bdfa3fb5aa2a6b4700",
+   "record_id": "syn/marketing/increase_campaign_budget/f1/paraphrase/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f2",
+   "record_hash": "80bccd427b43614da2686c24460534b696d7b249da233da9df71f9c2eaad6a7e",
+   "record_id": "syn/marketing/increase_campaign_budget/f2/base/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f2",
+   "record_hash": "4863824a752e0783403202c1ce6519c796a53353ed0021c6371fe11a7bf28b9c",
+   "record_id": "syn/marketing/increase_campaign_budget/f2/cf-prerequisite_met/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f2",
+   "record_hash": "62a725d4c6b77b1448be2cdcb873f3d13f83f25095359632f68d26e374885a10",
+   "record_id": "syn/marketing/increase_campaign_budget/f2/cf-requested/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f2",
+   "record_hash": "734f3e8e86de7f477d908a5a2ae089360e421d9c59c1999b35533cc91dc6dedf",
+   "record_id": "syn/marketing/increase_campaign_budget/f2/irrelevant/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f2",
+   "record_hash": "bc4e598949489777b472cbc7bf1229b87657368f92af349932d95563ae9375b3",
+   "record_id": "syn/marketing/increase_campaign_budget/f2/paraphrase/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f3",
+   "record_hash": "adbd384eceeda9d5a5b5682def7ebbd7edf806eaf90311360e03ee03f21721c6",
+   "record_id": "syn/marketing/increase_campaign_budget/f3/base/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f3",
+   "record_hash": "13a16055ebf9e84bd0e4c3c9096f4fa1b62b0c888855891146e694e74d0fce25",
+   "record_id": "syn/marketing/increase_campaign_budget/f3/cf-impact/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f3",
+   "record_hash": "9015e6e09bdeb4c3bbb6f9b0af7f5009478cf034d08b869bae1322fde38d8571",
+   "record_id": "syn/marketing/increase_campaign_budget/f3/cf-prerequisite_met/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f3",
+   "record_hash": "1393b5cab12184cab706ecf9647d537e4ade2fcb4cdbce9b4ff327c9cf7f68d4",
+   "record_id": "syn/marketing/increase_campaign_budget/f3/irrelevant/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/f3",
+   "record_hash": "d4220a9a34c22d2a3bb5e946520449ff7b203fe783ab5e302fd12f20c8b832dc",
+   "record_id": "syn/marketing/increase_campaign_budget/f3/paraphrase/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/hard",
+   "record_hash": "70e53982374e25041934939d5aca7bafad5f50b67c038c9d381035306bcc7f6b",
+   "record_id": "syn/marketing/increase_campaign_budget/hard/prohibited/P1",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/hard",
+   "record_hash": "d6f06041ff31657ae6373ef02d90b69ff2e999fee0f211ebc6ab017ebba36128",
+   "record_id": "syn/marketing/increase_campaign_budget/hard/prohibited/P2",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/p3-1",
+   "record_hash": "716bc5dce91c198b8895b7813c3795a37a5f1b7d8ef0995829f5509ce9a87995",
+   "record_id": "syn/marketing/increase_campaign_budget/p3-1/base/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/p3-1",
+   "record_hash": "5e965c8154043c36a99be6ca19ab0abd2fac833756484d634b9fc803d1368bde",
+   "record_id": "syn/marketing/increase_campaign_budget/p3-1/cf-impact/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/p3-1",
+   "record_hash": "86e977774aaa8878bb652cf402a2b06ff74c5e757f17326d7356d6e3d7ae359c",
+   "record_id": "syn/marketing/increase_campaign_budget/p3-1/cf-terms_disclosed/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/p3-1",
+   "record_hash": "4ad329c6bb07beef2f1db3a2008a02be3478ea1f13f8f25969af580e2149fd8b",
+   "record_id": "syn/marketing/increase_campaign_budget/p3-1/irrelevant/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/p3-1",
+   "record_hash": "2c49d8860df69558f1e9a70def2f682951f54a1271dfe0ea2885af3bf9a498f8",
+   "record_id": "syn/marketing/increase_campaign_budget/p3-1/paraphrase/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/p3-8",
+   "record_hash": "fe9e2dcd5fea5b266db59ced7b7f375c343d555876fe6bf9efae8eeaf2d0d98e",
+   "record_id": "syn/marketing/increase_campaign_budget/p3-8/base/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/p3-8",
+   "record_hash": "c1d81fb627e5529a43dce67d696d0920fadb38f519c985479589c17dbe59b2ee",
+   "record_id": "syn/marketing/increase_campaign_budget/p3-8/cf-evidence_clear/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/p3-8",
+   "record_hash": "01800ee25544b314668d9ce6ab9201a8afb0bd711fe6af0d53f6b16ffd30505e",
+   "record_id": "syn/marketing/increase_campaign_budget/p3-8/cf-impact/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/p3-8",
+   "record_hash": "1f8d8afd2607cbf06c1f3040032c751007f20b5592908b2e5429b948ce7c1667",
+   "record_id": "syn/marketing/increase_campaign_budget/p3-8/irrelevant/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/p3-8",
+   "record_hash": "a81462d5c5d288197250bff578f9792f1b269459fa4f906edc4d4e97a34157a6",
+   "record_id": "syn/marketing/increase_campaign_budget/p3-8/paraphrase/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/x0",
+   "record_hash": "e4b04011524ad16f6d90f3fba503699bf1f8f0941ee0ca9a341a9c4c4143e357",
+   "record_id": "syn/marketing/increase_campaign_budget/x0/base/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/x0",
+   "record_hash": "f6b291cdfca47888dc439726e6e27d3a08c2670ead9dde12e30c5b51cddda784",
+   "record_id": "syn/marketing/increase_campaign_budget/x0/base/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/x0",
+   "record_hash": "16f232fbb4dfb477cf37ba83a2e56e94f0bab25ead238b0f59ac221848244dad",
+   "record_id": "syn/marketing/increase_campaign_budget/x0/cf-impact/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/x0",
+   "record_hash": "19f53811928f665e60d3e3c2682813c86ef7ee7a4a62f5bfaca8ca04f79f5e43",
+   "record_id": "syn/marketing/increase_campaign_budget/x0/cf-impact/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/x0",
+   "record_hash": "351fef30eee2d71dbd087caffc8981f268bdc528ecc7fe604690dc7e956bfd67",
+   "record_id": "syn/marketing/increase_campaign_budget/x0/cf-owner_correct/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/x0",
+   "record_hash": "b626b33deddae616a40892a7fae6c21b7184adb040e3e31399761cc3b61b9015",
+   "record_id": "syn/marketing/increase_campaign_budget/x0/cf-owner_correct/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/x0",
+   "record_hash": "8c10fc5c2235ceee2e931992b26b6f787e4f1ea822380d783919285e262c7937",
+   "record_id": "syn/marketing/increase_campaign_budget/x0/irrelevant/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/x0",
+   "record_hash": "6149fe232d2872769669226ae41a41e5b67c0307ae5a9024c59a66dcd513fff0",
+   "record_id": "syn/marketing/increase_campaign_budget/x0/irrelevant/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/x0",
+   "record_hash": "cb5bf799fa86a13cda5760fd81f53c0ac30fee51e1a5f7508e4c6993ab06019b",
+   "record_id": "syn/marketing/increase_campaign_budget/x0/paraphrase/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/increase_campaign_budget/x0",
+   "record_hash": "46f9948b72df9bc42dc7d4a44d50a3570460d4bee6d8024d7b7a9d1dd1984c03",
+   "record_id": "syn/marketing/increase_campaign_budget/x0/paraphrase/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f0",
+   "record_hash": "49f34837de254951c7daf41c1151f2f7300d69fed776a3f60f098b529aacb8d1",
+   "record_id": "syn/marketing/pause_campaign/f0/base/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f0",
+   "record_hash": "52cc0e0cbc8335c580724d3e09367c04821aa3a946f8570b0d580fbfa2ce874c",
+   "record_id": "syn/marketing/pause_campaign/f0/cf-impact/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f0",
+   "record_hash": "ca02391f1ad9969b4462e53d8b2dff0096538707c0aaf785891c003fe1c2384c",
+   "record_id": "syn/marketing/pause_campaign/f0/cf-reversible/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f0",
+   "record_hash": "c73c14c4656ef6712883adb19f026ffb8aba4f906b26059aef3ac2f9f7bdaede",
+   "record_id": "syn/marketing/pause_campaign/f0/irrelevant/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f0",
+   "record_hash": "622d8652730cea0c231de3240ef9c62f05363a64b1797837e1f9e04177e402ce",
+   "record_id": "syn/marketing/pause_campaign/f0/paraphrase/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f1",
+   "record_hash": "a3889261e8a32c570fa2f1e69a76654ee3a2cf42d511664ac9480ae1bd4039c5",
+   "record_id": "syn/marketing/pause_campaign/f1/base/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f1",
+   "record_hash": "2e647e5fe6389c4870cfa5205ea671a6d8e36ad6e149cc364661874902366f03",
+   "record_id": "syn/marketing/pause_campaign/f1/cf-actor_verified/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f1",
+   "record_hash": "93ee9de47e75e71317b9f7b2e29f8784bcaa5a64a288993b2a370e71e9f8bb48",
+   "record_id": "syn/marketing/pause_campaign/f1/cf-evidence_clear/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f1",
+   "record_hash": "cf422e496b003fda0c0848e5ee15c43818fed14e63d24eb1ab1d742afccd52c7",
+   "record_id": "syn/marketing/pause_campaign/f1/irrelevant/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f1",
+   "record_hash": "173819615d854bc9b63c25b18618184cae53b1da1f6dac68bf7506c3e057d5f0",
+   "record_id": "syn/marketing/pause_campaign/f1/paraphrase/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f2",
+   "record_hash": "d5faac1164cfb16dc512dc1ae0b1681a5d3a5ea2dcfe87d45b1989f7e79868c6",
+   "record_id": "syn/marketing/pause_campaign/f2/base/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f2",
+   "record_hash": "9fd46d3b69c1a184fa56cdd87934381fe0a6d391d777017dcde320608db035b8",
+   "record_id": "syn/marketing/pause_campaign/f2/cf-impact/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f2",
+   "record_hash": "aa211783d9ab97cb93782a19aab14aa21dd934ff26b0e95be9e1af1e9f9003f9",
+   "record_id": "syn/marketing/pause_campaign/f2/cf-requested/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f2",
+   "record_hash": "2546d6800a221ce4245f376741540ff17a6fd61e9fb5ce03599151595250013a",
+   "record_id": "syn/marketing/pause_campaign/f2/irrelevant/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f2",
+   "record_hash": "2a95f684f5c39bbf7dc9950ee59716cb4c28998d456de3894940ebf9552243ac",
+   "record_id": "syn/marketing/pause_campaign/f2/paraphrase/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f3",
+   "record_hash": "5f487750ebc18f8a3d7104448a6cd49fdbfd3ef277ab5df0c112de6070e20354",
+   "record_id": "syn/marketing/pause_campaign/f3/base/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f3",
+   "record_hash": "f4299c7c28441cde8560f021878e523e9efd8c37f28be60a3ff7dceff988d335",
+   "record_id": "syn/marketing/pause_campaign/f3/cf-evidence_clear/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f3",
+   "record_hash": "0e5773c3fcec7828b5c2981752569e230c863e4dae0aca417051dd5937858cca",
+   "record_id": "syn/marketing/pause_campaign/f3/cf-reversible/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f3",
+   "record_hash": "a3f36cea39a6fef7c79b91738e7a9c19dde8e41108bf5fca31dc5ec9306616b5",
+   "record_id": "syn/marketing/pause_campaign/f3/irrelevant/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/f3",
+   "record_hash": "618f586680390092f0cbae07df0583afc0b9595cf5bb651752e5779f79758608",
+   "record_id": "syn/marketing/pause_campaign/f3/paraphrase/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/hard",
+   "record_hash": "2fef9b493bab979d3f6727e104c337453ce98eacf148de955a4e23a75042dd39",
+   "record_id": "syn/marketing/pause_campaign/hard/prohibited/P1",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/hard",
+   "record_hash": "d5904a771a02203279c4eb290e27a5f2fda438e5f1f2a36dd2ae1094c72a7a4e",
+   "record_id": "syn/marketing/pause_campaign/hard/prohibited/P2",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/p3-2",
+   "record_hash": "6353bcfb7270bec4b186a90bde4854c5759c2be1bc4c202d3ee425854a25a51e",
+   "record_id": "syn/marketing/pause_campaign/p3-2/base/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/p3-2",
+   "record_hash": "11f12be3ed1a15c23756e3944f49191778432ffc967c057c96841e44a7fffec6",
+   "record_id": "syn/marketing/pause_campaign/p3-2/cf-owner_correct/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/p3-2",
+   "record_hash": "60749bc77af21140288b0d36eb44c2e25751e7c2140f553aef04345ee7321ba6",
+   "record_id": "syn/marketing/pause_campaign/p3-2/cf-prerequisite_met/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/p3-2",
+   "record_hash": "e1c07eb69525257911804966fde3a3f83ec24c2f897a92282774b825818b4b0a",
+   "record_id": "syn/marketing/pause_campaign/p3-2/irrelevant/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/p3-2",
+   "record_hash": "1d1920d1ab2df7760235e4930dd4365ac78227126dc3eb468b233f811820ec02",
+   "record_id": "syn/marketing/pause_campaign/p3-2/paraphrase/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/p3-9",
+   "record_hash": "1aec60b4acd9f64604855bedfbe13119d1aa58ca9532d905382acee77d803fc3",
+   "record_id": "syn/marketing/pause_campaign/p3-9/base/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/p3-9",
+   "record_hash": "20e21e0dcdbe83bad7f31e383752a91c7a63096bc5734182b3ceccd091a33ab7",
+   "record_id": "syn/marketing/pause_campaign/p3-9/cf-owner_correct/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/p3-9",
+   "record_hash": "840d51207042900c89d84add4e79e630d42f86d537a88dff52d8ff370ab55775",
+   "record_id": "syn/marketing/pause_campaign/p3-9/cf-prerequisite_met/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/p3-9",
+   "record_hash": "40c22a297bd4e4d8a0761c248dd475f1211578ad1d1cb1b4b0fa9458d41cc8b0",
+   "record_id": "syn/marketing/pause_campaign/p3-9/irrelevant/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/p3-9",
+   "record_hash": "f3ad965434216ff683e23a9015ff19a216af2c1cc7c08bf2d14541b188597dea",
+   "record_id": "syn/marketing/pause_campaign/p3-9/paraphrase/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/x0",
+   "record_hash": "129d4f8f8688c2ce6babd54610772a060dd5fde4024801c94969a3fbdad70a15",
+   "record_id": "syn/marketing/pause_campaign/x0/base/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/x0",
+   "record_hash": "4673e602e99f9deef5386e975da5697070bda056cecfe85620ef9d947d5e264a",
+   "record_id": "syn/marketing/pause_campaign/x0/base/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/x0",
+   "record_hash": "8c85cf2d51dac08b6c4d9744c99594fb917ea52cd5579cd2364bc38363a059de",
+   "record_id": "syn/marketing/pause_campaign/x0/cf-owner_correct/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/x0",
+   "record_hash": "8356af4fb2241e779e9774403a9fe1573eb67fbd6c0efa7ed3ea27d480095a5e",
+   "record_id": "syn/marketing/pause_campaign/x0/cf-owner_correct/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/x0",
+   "record_hash": "7ca3f9dfcea5e25fb0f7e90129663901a1c26718c38692cc3d4000cad932b9cb",
+   "record_id": "syn/marketing/pause_campaign/x0/cf-reversible/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/x0",
+   "record_hash": "346c66a5ce6c4c4008e0ee800a7f24fd38963ebf169eee755b9a0bb67eb242b9",
+   "record_id": "syn/marketing/pause_campaign/x0/cf-reversible/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/x0",
+   "record_hash": "af21727156b3b06c512fd2f419829ead162ba9f2ea1af6b1ebb339a9ad7a87d2",
+   "record_id": "syn/marketing/pause_campaign/x0/irrelevant/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/x0",
+   "record_hash": "be66507858abdf486846f1ac05751d16c6f66a7ed93975fda51130ec9aa1aa3f",
+   "record_id": "syn/marketing/pause_campaign/x0/irrelevant/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/x0",
+   "record_hash": "91960ce34ab2f3f26164ddcc2d5ef584e1ab33bea19af50ef3e06bbabb70f2ad",
+   "record_id": "syn/marketing/pause_campaign/x0/paraphrase/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/marketing/pause_campaign/x0",
+   "record_hash": "f2574d8497e257ec5818f64cb9f7e295c1568e9e0415f086c25df9b008fbe762",
+   "record_id": "syn/marketing/pause_campaign/x0/paraphrase/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f0",
+   "record_hash": "8f3221e224ff8b86281d01b2a4ed06fa6c7887a4fdef29c15c83810ab027d34a",
+   "record_id": "syn/procurement/create_purchase_order/f0/base/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f0",
+   "record_hash": "40cee1d3cc0b8202f9f76c8ce7c404d6e149b0e2fe1cea957fcc36bba1a83ec4",
+   "record_id": "syn/procurement/create_purchase_order/f0/cf-prerequisite_met/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f0",
+   "record_hash": "587096f64d373ba7830b134531027e9f74284a757ded3e5b4503c6b3eacfc988",
+   "record_id": "syn/procurement/create_purchase_order/f0/cf-requested/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f0",
+   "record_hash": "3a44fc03f588caac25330449d5ce122bfd588d08867b32fd6a33d057912db655",
+   "record_id": "syn/procurement/create_purchase_order/f0/irrelevant/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f0",
+   "record_hash": "325d0b3da26cae7df873316c1f52659bb5335afb825c3c44fa30e88744152f7c",
+   "record_id": "syn/procurement/create_purchase_order/f0/paraphrase/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f1",
+   "record_hash": "cd6e55582a2002635257477cbf1f9a02424e1ba29e849d5e6b7df8a9af624153",
+   "record_id": "syn/procurement/create_purchase_order/f1/base/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f1",
+   "record_hash": "1d5bbeb342975fc1a413eab98f12f8deca6e751c3f798d1c35f531f4944e01cd",
+   "record_id": "syn/procurement/create_purchase_order/f1/cf-actor_verified/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f1",
+   "record_hash": "d4a9484c61985d5614a62c78b0afd0b375266def9030421989848f87bc8ff6e1",
+   "record_id": "syn/procurement/create_purchase_order/f1/cf-terms_disclosed/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f1",
+   "record_hash": "31c15a485128594a6dbebec6563efb1edc5b9a2a43cc01f846102a9884a0a483",
+   "record_id": "syn/procurement/create_purchase_order/f1/irrelevant/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f1",
+   "record_hash": "77cdb305fa527c189960b489bcddffd4b711ca2956505c418353f1d26fc6c65b",
+   "record_id": "syn/procurement/create_purchase_order/f1/paraphrase/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f2",
+   "record_hash": "c4cf1e4155f42c62a06c6c9a6f907a58995ec49cc1b31f373a65c5bf3055cc43",
+   "record_id": "syn/procurement/create_purchase_order/f2/base/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f2",
+   "record_hash": "2971e8c40531bea32f43d824097960705a3b3233961e12332399e11c7207438f",
+   "record_id": "syn/procurement/create_purchase_order/f2/cf-actor_verified/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f2",
+   "record_hash": "74fea6cbe0266a2baa1f1028a11d1b2bd822b425378630aed862fbaf0cb96c58",
+   "record_id": "syn/procurement/create_purchase_order/f2/cf-prerequisite_met/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f2",
+   "record_hash": "b0e06daf96ff189c1ca45fe41a23b69915f0b834fc8976820fa292b837c2302f",
+   "record_id": "syn/procurement/create_purchase_order/f2/irrelevant/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f2",
+   "record_hash": "e4c3b67a488fac758874d36ffe8be71eaae5a55be96d7dd486b45b99682de34a",
+   "record_id": "syn/procurement/create_purchase_order/f2/paraphrase/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f3",
+   "record_hash": "8429f520d5c3b886d514f4c3d3932fbac10dc7cad7de7a5e083b5b523475e13e",
+   "record_id": "syn/procurement/create_purchase_order/f3/base/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f3",
+   "record_hash": "9e7985ca029b54d2ced8e0d9fff3fef9b84bd36c275e739f95e68f793351e77f",
+   "record_id": "syn/procurement/create_purchase_order/f3/cf-evidence_clear/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f3",
+   "record_hash": "b3934f7900f4a88148a27a06884461c5141d57b1fd0c2a36c05c2b66965216c5",
+   "record_id": "syn/procurement/create_purchase_order/f3/cf-owner_correct/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f3",
+   "record_hash": "0a7af7f2b82f390f123a33d6419de469faa58e7c94996a79b546500c4da2253b",
+   "record_id": "syn/procurement/create_purchase_order/f3/irrelevant/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/f3",
+   "record_hash": "26a56084a91eccc838a27a459fd810a5280acc0ff2028d21e84e8e74ba14adf8",
+   "record_id": "syn/procurement/create_purchase_order/f3/paraphrase/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/hard",
+   "record_hash": "b9d0d7423f202c9787cb69bfbb6a627a64e03bc2d442ef334207858bada39989",
+   "record_id": "syn/procurement/create_purchase_order/hard/prohibited/P1",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/hard",
+   "record_hash": "c0421271ef2b562cda8279711faf7c2d0fa403cf9b8dde47c15897e7a5ce94a9",
+   "record_id": "syn/procurement/create_purchase_order/hard/prohibited/P2",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/p3-10",
+   "record_hash": "85f71c90b49e8047a30f281101af0036220b1b42cee5b441a78f6a9e4e8097e3",
+   "record_id": "syn/procurement/create_purchase_order/p3-10/base/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/p3-10",
+   "record_hash": "360929db4920b1af77ceb1e8074c411fe2c7daa476f282002cbe0845c0a79838",
+   "record_id": "syn/procurement/create_purchase_order/p3-10/cf-impact/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/p3-10",
+   "record_hash": "d933f853ecd4e0e70daaf83368b0d674e7c2e8ddb6218a16939fc1c3a3769f36",
+   "record_id": "syn/procurement/create_purchase_order/p3-10/cf-prerequisite_met/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/p3-10",
+   "record_hash": "6efa8173e5e6f62708798c8ca6cd7243f93a3402e08d8da651371c140e14062a",
+   "record_id": "syn/procurement/create_purchase_order/p3-10/irrelevant/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/p3-10",
+   "record_hash": "4d8fcddf76fbd1223de119de890dd75712c9873394bb9187261836ffbfbcea67",
+   "record_id": "syn/procurement/create_purchase_order/p3-10/paraphrase/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/p3-3",
+   "record_hash": "e74f065e819c622462e28444f555bdb98bc6eca026812fddcd3b6b5758c15504",
+   "record_id": "syn/procurement/create_purchase_order/p3-3/base/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/p3-3",
+   "record_hash": "abf33986c753e481740ff4d20ebb70e5abcc52bd220e1993990586958f7dfb50",
+   "record_id": "syn/procurement/create_purchase_order/p3-3/cf-evidence_clear/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/p3-3",
+   "record_hash": "77f9e84d9b073ca7b4c9cd5c087fa115364d62beaa930bebab1f24d198c2b540",
+   "record_id": "syn/procurement/create_purchase_order/p3-3/cf-terms_disclosed/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/p3-3",
+   "record_hash": "c5f0ab2548cb0e8481b107399986d96d9e3a4a22d0355bb04ae58b332ef1f376",
+   "record_id": "syn/procurement/create_purchase_order/p3-3/irrelevant/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/p3-3",
+   "record_hash": "bbfefa9ceb60632585d6d63f189079cd7a98053ea91e57ad3a050bbe7f443dc2",
+   "record_id": "syn/procurement/create_purchase_order/p3-3/paraphrase/P3",
+   "split": "syn_p3_adapt"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/x0",
+   "record_hash": "bb9768e37110474c81765c86fc653bae39b433eeaf2d2037715445ebed17eebb",
+   "record_id": "syn/procurement/create_purchase_order/x0/base/P1",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/x0",
+   "record_hash": "d0ca67a806b6ddf91e5f1fb06197dc7f65647937df2333fab7cc21ea736501d3",
+   "record_id": "syn/procurement/create_purchase_order/x0/base/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/x0",
+   "record_hash": "cd4eebbd58a72ee23da62b0ea1f6ea147b95825288430bdcc2dbdf0391879d68",
+   "record_id": "syn/procurement/create_purchase_order/x0/cf-requested/P1",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/x0",
+   "record_hash": "7469897cbdfd87007faaad6a0660564b2ca08886b19a822ba87bc22f2382fda4",
+   "record_id": "syn/procurement/create_purchase_order/x0/cf-requested/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/x0",
+   "record_hash": "bd0a2a14386c8ad15fbd8997132ca77bd79f3b81e733a53e0bd22737095b5a88",
+   "record_id": "syn/procurement/create_purchase_order/x0/cf-terms_disclosed/P1",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/x0",
+   "record_hash": "cbf2cb58a6b466944b66baa8c11c473239355a89dc08cc019f8c2a10cc5ad1f7",
+   "record_id": "syn/procurement/create_purchase_order/x0/cf-terms_disclosed/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/x0",
+   "record_hash": "c5450efb32b3926195e6e75331937832e03ef1562dba9d7904527db563e3495c",
+   "record_id": "syn/procurement/create_purchase_order/x0/irrelevant/P1",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/x0",
+   "record_hash": "7db7039f9d8d4958d3bd23e409470efb6f376b323328b21358270ba92ae428e1",
+   "record_id": "syn/procurement/create_purchase_order/x0/irrelevant/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/x0",
+   "record_hash": "d48cd00604dfa3d8f436dafa8ec3b7df5a76f0e49141c6a0e56da23a669b2a60",
+   "record_id": "syn/procurement/create_purchase_order/x0/paraphrase/P1",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/create_purchase_order/x0",
+   "record_hash": "9b8b1a393ab8b5364f8e482dd04edbb960b27b8a68a285ccfe25427fb2acd175",
+   "record_id": "syn/procurement/create_purchase_order/x0/paraphrase/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f0",
+   "record_hash": "a94d538728b3de964b081075b5e9c38581e68b0a65957f36c9dfea103824beb5",
+   "record_id": "syn/procurement/update_vendor_bank_details/f0/base/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f0",
+   "record_hash": "04aa6950912d9b18b7e3b9bbb09b2dbc117e6dfe2c985dc21a2c03d52921f5a5",
+   "record_id": "syn/procurement/update_vendor_bank_details/f0/cf-reversible/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f0",
+   "record_hash": "4c27199aedafe6374576463043c6b80a557cc0f6ef4296152122f875aee2d0b1",
+   "record_id": "syn/procurement/update_vendor_bank_details/f0/cf-terms_disclosed/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f0",
+   "record_hash": "a2f5a7ee3f31c4d4825a52929bc97b3aa7a45dfe79121e695a2081386acede85",
+   "record_id": "syn/procurement/update_vendor_bank_details/f0/irrelevant/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f0",
+   "record_hash": "4d36ff75891cfe154fcd5bc388712351c612f3d21646b6cbcd1076cfb76aad2d",
+   "record_id": "syn/procurement/update_vendor_bank_details/f0/paraphrase/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f1",
+   "record_hash": "1a46a001795128a708995e378c543d9b5ac308d31a72200389e6d4aac9dd9d69",
+   "record_id": "syn/procurement/update_vendor_bank_details/f1/base/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f1",
+   "record_hash": "bc38ea48a2eb422ef7321f24f14edd3a78637ea0607e508b36d6e8f469c4eaac",
+   "record_id": "syn/procurement/update_vendor_bank_details/f1/cf-evidence_clear/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f1",
+   "record_hash": "68d491993f08830389ae85161df1a2bf3963d7f4c9cdbb0442ce70eb358d15e8",
+   "record_id": "syn/procurement/update_vendor_bank_details/f1/cf-impact/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f1",
+   "record_hash": "fdee7591e37e3a9430dd5550e7b213c1b31e6d72886d744a61873e6f7e88f7db",
+   "record_id": "syn/procurement/update_vendor_bank_details/f1/irrelevant/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f1",
+   "record_hash": "39f93d5fea2a582ff92a5748acdb542a5b17671ae6d8d273c0b152486093f91d",
+   "record_id": "syn/procurement/update_vendor_bank_details/f1/paraphrase/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f2",
+   "record_hash": "7b43498f91a005f94a4b2492ed31e9173ddae60d6a8610c9e276675a7258205c",
+   "record_id": "syn/procurement/update_vendor_bank_details/f2/base/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f2",
+   "record_hash": "452506f4dc696f36f201614fe88fab38896753534f5e07fda20c800b38cfcb1c",
+   "record_id": "syn/procurement/update_vendor_bank_details/f2/cf-consent/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f2",
+   "record_hash": "c7a193b10373236cf16c4bae69158af180933999b7ab0de6aa9fc41aa09fbe54",
+   "record_id": "syn/procurement/update_vendor_bank_details/f2/cf-impact/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f2",
+   "record_hash": "f96ce3f89de2e7a95d4640247e2ab9e8cee5f537ca604b5d08ccd4db1d167b00",
+   "record_id": "syn/procurement/update_vendor_bank_details/f2/irrelevant/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f2",
+   "record_hash": "05b1a31dcaa257a0c6f577fa38f8882353b297c3a293037cba8f11b296ecfe24",
+   "record_id": "syn/procurement/update_vendor_bank_details/f2/paraphrase/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f3",
+   "record_hash": "61bfae678490cd084d5776f70b93ae00fd0032baf6cd9067de605dac1a82f1f8",
+   "record_id": "syn/procurement/update_vendor_bank_details/f3/base/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f3",
+   "record_hash": "bd4a122db18a935998902ff30866ac8d7a7a998fb65ab4e559d39e39e8b6426d",
+   "record_id": "syn/procurement/update_vendor_bank_details/f3/cf-prerequisite_met/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f3",
+   "record_hash": "058a0decc4d4ff17ba628ae8f50c177ff21fb56a9c334fb7fdaa9a68fa0b8898",
+   "record_id": "syn/procurement/update_vendor_bank_details/f3/cf-reversible/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f3",
+   "record_hash": "eb2d5bb206bd92824e42861357766e05c3a66deba2b9bfae677538cb22db0c42",
+   "record_id": "syn/procurement/update_vendor_bank_details/f3/irrelevant/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/f3",
+   "record_hash": "c49786e2b603556d209e9b89cea51bc262f43ec175fba67489fe9fbdac30b4dc",
+   "record_id": "syn/procurement/update_vendor_bank_details/f3/paraphrase/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/hard",
+   "record_hash": "342c5c9ff2d2ba5454f660eb15b5d803a73ea8bb0a95aadf41b6a41adba82f57",
+   "record_id": "syn/procurement/update_vendor_bank_details/hard/prohibited/P1",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/hard",
+   "record_hash": "00eedd4aef674756e009414e8a8ce33b4ee710637c792deb23bb165f3c3d3930",
+   "record_id": "syn/procurement/update_vendor_bank_details/hard/prohibited/P2",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/p3-4",
+   "record_hash": "72b5b57befec6e0ac3abdb0cf3672cb932a5b9fca4a51f232fe4251c646e6275",
+   "record_id": "syn/procurement/update_vendor_bank_details/p3-4/base/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/p3-4",
+   "record_hash": "ddbc4cb8f66b73974a0d6b5c7f4d77917dc20d5953d15f853271a86a2e3700df",
+   "record_id": "syn/procurement/update_vendor_bank_details/p3-4/cf-consent/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/p3-4",
+   "record_hash": "f748d90236f6c5921d58624cfcfb5c7c2f8f06fabf8074cbca5527174edc87d3",
+   "record_id": "syn/procurement/update_vendor_bank_details/p3-4/cf-owner_correct/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/p3-4",
+   "record_hash": "06c9876e2748aeeef7684f1d01a6ee6266eb841b44c0d3b15c37b66b705d6a67",
+   "record_id": "syn/procurement/update_vendor_bank_details/p3-4/irrelevant/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/p3-4",
+   "record_hash": "969ac32e96ab0a316baa8662ed6916f2120c3241a94725a561f1ccc3fdf33d72",
+   "record_id": "syn/procurement/update_vendor_bank_details/p3-4/paraphrase/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/x0",
+   "record_hash": "deed1cf957d1b0e57f4e8d4150a22702b02c2322e5921c34a83c6587fdcf95e6",
+   "record_id": "syn/procurement/update_vendor_bank_details/x0/base/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/x0",
+   "record_hash": "555511a0f258083c674fa0d7b78e86c2ccb46c77be53b277ea8717536f16758a",
+   "record_id": "syn/procurement/update_vendor_bank_details/x0/base/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/x0",
+   "record_hash": "78eb9d300bb9801ce8970d3dbf3ce931e92a514a90a72fcf60460626edae5d60",
+   "record_id": "syn/procurement/update_vendor_bank_details/x0/cf-evidence_clear/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/x0",
+   "record_hash": "5d3df893c64970cfe909ad48a11bfa78ab84b9892aeb2576187a5948c3a06fbd",
+   "record_id": "syn/procurement/update_vendor_bank_details/x0/cf-evidence_clear/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/x0",
+   "record_hash": "77002e7f85b6d8a2e090dd83d883fdf8827fa03f1746d8df1518fe0dddf9ea53",
+   "record_id": "syn/procurement/update_vendor_bank_details/x0/cf-owner_correct/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/x0",
+   "record_hash": "9480ab65215f6404a25af312225b37527f2ec8c8a99dfa25609cbd8fb4a62401",
+   "record_id": "syn/procurement/update_vendor_bank_details/x0/cf-owner_correct/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/x0",
+   "record_hash": "ae39db67e4dc012e1bea49069205e84873286b86cd0fde141a7a832ece69b80e",
+   "record_id": "syn/procurement/update_vendor_bank_details/x0/irrelevant/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/x0",
+   "record_hash": "a92975c0f79953b4ad389d0fd49bf2f5aee1422618a090e6f09bf5f04182c33b",
+   "record_id": "syn/procurement/update_vendor_bank_details/x0/irrelevant/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/x0",
+   "record_hash": "2649e3eb57882520051c23d170c1ad329ee1f7688a810829bed0988b42bb8dd8",
+   "record_id": "syn/procurement/update_vendor_bank_details/x0/paraphrase/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/procurement/update_vendor_bank_details/x0",
+   "record_hash": "652c6be54d96e2b4f6fd7febfb09d654c09947f45f58f53b89b16ea2a5bccc77",
+   "record_id": "syn/procurement/update_vendor_bank_details/x0/paraphrase/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f0",
+   "record_hash": "d7239fc7c2369d8134c5225036363c9bd21f3264e56d1989053598b45e96d41f",
+   "record_id": "syn/support/change_shipping_address/f0/base/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f0",
+   "record_hash": "cba7239504038daed9f531dadcec2330c68783d49c73825a26d54acaea036669",
+   "record_id": "syn/support/change_shipping_address/f0/cf-consent/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f0",
+   "record_hash": "6ca2664613d72bd5b1e496d36db84a25e8ba634a742f6b83b86e04d1cc4db62b",
+   "record_id": "syn/support/change_shipping_address/f0/cf-owner_correct/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f0",
+   "record_hash": "0793d76a1aaee8266d4ffe64265485c31ad78dfb55cff28221a38156631d8d09",
+   "record_id": "syn/support/change_shipping_address/f0/irrelevant/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f0",
+   "record_hash": "677aba04e8cba43cc2b96c2eb0e78543f7563c0847b5869347f24588b5c823a0",
+   "record_id": "syn/support/change_shipping_address/f0/paraphrase/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f1",
+   "record_hash": "7227d51ba9df2c2d3e44d68212afb3a1526a48a970e93067b217186e4e370691",
+   "record_id": "syn/support/change_shipping_address/f1/base/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f1",
+   "record_hash": "c004bb76bd0b5067ad105232c18a68af8438cb764b1e29dbe4554f09fde7516f",
+   "record_id": "syn/support/change_shipping_address/f1/cf-consent/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f1",
+   "record_hash": "13e3aa53612a261f0558cc035528f5430959591b0217a7f2e5de91afb80b55b3",
+   "record_id": "syn/support/change_shipping_address/f1/cf-prerequisite_met/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f1",
+   "record_hash": "818c8e9372b45e4f217f9365d27922a3afd5864c950ac4509f7023b28128821a",
+   "record_id": "syn/support/change_shipping_address/f1/irrelevant/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f1",
+   "record_hash": "3727b9d9cf68eef2e5750d682d65c16eaf05610087664128df4b24b8591c14bb",
+   "record_id": "syn/support/change_shipping_address/f1/paraphrase/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f2",
+   "record_hash": "9e360dd023255ad2791aa2d4dc9667964b4d34976d8800e67af23ac9a21c4785",
+   "record_id": "syn/support/change_shipping_address/f2/base/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f2",
+   "record_hash": "5ddb658c1b568a3ac926d04a380cbcc1728f622660a72a341e36631b5114e85e",
+   "record_id": "syn/support/change_shipping_address/f2/cf-consent/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f2",
+   "record_hash": "96214dcbf14a1e21f14bfbf3f5935185a156423c6840eae19f98cc54f3c5b929",
+   "record_id": "syn/support/change_shipping_address/f2/cf-reversible/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f2",
+   "record_hash": "4e84fdda43d0c51a33818c508c846e0f00c3ba2998a33a992bf8f68fd891c52e",
+   "record_id": "syn/support/change_shipping_address/f2/irrelevant/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f2",
+   "record_hash": "35c33fc21e1f2d9eb4a037d81387fe107cf28aa24841f57a20e675341ba3e541",
+   "record_id": "syn/support/change_shipping_address/f2/paraphrase/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f3",
+   "record_hash": "fa53b79d2b19a9a145c7fff5b210744cc950e3f086efb0228b5c719f828d7821",
+   "record_id": "syn/support/change_shipping_address/f3/base/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f3",
+   "record_hash": "76a0682b1f0888b10c3a59ff52738869b5e542acdacf2bbdd89e09ed1fae9c9d",
+   "record_id": "syn/support/change_shipping_address/f3/cf-evidence_clear/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f3",
+   "record_hash": "9c6142ddd764a6df0100d06ca0c8d1c8709848aa5f89c895cc536c18b7cd4260",
+   "record_id": "syn/support/change_shipping_address/f3/cf-owner_correct/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f3",
+   "record_hash": "960970755d45c0a9cdb4cd5575103c1262ff4f2cebb46b8ca51c307e7386b6b6",
+   "record_id": "syn/support/change_shipping_address/f3/irrelevant/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/f3",
+   "record_hash": "f633b562f5252b420d11e0784f81cca618ca8d487282189f4027f57e04492633",
+   "record_id": "syn/support/change_shipping_address/f3/paraphrase/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/hard",
+   "record_hash": "d78c7ac9b035ddad527d9fe2e292f8ad30a8c78e9f32bffaead86bdc83519b9d",
+   "record_id": "syn/support/change_shipping_address/hard/prohibited/P1",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/hard",
+   "record_hash": "2c00f6dd9c2e0427732f7067cd5cf3d206a9925f5c65be341b408200a2e1fcb6",
+   "record_id": "syn/support/change_shipping_address/hard/prohibited/P2",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/p3-5",
+   "record_hash": "89d6f39b9d37c61746a2cf9cd6d4889baea52853b8b443d52af4da00f7bbce23",
+   "record_id": "syn/support/change_shipping_address/p3-5/base/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/p3-5",
+   "record_hash": "d0dd4717f870c0736a37874d7c0a05c9158507feda18613efa0d91d48f7d02e4",
+   "record_id": "syn/support/change_shipping_address/p3-5/cf-evidence_clear/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/p3-5",
+   "record_hash": "c8ac92253bbc46ed9d5560c7188960f8a8bec0f43c3c91b2a1de8aa0076c00da",
+   "record_id": "syn/support/change_shipping_address/p3-5/cf-impact/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/p3-5",
+   "record_hash": "98735d5c6e9b711b449c50d28d0f71410c8a19486883807ce7afba4f128a9c32",
+   "record_id": "syn/support/change_shipping_address/p3-5/irrelevant/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/p3-5",
+   "record_hash": "c955d856bb64bad856766f23106f9331ace8c40b61c6d4eb1c569faaa95b5788",
+   "record_id": "syn/support/change_shipping_address/p3-5/paraphrase/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/x0",
+   "record_hash": "48c36f1c8164594baa2a33f25818d3cab185bd8d4d2738919cccba42f079cb49",
+   "record_id": "syn/support/change_shipping_address/x0/base/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/x0",
+   "record_hash": "c91a99758426126ce9f61c38b68ce4dc0d97b98b5adee4a7f028480dfa9a422e",
+   "record_id": "syn/support/change_shipping_address/x0/base/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/x0",
+   "record_hash": "38a56af695c6103ba15d4ff2e75ce2db44fda775598d2291381e72f037dd6be6",
+   "record_id": "syn/support/change_shipping_address/x0/cf-evidence_clear/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/x0",
+   "record_hash": "7e8ce0bfc3fd979a61e9042479d5843f5188d1484c2925aea075052cbbc65baa",
+   "record_id": "syn/support/change_shipping_address/x0/cf-evidence_clear/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/x0",
+   "record_hash": "5deaf780b6db2213e74784039ee7809fc1e84005a00ec4a093ee4a58d849fe2a",
+   "record_id": "syn/support/change_shipping_address/x0/cf-reversible/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/x0",
+   "record_hash": "dd1e69bceb19558c5e128083e1c23fdb0e8d914530990b6219663bcff755538d",
+   "record_id": "syn/support/change_shipping_address/x0/cf-reversible/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/x0",
+   "record_hash": "b6114e97b557bab0e3ddad56160912ae9c1a528b221832337e45a1497ddbf671",
+   "record_id": "syn/support/change_shipping_address/x0/irrelevant/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/x0",
+   "record_hash": "4e796342a1ce466a9cf3867df10aea10650a05bbb775e4cddaddd77e195aa4ce",
+   "record_id": "syn/support/change_shipping_address/x0/irrelevant/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/x0",
+   "record_hash": "88e4e362d7661135121386ddea248aa7d4f4238ecb9e49d93921af9c8c5938fe",
+   "record_id": "syn/support/change_shipping_address/x0/paraphrase/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/change_shipping_address/x0",
+   "record_hash": "48d5470e2ae00e3091d38e6c70ffcbeddbe4ac4f150317c51409916b2e2f526e",
+   "record_id": "syn/support/change_shipping_address/x0/paraphrase/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f0",
+   "record_hash": "143d4fb0436d39307af2f6929fd4667578a9bba63cf3eef181c08a1479790ff7",
+   "record_id": "syn/support/issue_refund/f0/base/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f0",
+   "record_hash": "99376d41682528ebb12b1428d9906a5b9f2a3d24c579509117c714c4a1c7d60c",
+   "record_id": "syn/support/issue_refund/f0/cf-impact/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f0",
+   "record_hash": "64f04c00a505bfe621647a1f8c31f5465f5f9132abc903a0babacef0db59b520",
+   "record_id": "syn/support/issue_refund/f0/cf-requested/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f0",
+   "record_hash": "c7da801c68295b3dea48e1fcc90b5ff45eefdb1e1b0e95a09b4585d410a4e03e",
+   "record_id": "syn/support/issue_refund/f0/irrelevant/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f0",
+   "record_hash": "015f484c56859ce90c6fd7d406dacdb3d902451cf344fbfa76691c41a66e2fc2",
+   "record_id": "syn/support/issue_refund/f0/paraphrase/P1",
+   "split": "syn_promotion"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f1",
+   "record_hash": "0edff5174a17aaa272fd1fbd59b7c145b0806b809519450e4ceefc40c53c6871",
+   "record_id": "syn/support/issue_refund/f1/base/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f1",
+   "record_hash": "24a2895e4eb3f8ac662dd0380664a3d06b5c3470dcfe0478d540a8fc5d4a4e3b",
+   "record_id": "syn/support/issue_refund/f1/cf-evidence_clear/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f1",
+   "record_hash": "893d2b15c7dcf9874c1fe087f9b109361525dc33a057ff7dc115d11f2a1e4ec8",
+   "record_id": "syn/support/issue_refund/f1/cf-owner_correct/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f1",
+   "record_hash": "0e806234fad866a8f5b32b296ca4c57c50b5d611425ecde609c3ee4770a9a4ff",
+   "record_id": "syn/support/issue_refund/f1/irrelevant/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f1",
+   "record_hash": "41df5a8c7e710a9ff494cffa8009c30666fe4f7fb0a1c80ff5dd1f32ccba2e39",
+   "record_id": "syn/support/issue_refund/f1/paraphrase/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f2",
+   "record_hash": "b5a69787a73cc5e4c7c53010f7e0e272f5230e29b6907929c497de2c7839157b",
+   "record_id": "syn/support/issue_refund/f2/base/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f2",
+   "record_hash": "8b20a52b9aaba23827ca48254647177693873cec4e13b92449187ec376abe7f4",
+   "record_id": "syn/support/issue_refund/f2/cf-impact/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f2",
+   "record_hash": "bdbd3002676265058501706017fa4b3144d96fd1af9d0f3659336ab2316aab13",
+   "record_id": "syn/support/issue_refund/f2/cf-terms_disclosed/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f2",
+   "record_hash": "cbe145c6552d78a840e686230b74d6c62b640a0a504ee4e42ec642e119859116",
+   "record_id": "syn/support/issue_refund/f2/irrelevant/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f2",
+   "record_hash": "c327859d22dfdfba29b3f4b72457f2f6d36b39f91066ba0f032cd99af0e90f78",
+   "record_id": "syn/support/issue_refund/f2/paraphrase/P1",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f3",
+   "record_hash": "5e33851888513bbcf613e942ac0d3c21fa9317f50e02a00682d032d5389b3aea",
+   "record_id": "syn/support/issue_refund/f3/base/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f3",
+   "record_hash": "f5bb1ad9f97ec714bcea0a4569ff2b2a6c5a4a06afe13f3892590d4b82727ee3",
+   "record_id": "syn/support/issue_refund/f3/cf-evidence_clear/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f3",
+   "record_hash": "ef8881387501a66b11caaf94bf091a62cab502ba453dd44f8e77297e2f5525c8",
+   "record_id": "syn/support/issue_refund/f3/cf-requested/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f3",
+   "record_hash": "3d546affb311904c3ef916dc470827a052dfdc3e5740ebf69803a1b0717667bd",
+   "record_id": "syn/support/issue_refund/f3/irrelevant/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/f3",
+   "record_hash": "253b077bad9b2edd8f27d91d857a7a80ce000e04bf4ecb7ab1ab72e4b6a6a0f0",
+   "record_id": "syn/support/issue_refund/f3/paraphrase/P2",
+   "split": "syn_pretrain"
+  },
+  {
+   "family_id": "syn/support/issue_refund/hard",
+   "record_hash": "d948871c7763e2f0a2ef60ba341c89cea5a9666f033fb195d3b84cf67c3e1443",
+   "record_id": "syn/support/issue_refund/hard/prohibited/P1",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/support/issue_refund/hard",
+   "record_hash": "8da1d585c09bb0f5470374ff9480d1fba93c12272e041c2ec3777d96c39640f7",
+   "record_id": "syn/support/issue_refund/hard/prohibited/P2",
+   "split": "syn_hard"
+  },
+  {
+   "family_id": "syn/support/issue_refund/p3-6",
+   "record_hash": "a17a79f2d949169c1433a9d97f1ee0b0fd39c1d5c4393a13b7808001ea735e14",
+   "record_id": "syn/support/issue_refund/p3-6/base/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/support/issue_refund/p3-6",
+   "record_hash": "cb9cf8d02a7bc43ed3e0c063c71a4d5d1c37cea3ea9558e3a8fe77dea61cc138",
+   "record_id": "syn/support/issue_refund/p3-6/cf-requested/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/support/issue_refund/p3-6",
+   "record_hash": "61114c7ab045c485f3646d228a5c737dcc75d20206d07a76e22e65802bda0f4b",
+   "record_id": "syn/support/issue_refund/p3-6/cf-terms_disclosed/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/support/issue_refund/p3-6",
+   "record_hash": "14511e1a82e30f5d1afa5bc10be5157a9004034048a94fe8411edcb9989e64a5",
+   "record_id": "syn/support/issue_refund/p3-6/irrelevant/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/support/issue_refund/p3-6",
+   "record_hash": "5f087a7f9b50355b95e351684aa3ec37df60ff2c5974bdc9dff029575cf67a40",
+   "record_id": "syn/support/issue_refund/p3-6/paraphrase/P3",
+   "split": "syn_p3_eval"
+  },
+  {
+   "family_id": "syn/support/issue_refund/x0",
+   "record_hash": "0261e50f9aba347f7389f290e4a86fb6b4c4053268f6473c3f042882ff0c9b09",
+   "record_id": "syn/support/issue_refund/x0/base/P1",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/support/issue_refund/x0",
+   "record_hash": "7c37eae3fbaef2ccdce8c0bb6471bb049f869b0ca23a9863191b557370cddb88",
+   "record_id": "syn/support/issue_refund/x0/base/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/support/issue_refund/x0",
+   "record_hash": "97ceccb667f3ce686387a4789ffcbe6dc34d43bba81656b9e34ae8267a7281cc",
+   "record_id": "syn/support/issue_refund/x0/cf-requested/P1",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/support/issue_refund/x0",
+   "record_hash": "cfb8bb532ef4cff4d5c3a4121780c6e0d153c8971dbef39b68d891ce3bc3d523",
+   "record_id": "syn/support/issue_refund/x0/cf-requested/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/support/issue_refund/x0",
+   "record_hash": "d261a9f508c11d695c12d260b81fb8f370043b48bac93240ee781c0403c52859",
+   "record_id": "syn/support/issue_refund/x0/cf-terms_disclosed/P1",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/support/issue_refund/x0",
+   "record_hash": "d3c39ac24aa21a4ce109484973d319f4741e897510e081ee783ac02d8c288642",
+   "record_id": "syn/support/issue_refund/x0/cf-terms_disclosed/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/support/issue_refund/x0",
+   "record_hash": "1fcde3719a0d0120b4f2f6324da1f82d24e220abe10cd9be59817b135f833a2e",
+   "record_id": "syn/support/issue_refund/x0/irrelevant/P1",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/support/issue_refund/x0",
+   "record_hash": "ac596fb1c0ed15afa4b135831f68be26a590fb2a1fef552153e233b24ab3ddc9",
+   "record_id": "syn/support/issue_refund/x0/irrelevant/P2",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/support/issue_refund/x0",
+   "record_hash": "806ac0d43a46147c236202d9c26592b609a98b1eddeb5f125697d9987bd62bbe",
+   "record_id": "syn/support/issue_refund/x0/paraphrase/P1",
+   "split": "syn_final"
+  },
+  {
+   "family_id": "syn/support/issue_refund/x0",
+   "record_hash": "98d9df14332deae0842fd4612b88fc4fa99a0148c4f6d5e40063de29a0134373",
+   "record_id": "syn/support/issue_refund/x0/paraphrase/P2",
+   "split": "syn_final"
+  }
+ ],
+ "seed": 20261023
+}

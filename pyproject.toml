@@ -1,0 +1,78 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hatchway"
+description = "Earned autonomy gate: decides which agent actions need a human, and learns to ask less."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+dynamic = ["version"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Typing :: Typed",
+]
+dependencies = [
+  "pydantic>=2.6",
+  "httpx>=0.27",
+  "pyyaml>=6",
+]
+
+[project.optional-dependencies]
+# Offline replay and the learner (M6). `hatchway.bench.frozen`, which the live gate loads, needs
+# none of these.
+bench = [
+  "numpy>=1.26",
+  "scikit-learn>=1.4",
+  "matplotlib>=3.8",
+]
+dev = [
+  "pytest>=8",
+  "pytest-socket>=0.7",
+  "ruff>=0.6",
+  "hatchway[bench]",
+]
+# τ²-bench at the pinned commit (hatchway.bench.tau2.TAU2_COMMIT). Its task data is not in the
+# wheel: point TAU2_DATA_DIR at the `data` directory of a checkout of the same commit. The pinned
+# commit leaves litellm unbounded and current litellm fails on tool calls; this is the range
+# upstream τ² later pinned.
+tau2 = [
+  "tau2 @ git+https://github.com/sierra-research/tau2-bench@c5b2d228d850c59b749b93cf32c4745d3aa53967",
+  "litellm>=1.80.15,<1.82.7",
+]
+
+[project.urls]
+Repository = "https://github.com/tessra-ai/agent-action-checks"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.version]
+path = "hatchway/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = ["hatchway", "tests", "README.md", "LICENSE"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# No network in tests (SPEC: non-functional requirements). pytest-socket blocks all sockets.
+addopts = "-ra --strict-markers --disable-socket --allow-unix-socket"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+# Model-drafted rule modules are saved verbatim and never edited (experiment record).
+extend-exclude = ["experiments/2026-11-05-model-drafted-rules/results/drafts"]
+
+[tool.ruff.format]
+# SPEC.md code blocks are transcribed from the design doc; keep them as written.
+exclude = ["*.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]

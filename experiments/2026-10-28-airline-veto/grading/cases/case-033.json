@@ -1,0 +1,151 @@
+{
+ "case": "case-033",
+ "action": "cancel_reservation",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hello! I would like to check the balances on my gift cards and certificates first. Could you please provide me with that information? My name is Mohamed Silva.",
+   "role": "user"
+  },
+  {
+   "content": "Could you please provide your user ID so I can access your profile and check the balances on your gift cards and certificates?",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure, my user ID is mohamed_silva_9265.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "mohamed_silva_9265"
+     },
+     "function": "get_user_details",
+     "id": "call_IiOMnRil2sLoDibwBfOVLgFN"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"mohamed_silva_9265\", \"name\": {\"first_name\": \"Mohamed\", \"last_name\": \"Silva\"}, \"address\": {\"address1\": \"638 Elm Street\", \"address2\": \"Suite 548\", \"city\": \"Los Angeles\", \"country\": \"USA\", \"state\": \"CA\", \"zip\": \"91365\"}, \"email\": \"mohamed.silva9198@example.com\", \"dob\": \"1960-11-26\", \"payment_methods\": {\"credit_card_5843230\": {\"source\": \"credit_card\", \"id\": \"credit_card_5843230\", \"brand\": \"visa\", \"last_four\": \"2395\"}, \"gift_card_8020792\": {\"source\": \"gift_card\", \"id\": \"gift_card_8020792\", \"amount\": 198.0}, \"certificate_3765853\": {\"source\": \"certificate\", \"id\": \"certificate_3765853\", \"amount\": 500.0}, \"gift_card_6136092\": {\"source\": \"gift_card\", \"id\": \"gift_card_6136092\", \"amount\": 129.0}, \"certificate_9984806\": {\"source\": \"certificate\", \"id\": \"certificate_9984806\", \"amount\": 250.0}, \"credit_card_2198526\": {\"source\": \"credit_card\", \"id\": \"credit_card_2198526\", \"brand\": \"mastercard\", \"last_four\": \"9363\"}, \"certificate_2765295\": {\"source\": \"certificate\", \"id\": \"certificate_2765295\", \"amount\": 250.0}}, \"saved_passengers\": [{\"first_name\": \"Raj\", \"last_name\": \"Sanchez\", \"dob\": \"1986-09-12\"}, {\"first_name\": \"Liam\", \"last_name\": \"Wilson\", \"dob\": \"1980-03-27\"}], \"membership\": \"regular\", \"reservations\": [\"K1NW8N\"]}",
+   "role": "tool",
+   "tool_call_id": "call_IiOMnRil2sLoDibwBfOVLgFN"
+  },
+  {
+   "content": "Here are the balances for your gift cards and certificates:\n\nGift Cards:\n- Gift Card (ID: gift_card_8020792): $198.00\n- Gift Card (ID: gift_card_6136092): $129.00\n\nCertificates:\n- Certificate (ID: certificate_3765853): $500.00\n- Certificate (ID: certificate_9984806): $250.00\n- Certificate (ID: certificate_2765295): $250.00\n\nIf you need to use any of these for a booking or have further questions, please let me know!",
+   "role": "assistant"
+  },
+  {
+   "content": "Thank you for the details. Could you please tell me the total sum of my gift card balances and the total sum of my certificate balances? After that, I would like to change my upcoming reservation.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "expression": "198 + 129"
+     },
+     "function": "calculate",
+     "id": "call_LzyIGifdnVGZw4TWNrWIrwTw"
+    },
+    {
+     "arguments": {
+      "expression": "500 + 250 + 250"
+     },
+     "function": "calculate",
+     "id": "call_cZbEbQk7JB9DusVVyD5ctaUV"
+    }
+   ]
+  },
+  {
+   "content": "327.0",
+   "role": "tool",
+   "tool_call_id": "call_LzyIGifdnVGZw4TWNrWIrwTw"
+  },
+  {
+   "content": "1000.0",
+   "role": "tool",
+   "tool_call_id": "call_cZbEbQk7JB9DusVVyD5ctaUV"
+  },
+  {
+   "content": "The total balance on your gift cards is $327.00, and the total balance on your certificates is $1,000.00.\n\nTo assist you with changing your upcoming reservation, could you please provide the reservation ID you wish to modify? If you\u2019re not sure, I can help you locate it.",
+   "role": "assistant"
+  },
+  {
+   "content": "Thanks for the totals. My reservation ID is not on hand right now. Could you please help me find it using my user ID, mohamed_silva_9265?",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "mohamed_silva_9265"
+     },
+     "function": "get_user_details",
+     "id": "call_Eu6d5gH3ecsneISvgg8t9Tyq"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"mohamed_silva_9265\", \"name\": {\"first_name\": \"Mohamed\", \"last_name\": \"Silva\"}, \"address\": {\"address1\": \"638 Elm Street\", \"address2\": \"Suite 548\", \"city\": \"Los Angeles\", \"country\": \"USA\", \"state\": \"CA\", \"zip\": \"91365\"}, \"email\": \"mohamed.silva9198@example.com\", \"dob\": \"1960-11-26\", \"payment_methods\": {\"credit_card_5843230\": {\"source\": \"credit_card\", \"id\": \"credit_card_5843230\", \"brand\": \"visa\", \"last_four\": \"2395\"}, \"gift_card_8020792\": {\"source\": \"gift_card\", \"id\": \"gift_card_8020792\", \"amount\": 198.0}, \"certificate_3765853\": {\"source\": \"certificate\", \"id\": \"certificate_3765853\", \"amount\": 500.0}, \"gift_card_6136092\": {\"source\": \"gift_card\", \"id\": \"gift_card_6136092\", \"amount\": 129.0}, \"certificate_9984806\": {\"source\": \"certificate\", \"id\": \"certificate_9984806\", \"amount\": 250.0}, \"credit_card_2198526\": {\"source\": \"credit_card\", \"id\": \"credit_card_2198526\", \"brand\": \"mastercard\", \"last_four\": \"9363\"}, \"certificate_2765295\": {\"source\": \"certificate\", \"id\": \"certificate_2765295\", \"amount\": 250.0}}, \"saved_passengers\": [{\"first_name\": \"Raj\", \"last_name\": \"Sanchez\", \"dob\": \"1986-09-12\"}, {\"first_name\": \"Liam\", \"last_name\": \"Wilson\", \"dob\": \"1980-03-27\"}], \"membership\": \"regular\", \"reservations\": [\"K1NW8N\"]}",
+   "role": "tool",
+   "tool_call_id": "call_Eu6d5gH3ecsneISvgg8t9Tyq"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "K1NW8N"
+     },
+     "function": "get_reservation_details",
+     "id": "call_VMY2nb1nnqga6tddmn1McKQ0"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"K1NW8N\", \"user_id\": \"mohamed_silva_9265\", \"origin\": \"JFK\", \"destination\": \"SFO\", \"flight_type\": \"round_trip\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT023\", \"origin\": \"JFK\", \"destination\": \"SFO\", \"date\": \"2024-05-26\", \"price\": 53}, {\"flight_number\": \"HAT204\", \"origin\": \"SFO\", \"destination\": \"SEA\", \"date\": \"2024-05-28\", \"price\": 71}, {\"flight_number\": \"HAT021\", \"origin\": \"SEA\", \"destination\": \"JFK\", \"date\": \"2024-05-28\", \"price\": 65}], \"passengers\": [{\"first_name\": \"Mohamed\", \"last_name\": \"Silva\", \"dob\": \"1960-11-26\"}, {\"first_name\": \"Raj\", \"last_name\": \"Sanchez\", \"dob\": \"1986-09-12\"}, {\"first_name\": \"Liam\", \"last_name\": \"Wilson\", \"dob\": \"1980-03-27\"}], \"payment_history\": [{\"payment_id\": \"gift_card_6136092\", \"amount\": 567}], \"created_at\": \"2024-05-14T16:03:16\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_VMY2nb1nnqga6tddmn1McKQ0"
+  },
+  {
+   "content": "You have one upcoming reservation with the ID K1NW8N. It is a round-trip booking in basic economy class from JFK to SFO, with additional segments to SEA and back to JFK.\n\nPlease let me know what changes you would like to make to this reservation. Note that basic economy reservations cannot be modified according to policy. If you need to cancel or have other requests, please specify, and I will assist you accordingly.",
+   "role": "assistant"
+  },
+  {
+   "content": "I want to keep the same dates but change my reservation to the cheapest business class round trip, whether direct flights or not. Since my current booking is basic economy and cannot be changed, please cancel it and book the new business class round trip for me.\n\nFor payment, I want to use my certificates first, then gift cards, and cover any remaining balance with my MasterCard. Could you please tell me how much my MasterCard will be charged for the new booking? Also, I want to make sure that the charge on my MasterCard for the new booking is less than what I was charged for the original flight. I do not need baggage or insurance.",
+   "role": "user"
+  },
+  {
+   "content": "Here\u2019s a summary of your request before I proceed:\n\n1. Cancel your current basic economy reservation (ID: K1NW8N).\n2. Book a new business class round-trip from JFK to SFO (same dates: outbound 2024-05-26, return 2024-05-28), using the cheapest available flights (direct or one-stop).\n3. Passengers: Mohamed Silva, Raj Sanchez, Liam Wilson.\n4. Payment order: certificates first, then gift cards, then MasterCard (ending 9363).\n5. No baggage or insurance.\n6. You want to know the exact amount that will be charged to your MasterCard for the new booking, and ensure it is less than your original charge ($567).\n\nPlease confirm that all details are correct and that you would like me to proceed.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, all the details are correct. Please go ahead and proceed with the cancellation and booking. I look forward to knowing the exact amount that will be charged to my MasterCard for the new booking.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "K1NW8N"
+     },
+     "function": "cancel_reservation",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

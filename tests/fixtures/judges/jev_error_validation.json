@@ -1,0 +1,29 @@
+{
+  "path": "/systemone",
+  "request": {
+    "model": "jev-1.14.0",
+    "questions": {
+      "matches_request": {
+        "criteria": [],
+        "instructions": "How true is this statement of the proposed action? This action matches what the customer asked for.",
+        "type": "score"
+      }
+    },
+    "state": "## Context: conversation\nCustomer: I was charged twice for order #W123. Please refund the duplicate $20 charge.\n\n## Earlier writes in this session\n(none)\n\n## Proposed action\nrefund_order({\"amount\":20,\"method\":\"card\",\"order_id\":\"W123\"})\n"
+  },
+  "response": {
+    "detail": [
+      {
+        "loc": [
+          "body",
+          "questions",
+          "matches_request",
+          "score",
+          "criteria"
+        ],
+        "type": "too_short"
+      }
+    ]
+  },
+  "status": 422
+}

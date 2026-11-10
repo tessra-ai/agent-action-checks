@@ -1,0 +1,133 @@
+{
+ "case": "case-033",
+ "action": "update_reservation_flights",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hi, I need to remove a passenger named Sophia from my upcoming round trip flights from LAS to DEN, departing May 19 and returning May 20. Can you help me with that?",
+   "role": "user"
+  },
+  {
+   "content": "I\u2019m sorry, but I cannot remove a passenger from an existing reservation. The number of passengers in a reservation cannot be changed according to airline policy. If you need further assistance, please let me know.",
+   "role": "assistant"
+  },
+  {
+   "content": "Alright, since I can't remove just one passenger, I want to downgrade all passengers on the reservation to basic economy. Can you do that for me? Also, how much would the refund be for this change? And please make sure the refund is processed to the original payment method.",
+   "role": "user"
+  },
+  {
+   "content": "I can help you with downgrading all passengers to basic economy, but first, I\u2019ll need your user ID and the reservation ID for your round trip from LAS to DEN. If you don\u2019t know your reservation ID, please provide your user ID and I can help locate it.\n\nOnce I have this information, I\u2019ll check the details and calculate the refund amount for downgrading to basic economy. Please provide your user ID and reservation ID (if available) to proceed.",
+   "role": "assistant"
+  },
+  {
+   "content": "My user ID is james_patel_9828. I don't remember the reservation ID off the top of my head. Give me a moment to check my email... Okay, I found it. The reservation ID is GV1N64. Please proceed with the downgrade and let me know the refund amount.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "GV1N64"
+     },
+     "function": "get_reservation_details",
+     "id": "call_ZvuTfjULq470PaCPy9PuQ3JK"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"GV1N64\", \"user_id\": \"james_patel_9828\", \"origin\": \"LAS\", \"destination\": \"DEN\", \"flight_type\": \"round_trip\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT003\", \"origin\": \"LAS\", \"destination\": \"DEN\", \"date\": \"2024-05-19\", \"price\": 561}, {\"flight_number\": \"HAT290\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"date\": \"2024-05-20\", \"price\": 1339}], \"passengers\": [{\"first_name\": \"James\", \"last_name\": \"Patel\", \"dob\": \"1995-04-07\"}, {\"first_name\": \"James\", \"last_name\": \"Sanchez\", \"dob\": \"1956-08-18\"}, {\"first_name\": \"Sophia\", \"last_name\": \"Johansson\", \"dob\": \"1993-07-11\"}], \"payment_history\": [{\"payment_id\": \"gift_card_1642017\", \"amount\": 5700}], \"created_at\": \"2024-05-03T05:35:00\", \"total_baggages\": 3, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_ZvuTfjULq470PaCPy9PuQ3JK"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-19",
+      "destination": "DEN",
+      "origin": "LAS"
+     },
+     "function": "search_direct_flight",
+     "id": "call_4BVM5T071vU2CMxsnfv171q6"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-20",
+      "destination": "LAS",
+      "origin": "DEN"
+     },
+     "function": "search_direct_flight",
+     "id": "call_iGtpwB75u3qEvmIUBFEyrJDG"
+    }
+   ]
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT003\", \"origin\": \"LAS\", \"destination\": \"DEN\", \"status\": \"available\", \"scheduled_departure_time_est\": \"07:00:00\", \"scheduled_arrival_time_est\": \"09:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 15, \"economy\": 15, \"business\": 8}, \"prices\": {\"basic_economy\": 53, \"economy\": 106, \"business\": 246}}, {\"flight_number\": \"HAT162\", \"origin\": \"LAS\", \"destination\": \"DEN\", \"status\": \"available\", \"scheduled_departure_time_est\": \"14:00:00\", \"scheduled_arrival_time_est\": \"16:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 7, \"economy\": 20, \"business\": 11}, \"prices\": {\"basic_economy\": 77, \"economy\": 195, \"business\": 340}}]",
+   "role": "tool",
+   "tool_call_id": "call_4BVM5T071vU2CMxsnfv171q6"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT084\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"04:00:00\", \"scheduled_arrival_time_est\": \"06:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 2, \"economy\": 3, \"business\": 17}, \"prices\": {\"basic_economy\": 95, \"economy\": 190, \"business\": 361}}, {\"flight_number\": \"HAT229\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"13:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 8, \"economy\": 9, \"business\": 18}, \"prices\": {\"basic_economy\": 95, \"economy\": 142, \"business\": 303}}, {\"flight_number\": \"HAT290\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"14:00:00\", \"scheduled_arrival_time_est\": \"16:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 18, \"economy\": 2, \"business\": 11}, \"prices\": {\"basic_economy\": 99, \"economy\": 134, \"business\": 411}}]",
+   "role": "tool",
+   "tool_call_id": "call_iGtpwB75u3qEvmIUBFEyrJDG"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "expression": "(561 + 1339) * 3 - (53 + 99) * 3"
+     },
+     "function": "calculate",
+     "id": "call_GXvPqcbuIyVcRq0Fzy9tDcb0"
+    }
+   ]
+  },
+  {
+   "content": "5244.0",
+   "role": "tool",
+   "tool_call_id": "call_GXvPqcbuIyVcRq0Fzy9tDcb0"
+  },
+  {
+   "content": "Here are the details for downgrading all passengers on your reservation (GV1N64) from business to basic economy for your round trip between LAS and DEN:\n\n- Outbound flight (LAS to DEN, May 19): HAT003, basic economy price per passenger: $53\n- Return flight (DEN to LAS, May 20): HAT290, basic economy price per passenger: $99\n- Number of passengers: 3\n\nOriginal total price paid: $5,700 (business class)\nNew total price in basic economy: $456 (for all passengers, both flights)\nRefund amount: $5,244\n\nThe refund will be processed to your original payment method (gift card).\n\nDo you confirm that you want to proceed with downgrading all passengers to basic economy and receive a refund of $5,244 to your gift card?",
+   "role": "assistant"
+  },
+  {
+   "content": "I want the refund to be processed to the original payment method, but it was not a gift card. Please make sure the refund goes back to the original payment method I used for payment. Also, yes, I confirm to proceed with downgrading all passengers to basic economy and receiving the refund. Please do it quickly.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "cabin": "basic_economy",
+      "flights": [
+       {
+        "date": "2024-05-19",
+        "flight_number": "HAT003"
+       },
+       {
+        "date": "2024-05-20",
+        "flight_number": "HAT290"
+       }
+      ],
+      "payment_id": "gift_card_1642017",
+      "reservation_id": "GV1N64"
+     },
+     "function": "update_reservation_flights",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

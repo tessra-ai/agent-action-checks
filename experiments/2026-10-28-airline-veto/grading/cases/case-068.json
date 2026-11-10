@@ -1,0 +1,218 @@
+{
+ "case": "case-068",
+ "action": "book_reservation",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hello! I\u2019d like to make a reservation for my friend, Ivan Smith. I want the reservation to be exactly the same as my current one. Also, I want to use my certificate for the booking and check how much balance will be left after the reservation. If more than $100 of the certificate value is wasted, I\u2019d prefer to use my gift card and credit card instead. There\u2019s no need for baggage or insurance. Could you help me with this?",
+   "role": "user"
+  },
+  {
+   "content": "To assist you with making a reservation for your friend Ivan Smith exactly the same as your current one, I need to know your user ID and the reservation ID of your current booking. Could you please provide those details?",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure! My user ID is ivan_muller_7015. However, I don\u2019t have the reservation ID handy right now. Is there a way you can find my current reservation details using my user ID? Also, you mentioned you need the reservation ID\u2014can you tell me how I might find it if I need to?",
+   "role": "user"
+  },
+  {
+   "content": "I can help locate your current reservation details using your user ID ivan_muller_7015. Once I find your reservations, I can provide you with the reservation IDs.\n\nIf you ever need to find your reservation ID on your own, it is typically included in your booking confirmation email or in your account on the airline's website or app under your bookings or reservations section.\n\nI will now look up your reservation details.",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "ivan_muller_7015"
+     },
+     "function": "get_user_details",
+     "id": "call_U832mepLXx1lcrHsK35JT64L"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"ivan_muller_7015\", \"name\": {\"first_name\": \"Ivan\", \"last_name\": \"Muller\"}, \"address\": {\"address1\": \"256 Pine Lane\", \"address2\": \"Suite 661\", \"city\": \"New York\", \"country\": \"USA\", \"state\": \"NY\", \"zip\": \"10029\"}, \"email\": \"ivan.muller6623@example.com\", \"dob\": \"1968-04-25\", \"payment_methods\": {\"certificate_8998287\": {\"source\": \"certificate\", \"id\": \"certificate_8998287\", \"amount\": 500.0}, \"credit_card_3563913\": {\"source\": \"credit_card\", \"id\": \"credit_card_3563913\", \"brand\": \"mastercard\", \"last_four\": \"6710\"}, \"gift_card_8516878\": {\"source\": \"gift_card\", \"id\": \"gift_card_8516878\", \"amount\": 128.0}}, \"saved_passengers\": [{\"first_name\": \"Ivan\", \"last_name\": \"Smith\", \"dob\": \"1986-03-14\"}, {\"first_name\": \"Lucas\", \"last_name\": \"Davis\", \"dob\": \"1988-10-12\"}], \"membership\": \"gold\", \"reservations\": [\"G72NSF\"]}",
+   "role": "tool",
+   "tool_call_id": "call_U832mepLXx1lcrHsK35JT64L"
+  },
+  {
+   "content": "I found your current reservation with the reservation ID G72NSF. I will now retrieve the details of this reservation to proceed with booking the same for your friend Ivan Smith.",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "G72NSF"
+     },
+     "function": "get_reservation_details",
+     "id": "call_vbjFr2mrulQgaIx4iKvlxNuc"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"G72NSF\", \"user_id\": \"ivan_muller_7015\", \"origin\": \"DTW\", \"destination\": \"SEA\", \"flight_type\": \"one_way\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT097\", \"origin\": \"DTW\", \"destination\": \"PHX\", \"date\": \"2024-05-17\", \"price\": 158}, {\"flight_number\": \"HAT251\", \"origin\": \"PHX\", \"destination\": \"SEA\", \"date\": \"2024-05-17\", \"price\": 141}], \"passengers\": [{\"first_name\": \"Ivan\", \"last_name\": \"Muller\", \"dob\": \"1968-04-25\"}, {\"first_name\": \"Isabella\", \"last_name\": \"Moore\", \"dob\": \"1952-01-28\"}], \"payment_history\": [{\"payment_id\": \"gift_card_8516878\", \"amount\": 658}], \"created_at\": \"2024-05-11T19:32:36\", \"total_baggages\": 2, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_vbjFr2mrulQgaIx4iKvlxNuc"
+  },
+  {
+   "content": "Your current reservation G72NSF is a one-way economy trip from DTW to SEA with a connecting flight through PHX on 2024-05-17. It includes two passengers: Ivan Muller and Isabella Moore. The total payment was $658 using your gift card. The reservation has 2 checked bags and travel insurance.\n\nYou want to book the same itinerary and cabin for your friend Ivan Smith only, without baggage or insurance. You want to use your certificate for payment first and check the remaining balance. If more than $100 of the certificate value is wasted, you prefer to use your gift card and credit card instead.\n\nPlease confirm if the following is correct before I proceed:\n- Book a one-way economy trip from DTW to SEA on 2024-05-17 with flights HAT097 and HAT251\n- Passenger: Ivan Smith (dob needed)\n- No baggage or insurance\n- Use certificate first for payment, then gift card and credit card if certificate waste is more than $100\n\nAlso, please provide the date of birth for Ivan Smith.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, that summary is correct. Please go ahead with booking a one-way economy trip from DTW to SEA on 2024-05-17 with flights HAT097 and HAT251 for Ivan Smith. No baggage or insurance is needed.\n\nRegarding Ivan Smith\u2019s date of birth, I don\u2019t remember it offhand, but I believe it\u2019s listed in my user profile. Could you please check my profile for his date of birth?",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "ivan_muller_7015"
+     },
+     "function": "get_user_details",
+     "id": "call_aV8oZjrPauq4JSESldbNkzmK"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"ivan_muller_7015\", \"name\": {\"first_name\": \"Ivan\", \"last_name\": \"Muller\"}, \"address\": {\"address1\": \"256 Pine Lane\", \"address2\": \"Suite 661\", \"city\": \"New York\", \"country\": \"USA\", \"state\": \"NY\", \"zip\": \"10029\"}, \"email\": \"ivan.muller6623@example.com\", \"dob\": \"1968-04-25\", \"payment_methods\": {\"certificate_8998287\": {\"source\": \"certificate\", \"id\": \"certificate_8998287\", \"amount\": 500.0}, \"credit_card_3563913\": {\"source\": \"credit_card\", \"id\": \"credit_card_3563913\", \"brand\": \"mastercard\", \"last_four\": \"6710\"}, \"gift_card_8516878\": {\"source\": \"gift_card\", \"id\": \"gift_card_8516878\", \"amount\": 128.0}}, \"saved_passengers\": [{\"first_name\": \"Ivan\", \"last_name\": \"Smith\", \"dob\": \"1986-03-14\"}, {\"first_name\": \"Lucas\", \"last_name\": \"Davis\", \"dob\": \"1988-10-12\"}], \"membership\": \"gold\", \"reservations\": [\"G72NSF\"]}",
+   "role": "tool",
+   "tool_call_id": "call_aV8oZjrPauq4JSESldbNkzmK"
+  },
+  {
+   "content": "Ivan Smith's date of birth in your user profile is listed as 1986-03-14.\n\nTo summarize the booking details for your confirmation:\n- One-way economy trip from DTW to SEA on 2024-05-17\n- Flights: HAT097 and HAT251\n- Passenger: Ivan Smith, DOB 1986-03-14\n- No baggage or insurance\n- Payment: Use certificate first, then gift card and credit card if certificate waste is more than $100\n\nPlease confirm if I should proceed with this booking.",
+   "role": "assistant"
+  },
+  {
+   "content": "Thank you for confirming the details. Yes, please proceed with the booking using the information provided. Also, please let me know the certificate balance remaining after the booking, and if it looks like more than $100 of the certificate value will be wasted, switch to using my gift card and credit card instead.",
+   "role": "user"
+  },
+  {
+   "content": "To proceed with the booking, I will first calculate the total price for the flights without baggage or insurance. Then I will check the certificate balance and determine if more than $100 will be wasted. If so, I will switch to using your gift card and credit card for payment.\n\nThe flights prices are $158 and $141, totaling $299.\n\nI will now calculate the certificate balance after deducting $299.",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "expression": "500 - 299"
+     },
+     "function": "calculate",
+     "id": "call_PTLpDb6SbWerS6ZNInpUMMAS"
+    }
+   ]
+  },
+  {
+   "content": "201.0",
+   "role": "tool",
+   "tool_call_id": "call_PTLpDb6SbWerS6ZNInpUMMAS"
+  },
+  {
+   "content": "After deducting the flight price of $299, the certificate balance would be $201, which means less than $100 of the certificate value would be wasted.\n\nTo confirm, I will proceed with booking the one-way economy trip from DTW to SEA on 2024-05-17 for Ivan Smith, using your certificate for payment, with no baggage or insurance.\n\nPlease confirm if you agree to proceed with this booking.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, I agree to proceed with the booking using the certificate for payment since the wasted amount is less than $100. Please go ahead and finalize the reservation for Ivan Smith. Thank you!",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "cabin": "economy",
+      "destination": "SEA",
+      "flight_type": "one_way",
+      "flights": [
+       {
+        "date": "2024-05-17",
+        "flight_number": "HAT097"
+       },
+       {
+        "date": "2024-05-17",
+        "flight_number": "HAT251"
+       }
+      ],
+      "insurance": "no",
+      "nonfree_baggages": 0,
+      "origin": "DTW",
+      "passengers": [
+       {
+        "dob": "1986-03-14",
+        "first_name": "Ivan",
+        "last_name": "Smith"
+       }
+      ],
+      "payment_methods": [
+       {
+        "amount": 299,
+        "payment_id": "certificate_8998287"
+       }
+      ],
+      "total_baggages": 0,
+      "user_id": "ivan_muller_7015"
+     },
+     "function": "book_reservation",
+     "id": "call_QZdzos9waA9WGCq0MHZlTcCJ"
+    }
+   ]
+  },
+  {
+   "content": "Error: Payment amount does not add up, total price is 375, but paid 299",
+   "error": true,
+   "role": "tool",
+   "tool_call_id": "call_QZdzos9waA9WGCq0MHZlTcCJ"
+  },
+  {
+   "content": "The total price for the flights is actually $375, not $299 as initially calculated. The certificate balance after deducting $375 would be $125, which is still more than $100 left.\n\nPlease confirm if you still want to proceed with the booking using your certificate for payment, or if you prefer to use your gift card and credit card instead.",
+   "role": "assistant"
+  },
+  {
+   "content": "Since the certificate balance left after the $375 deduction would be $125, which is more than $100, I\u2019m fine with proceeding using the certificate for payment. Please finalize the booking for Ivan Smith with the certificate.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "cabin": "economy",
+      "destination": "SEA",
+      "flight_type": "one_way",
+      "flights": [
+       {
+        "date": "2024-05-17",
+        "flight_number": "HAT097"
+       },
+       {
+        "date": "2024-05-17",
+        "flight_number": "HAT251"
+       }
+      ],
+      "insurance": "no",
+      "nonfree_baggages": 0,
+      "origin": "DTW",
+      "passengers": [
+       {
+        "dob": "1986-03-14",
+        "first_name": "Ivan",
+        "last_name": "Smith"
+       }
+      ],
+      "payment_methods": [
+       {
+        "amount": 375,
+        "payment_id": "certificate_8998287"
+       }
+      ],
+      "total_baggages": 0,
+      "user_id": "ivan_muller_7015"
+     },
+     "function": "book_reservation",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

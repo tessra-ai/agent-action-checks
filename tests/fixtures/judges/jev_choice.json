@@ -1,0 +1,38 @@
+{
+  "path": "/systemone",
+  "request": {
+    "model": "jev-1.14.0",
+    "questions": {
+      "risk": {
+        "criteria": {
+          "high": null,
+          "low": null,
+          "medium": null
+        },
+        "instructions": "Which risk best describes the proposed action?",
+        "type": "choice"
+      }
+    },
+    "state": "## Context: conversation\nCustomer: I was charged twice for order #W123. Please refund the duplicate $20 charge.\n\n## Earlier writes in this session\n(none)\n\n## Proposed action\nrefund_order({\"amount\":20,\"method\":\"card\",\"order_id\":\"W123\"})\n"
+  },
+  "response": {
+    "answers": {
+      "risk": {
+        "choice": "low",
+        "confidence": 0.3,
+        "probabilities": {
+          "high": 0.21,
+          "low": 0.53,
+          "medium": 0.26
+        },
+        "type": "choice"
+      }
+    },
+    "model": "jev-1.14.0",
+    "usage": {
+      "input_tokens": 360,
+      "output_tokens": 38
+    }
+  },
+  "status": 200
+}

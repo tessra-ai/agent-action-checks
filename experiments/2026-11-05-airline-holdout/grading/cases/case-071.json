@@ -1,0 +1,69 @@
+{
+ "case": "case-071",
+ "action": "cancel_reservation",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hello! I want to cancel all my upcoming flights, please. I am Amelia Davis. How can I do this? Merci.",
+   "role": "user"
+  },
+  {
+   "content": "To assist you with canceling your upcoming flights, I will need your user ID and the reservation ID(s) for the flights you want to cancel. If you don't know your reservation ID(s), I can help you locate them. Could you please provide your user ID?",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, my user ID is amelia_davis_8890. But I do not know my reservation IDs. Can you find them for me, s'il vous pla\u00eet?",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "amelia_davis_8890"
+     },
+     "function": "get_user_details",
+     "id": "call_pGo905gOGKj3RUkUxz2Ysr9u"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"amelia_davis_8890\", \"name\": {\"first_name\": \"Amelia\", \"last_name\": \"Davis\"}, \"address\": {\"address1\": \"442 Sunset Drive\", \"address2\": \"Suite 708\", \"city\": \"San Diego\", \"country\": \"USA\", \"state\": \"CA\", \"zip\": \"92125\"}, \"email\": \"amelia.davis1624@example.com\", \"dob\": \"1984-03-05\", \"payment_methods\": {\"gift_card_7397998\": {\"source\": \"gift_card\", \"id\": \"gift_card_7397998\", \"amount\": 74.0}, \"gift_card_1647044\": {\"source\": \"gift_card\", \"id\": \"gift_card_1647044\", \"amount\": 236.0}, \"credit_card_4074252\": {\"source\": \"credit_card\", \"id\": \"credit_card_4074252\", \"brand\": \"mastercard\", \"last_four\": \"5435\"}, \"credit_card_6738701\": {\"source\": \"credit_card\", \"id\": \"credit_card_6738701\", \"brand\": \"visa\", \"last_four\": \"5308\"}, \"credit_card_5799376\": {\"source\": \"credit_card\", \"id\": \"credit_card_5799376\", \"brand\": \"mastercard\", \"last_four\": \"9326\"}, \"gift_card_5251654\": {\"source\": \"gift_card\", \"id\": \"gift_card_5251654\", \"amount\": 179.0}}, \"saved_passengers\": [{\"first_name\": \"Amelia\", \"last_name\": \"Jackson\", \"dob\": \"1999-04-26\"}], \"membership\": \"silver\", \"reservations\": [\"8C8K4E\", \"UDMOP1\", \"XAZ3C0\", \"LU15PA\", \"MSJ4OA\", \"I6M8JQ\", \"4XGCCM\"]}",
+   "role": "tool",
+   "tool_call_id": "call_pGo905gOGKj3RUkUxz2Ysr9u"
+  },
+  {
+   "content": "I found several reservations under your user ID amelia_davis_8890. Could you please specify which reservation(s) you want to cancel, or do you want to cancel all of them? Also, please provide the reason for cancellation (change of plan, airline cancelled flight, or other reasons). This information is needed to proceed with the cancellation.",
+   "role": "assistant"
+  },
+  {
+   "content": "I want to cancel all of them, please. The reason is that I want to give up my seat for someone else who needs it more. Even if I do not get refund, I want to proceed.",
+   "role": "user"
+  },
+  {
+   "content": "To proceed with canceling all your reservations, I need to confirm a few details:\n\n- User ID: amelia_davis_8890\n- Reservations to cancel: 8C8K4E, UDMOP1, XAZ3C0, LU15PA, MSJ4OA, I6M8JQ, 4XGCCM\n- Reason for cancellation: Giving up seat for someone else (other reasons)\n\nPlease confirm if all the above details are correct and if you want me to proceed with canceling all these reservations. Note that refunds may not be available depending on the reservation conditions. Do you confirm? (yes/no)",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, I confirm all details are correct. Please proceed with canceling all my reservations. I understand if there is no refund. Merci beaucoup.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "8C8K4E"
+     },
+     "function": "cancel_reservation",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

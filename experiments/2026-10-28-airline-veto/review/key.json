@@ -1,0 +1,75 @@
+{
+ "seed": 20261028,
+ "cases": [
+  {
+   "case": "case-01",
+   "write_id": "01M61PXK44D3ZYYVPY8R6M2RKX",
+   "role": "audit"
+  },
+  {
+   "case": "case-02",
+   "write_id": "01M61QAZD1C85YBG2KRN638RMF",
+   "role": "audit"
+  },
+  {
+   "case": "case-03",
+   "write_id": "01M61PVG98QWC7JVAEJEJQZ0PS",
+   "role": "audit"
+  },
+  {
+   "case": "case-04",
+   "write_id": "01M61PYVD9NX93H5VMR1XBYZNQ",
+   "role": "disputed"
+  },
+  {
+   "case": "case-05",
+   "write_id": "01M61PX5E4JBZB1FQ1ZVYT6W4E",
+   "role": "audit"
+  },
+  {
+   "case": "case-06",
+   "write_id": "01M61QABN0FBHG37FYXGS7XWT1",
+   "role": "audit"
+  },
+  {
+   "case": "case-07",
+   "write_id": "01M61PYV1FP44RV654J2YAQ7AT",
+   "role": "disputed"
+  },
+  {
+   "case": "case-08",
+   "write_id": "01M61Q0Y57NCHP0DMZEFKEZNDP",
+   "role": "audit"
+  },
+  {
+   "case": "case-09",
+   "write_id": "01M61QAZRCFF15XVF4MZQV9R18",
+   "role": "audit"
+  },
+  {
+   "case": "case-10",
+   "write_id": "01M61QAYDHB0GRMZX185D8ANBW",
+   "role": "audit"
+  },
+  {
+   "case": "case-11",
+   "write_id": "01M61Q4QYXR822DYYJRZFTS68K",
+   "role": "audit"
+  },
+  {
+   "case": "case-12",
+   "write_id": "01M61QAXR13HZH3KDDW3H4VE5Y",
+   "role": "disputed"
+  },
+  {
+   "case": "case-13",
+   "write_id": "01M61Q0HD0F0DNRS5WWVBVESGP",
+   "role": "audit"
+  },
+  {
+   "case": "case-14",
+   "write_id": "01M61PYGRX51BXSSZ4R86R0CQH",
+   "role": "disputed"
+  }
+ ]
+}

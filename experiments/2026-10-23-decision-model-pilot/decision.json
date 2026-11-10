@@ -1,0 +1,35 @@
+{
+  "experiment": "decision-model-pilot",
+  "version": 1,
+  "decision": "PHASE_2_NO_GO_AS_SPECIFIED",
+  "status": [
+    "directional",
+    "no-go"
+  ],
+  "ground_truth": "deterministic oracle only, unaudited",
+  "definition_sha256": "5b7069c2e16ebb020cf3f59f4f307f707468c1707a79d1cc899567dab4436e24",
+  "final_sha256": "868382abe4b882bc6cc12c896d66ce4845b1f2660036f632b8b57d06d12b9044",
+  "holdout": {
+    "D": {
+      "false_allows": "0/21",
+      "asks": "28/30",
+      "approvals_saved": "2/9"
+    },
+    "DC": {
+      "false_allows": "0/21",
+      "asks": "27/30",
+      "approvals_saved": "3/9"
+    },
+    "G1": {
+      "false_allows": "0/21",
+      "asks": "30/30",
+      "approvals_saved": "0/9"
+    }
+  },
+  "interpretation_corrections": [
+    "safety non-inferiority passed, but autonomy improvement failed",
+    "exchange is one-class (10/10 should escalate) and safety-only, so held-out-action transfer is inconclusive",
+    "repeated adaptation orderings are not independent examples: 18 distinct prerequisite failures in 4 families behind the summed counts"
+  ],
+  "phase_2_capture_started": false
+}

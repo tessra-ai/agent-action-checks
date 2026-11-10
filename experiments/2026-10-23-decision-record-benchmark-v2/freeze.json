@@ -1,0 +1,71 @@
+{
+ "calibration_manifest_sha256": "2b19a5a9f27acacaf6bb747bc0477791f47433cb8e0de442f9f56f2bdf4ff8a8",
+ "code_sha256": {
+  "data/profiles.json": "455fe0c82ace363f80536f37eb57a4f3a3c9c7cb608360904cf75052a41706e8",
+  "data/synthetic_policy.json": "d656dc9886f23024422d56c79297acab8b422cda8f75d9b6888672c13a4cf351",
+  "model.py": "21c12e4ebe9f6b7c0411eb291238e29172f4e9b691067b9a1166d6bf94343b75",
+  "partitions.py": "5cbe29ea14c72a61bde749d4938b3bc1cbbf87050f12596747bf9897dcb282a5",
+  "schema.py": "40282ef74b17b381753914f3a1b5ed5f188022c743fbae5aa13694f33285312f",
+  "seal.py": "d92c8a1ca299a459d2689a95fc311a52f51085de4c0d85d1fa3ef99686b7c55a",
+  "synthetic.py": "a56663b09a45f0badc9edc092066817c126873d11a32a14e0198295f97af7019",
+  "v2/adapt.py": "ea5de23ec09440e4795bec9faff8d5c2bf04880d91c1a09d8bc049545fbf35a6",
+  "v2/evaluate.py": "8a5752a8604426854ac77d3ae36ca52d6615fd84fe97b5131bf38be6b01bc5cc",
+  "v2/pools.py": "3165c4b6bd6e575a20586814df0e09c131a4e6ac1d93bb74357e0571207c5209",
+  "v2/risk.py": "a1e106b63f2c92021f958bb5191a2e28a4788d10d6130d9d932da71dddaafa7b",
+  "v2/run.py": "c6eab446bc6be49a7ee77c18bfae3f57f603b2a1b44be369464dfb9c5963d0a5"
+ },
+ "concept_source": "authoritative",
+ "development_pool_sha256": "56433d394c9ee2afdd7ace98abf0aab38eabf7e04c4337bc9c74eaf06876e1bd",
+ "freeze_sha256": "59b4796c1e31a00d276cd24b218a10f2a285271367385d0e63b371f4ad499003",
+ "hatchway_commit": "0235f557e55092602be2035e6118141216d64aa5",
+ "spec": {
+  "alpha": 0.1,
+  "batches": 5,
+  "bootstrap": {
+   "resamples": 1000,
+   "seed": 7
+  },
+  "calibration_seed": 20261024,
+  "candidate_risk": 0.05,
+  "confidence": 0.95,
+  "control_seed": 99,
+  "crossfit": {
+   "folds": 5,
+   "seed": 0
+  },
+  "cumulative": 3.0,
+  "dc_grid": [
+   1.0,
+   0.875,
+   0.75
+  ],
+  "delta": 1.0,
+  "fresh_seed_rule": "int(freeze_sha256[:8], 16)",
+  "g_grid": [
+   0.999,
+   0.995,
+   0.99,
+   0.975,
+   0.95,
+   0.9,
+   0.85,
+   0.8,
+   0.75,
+   0.7,
+   0.6,
+   0.5
+  ],
+  "lambda_adapt": 10.0,
+  "min_eligible": 29,
+  "p3_steps": [
+   5,
+   10,
+   25
+  ],
+  "pool_eligible": 32,
+  "reduction": 0.2
+ },
+ "telecom_seal_sha256": "ff645fd7630647c5c6415a52bbc0310b00ec5b969b4190e4d5c35cdcce06ff0d",
+ "v1_retail_sha256": "c3be30ab7ff062132dc05c2d60f5be533055d7bf01b001ff8d5c08753d860655",
+ "v1_synthetic_sha256": "17ce6f9e3b853a0ec9af7d4e8094ac0460323511bdf34b4f2655c358e50a7b00"
+}

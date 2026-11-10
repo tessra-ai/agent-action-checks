@@ -1,0 +1,461 @@
+{
+ "seed": 20261105,
+ "cases": [
+  {
+   "case": "case-001",
+   "write_id": "01M6PS3HM5HCZ8230CKV669Z3X",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-002",
+   "write_id": "01M6PS4JB8Q7QZ09MQJXYW3EFC",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-003",
+   "write_id": "01M6PSFHHBSFRPNYDX9NBTXTK8",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-004",
+   "write_id": "01M6PS3PZ5WHQW545SV45JC00T",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-005",
+   "write_id": "01M6PSDYXVRT6RP8SHGK8NK12S",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-006",
+   "write_id": "01M6PSDB70A9CWP8ZN28SJMTSR",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-007",
+   "write_id": "01M6PS0GAVPGYKHWM6ZWF64E1A",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-008",
+   "write_id": "01M6PS94AKD3B0JSH8JQ7B5VJA",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-009",
+   "write_id": "01M6PS5SECFMFKGVSTEJ8EH0A6",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-010",
+   "write_id": "01M6PS4JNMXQBPK10ED883WKM5",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-011",
+   "write_id": "01M6PSFCCQW6E0AS4HV3ZYR2FM",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-012",
+   "write_id": "01M6PS9WNYGZMJFYVVSEHWH62C",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-013",
+   "write_id": "01M6PS83X1VR2ZH5CJYCEA0CNY",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-014",
+   "write_id": "01M6PS45B0Q5KFSWFTRFGKWB4C",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-015",
+   "write_id": "01M6PS5F64DVVNJXFVENFJS1W3",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-016",
+   "write_id": "01M6PSNR0R6TGMNM14MAWSSXGD",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-017",
+   "write_id": "01M6PS8JBT05T7F7DBCHEDN64F",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-018",
+   "write_id": "01M6PS5JD8KHRJYTPEASW2KW8Y",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-019",
+   "write_id": "01M6PS450P35XNSFSN9XH22HBB",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-020",
+   "write_id": "01M6PS6GC7J0X0ZZYCSE5BJTAV",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-021",
+   "write_id": "01M6PS52CDYBPBZA3D3Z2EST44",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-022",
+   "write_id": "01M6PSDYKQZ8NGMYS5W9SBJHTA",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-023",
+   "write_id": "01M6PS953SBD0KHNQZ9RKGTY8W",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-024",
+   "write_id": "01M6PSHVMC85P6S487XRVBQSBV",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-025",
+   "write_id": "01M6PSC2ZYA2J2762K4ZPAHNH5",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-026",
+   "write_id": "01M6PS4DS03S8ZRK5X7SP37X57",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-027",
+   "write_id": "01M6PS991WQTG13PENKJJ46B0Z",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-028",
+   "write_id": "01M6PS7P5ST1X4SM2FTJ3X0W95",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-029",
+   "write_id": "01M6PS44B3V25S0NEXE2891HK9",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-030",
+   "write_id": "01M6PSPXJ83AQ9XSPQ8PKN581Z",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-031",
+   "write_id": "01M6PS5NCWRHGZM0MGDV2RG43X",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-032",
+   "write_id": "01M6PS3E2CPQ6QJ00DDP6E4Q8W",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-033",
+   "write_id": "01M6PSCBEWZ21ZEYRCDTP76AAN",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-034",
+   "write_id": "01M6PS45PE4HY9JTWRD4D7ZRE8",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-035",
+   "write_id": "01M6PSP2HN1NQP6PBPHD9N84N9",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-036",
+   "write_id": "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-037",
+   "write_id": "01M6PS13G6RJTV8KB3NNQY4VQQ",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-038",
+   "write_id": "01M6PS5050Y8K3MAHFJKZAMA15",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-039",
+   "write_id": "01M6PSHH0RAZP1PXHTYQ6FC89K",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-040",
+   "write_id": "01M6PS83048TKVMD2MR6TH46W1",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-041",
+   "write_id": "01M6PSC29BEZDKC8V3VJW47GJ7",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-042",
+   "write_id": "01M6PSDXGY13ZCNJB67XE7HFHJ",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-043",
+   "write_id": "01M6PS6ZWJDC3Z6F0VEMMQ6SH1",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-044",
+   "write_id": "01M6PSNPQJ1DV5K11QR00J5MK2",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-045",
+   "write_id": "01M6PS4ZTN0BGXCD8SMHAT6KSZ",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-046",
+   "write_id": "01M6PS98P1MQH9J5QPFSXRCXZW",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-047",
+   "write_id": "01M6PSHTJ9M44PZ777A867QA84",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-048",
+   "write_id": "01M6PSPG3FFF8V51J1Y2WFWQWG",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-049",
+   "write_id": "01M6PSDZ7FFY1KR9V94NY31J96",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-050",
+   "write_id": "01M6PS9JMN5C0EJQ345T4AKM53",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-051",
+   "write_id": "01M6PSD7R1EPMBFN74RCN5WEGA",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-052",
+   "write_id": "01M6PS84RW52XQ3V7HBZ9PXRH0",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-053",
+   "write_id": "01M6PSPP2DCVQK446FWXAAVYT3",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-054",
+   "write_id": "01M6PSHHBZDT0NG99FACC7KH07",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-055",
+   "write_id": "01M6PSAXACC5V4PJ813PYA6YB7",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-056",
+   "write_id": "01M6PSF5JPX60MS4TVV1XP6GDA",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-057",
+   "write_id": "01M6PSHVYYPR0ZBCHPKGT7RYZQ",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-058",
+   "write_id": "01M6PS1NAX2X5Y57198Y66KSBF",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-059",
+   "write_id": "01M6PS97QP4VJ6VW9DW4N7RN7T",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-060",
+   "write_id": "01M6PSQ9DZZV0KHRS7GAESEA0E",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-061",
+   "write_id": "01M6PSJNQ0WR2MWWZZ1AG7SYFS",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-062",
+   "write_id": "01M6PS5D1F5EYSMC9Z45RZVSX5",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-063",
+   "write_id": "01M6PSA33TJSSJYXPKF52Y68V9",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-064",
+   "write_id": "01M6PS4ZGTE1B9AW4V43RGKH2S",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-065",
+   "write_id": "01M6PSHQHNYSMK9AT1DPVR0WDZ",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-066",
+   "write_id": "01M6PS5SRXMG1SH1MRGZTTXZF3",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-067",
+   "write_id": "01M6PSB91AARXF1EWM1RHZV0NT",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-068",
+   "write_id": "01M6PS7MG1AH7K3F6PWE9R6C33",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-069",
+   "write_id": "01M6PS5ZFY114JDCZGJ8W8Q3HR",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-070",
+   "write_id": "01M6PS440T7K7B6XEQXPFMQBJJ",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-071",
+   "write_id": "01M6PS81XA9ZGBEXPT33DHJEC1",
+   "readings": 1,
+   "role": "sample"
+  },
+  {
+   "case": "case-072",
+   "write_id": "01M6PS3KTZJWA58EKBDXS92Y30",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-073",
+   "write_id": "01M6PSE974Q7A746PB5M1VQ5SH",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-074",
+   "write_id": "01M6PSBTQCT8HHTS5E0ATG5JEX",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-075",
+   "write_id": "01M6PSDY73RFMQ1MQ6SG6ZEN6V",
+   "readings": 3,
+   "role": "union"
+  },
+  {
+   "case": "case-076",
+   "write_id": "01M6PS21DSR5JV5R8V8W1012BF",
+   "readings": 3,
+   "role": "union"
+  }
+ ]
+}

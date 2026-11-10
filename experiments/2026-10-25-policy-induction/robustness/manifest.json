@@ -1,0 +1,1897 @@
+{
+ "cases": 7784,
+ "code_sha256": {
+  "cases.py": "54d1769b05a0070d89c6f4ae4f4e3c94e48d81c5c10b00d5bc694bd8f33aaff6",
+  "evaluate.py": "8439d5658fd9cf88b106f143883f18b0d9942f91cabd478ed1ffb5c6a804f4f3",
+  "induce.py": "d1044d8f3e5f7d964fe05bd94f9a2c9d47be18020c2fffc96ac1b5cb214b8a56",
+  "robust.py": "92760b7ee83b795766b6d243734a0ec1c030f5ac87cf4291dedc42cff4ee36d5",
+  "worlds.py": "045a2210eb47398dfe96d1956b4da2b8ceb482efedfe5128721cc3dc39fa401b"
+ },
+ "dataset_sha256": "ac018a82fba2a61828591344a0ee5ef1e3d79059fa263203394abc711e618916",
+ "families": 789,
+ "generator": "pi-cases-1",
+ "rule_seed": 20261026,
+ "rules": [
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "user_state",
+     "op": "eq",
+     "value": "TX"
+    },
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "none"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E001",
+   "train_families": 42,
+   "trigger_cases": 297,
+   "trigger_share": 0.1305
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "user_state",
+     "op": "eq",
+     "value": "TX"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E002",
+   "train_families": 78,
+   "trigger_cases": 550,
+   "trigger_share": 0.2418
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "user_orders",
+     "op": "gt",
+     "value": 4.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E003",
+   "train_families": 43,
+   "trigger_cases": 299,
+   "trigger_share": 0.1314
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "user_state",
+     "op": "eq",
+     "value": "CO"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E004",
+   "train_families": 26,
+   "trigger_cases": 161,
+   "trigger_share": 0.0708
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "gift_card"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E005",
+   "train_families": 46,
+   "trigger_cases": 303,
+   "trigger_share": 0.1332
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "products",
+     "op": "has",
+     "value": "Bluetooth Speaker"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E006",
+   "train_families": 26,
+   "trigger_cases": 174,
+   "trigger_share": 0.0765
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "paypal"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E007",
+   "train_families": 50,
+   "trigger_cases": 303,
+   "trigger_share": 0.1332
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "products",
+     "op": "has",
+     "value": "Bookshelf"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E008",
+   "train_families": 36,
+   "trigger_cases": 198,
+   "trigger_share": 0.087
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 1.0
+    },
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3150.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E009",
+   "train_families": 26,
+   "trigger_cases": 151,
+   "trigger_share": 0.0664
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "products",
+     "op": "has",
+     "value": "Smart Watch"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E010",
+   "train_families": 33,
+   "trigger_cases": 192,
+   "trigger_share": 0.0844
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "none"
+    },
+    {
+     "fact": "user_state",
+     "op": "eq",
+     "value": "CA"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E011",
+   "train_families": 31,
+   "trigger_cases": 247,
+   "trigger_share": 0.1884
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 3300.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E012",
+   "train_families": 31,
+   "trigger_cases": 218,
+   "trigger_share": 0.1663
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 3.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E013",
+   "train_families": 54,
+   "trigger_cases": 244,
+   "trigger_share": 0.1073
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "user_orders",
+     "op": "gt",
+     "value": 4.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E014",
+   "train_families": 29,
+   "trigger_cases": 214,
+   "trigger_share": 0.1632
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "credit_card"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E015",
+   "train_families": 50,
+   "trigger_cases": 358,
+   "trigger_share": 0.1574
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "products",
+     "op": "has",
+     "value": "Espresso Machine"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E016",
+   "train_families": 30,
+   "trigger_cases": 197,
+   "trigger_share": 0.0866
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "user_state",
+     "op": "eq",
+     "value": "CA"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E017",
+   "train_families": 53,
+   "trigger_cases": 413,
+   "trigger_share": 0.1815
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 1.0
+    },
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "gift_card"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E018",
+   "train_families": 36,
+   "trigger_cases": 193,
+   "trigger_share": 0.0848
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2800.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E019",
+   "train_families": 73,
+   "trigger_cases": 485,
+   "trigger_share": 0.2132
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2700.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E020",
+   "train_families": 82,
+   "trigger_cases": 524,
+   "trigger_share": 0.2303
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 2850.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E021",
+   "train_families": 75,
+   "trigger_cases": 520,
+   "trigger_share": 0.2286
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2750.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E022",
+   "train_families": 43,
+   "trigger_cases": 313,
+   "trigger_share": 0.2387
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2850.0
+    },
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "none"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E023",
+   "train_families": 40,
+   "trigger_cases": 295,
+   "trigger_share": 0.225
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3450.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E024",
+   "train_families": 29,
+   "trigger_cases": 200,
+   "trigger_share": 0.1526
+  },
+  {
+   "action": "return_delivered_order_items",
+   "conds": [
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 3.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E025",
+   "train_families": 32,
+   "trigger_cases": 133,
+   "trigger_share": 0.2449
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3500.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E026",
+   "train_families": 28,
+   "trigger_cases": 190,
+   "trigger_share": 0.1449
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 4200.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E027",
+   "train_families": 30,
+   "trigger_cases": 203,
+   "trigger_share": 0.0892
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "user_orders",
+     "op": "gt",
+     "value": 3.0
+    },
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 1400.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E028",
+   "train_families": 31,
+   "trigger_cases": 267,
+   "trigger_share": 0.1174
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 2.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E029",
+   "train_families": 72,
+   "trigger_cases": 386,
+   "trigger_share": 0.1697
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "paypal"
+    },
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 1.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E030",
+   "train_families": 41,
+   "trigger_cases": 189,
+   "trigger_share": 0.0831
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 4250.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E031",
+   "train_families": 28,
+   "trigger_cases": 194,
+   "trigger_share": 0.0853
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3650.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E032",
+   "train_families": 42,
+   "trigger_cases": 297,
+   "trigger_share": 0.1305
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "products",
+     "op": "has",
+     "value": "Mechanical Keyboard"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E033",
+   "train_families": 27,
+   "trigger_cases": 188,
+   "trigger_share": 0.0826
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 3500.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E034",
+   "train_families": 49,
+   "trigger_cases": 292,
+   "trigger_share": 0.1284
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "user_orders",
+     "op": "gt",
+     "value": 3.0
+    },
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 1500.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E035",
+   "train_families": 28,
+   "trigger_cases": 263,
+   "trigger_share": 0.1156
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3850.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E036",
+   "train_families": 36,
+   "trigger_cases": 257,
+   "trigger_share": 0.113
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "products",
+     "op": "has",
+     "value": "Hiking Boots"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E037",
+   "train_families": 28,
+   "trigger_cases": 191,
+   "trigger_share": 0.084
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "products",
+     "op": "has",
+     "value": "Laptop"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E038",
+   "train_families": 26,
+   "trigger_cases": 169,
+   "trigger_share": 0.0743
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 3050.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E039",
+   "train_families": 65,
+   "trigger_cases": 412,
+   "trigger_share": 0.1811
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "user_state",
+     "op": "eq",
+     "value": "TX"
+    },
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 1.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E040",
+   "train_families": 29,
+   "trigger_cases": 156,
+   "trigger_share": 0.0686
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2800.0
+    },
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "none"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E041",
+   "train_families": 41,
+   "trigger_cases": 304,
+   "trigger_share": 0.2319
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 3300.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E042",
+   "train_families": 53,
+   "trigger_cases": 333,
+   "trigger_share": 0.1464
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "none"
+    },
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2600.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E043",
+   "train_families": 49,
+   "trigger_cases": 339,
+   "trigger_share": 0.149
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "credit_card"
+    },
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 2.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E044",
+   "train_families": 27,
+   "trigger_cases": 154,
+   "trigger_share": 0.0677
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2900.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E045",
+   "train_families": 69,
+   "trigger_cases": 452,
+   "trigger_share": 0.1987
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3100.0
+    },
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 3200.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E046",
+   "train_families": 35,
+   "trigger_cases": 245,
+   "trigger_share": 0.1869
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3400.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E047",
+   "train_families": 53,
+   "trigger_cases": 378,
+   "trigger_share": 0.1662
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "products",
+     "op": "has",
+     "value": "Cycling Helmet"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E048",
+   "train_families": 27,
+   "trigger_cases": 204,
+   "trigger_share": 0.0897
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2600.0
+    },
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 1.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E049",
+   "train_families": 34,
+   "trigger_cases": 167,
+   "trigger_share": 0.0734
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 3450.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E050",
+   "train_families": 50,
+   "trigger_cases": 302,
+   "trigger_share": 0.1327
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 2750.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E051",
+   "train_families": 80,
+   "trigger_cases": 545,
+   "trigger_share": 0.2396
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "products",
+     "op": "has",
+     "value": "Tea Kettle"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E052",
+   "train_families": 25,
+   "trigger_cases": 162,
+   "trigger_share": 0.0712
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3800.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E053",
+   "train_families": 38,
+   "trigger_cases": 275,
+   "trigger_share": 0.1209
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3250.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E054",
+   "train_families": 33,
+   "trigger_cases": 233,
+   "trigger_share": 0.1777
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2550.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E055",
+   "train_families": 89,
+   "trigger_cases": 561,
+   "trigger_share": 0.2466
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 4400.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E056",
+   "train_families": 25,
+   "trigger_cases": 136,
+   "trigger_share": 0.0598
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "products",
+     "op": "has",
+     "value": "Wireless Earbuds"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E057",
+   "train_families": 32,
+   "trigger_cases": 158,
+   "trigger_share": 0.0695
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 2900.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E058",
+   "train_families": 72,
+   "trigger_cases": 498,
+   "trigger_share": 0.2189
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3250.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E059",
+   "train_families": 58,
+   "trigger_cases": 409,
+   "trigger_share": 0.1798
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "products",
+     "op": "has",
+     "value": "Electric Kettle"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E060",
+   "train_families": 32,
+   "trigger_cases": 187,
+   "trigger_share": 0.0822
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3550.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E061",
+   "train_families": 48,
+   "trigger_cases": 324,
+   "trigger_share": 0.1424
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 4300.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E062",
+   "train_families": 26,
+   "trigger_cases": 182,
+   "trigger_share": 0.08
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3550.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E063",
+   "train_families": 26,
+   "trigger_cases": 177,
+   "trigger_share": 0.135
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 3100.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E064",
+   "train_families": 63,
+   "trigger_cases": 390,
+   "trigger_share": 0.1714
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2950.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E065",
+   "train_families": 67,
+   "trigger_cases": 438,
+   "trigger_share": 0.1925
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2850.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E066",
+   "train_families": 72,
+   "trigger_cases": 474,
+   "trigger_share": 0.2084
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 1350.0
+    },
+    {
+     "fact": "user_state",
+     "op": "eq",
+     "value": "TX"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E067",
+   "train_families": 29,
+   "trigger_cases": 199,
+   "trigger_share": 0.0875
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "none"
+    },
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2900.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E068",
+   "train_families": 38,
+   "trigger_cases": 282,
+   "trigger_share": 0.2151
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 3850.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E069",
+   "train_families": 35,
+   "trigger_cases": 209,
+   "trigger_share": 0.0919
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 1500.0
+    },
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 3950.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E070",
+   "train_families": 32,
+   "trigger_cases": 189,
+   "trigger_share": 0.0831
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 1.0
+    },
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 1900.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E071",
+   "train_families": 39,
+   "trigger_cases": 221,
+   "trigger_share": 0.0971
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3100.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E072",
+   "train_families": 66,
+   "trigger_cases": 453,
+   "trigger_share": 0.1991
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "user_orders",
+     "op": "gt",
+     "value": 3.0
+    },
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 1600.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E073",
+   "train_families": 28,
+   "trigger_cases": 259,
+   "trigger_share": 0.1138
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 4150.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E074",
+   "train_families": 29,
+   "trigger_cases": 162,
+   "trigger_share": 0.0712
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3050.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E075",
+   "train_families": 36,
+   "trigger_cases": 267,
+   "trigger_share": 0.2037
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 4500.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E076",
+   "train_families": 25,
+   "trigger_cases": 156,
+   "trigger_share": 0.0686
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3600.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E077",
+   "train_families": 44,
+   "trigger_cases": 306,
+   "trigger_share": 0.1345
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 4000.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E078",
+   "train_families": 30,
+   "trigger_cases": 178,
+   "trigger_share": 0.0782
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3150.0
+    },
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "none"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E079",
+   "train_families": 35,
+   "trigger_cases": 251,
+   "trigger_share": 0.1103
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 1.0
+    },
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 1900.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E080",
+   "train_families": 39,
+   "trigger_cases": 197,
+   "trigger_share": 0.0866
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "none"
+    },
+    {
+     "fact": "user_orders",
+     "op": "gt",
+     "value": 3.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E081",
+   "train_families": 54,
+   "trigger_cases": 433,
+   "trigger_share": 0.1903
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3400.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E082",
+   "train_families": 29,
+   "trigger_cases": 212,
+   "trigger_share": 0.1617
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 2500.0
+    },
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 2.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E083",
+   "train_families": 28,
+   "trigger_cases": 132,
+   "trigger_share": 0.058
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 1900.0
+    },
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 2.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E084",
+   "train_families": 32,
+   "trigger_cases": 158,
+   "trigger_share": 0.0695
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 2650.0
+    },
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2350.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E085",
+   "train_families": 86,
+   "trigger_cases": 537,
+   "trigger_share": 0.236
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2600.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E086",
+   "train_families": 89,
+   "trigger_cases": 542,
+   "trigger_share": 0.2382
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2650.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E087",
+   "train_families": 86,
+   "trigger_cases": 533,
+   "trigger_share": 0.2343
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 4000.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E088",
+   "train_families": 31,
+   "trigger_cases": 224,
+   "trigger_share": 0.0985
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3150.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E089",
+   "train_families": 65,
+   "trigger_cases": 445,
+   "trigger_share": 0.1956
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 1550.0
+    },
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 2.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E090",
+   "train_families": 39,
+   "trigger_cases": 192,
+   "trigger_share": 0.0844
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "products",
+     "op": "has",
+     "value": "Skateboard"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E091",
+   "train_families": 27,
+   "trigger_cases": 168,
+   "trigger_share": 0.0738
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "products",
+     "op": "has",
+     "value": "Digital Camera"
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E092",
+   "train_families": 26,
+   "trigger_cases": 171,
+   "trigger_share": 0.0752
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3350.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E093",
+   "train_families": 55,
+   "trigger_cases": 384,
+   "trigger_share": 0.1688
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3450.0
+    }
+   ],
+   "kind": "escalate",
+   "name": "R2-E094",
+   "train_families": 52,
+   "trigger_cases": 360,
+   "trigger_share": 0.1582
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "none"
+    },
+    {
+     "fact": "user_state",
+     "op": "eq",
+     "value": "TX"
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R001",
+   "train_families": 42,
+   "trigger_cases": 114,
+   "trigger_share": 0.1226
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2600.0
+    },
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "none"
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R002",
+   "train_families": 49,
+   "trigger_cases": 135,
+   "trigger_share": 0.1452
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2700.0
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R003",
+   "train_families": 73,
+   "trigger_cases": 209,
+   "trigger_share": 0.2247
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "user_state",
+     "op": "eq",
+     "value": "CA"
+    },
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "none"
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R004",
+   "train_families": 31,
+   "trigger_cases": 103,
+   "trigger_share": 0.2008
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "credit_card"
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R005",
+   "train_families": 50,
+   "trigger_cases": 168,
+   "trigger_share": 0.1806
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 2600.0
+    },
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2750.0
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R006",
+   "train_families": 68,
+   "trigger_cases": 197,
+   "trigger_share": 0.2118
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3250.0
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R007",
+   "train_families": 33,
+   "trigger_cases": 92,
+   "trigger_share": 0.1793
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "products",
+     "op": "has",
+     "value": "Hiking Boots"
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R008",
+   "train_families": 25,
+   "trigger_cases": 72,
+   "trigger_share": 0.0774
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3200.0
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R009",
+   "train_families": 65,
+   "trigger_cases": 177,
+   "trigger_share": 0.1903
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "gift_card"
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R010",
+   "train_families": 41,
+   "trigger_cases": 115,
+   "trigger_share": 0.1237
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 2900.0
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R011",
+   "train_families": 38,
+   "trigger_cases": 112,
+   "trigger_share": 0.2183
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "user_orders",
+     "op": "gt",
+     "value": 4.0
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R012",
+   "train_families": 29,
+   "trigger_cases": 87,
+   "trigger_share": 0.1696
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3250.0
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R013",
+   "train_families": 58,
+   "trigger_cases": 164,
+   "trigger_share": 0.1763
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "paypal"
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R014",
+   "train_families": 50,
+   "trigger_cases": 134,
+   "trigger_share": 0.1441
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 2.0
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R015",
+   "train_families": 40,
+   "trigger_cases": 131,
+   "trigger_share": 0.1409
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 2850.0
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R016",
+   "train_families": 75,
+   "trigger_cases": 213,
+   "trigger_share": 0.229
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "amount",
+     "op": "gt",
+     "value": 1300.0
+    },
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3350.0
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R017",
+   "train_families": 49,
+   "trigger_cases": 140,
+   "trigger_share": 0.1505
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "credit_card"
+    },
+    {
+     "fact": "n_items",
+     "op": "gt",
+     "value": 1.0
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R018",
+   "train_families": 27,
+   "trigger_cases": 97,
+   "trigger_share": 0.1043
+  },
+  {
+   "action": "cancel_pending_order",
+   "conds": [
+    {
+     "fact": "payment_source",
+     "op": "eq",
+     "value": "none"
+    },
+    {
+     "fact": "order_total",
+     "op": "gt",
+     "value": 3450.0
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R019",
+   "train_families": 29,
+   "trigger_cases": 76,
+   "trigger_share": 0.1481
+  },
+  {
+   "action": null,
+   "conds": [
+    {
+     "fact": "user_state",
+     "op": "eq",
+     "value": "TX"
+    }
+   ],
+   "kind": "relax",
+   "name": "R2-R020",
+   "train_families": 78,
+   "trigger_cases": 222,
+   "trigger_share": 0.2387
+  }
+ ],
+ "seed": 20261026,
+ "split": {
+  "cert": 148,
+  "test": 323,
+  "train": 318
+ }
+}

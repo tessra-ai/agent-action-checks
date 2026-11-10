@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -e '.[dev]'
+      - run: ruff check .
+      - run: ruff format --check .
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -e '.[dev]'
+      - run: pytest
+
+  tau2:
+    # The τ² harness and gated-pass tests on real τ²-bench tasks (scripted agent and user,
+    # fake judges, no LLM calls).
+    runs-on: ubuntu-latest
+    env:
+      TAU2_COMMIT: c5b2d228d850c59b749b93cf32c4745d3aa53967
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Fetch τ²-bench at the pinned commit
+        run: |
+          git init -q .tau2-bench
+          git -C .tau2-bench fetch -q --depth 1 https://github.com/sierra-research/tau2-bench "$TAU2_COMMIT"
+          git -C .tau2-bench checkout -q FETCH_HEAD
+      # Editable, so tau2 finds its task data in the checkout.
+      - run: pip install -e '.[dev]' -e ./.tau2-bench 'litellm>=1.80.15,<1.82.7'
+      - run: pytest tests/test_tau2_harness.py tests/test_tau2_label.py tests/test_tau2_gated.py tests/test_tau2_verdicts.py tests/test_bench_report.py

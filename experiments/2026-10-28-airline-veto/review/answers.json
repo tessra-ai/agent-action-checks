@@ -1,0 +1,62 @@
+{
+ "reviewer": "project owner",
+ "source": "blind review page (not published)",
+ "answers": {
+  "case-01": {
+   "decision": "allow",
+   "reason": ""
+  },
+  "case-02": {
+   "decision": "allow",
+   "reason": ""
+  },
+  "case-03": {
+   "decision": "allow",
+   "reason": ""
+  },
+  "case-04": {
+   "decision": "deny",
+   "reason": "- The agent has to first cancel the business flight ticket it made post confirmation before making 3 separate ones. This will result in double charge and also explains why it cannot find any $$ in certificate."
+  },
+  "case-05": {
+   "decision": "deny",
+   "reason": "Basic economy cannot be updated"
+  },
+  "case-06": {
+   "decision": "allow",
+   "reason": ""
+  },
+  "case-07": {
+   "decision": "deny",
+   "reason": "The new business class booking needs to be cancelled first, credits returned to gift cards and then separate business trip reservations need to be made."
+  },
+  "case-08": {
+   "decision": "allow",
+   "reason": ""
+  },
+  "case-09": {
+   "decision": "allow",
+   "reason": ""
+  },
+  "case-10": {
+   "decision": "allow",
+   "reason": ""
+  },
+  "case-11": {
+   "decision": "allow",
+   "reason": ""
+  },
+  "case-12": {
+   "decision": "allow",
+   "reason": ""
+  },
+  "case-13": {
+   "decision": "deny",
+   "reason": "Even for a silver member, you are allowed to only give $100 in refund"
+  },
+  "case-14": {
+   "decision": "allow",
+   "reason": ""
+  }
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "provider": "anthropic",
+ "model": "claude-sonnet-5-5",
+ "set": "airline1",
+ "usd": 9.349073999999995,
+ "calls": 353,
+ "refused": 0,
+ "input": 3598962,
+ "output": 215115,
+ "cache_read": 0
+}

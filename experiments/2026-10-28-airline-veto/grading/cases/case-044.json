@@ -1,0 +1,161 @@
+{
+ "case": "case-044",
+ "action": "book_reservation",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hi, I want to book a one-way flight from New York to Seattle on May 20.",
+   "role": "user"
+  },
+  {
+   "content": "To assist you with booking, could you please provide your user ID? This will help me access your profile and available payment methods.",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure, my user ID is mia_li_3668.",
+   "role": "user"
+  },
+  {
+   "content": "Thank you! Could you please confirm the following details for your booking:\n\n1. Which cabin class would you like to book (basic economy, economy, or business)?\n2. How many passengers will be traveling, and can you provide their first name, last name, and date of birth?\n3. Do you need any checked bags? If yes, how many?\n4. Would you like to add travel insurance for $30 per passenger?\n\nOnce I have this information, I can show you available flight options.",
+   "role": "assistant"
+  },
+  {
+   "content": "I want to book in economy class. It will be just me traveling. I have 3 checked bags. I do not want travel insurance.",
+   "role": "user"
+  },
+  {
+   "content": "Thank you for the details. To proceed, could you please provide your full name and date of birth for the reservation? Once I have this information, I will search for available direct and one-stop flights from New York (JFK) to Seattle (SEA) on May 20 for you.",
+   "role": "assistant"
+  },
+  {
+   "content": "My name is Mia Li. My date of birth is in my user profile, so I prefer not to provide it.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "mia_li_3668"
+     },
+     "function": "get_user_details",
+     "id": "call_jQkVKlvSDrGmAF8Eb2YFjTz0"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"mia_li_3668\", \"name\": {\"first_name\": \"Mia\", \"last_name\": \"Li\"}, \"address\": {\"address1\": \"975 Sunset Drive\", \"address2\": \"Suite 217\", \"city\": \"Austin\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78750\"}, \"email\": \"mia.li3818@example.com\", \"dob\": \"1990-04-05\", \"payment_methods\": {\"credit_card_4421486\": {\"source\": \"credit_card\", \"id\": \"credit_card_4421486\", \"brand\": \"visa\", \"last_four\": \"7447\"}, \"certificate_4856383\": {\"source\": \"certificate\", \"id\": \"certificate_4856383\", \"amount\": 100.0}, \"certificate_7504069\": {\"source\": \"certificate\", \"id\": \"certificate_7504069\", \"amount\": 250.0}, \"credit_card_1955700\": {\"source\": \"credit_card\", \"id\": \"credit_card_1955700\", \"brand\": \"visa\", \"last_four\": \"1907\"}}, \"saved_passengers\": [{\"first_name\": \"Amelia\", \"last_name\": \"Ahmed\", \"dob\": \"1957-03-21\"}], \"membership\": \"gold\", \"reservations\": [\"NO6JO3\", \"AIXC49\", \"HKEG34\"]}",
+   "role": "tool",
+   "tool_call_id": "call_jQkVKlvSDrGmAF8Eb2YFjTz0"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-20",
+      "destination": "SEA",
+      "origin": "JFK"
+     },
+     "function": "search_direct_flight",
+     "id": "call_G5kNrf8lt9WC8oTr5odAKW6N"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-20",
+      "destination": "SEA",
+      "origin": "JFK"
+     },
+     "function": "search_onestop_flight",
+     "id": "call_XqWeC9rBMdzcllJFyuZOz15W"
+    }
+   ]
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT069\", \"origin\": \"JFK\", \"destination\": \"SEA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"06:00:00\", \"scheduled_arrival_time_est\": \"12:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 17, \"economy\": 12, \"business\": 3}, \"prices\": {\"basic_economy\": 51, \"economy\": 121, \"business\": 239}}, {\"flight_number\": \"HAT083\", \"origin\": \"JFK\", \"destination\": \"SEA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"01:00:00\", \"scheduled_arrival_time_est\": \"07:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 16, \"economy\": 7, \"business\": 3}, \"prices\": {\"basic_economy\": 87, \"economy\": 100, \"business\": 276}}]",
+   "role": "tool",
+   "tool_call_id": "call_G5kNrf8lt9WC8oTr5odAKW6N"
+  },
+  {
+   "content": "[[{\"flight_number\": \"HAT057\", \"origin\": \"JFK\", \"destination\": \"ATL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"07:00:00\", \"scheduled_arrival_time_est\": \"09:30:00\", \"date\": \"2024-05-20\", \"available_seats\": {\"basic_economy\": 7, \"economy\": 3, \"business\": 9}, \"prices\": {\"basic_economy\": 76, \"economy\": 141, \"business\": 477}}, {\"flight_number\": \"HAT039\", \"origin\": \"ATL\", \"destination\": \"SEA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"22:00:00\", \"scheduled_arrival_time_est\": \"03:00:00+1\", \"date\": \"2024-05-20\", \"available_seats\": {\"basic_economy\": 18, \"economy\": 10, \"business\": 2}, \"prices\": {\"basic_economy\": 52, \"economy\": 103, \"business\": 283}}], [{\"flight_number\": \"HAT136\", \"origin\": \"JFK\", \"destination\": \"ATL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"19:00:00\", \"scheduled_arrival_time_est\": \"21:30:00\", \"date\": \"2024-05-20\", \"available_seats\": {\"basic_economy\": 15, \"economy\": 14, \"business\": 2}, \"prices\": {\"basic_economy\": 52, \"economy\": 152, \"business\": 277}}, {\"flight_number\": \"HAT039\", \"origin\": \"ATL\", \"destination\": \"SEA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"22:00:00\", \"scheduled_arrival_time_est\": \"03:00:00+1\", \"date\": \"2024-05-20\", \"available_seats\": {\"basic_economy\": 18, \"economy\": 10, \"business\": 2}, \"prices\": {\"basic_economy\": 52, \"economy\": 103, \"business\": 283}}], [{\"flight_number\": \"HAT218\", \"origin\": \"JFK\", \"destination\": \"ATL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"18:00:00\", \"scheduled_arrival_time_est\": \"20:30:00\", \"date\": \"2024-05-20\", \"available_seats\": {\"basic_economy\": 12, \"economy\": 1, \"business\": 4}, \"prices\": {\"basic_economy\": 76, \"economy\": 158, \"business\": 342}}, {\"flight_number\": \"HAT039\", \"origin\": \"ATL\", \"destination\": \"SEA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"22:00:00\", \"scheduled_arrival_time_est\": \"03:00:00+1\", \"date\": \"2024-05-20\", \"available_seats\": {\"basic_economy\": 18, \"economy\": 10, \"business\": 2}, \"prices\": {\"basic_economy\": 52, \"economy\": 103, \"business\": 283}}], [{\"flight_number\": \"HAT268\", \"origin\": \"JFK\", \"destination\": \"ATL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"07:00:00\", \"scheduled_arrival_time_est\": \"09:30:00\", \"date\": \"2024-05-20\", \"available_seats\": {\"basic_economy\": 17, \"economy\": 19, \"business\": 12}, \"prices\": {\"basic_economy\": 91, \"economy\": 101, \"business\": 453}}, {\"flight_number\": \"HAT039\", \"origin\": \"ATL\", \"destination\": \"SEA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"22:00:00\", \"scheduled_arrival_time_est\": \"03:00:00+1\", \"date\": \"2024-05-20\", \"available_seats\": {\"basic_economy\": 18, \"economy\": 10, \"business\": 2}, \"prices\": {\"basic_economy\": 52, \"economy\": 103, \"business\": 283}}]]",
+   "role": "tool",
+   "tool_call_id": "call_XqWeC9rBMdzcllJFyuZOz15W"
+  },
+  {
+   "content": "Here are your available flight options from New York (JFK) to Seattle (SEA) on May 20 in economy class:\n\nDirect Flights:\n1. HAT069: Departs 06:00, Arrives 12:00, $121\n2. HAT083: Departs 01:00, Arrives 07:00, $100\n\nOne-Stop Flights (via Atlanta):\n- Example: HAT057 (JFK\u2013ATL, 07:00\u201309:30) + HAT039 (ATL\u2013SEA, 22:00\u201303:00+1), $141 total\n- Other combinations are available with similar connections and prices.\n\nYou are a gold member, so you get 3 free checked bags in economy\u2014no extra baggage fees.\n\nWould you like to proceed with booking one of the direct flights (HAT069 or HAT083), or would you prefer a one-stop option? Please specify your choice so I can prepare the booking details for your confirmation.",
+   "role": "assistant"
+  },
+  {
+   "content": "I do not want to fly before 11am EST. So please show me options departing after 11am.",
+   "role": "user"
+  },
+  {
+   "content": "Based on your preference for flights departing after 11am EST from New York (JFK) to Seattle (SEA) on May 20 in economy class:\n\n- Among the direct flights, there are no options departing after 11am EST (the latest direct flight departs at 06:00).\n- For one-stop flights, the first segment (JFK to ATL) for all available options departs before 11am or in the evening (the latest departs at 19:00).\n\nWould you like to consider the one-stop flight departing at 19:00 (HAT136: JFK\u2013ATL at 19:00\u201321:30, then HAT039: ATL\u2013SEA at 22:00\u201303:00+1)? Or would you like to see options for another date? Please let me know how you\u2019d like to proceed.",
+   "role": "assistant"
+  },
+  {
+   "content": "I would like to proceed with the one-stop flight departing at 19:00, please.",
+   "role": "user"
+  },
+  {
+   "content": "Here are the details for your booking:\n\n- Flight 1: HAT136 (JFK to ATL), Departs 19:00, Arrives 21:30\n- Flight 2: HAT039 (ATL to SEA), Departs 22:00, Arrives 03:00+1\n- Date: May 20, 2024\n- Cabin: Economy\n- Passenger: Mia Li (DOB: 1990-04-05)\n- Checked Bags: 3 (all free for gold members)\n- Travel Insurance: No\n- Total Price: $152 (HAT136: $152, HAT039: $103; total $255)\n\nYour available payment methods are:\n- Credit Card ending in 7447\n- Credit Card ending in 1907\n- Certificate ($100)\n- Certificate ($250)\n\nPlease confirm:\n1. Do you want to use your $250 certificate and pay the remaining $5 with a credit card, or use another payment combination?\n2. Do you confirm all the above details and wish to proceed with the booking?\n\nOnce you confirm, I will finalize your reservation.",
+   "role": "assistant"
+  },
+  {
+   "content": "I want to use my two certificates to pay. If only one certificate can be used, I prefer using the larger one and pay the rest with my 7447 card. Please proceed accordingly.",
+   "role": "user"
+  },
+  {
+   "content": "Thank you for your confirmation. Here\u2019s how your payment will be processed:\n\n- If possible, both certificates ($250 + $100) will be used to cover the $255 total.\n- If only one certificate can be used, the $250 certificate will be applied, and the remaining $5 will be charged to your credit card ending in 7447.\n\nBooking details:\n- One-stop flight: HAT136 (JFK\u2013ATL, 19:00\u201321:30) + HAT039 (ATL\u2013SEA, 22:00\u201303:00+1) on May 20, 2024\n- Economy class, 3 checked bags (all free), no travel insurance\n- Passenger: Mia Li\n\nI am proceeding to book your flight now.",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "cabin": "economy",
+      "destination": "SEA",
+      "flight_type": "one_way",
+      "flights": [
+       {
+        "date": "2024-05-20",
+        "flight_number": "HAT136"
+       },
+       {
+        "date": "2024-05-20",
+        "flight_number": "HAT039"
+       }
+      ],
+      "insurance": "no",
+      "nonfree_baggages": 0,
+      "origin": "JFK",
+      "passengers": [
+       {
+        "dob": "1990-04-05",
+        "first_name": "Mia",
+        "last_name": "Li"
+       }
+      ],
+      "payment_methods": [
+       {
+        "amount": 250,
+        "payment_id": "certificate_7504069"
+       },
+       {
+        "amount": 5,
+        "payment_id": "credit_card_4421486"
+       }
+      ],
+      "total_baggages": 3,
+      "user_id": "mia_li_3668"
+     },
+     "function": "book_reservation",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

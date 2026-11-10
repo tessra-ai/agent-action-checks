@@ -1,0 +1,74 @@
+{
+  "by_domain": {
+    "retail": {
+      "datasets": {
+        "holdout": {
+          "families": 2,
+          "writes": 21
+        },
+        "promotion": {
+          "families": 1,
+          "writes": 15
+        },
+        "revealed": {
+          "families": 3,
+          "writes": 37
+        }
+      },
+      "families": 6,
+      "writes": 73
+    },
+    "telecom": {
+      "datasets": {
+        "holdout": {
+          "families": 3,
+          "writes": 11
+        },
+        "promotion": {
+          "families": 2,
+          "writes": 7
+        },
+        "revealed": {
+          "families": 5,
+          "writes": 17
+        }
+      },
+      "families": 10,
+      "writes": 35
+    }
+  },
+  "definition_sha256": "5b7069c2e16ebb020cf3f59f4f307f707468c1707a79d1cc899567dab4436e24",
+  "draws": 2000,
+  "holdout": {
+    "family_sha256": [
+      "02b0bb059180c904f39a5e1e6f33a57cc290397d8df9a21bf13ef3ecc2380d0f",
+      "49374e572a329291c962257a4b2eac8c734813f96dadb391ead74a27a29422ca",
+      "7ba7214ac13600e03873778e58660c3da8a6f66d92cdcbfa34d18f486f47595f",
+      "a005dc30686d9816426f2ed8e08b476fda6cb519bc79f4b0e6f84842239b8b20",
+      "d304ac478389978acdc3c6894eac1055427bfb4a4e78937c0a374b90778a2cf7"
+    ],
+    "salt": "pilot-holdout:"
+  },
+  "promotion": [
+    "retail/user:chen_silva_7485",
+    "telecom/[mms_issue]bad_network_preference|user_abroad_roaming_disabled_off",
+    "telecom/[mobile_data_issue]bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off"
+  ],
+  "revealed": [
+    "retail/user:fatima_johnson_7581",
+    "retail/user:mei_kovacs_8020",
+    "retail/user:mia_garcia_4516",
+    "telecom/[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off",
+    "telecom/[mms_issue]bad_network_preference|break_app_sms_permission|user_abroad_roaming_disabled_on",
+    "telecom/[mms_issue]break_app_sms_permission|data_usage_exceeded|user_abroad_roaming_disabled_on",
+    "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_saver_mode_on|data_usage_exceeded|user_abroad_roaming_enabled_off",
+    "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off"
+  ],
+  "rule": "label-free; per domain, whole families; closest write shares to the targets",
+  "seed": 20261023,
+  "targets": {
+    "holdout": 0.3,
+    "promotion": 0.2,
+    "revealed": 0.5
+  }
+}

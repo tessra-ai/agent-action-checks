@@ -1,0 +1,63 @@
+{
+  "path": "/decisions",
+  "request": {
+    "input": "## Context: conversation\nCustomer: I was charged twice for order #W123. Please refund the duplicate $20 charge.\n\n## Earlier writes in this session\n(none)\n\n## Proposed action\nrefund_order({\"amount\":20,\"method\":\"card\",\"order_id\":\"W123\"})\n",
+    "model": "gpt-6-luna",
+    "questions": [
+      {
+        "choices": [
+          {
+            "value": "low"
+          },
+          {
+            "value": "medium"
+          },
+          {
+            "value": "high"
+          }
+        ],
+        "instructions": "Which risk best describes the proposed action?",
+        "name": "risk",
+        "type": "choice"
+      }
+    ]
+  },
+  "response": {
+    "answers": [
+      {
+        "choice": "medium",
+        "confidence": 0.55,
+        "name": "risk",
+        "probabilities": [
+          {
+            "probability": 0.22,
+            "value": "low"
+          },
+          {
+            "probability": 0.7,
+            "value": "medium"
+          },
+          {
+            "probability": 0.08,
+            "value": "high"
+          }
+        ],
+        "type": "choice"
+      }
+    ],
+    "model": "gpt-6-luna",
+    "usage": {
+      "input_tokens": 169,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 169
+    }
+  },
+  "status": 200
+}

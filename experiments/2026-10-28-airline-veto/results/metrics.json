@@ -1,0 +1,116 @@
+{
+ "metrics": {
+  "jev": {
+   "ran": 60,
+   "wrong": 26,
+   "wrong_rate_upper95": 0.5476,
+   "wrong_write_ids": [
+    "01M61PSRVRXMARGYBWJZ9YJE0Y",
+    "01M61PWPDBDVTYVXJ7P2DGXJGF",
+    "01M61PWTD0M8BWXEKGDZ509ZGR",
+    "01M61PX5E4JBZB1FQ1ZVYT6W4E",
+    "01M61PYBSHWN4KY7TYCEDZAHXH",
+    "01M61PYTPEQPTZ9JM5DKK0NBWZ",
+    "01M61PYV1FP44RV654J2YAQ7AT",
+    "01M61PYVD9NX93H5VMR1XBYZNQ",
+    "01M61PZ9SGJDMA94SS6PQSEGNG",
+    "01M61PZW9CFSERA79KP94VW7HC",
+    "01M61Q0BB70786F192TBG3KVV1",
+    "01M61Q0HD0F0DNRS5WWVBVESGP",
+    "01M61Q0HPA7XMW5YRTABGE2VKE",
+    "01M61Q0JBGTDSPSADB8QD40CH4",
+    "01M61Q0JQ0P7BCN5VP6010AY2T",
+    "01M61Q17VRW160JR4P3C1CXCVP",
+    "01M61Q346P36J830S236T7GDY6",
+    "01M61Q3PXQRD3JHD5TP2CH5AQ7",
+    "01M61Q3R6NT6HY6NMXWJA78AHT",
+    "01M61Q3RXQGMXJ4EH3VB7AR7B2",
+    "01M61Q79VR8ABNANRCE8DF12JV",
+    "01M61Q7E08FRX3S6AGKP0Q2ZSB",
+    "01M61Q87YYRMY7FZ7NBZ3SNCDC",
+    "01M61Q8R9JT4JFVC77GVN9N11Q",
+    "01M61Q9VWQ06EQKHM3FTKVMMMV",
+    "01M61QAQHD89C11D1ZMTG5RH67"
+   ]
+  },
+  "docent_1": {
+   "ran": 30,
+   "wrong": 4,
+   "wrong_rate_upper95": 0.2796,
+   "wrong_write_ids": [
+    "01M61PX5E4JBZB1FQ1ZVYT6W4E",
+    "01M61PXFATXSKNSSM2J0EQME5Z",
+    "01M61PYVD9NX93H5VMR1XBYZNQ",
+    "01M61Q0HD0F0DNRS5WWVBVESGP"
+   ]
+  },
+  "docent_2": {
+   "ran": 32,
+   "wrong": 5,
+   "wrong_rate_upper95": 0.3008,
+   "wrong_write_ids": [
+    "01M61PX5E4JBZB1FQ1ZVYT6W4E",
+    "01M61PYC3M0Y8M9VYYM8SWTHPZ",
+    "01M61PYCWMZ96J0QS9ZMJ3X7NZ",
+    "01M61PYV1FP44RV654J2YAQ7AT",
+    "01M61Q0HD0F0DNRS5WWVBVESGP"
+   ]
+  },
+  "gate_1": {
+   "ran": 22,
+   "wrong": 3,
+   "wrong_rate_upper95": 0.3159,
+   "wrong_write_ids": [
+    "01M61PX5E4JBZB1FQ1ZVYT6W4E",
+    "01M61PYVD9NX93H5VMR1XBYZNQ",
+    "01M61Q0HD0F0DNRS5WWVBVESGP"
+   ],
+   "good_sent_back": 25,
+   "good_graded": 44
+  },
+  "gate_2": {
+   "ran": 24,
+   "wrong": 3,
+   "wrong_rate_upper95": 0.2923,
+   "wrong_write_ids": [
+    "01M61PX5E4JBZB1FQ1ZVYT6W4E",
+    "01M61PYV1FP44RV654J2YAQ7AT",
+    "01M61Q0HD0F0DNRS5WWVBVESGP"
+   ],
+   "good_sent_back": 23,
+   "good_graded": 44
+  },
+  "cascade_1": {
+   "ran": 29,
+   "wrong": 4,
+   "wrong_rate_upper95": 0.2884,
+   "wrong_write_ids": [
+    "01M61PX5E4JBZB1FQ1ZVYT6W4E",
+    "01M61PXFATXSKNSSM2J0EQME5Z",
+    "01M61PYVD9NX93H5VMR1XBYZNQ",
+    "01M61Q0HD0F0DNRS5WWVBVESGP"
+   ]
+  },
+  "cascade_2": {
+   "ran": 32,
+   "wrong": 5,
+   "wrong_rate_upper95": 0.3008,
+   "wrong_write_ids": [
+    "01M61PX5E4JBZB1FQ1ZVYT6W4E",
+    "01M61PYC3M0Y8M9VYYM8SWTHPZ",
+    "01M61PYCWMZ96J0QS9ZMJ3X7NZ",
+    "01M61PYV1FP44RV654J2YAQ7AT",
+    "01M61Q0HD0F0DNRS5WWVBVESGP"
+   ]
+  }
+ },
+ "person_reviewed": 14,
+ "person_overrode_graders": 4,
+ "grader_misses_in_audit": 2,
+ "audit_size": 10,
+ "grader_label_counts": {
+  "ask": 29,
+  "deny": 79,
+  "allow": 125
+ }
+}

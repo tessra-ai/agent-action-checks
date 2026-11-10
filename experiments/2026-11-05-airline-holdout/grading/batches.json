@@ -1,0 +1,355 @@
+[
+ {
+  "id": "p1-b01",
+  "cases": [
+   "case-003",
+   "case-047",
+   "case-075",
+   "case-056",
+   "case-010",
+   "case-049"
+  ]
+ },
+ {
+  "id": "p1-b02",
+  "cases": [
+   "case-058",
+   "case-032",
+   "case-054",
+   "case-040",
+   "case-017",
+   "case-021"
+  ]
+ },
+ {
+  "id": "p1-b03",
+  "cases": [
+   "case-029",
+   "case-030",
+   "case-067",
+   "case-069",
+   "case-060",
+   "case-074"
+  ]
+ },
+ {
+  "id": "p1-b04",
+  "cases": [
+   "case-051",
+   "case-057",
+   "case-026",
+   "case-068",
+   "case-059",
+   "case-008"
+  ]
+ },
+ {
+  "id": "p1-b05",
+  "cases": [
+   "case-043",
+   "case-076",
+   "case-014",
+   "case-071",
+   "case-023",
+   "case-053"
+  ]
+ },
+ {
+  "id": "p1-b06",
+  "cases": [
+   "case-025",
+   "case-019",
+   "case-006",
+   "case-039",
+   "case-063",
+   "case-041"
+  ]
+ },
+ {
+  "id": "p1-b07",
+  "cases": [
+   "case-065",
+   "case-064",
+   "case-027",
+   "case-024",
+   "case-048",
+   "case-013"
+  ]
+ },
+ {
+  "id": "p1-b08",
+  "cases": [
+   "case-066",
+   "case-034",
+   "case-073",
+   "case-070",
+   "case-037",
+   "case-005"
+  ]
+ },
+ {
+  "id": "p1-b09",
+  "cases": [
+   "case-055",
+   "case-033",
+   "case-045",
+   "case-050",
+   "case-046",
+   "case-016"
+  ]
+ },
+ {
+  "id": "p1-b10",
+  "cases": [
+   "case-072",
+   "case-044",
+   "case-022",
+   "case-062",
+   "case-038",
+   "case-020"
+  ]
+ },
+ {
+  "id": "p1-b11",
+  "cases": [
+   "case-011",
+   "case-009",
+   "case-061",
+   "case-035",
+   "case-028",
+   "case-015"
+  ]
+ },
+ {
+  "id": "p1-b12",
+  "cases": [
+   "case-004",
+   "case-002",
+   "case-036",
+   "case-052",
+   "case-042",
+   "case-001"
+  ]
+ },
+ {
+  "id": "p1-b13",
+  "cases": [
+   "case-031",
+   "case-018",
+   "case-012",
+   "case-007"
+  ]
+ },
+ {
+  "id": "p2-b01",
+  "cases": [
+   "case-036",
+   "case-037",
+   "case-047",
+   "case-005",
+   "case-050",
+   "case-076"
+  ]
+ },
+ {
+  "id": "p2-b02",
+  "cases": [
+   "case-046",
+   "case-019",
+   "case-033",
+   "case-017",
+   "case-075",
+   "case-073"
+  ]
+ },
+ {
+  "id": "p2-b03",
+  "cases": [
+   "case-013",
+   "case-010",
+   "case-043",
+   "case-003",
+   "case-022",
+   "case-011"
+  ]
+ },
+ {
+  "id": "p2-b04",
+  "cases": [
+   "case-032",
+   "case-021",
+   "case-070",
+   "case-001",
+   "case-058",
+   "case-074"
+  ]
+ },
+ {
+  "id": "p2-b05",
+  "cases": [
+   "case-029",
+   "case-065",
+   "case-007",
+   "case-054",
+   "case-049",
+   "case-056"
+  ]
+ },
+ {
+  "id": "p2-b06",
+  "cases": [
+   "case-042",
+   "case-063",
+   "case-015",
+   "case-030",
+   "case-016",
+   "case-027"
+  ]
+ },
+ {
+  "id": "p2-b07",
+  "cases": [
+   "case-057",
+   "case-035",
+   "case-062",
+   "case-068",
+   "case-060",
+   "case-066"
+  ]
+ },
+ {
+  "id": "p2-b08",
+  "cases": [
+   "case-051",
+   "case-006",
+   "case-018",
+   "case-020",
+   "case-028",
+   "case-055"
+  ]
+ },
+ {
+  "id": "p2-b09",
+  "cases": [
+   "case-064",
+   "case-014",
+   "case-004",
+   "case-072",
+   "case-038",
+   "case-034"
+  ]
+ },
+ {
+  "id": "p2-b10",
+  "cases": [
+   "case-059",
+   "case-053"
+  ]
+ },
+ {
+  "id": "p3-b01",
+  "cases": [
+   "case-011",
+   "case-014",
+   "case-043",
+   "case-053",
+   "case-055",
+   "case-016"
+  ]
+ },
+ {
+  "id": "p3-b02",
+  "cases": [
+   "case-036",
+   "case-006",
+   "case-072",
+   "case-056",
+   "case-027",
+   "case-022"
+  ]
+ },
+ {
+  "id": "p3-b03",
+  "cases": [
+   "case-003",
+   "case-013",
+   "case-015",
+   "case-066",
+   "case-004",
+   "case-046"
+  ]
+ },
+ {
+  "id": "p3-b04",
+  "cases": [
+   "case-057",
+   "case-074",
+   "case-005",
+   "case-047",
+   "case-032",
+   "case-075"
+  ]
+ },
+ {
+  "id": "p3-b05",
+  "cases": [
+   "case-049",
+   "case-054",
+   "case-076",
+   "case-020",
+   "case-017",
+   "case-018"
+  ]
+ },
+ {
+  "id": "p3-b06",
+  "cases": [
+   "case-060",
+   "case-030",
+   "case-050",
+   "case-065",
+   "case-062",
+   "case-058"
+  ]
+ },
+ {
+  "id": "p3-b07",
+  "cases": [
+   "case-021",
+   "case-063",
+   "case-042",
+   "case-035",
+   "case-073",
+   "case-033"
+  ]
+ },
+ {
+  "id": "p3-b08",
+  "cases": [
+   "case-068",
+   "case-010",
+   "case-064",
+   "case-007",
+   "case-037",
+   "case-059"
+  ]
+ },
+ {
+  "id": "p3-b09",
+  "cases": [
+   "case-070",
+   "case-001",
+   "case-051",
+   "case-034",
+   "case-028",
+   "case-019"
+  ]
+ },
+ {
+  "id": "p3-b10",
+  "cases": [
+   "case-038",
+   "case-029"
+  ]
+ }
+]

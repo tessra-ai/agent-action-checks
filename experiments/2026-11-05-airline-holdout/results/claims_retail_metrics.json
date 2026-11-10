@@ -1,0 +1,45 @@
+{
+ "writes": 73,
+ "extracted_ok": 73,
+ "claims": 237,
+ "verdicts": {
+  "false": 46,
+  "true": 138,
+  "unverifiable": 53
+ },
+ "scopes": {
+  "this_call": 195,
+  "plan": 12,
+  "other_call": 30
+ },
+ "plan_reasons": {
+  "other_call": 23,
+  "union": 3
+ },
+ "flagged_writes": 31,
+ "catches": {
+  "01M5JZ4FQ7N37RJXVD6FW00S14": {
+   "what": "task 12: the Gaming Mouse",
+   "flagged": true
+  }
+ },
+ "by_truth": {
+  "oracle": {
+   "good_total": 25,
+   "good_flagged": 9,
+   "good_flagged_ids": [
+    "01M5JZ4FQ7N37RJXVD6FW00S14",
+    "01M5JZ4WKXD7GXV289WCA5J6XF",
+    "01M5JZ4WSHQW3E5RAK48C9JBJQ",
+    "01M5JZ6STVV5NYVNFS98N5XMED",
+    "01M5JZ6T1H438VPDDHPPA4461M",
+    "01M5JZ8BVJWCCS1EFW5CNMNFXT",
+    "01M5JZ8EWDBX97WB0MFX4GWA4M",
+    "01M5JZ8RRBK9GE6SNZ9K0AKR7V",
+    "01M5JZ8RY1RS4PQ45QV29TFP9J"
+   ],
+   "stop_total": 47,
+   "stop_flagged": 21
+  }
+ }
+}

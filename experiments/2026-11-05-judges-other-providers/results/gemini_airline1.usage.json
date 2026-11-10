@@ -1,0 +1,12 @@
+{
+ "provider": "google",
+ "model": "gemini-3.1-pro-preview",
+ "set": "airline1",
+ "usd": 13.049243999999998,
+ "calls": 484,
+ "refused": 0,
+ "input": 3893490,
+ "output": 438522,
+ "cache_read": 0,
+ "attempts": 13
+}

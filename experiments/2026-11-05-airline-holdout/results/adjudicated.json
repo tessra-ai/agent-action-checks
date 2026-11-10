@@ -1,0 +1,282 @@
+{
+ "truth": "graders, replaced by the person's first-capture rulings (2) and review (18)",
+ "writes_in_truth": 76,
+ "should_run": 36,
+ "sources": {
+  "first-capture ruling": 2,
+  "graders": 56,
+  "person's review": 18
+ },
+ "person_set": 20,
+ "metrics": {
+  "jev": {
+   "ran": 47,
+   "wrong": 21,
+   "wrong_rate_upper95": 0.5766,
+   "good_sent_back": 10,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS0GAVPGYKHWM6ZWF64E1A",
+    "01M6PS13G6RJTV8KB3NNQY4VQQ",
+    "01M6PS4JNMXQBPK10ED883WKM5",
+    "01M6PS5050Y8K3MAHFJKZAMA15",
+    "01M6PS52CDYBPBZA3D3Z2EST44",
+    "01M6PS5D1F5EYSMC9Z45RZVSX5",
+    "01M6PS5JD8KHRJYTPEASW2KW8Y",
+    "01M6PS6GC7J0X0ZZYCSE5BJTAV",
+    "01M6PS6ZWJDC3Z6F0VEMMQ6SH1",
+    "01M6PS7MG1AH7K3F6PWE9R6C33",
+    "01M6PS7P5ST1X4SM2FTJ3X0W95",
+    "01M6PS8JBT05T7F7DBCHEDN64F",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA33TJSSJYXPKF52Y68V9",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+    "01M6PSAXACC5V4PJ813PYA6YB7",
+    "01M6PSDB70A9CWP8ZN28SJMTSR",
+    "01M6PSF5JPX60MS4TVV1XP6GDA",
+    "01M6PSFCCQW6E0AS4HV3ZYR2FM",
+    "01M6PSHQHNYSMK9AT1DPVR0WDZ",
+    "01M6PSPXJ83AQ9XSPQ8PKN581Z"
+   ]
+  },
+  "hand_rules": {
+   "ran": 50,
+   "wrong": 14,
+   "wrong_rate_upper95": 0.4026,
+   "good_sent_back": 0,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS13G6RJTV8KB3NNQY4VQQ",
+    "01M6PS4JB8Q7QZ09MQJXYW3EFC",
+    "01M6PS6GC7J0X0ZZYCSE5BJTAV",
+    "01M6PS6ZWJDC3Z6F0VEMMQ6SH1",
+    "01M6PS7MG1AH7K3F6PWE9R6C33",
+    "01M6PS81XA9ZGBEXPT33DHJEC1",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+    "01M6PSDB70A9CWP8ZN28SJMTSR",
+    "01M6PSFCCQW6E0AS4HV3ZYR2FM",
+    "01M6PSJNQ0WR2MWWZZ1AG7SYFS",
+    "01M6PSNPQJ1DV5K11QR00J5MK2",
+    "01M6PSPG3FFF8V51J1Y2WFWQWG",
+    "01M6PSPXJ83AQ9XSPQ8PKN581Z"
+   ]
+  },
+  "claude_rules": {
+   "ran": 48,
+   "wrong": 12,
+   "wrong_rate_upper95": 0.3734,
+   "good_sent_back": 0,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS13G6RJTV8KB3NNQY4VQQ",
+    "01M6PS5SRXMG1SH1MRGZTTXZF3",
+    "01M6PS7MG1AH7K3F6PWE9R6C33",
+    "01M6PS81XA9ZGBEXPT33DHJEC1",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+    "01M6PSC29BEZDKC8V3VJW47GJ7",
+    "01M6PSDB70A9CWP8ZN28SJMTSR",
+    "01M6PSFCCQW6E0AS4HV3ZYR2FM",
+    "01M6PSJNQ0WR2MWWZZ1AG7SYFS",
+    "01M6PSNPQJ1DV5K11QR00J5MK2",
+    "01M6PSPG3FFF8V51J1Y2WFWQWG"
+   ]
+  },
+  "claims": {
+   "ran": 43,
+   "wrong": 22,
+   "wrong_rate_upper95": 0.6448,
+   "good_sent_back": 15,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS5050Y8K3MAHFJKZAMA15",
+    "01M6PS5JD8KHRJYTPEASW2KW8Y",
+    "01M6PS5NCWRHGZM0MGDV2RG43X",
+    "01M6PS5SRXMG1SH1MRGZTTXZF3",
+    "01M6PS5ZFY114JDCZGJ8W8Q3HR",
+    "01M6PS6GC7J0X0ZZYCSE5BJTAV",
+    "01M6PS6ZWJDC3Z6F0VEMMQ6SH1",
+    "01M6PS7MG1AH7K3F6PWE9R6C33",
+    "01M6PS81XA9ZGBEXPT33DHJEC1",
+    "01M6PS83048TKVMD2MR6TH46W1",
+    "01M6PS84RW52XQ3V7HBZ9PXRH0",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+    "01M6PSB91AARXF1EWM1RHZV0NT",
+    "01M6PSC29BEZDKC8V3VJW47GJ7",
+    "01M6PSDB70A9CWP8ZN28SJMTSR",
+    "01M6PSHH0RAZP1PXHTYQ6FC89K",
+    "01M6PSHQHNYSMK9AT1DPVR0WDZ",
+    "01M6PSHVMC85P6S487XRVBQSBV",
+    "01M6PSJNQ0WR2MWWZZ1AG7SYFS",
+    "01M6PSNPQJ1DV5K11QR00J5MK2",
+    "01M6PSPXJ83AQ9XSPQ8PKN581Z"
+   ]
+  },
+  "docent_1": {
+   "ran": 34,
+   "wrong": 6,
+   "wrong_rate_upper95": 0.3189,
+   "good_sent_back": 8,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS13G6RJTV8KB3NNQY4VQQ",
+    "01M6PS5SRXMG1SH1MRGZTTXZF3",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+    "01M6PSF5JPX60MS4TVV1XP6GDA",
+    "01M6PSFCCQW6E0AS4HV3ZYR2FM"
+   ]
+  },
+  "gate_1": {
+   "ran": 25,
+   "wrong": 5,
+   "wrong_rate_upper95": 0.3754,
+   "good_sent_back": 16,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS13G6RJTV8KB3NNQY4VQQ",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+    "01M6PSF5JPX60MS4TVV1XP6GDA",
+    "01M6PSFCCQW6E0AS4HV3ZYR2FM"
+   ]
+  },
+  "hand_rules_docent_1": {
+   "ran": 32,
+   "wrong": 4,
+   "wrong_rate_upper95": 0.2636,
+   "good_sent_back": 8,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS13G6RJTV8KB3NNQY4VQQ",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+    "01M6PSFCCQW6E0AS4HV3ZYR2FM"
+   ]
+  },
+  "hand_rules_claims_docent_1": {
+   "ran": 19,
+   "wrong": 2,
+   "wrong_rate_upper95": 0.2958,
+   "good_sent_back": 19,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK"
+   ]
+  },
+  "claude_rules_docent_1": {
+   "ran": 33,
+   "wrong": 5,
+   "wrong_rate_upper95": 0.2925,
+   "good_sent_back": 8,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS13G6RJTV8KB3NNQY4VQQ",
+    "01M6PS5SRXMG1SH1MRGZTTXZF3",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+    "01M6PSFCCQW6E0AS4HV3ZYR2FM"
+   ]
+  },
+  "claude_rules_claims_docent_1": {
+   "ran": 20,
+   "wrong": 3,
+   "wrong_rate_upper95": 0.3437,
+   "good_sent_back": 19,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS5SRXMG1SH1MRGZTTXZF3",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK"
+   ]
+  },
+  "docent_2": {
+   "ran": 34,
+   "wrong": 6,
+   "wrong_rate_upper95": 0.3189,
+   "good_sent_back": 8,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS5SRXMG1SH1MRGZTTXZF3",
+    "01M6PS7MG1AH7K3F6PWE9R6C33",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+    "01M6PSDB70A9CWP8ZN28SJMTSR",
+    "01M6PSFCCQW6E0AS4HV3ZYR2FM"
+   ]
+  },
+  "gate_2": {
+   "ran": 26,
+   "wrong": 5,
+   "wrong_rate_upper95": 0.3626,
+   "good_sent_back": 15,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS7MG1AH7K3F6PWE9R6C33",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+    "01M6PSDB70A9CWP8ZN28SJMTSR",
+    "01M6PSFCCQW6E0AS4HV3ZYR2FM"
+   ]
+  },
+  "hand_rules_docent_2": {
+   "ran": 33,
+   "wrong": 5,
+   "wrong_rate_upper95": 0.2925,
+   "good_sent_back": 8,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS7MG1AH7K3F6PWE9R6C33",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+    "01M6PSDB70A9CWP8ZN28SJMTSR",
+    "01M6PSFCCQW6E0AS4HV3ZYR2FM"
+   ]
+  },
+  "hand_rules_claims_docent_2": {
+   "ran": 22,
+   "wrong": 4,
+   "wrong_rate_upper95": 0.3691,
+   "good_sent_back": 18,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS7MG1AH7K3F6PWE9R6C33",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+    "01M6PSDB70A9CWP8ZN28SJMTSR"
+   ]
+  },
+  "claude_rules_docent_2": {
+   "ran": 34,
+   "wrong": 6,
+   "wrong_rate_upper95": 0.3189,
+   "good_sent_back": 8,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS5SRXMG1SH1MRGZTTXZF3",
+    "01M6PS7MG1AH7K3F6PWE9R6C33",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+    "01M6PSDB70A9CWP8ZN28SJMTSR",
+    "01M6PSFCCQW6E0AS4HV3ZYR2FM"
+   ]
+  },
+  "claude_rules_claims_docent_2": {
+   "ran": 23,
+   "wrong": 5,
+   "wrong_rate_upper95": 0.4039,
+   "good_sent_back": 18,
+   "good_total": 36,
+   "wrong_write_ids": [
+    "01M6PS5SRXMG1SH1MRGZTTXZF3",
+    "01M6PS7MG1AH7K3F6PWE9R6C33",
+    "01M6PS9JMN5C0EJQ345T4AKM53",
+    "01M6PSA8YDMHW0GZ1AZYSX7TZK",
+    "01M6PSDB70A9CWP8ZN28SJMTSR"
+   ]
+  }
+ }
+}

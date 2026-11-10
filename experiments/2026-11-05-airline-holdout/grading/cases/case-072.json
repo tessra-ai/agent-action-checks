@@ -1,0 +1,183 @@
+{
+ "case": "case-072",
+ "action": "update_reservation_flights",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hi! I have an upcoming trip from Atlanta to Philadelphia, and I'd like to change my flight to the cheapest economy option available for the day after my original reservation. Can you help me with that?",
+   "role": "user"
+  },
+  {
+   "content": "To assist you with changing your flight, I need to know your user ID and the reservation ID for your current booking. Could you please provide those? If you don't know your reservation ID, I can help you locate it.",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure! My user ID is aarav_garcia_1177. I don't have my reservation ID handy at the moment. Could you help me find it?",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "aarav_garcia_1177"
+     },
+     "function": "get_user_details",
+     "id": "call_6fP9gjuS2GouqMlC0R7y6ZAR"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"aarav_garcia_1177\", \"name\": {\"first_name\": \"Aarav\", \"last_name\": \"Garcia\"}, \"address\": {\"address1\": \"833 Highland Drive\", \"address2\": \"Suite 740\", \"city\": \"Denver\", \"country\": \"USA\", \"state\": \"CO\", \"zip\": \"80211\"}, \"email\": \"aarav.garcia6639@example.com\", \"dob\": \"1992-09-13\", \"payment_methods\": {\"certificate_7473723\": {\"source\": \"certificate\", \"id\": \"certificate_7473723\", \"amount\": 150.0}, \"gift_card_8887175\": {\"source\": \"gift_card\", \"id\": \"gift_card_8887175\", \"amount\": 35.0}}, \"saved_passengers\": [{\"first_name\": \"Lei\", \"last_name\": \"Ito\", \"dob\": \"1990-12-07\"}], \"membership\": \"gold\", \"reservations\": [\"M05KNL\", \"UHDAHF\"]}",
+   "role": "tool",
+   "tool_call_id": "call_6fP9gjuS2GouqMlC0R7y6ZAR"
+  },
+  {
+   "content": "You have two reservations under your user ID aarav_garcia_1177: M05KNL and UHDAHF. Could you please specify which reservation is for your trip from Atlanta to Philadelphia? If you are unsure, I can provide details for both reservations to help you identify the correct one.",
+   "role": "assistant"
+  },
+  {
+   "content": "Please provide the details for both reservations so I can identify which one is for my trip from Atlanta to Philadelphia.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "M05KNL"
+     },
+     "function": "get_reservation_details",
+     "id": "call_RCSV2n7rspftb49qTSdv9abE"
+    },
+    {
+     "arguments": {
+      "reservation_id": "UHDAHF"
+     },
+     "function": "get_reservation_details",
+     "id": "call_83RT0JOGy81pn80I2ISPIisx"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"M05KNL\", \"user_id\": \"aarav_garcia_1177\", \"origin\": \"ATL\", \"destination\": \"PHL\", \"flight_type\": \"one_way\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT227\", \"origin\": \"ATL\", \"destination\": \"ORD\", \"date\": \"2024-05-23\", \"price\": 1936}, {\"flight_number\": \"HAT139\", \"origin\": \"ORD\", \"destination\": \"PHL\", \"date\": \"2024-05-23\", \"price\": 851}], \"passengers\": [{\"first_name\": \"Aarav\", \"last_name\": \"Garcia\", \"dob\": \"1992-09-13\"}], \"payment_history\": [{\"payment_id\": \"gift_card_8887175\", \"amount\": 2787}], \"created_at\": \"2024-05-14T06:33:04\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_RCSV2n7rspftb49qTSdv9abE"
+  },
+  {
+   "content": "{\"reservation_id\": \"UHDAHF\", \"user_id\": \"aarav_garcia_1177\", \"origin\": \"CLT\", \"destination\": \"LAX\", \"flight_type\": \"round_trip\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT015\", \"origin\": \"CLT\", \"destination\": \"EWR\", \"date\": \"2024-05-19\", \"price\": 98}, {\"flight_number\": \"HAT041\", \"origin\": \"EWR\", \"destination\": \"LAX\", \"date\": \"2024-05-19\", \"price\": 80}, {\"flight_number\": \"HAT228\", \"origin\": \"LAX\", \"destination\": \"EWR\", \"date\": \"2024-05-27\", \"price\": 50}, {\"flight_number\": \"HAT270\", \"origin\": \"EWR\", \"destination\": \"CLT\", \"date\": \"2024-05-28\", \"price\": 72}], \"passengers\": [{\"first_name\": \"Liam\", \"last_name\": \"Rossi\", \"dob\": \"1992-04-16\"}], \"payment_history\": [{\"payment_id\": \"gift_card_8887175\", \"amount\": 330}], \"created_at\": \"2024-05-08T02:21:25\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_83RT0JOGy81pn80I2ISPIisx"
+  },
+  {
+   "content": "Your reservation M05KNL is a one-way business class trip from Atlanta (ATL) to Philadelphia (PHL) on 2024-05-23 for passenger Aarav Garcia.\n\nYour reservation UHDAHF is a round-trip basic economy class trip from Charlotte (CLT) to Los Angeles (LAX) with multiple flights on 2024-05-19 and 2024-05-27 for passenger Liam Rossi.\n\nPlease confirm if you want to change the flight for reservation M05KNL from Atlanta to Philadelphia to the cheapest economy option available for the day after your original reservation (2024-05-24). Also, confirm if you want to keep the same passenger and if you want to keep the same trip type (one-way).",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, I want to change the flight for reservation M05KNL from Atlanta to Philadelphia to the cheapest economy option available for the day after, which is 2024-05-24. Please keep the same passenger, Aarav Garcia, and keep it as a one-way trip.",
+   "role": "user"
+  },
+  {
+   "content": "Since your current reservation M05KNL is in business class, changing to economy class involves a cabin change. I will find the cheapest economy flight options for Atlanta to Philadelphia on 2024-05-24 for you to review before proceeding.",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-24",
+      "destination": "PHL",
+      "origin": "ATL"
+     },
+     "function": "search_direct_flight",
+     "id": "call_0ub33ELmneiQqFZ6DWsnEzD9"
+    }
+   ]
+  },
+  {
+   "content": "[]",
+   "role": "tool",
+   "tool_call_id": "call_0ub33ELmneiQqFZ6DWsnEzD9"
+  },
+  {
+   "content": "There are no direct flights available from Atlanta to Philadelphia on 2024-05-24. Would you like me to search for one-stop flights for that date instead?",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please go ahead and search for the cheapest one-stop economy flights from Atlanta to Philadelphia on 2024-05-24.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-24",
+      "destination": "PHL",
+      "origin": "ATL"
+     },
+     "function": "search_onestop_flight",
+     "id": "call_hJ7WodJ5OA2VVvlzuANyLW3U"
+    }
+   ]
+  },
+  {
+   "content": "[[{\"flight_number\": \"HAT110\", \"origin\": \"ATL\", \"destination\": \"LGA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"14:00:00\", \"scheduled_arrival_time_est\": \"16:30:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 8, \"economy\": 9, \"business\": 16}, \"prices\": {\"basic_economy\": 62, \"economy\": 105, \"business\": 496}}, {\"flight_number\": \"HAT132\", \"origin\": \"LGA\", \"destination\": \"PHL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"17:00:00\", \"scheduled_arrival_time_est\": \"18:00:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 16, \"economy\": 8, \"business\": 10}, \"prices\": {\"basic_economy\": 61, \"economy\": 190, \"business\": 287}}], [{\"flight_number\": \"HAT110\", \"origin\": \"ATL\", \"destination\": \"LGA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"14:00:00\", \"scheduled_arrival_time_est\": \"16:30:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 8, \"economy\": 9, \"business\": 16}, \"prices\": {\"basic_economy\": 62, \"economy\": 105, \"business\": 496}}, {\"flight_number\": \"HAT172\", \"origin\": \"LGA\", \"destination\": \"PHL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"23:00:00\", \"scheduled_arrival_time_est\": \"00:00:00+1\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 7, \"economy\": 2, \"business\": 15}, \"prices\": {\"basic_economy\": 79, \"economy\": 102, \"business\": 360}}], [{\"flight_number\": \"HAT110\", \"origin\": \"ATL\", \"destination\": \"LGA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"14:00:00\", \"scheduled_arrival_time_est\": \"16:30:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 8, \"economy\": 9, \"business\": 16}, \"prices\": {\"basic_economy\": 62, \"economy\": 105, \"business\": 496}}, {\"flight_number\": \"HAT206\", \"origin\": \"LGA\", \"destination\": \"PHL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"18:00:00\", \"scheduled_arrival_time_est\": \"19:00:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 6, \"economy\": 19, \"business\": 2}, \"prices\": {\"basic_economy\": 98, \"economy\": 145, \"business\": 465}}], [{\"flight_number\": \"HAT110\", \"origin\": \"ATL\", \"destination\": \"LGA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"14:00:00\", \"scheduled_arrival_time_est\": \"16:30:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 8, \"economy\": 9, \"business\": 16}, \"prices\": {\"basic_economy\": 62, \"economy\": 105, \"business\": 496}}, {\"flight_number\": \"HAT264\", \"origin\": \"LGA\", \"destination\": \"PHL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"23:00:00\", \"scheduled_arrival_time_est\": \"00:00:00+1\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 19, \"economy\": 17, \"business\": 18}, \"prices\": {\"basic_economy\": 62, \"economy\": 156, \"business\": 201}}], [{\"flight_number\": \"HAT164\", \"origin\": \"ATL\", \"destination\": \"LGA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"13:30:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 0, \"economy\": 15, \"business\": 11}, \"prices\": {\"basic_economy\": 65, \"economy\": 145, \"business\": 224}}, {\"flight_number\": \"HAT132\", \"origin\": \"LGA\", \"destination\": \"PHL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"17:00:00\", \"scheduled_arrival_time_est\": \"18:00:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 16, \"economy\": 8, \"business\": 10}, \"prices\": {\"basic_economy\": 61, \"economy\": 190, \"business\": 287}}], [{\"flight_number\": \"HAT164\", \"origin\": \"ATL\", \"destination\": \"LGA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"13:30:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 0, \"economy\": 15, \"business\": 11}, \"prices\": {\"basic_economy\": 65, \"economy\": 145, \"business\": 224}}, {\"flight_number\": \"HAT172\", \"origin\": \"LGA\", \"destination\": \"PHL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"23:00:00\", \"scheduled_arrival_time_est\": \"00:00:00+1\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 7, \"economy\": 2, \"business\": 15}, \"prices\": {\"basic_economy\": 79, \"economy\": 102, \"business\": 360}}], [{\"flight_number\": \"HAT164\", \"origin\": \"ATL\", \"destination\": \"LGA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"13:30:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 0, \"economy\": 15, \"business\": 11}, \"prices\": {\"basic_economy\": 65, \"economy\": 145, \"business\": 224}}, {\"flight_number\": \"HAT206\", \"origin\": \"LGA\", \"destination\": \"PHL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"18:00:00\", \"scheduled_arrival_time_est\": \"19:00:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 6, \"economy\": 19, \"business\": 2}, \"prices\": {\"basic_economy\": 98, \"economy\": 145, \"business\": 465}}], [{\"flight_number\": \"HAT164\", \"origin\": \"ATL\", \"destination\": \"LGA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"13:30:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 0, \"economy\": 15, \"business\": 11}, \"prices\": {\"basic_economy\": 65, \"economy\": 145, \"business\": 224}}, {\"flight_number\": \"HAT264\", \"origin\": \"LGA\", \"destination\": \"PHL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"23:00:00\", \"scheduled_arrival_time_est\": \"00:00:00+1\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 19, \"economy\": 17, \"business\": 18}, \"prices\": {\"basic_economy\": 62, \"economy\": 156, \"business\": 201}}], [{\"flight_number\": \"HAT227\", \"origin\": \"ATL\", \"destination\": \"ORD\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"13:00:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 14, \"economy\": 5, \"business\": 6}, \"prices\": {\"basic_economy\": 69, \"economy\": 112, \"business\": 365}}, {\"flight_number\": \"HAT139\", \"origin\": \"ORD\", \"destination\": \"PHL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"17:00:00\", \"scheduled_arrival_time_est\": \"19:00:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 19, \"economy\": 10, \"business\": 20}, \"prices\": {\"basic_economy\": 71, \"economy\": 104, \"business\": 267}}], [{\"flight_number\": \"HAT227\", \"origin\": \"ATL\", \"destination\": \"ORD\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"13:00:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 14, \"economy\": 5, \"business\": 6}, \"prices\": {\"basic_economy\": 69, \"economy\": 112, \"business\": 365}}, {\"flight_number\": \"HAT271\", \"origin\": \"ORD\", \"destination\": \"PHL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"19:00:00\", \"scheduled_arrival_time_est\": \"21:00:00\", \"date\": \"2024-05-24\", \"available_seats\": {\"basic_economy\": 10, \"economy\": 14, \"business\": 1}, \"prices\": {\"basic_economy\": 75, \"economy\": 138, \"business\": 292}}]]",
+   "role": "tool",
+   "tool_call_id": "call_hJ7WodJ5OA2VVvlzuANyLW3U"
+  },
+  {
+   "content": "The cheapest one-stop economy flights from Atlanta to Philadelphia on 2024-05-24 are:\n\n1. Flight HAT110 from ATL to LGA, departing at 14:00, arriving at 16:30, price $105\n   Connecting to Flight HAT172 from LGA to PHL, departing at 23:00, arriving at 00:00+1, price $102\n   Total price: $207\n\n2. Flight HAT227 from ATL to ORD, departing at 11:00, arriving at 13:00, price $112\n   Connecting to Flight HAT139 from ORD to PHL, departing at 17:00, arriving at 19:00, price $104\n   Total price: $216\n\nPlease confirm if you want to proceed with the first option (HAT110 + HAT172) or the second option (HAT227 + HAT139) for the economy class change. Also, confirm if you want to proceed with the change.",
+   "role": "assistant"
+  },
+  {
+   "content": "I would like to proceed with the first option, flights HAT110 and HAT172, for the economy class change. Please go ahead and make the change.",
+   "role": "user"
+  },
+  {
+   "content": "To confirm, you want to change your reservation M05KNL from business class to economy class for the flights on 2024-05-24:\n\n- Flight HAT110 from Atlanta (ATL) to LaGuardia (LGA), departing at 14:00\n- Flight HAT172 from LaGuardia (LGA) to Philadelphia (PHL), departing at 23:00\n\nPassenger: Aarav Garcia\nTrip type: One-way\n\nPlease confirm if you want me to proceed with this change. Also, please specify the payment method from your profile for any price difference payment or refund. Your available payment methods are gift card with $35 and travel certificate with $150.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please proceed with this change. For any price difference payment or refund, I am happy to use the original payment method.",
+   "role": "user"
+  },
+  {
+   "content": "Your original payment method for this reservation is a gift card with $35. The original business class price was $2787. The new economy class price is $207. \n\nPlease confirm you want to proceed with the change using the gift card for any price difference.\nTo clarify, the original business class price was $2787, and the new economy class price is $207. This means you will be refunded the difference of $2580 to your gift card. Please confirm if you want to proceed with this change and refund.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, I confirm that I want to proceed with the change and the refund of the difference to my gift card. Thank you.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "cabin": "economy",
+      "flights": [
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT110"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT172"
+       }
+      ],
+      "payment_id": "gift_card_8887175",
+      "reservation_id": "M05KNL"
+     },
+     "function": "update_reservation_flights",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

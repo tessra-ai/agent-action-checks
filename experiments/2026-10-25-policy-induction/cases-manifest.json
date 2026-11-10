@@ -1,0 +1,24 @@
+{
+ "code_sha256": {
+  "__init__.py": "ffe6ca14a47191ac01d604b8ddfee0920cf636ff77183a53ce281fa82714e06f",
+  "cases.py": "54d1769b05a0070d89c6f4ae4f4e3c94e48d81c5c10b00d5bc694bd8f33aaff6",
+  "evaluate.py": "8439d5658fd9cf88b106f143883f18b0d9942f91cabd478ed1ffb5c6a804f4f3",
+  "induce.py": "d1044d8f3e5f7d964fe05bd94f9a2c9d47be18020c2fffc96ac1b5cb214b8a56",
+  "run.py": "8dae317158cca07e69482156bec5ba243e8c97baf0614406316bae44f530274d",
+  "worlds.py": "045a2210eb47398dfe96d1956b4da2b8ceb482efedfe5128721cc3dc39fa401b"
+ },
+ "counts": {
+  "ALLOW": 2260,
+  "ASK": 1935,
+  "DENY": 3589,
+  "UNKNOWN": 0,
+  "cases": 7784,
+  "families": 789,
+  "train_families": 398
+ },
+ "dataset_sha256": "babbb5fba44de5003f6ff137cfa2716b36f0c30aa3ecaabf4b9ce330161631dc",
+ "generator": "pi-cases-1",
+ "retail_policy_sha256": "2c9652afbce57d6e087768d37cda64d31c53d50b3e3225cfdb791bac66466467",
+ "seed": 20261025,
+ "tau2_commit": "c5b2d228d850c59b749b93cf32c4745d3aa53967"
+}

@@ -1,0 +1,146 @@
+{
+ "airline/plan_all/strict": {
+  "catches_kept": {
+   "01M61PYGRX51BXSSZ4R86R0CQH": true,
+   "01M61Q0HD0F0DNRS5WWVBVESGP": true,
+   "01M61PTMV0JAHQARJNFWV9YQHZ": true
+  },
+  "corrected_benchmark": {
+   "good_total": 46,
+   "good_flagged_before": 17,
+   "good_flagged_after": 13,
+   "stop_total": 87,
+   "stop_flagged_before": 44,
+   "stop_flagged_after": 35
+  },
+  "adjudicated": {
+   "good_total": 43,
+   "good_flagged_before": 19,
+   "good_flagged_after": 15,
+   "stop_total": 48,
+   "stop_flagged_before": 24,
+   "stop_flagged_after": 19
+  }
+ },
+ "airline/plan_all/targeted": {
+  "catches_kept": {
+   "01M61PYGRX51BXSSZ4R86R0CQH": true,
+   "01M61Q0HD0F0DNRS5WWVBVESGP": true,
+   "01M61PTMV0JAHQARJNFWV9YQHZ": true
+  },
+  "corrected_benchmark": {
+   "good_total": 46,
+   "good_flagged_before": 17,
+   "good_flagged_after": 13,
+   "stop_total": 87,
+   "stop_flagged_before": 44,
+   "stop_flagged_after": 35
+  },
+  "adjudicated": {
+   "good_total": 43,
+   "good_flagged_before": 19,
+   "good_flagged_after": 15,
+   "stop_total": 48,
+   "stop_flagged_before": 24,
+   "stop_flagged_after": 19
+  }
+ },
+ "airline/plan_so_far/strict": {
+  "catches_kept": {
+   "01M61PYGRX51BXSSZ4R86R0CQH": true,
+   "01M61Q0HD0F0DNRS5WWVBVESGP": true,
+   "01M61PTMV0JAHQARJNFWV9YQHZ": true
+  },
+  "corrected_benchmark": {
+   "good_total": 46,
+   "good_flagged_before": 17,
+   "good_flagged_after": 16,
+   "stop_total": 87,
+   "stop_flagged_before": 44,
+   "stop_flagged_after": 36
+  },
+  "adjudicated": {
+   "good_total": 43,
+   "good_flagged_before": 19,
+   "good_flagged_after": 18,
+   "stop_total": 48,
+   "stop_flagged_before": 24,
+   "stop_flagged_after": 20
+  }
+ },
+ "airline/plan_so_far/targeted": {
+  "catches_kept": {
+   "01M61PYGRX51BXSSZ4R86R0CQH": true,
+   "01M61Q0HD0F0DNRS5WWVBVESGP": true,
+   "01M61PTMV0JAHQARJNFWV9YQHZ": true
+  },
+  "corrected_benchmark": {
+   "good_total": 46,
+   "good_flagged_before": 17,
+   "good_flagged_after": 16,
+   "stop_total": 87,
+   "stop_flagged_before": 44,
+   "stop_flagged_after": 36
+  },
+  "adjudicated": {
+   "good_total": 43,
+   "good_flagged_before": 19,
+   "good_flagged_after": 18,
+   "stop_total": 48,
+   "stop_flagged_before": 24,
+   "stop_flagged_after": 20
+  }
+ },
+ "retail/plan_all/strict": {
+  "catches_kept": {
+   "01M5JZ4FQ7N37RJXVD6FW00S14": true
+  },
+  "oracle": {
+   "good_total": 25,
+   "good_flagged_before": 15,
+   "good_flagged_after": 12,
+   "stop_total": 47,
+   "stop_flagged_before": 22,
+   "stop_flagged_after": 21
+  }
+ },
+ "retail/plan_all/targeted": {
+  "catches_kept": {
+   "01M5JZ4FQ7N37RJXVD6FW00S14": true
+  },
+  "oracle": {
+   "good_total": 25,
+   "good_flagged_before": 15,
+   "good_flagged_after": 11,
+   "stop_total": 47,
+   "stop_flagged_before": 22,
+   "stop_flagged_after": 21
+  }
+ },
+ "retail/plan_so_far/strict": {
+  "catches_kept": {
+   "01M5JZ4FQ7N37RJXVD6FW00S14": true
+  },
+  "oracle": {
+   "good_total": 25,
+   "good_flagged_before": 15,
+   "good_flagged_after": 14,
+   "stop_total": 47,
+   "stop_flagged_before": 22,
+   "stop_flagged_after": 20
+  }
+ },
+ "retail/plan_so_far/targeted": {
+  "catches_kept": {
+   "01M5JZ4FQ7N37RJXVD6FW00S14": true
+  },
+  "oracle": {
+   "good_total": 25,
+   "good_flagged_before": 15,
+   "good_flagged_after": 14,
+   "stop_total": 47,
+   "stop_flagged_before": 22,
+   "stop_flagged_after": 20
+  }
+ }
+}

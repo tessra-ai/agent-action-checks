@@ -1,0 +1,161 @@
+{
+  "definition_sha256": "21bd172117dc5c171f1ca419c4143ef251b507677feee30c4393c081f270cf56",
+  "split_sha256": "7bfa51a68f4d03415e77e611d1e16373766ab1c82a0f0bb9bca3de6d93539148",
+  "passed": false,
+  "checks": [
+    {
+      "scope": "held-out",
+      "rule": "verdict-bearing \u2265",
+      "value": 9,
+      "limit": 70,
+      "ok": false
+    },
+    {
+      "scope": "held-out",
+      "rule": "ALLOW \u2265",
+      "value": 4,
+      "limit": 20,
+      "ok": false
+    },
+    {
+      "scope": "held-out",
+      "rule": "ASK/DENY \u2265",
+      "value": 5,
+      "limit": 20,
+      "ok": false
+    },
+    {
+      "scope": "held-out",
+      "rule": "UNKNOWN rate \u2264",
+      "value": 0.0,
+      "limit": 0.1,
+      "ok": true
+    },
+    {
+      "scope": "held-out return_delivered_order_items",
+      "rule": "verdict-bearing \u2265",
+      "value": 4,
+      "limit": 10,
+      "ok": false
+    },
+    {
+      "scope": "held-out return_delivered_order_items",
+      "rule": "ALLOW \u2265",
+      "value": 2,
+      "limit": 3,
+      "ok": false
+    },
+    {
+      "scope": "held-out return_delivered_order_items",
+      "rule": "ASK/DENY \u2265",
+      "value": 2,
+      "limit": 3,
+      "ok": false
+    },
+    {
+      "scope": "held-out return_delivered_order_items",
+      "rule": "UNKNOWN rate \u2264",
+      "value": 0.0,
+      "limit": 0.1,
+      "ok": true
+    },
+    {
+      "scope": "train return_delivered_order_items",
+      "rule": "ALLOW \u2265",
+      "value": 13,
+      "limit": 5,
+      "ok": true
+    },
+    {
+      "scope": "train return_delivered_order_items",
+      "rule": "ASK/DENY \u2265",
+      "value": 27,
+      "limit": 5,
+      "ok": true
+    },
+    {
+      "scope": "held-out enable_roaming",
+      "rule": "verdict-bearing \u2265",
+      "value": 3,
+      "limit": 10,
+      "ok": false
+    },
+    {
+      "scope": "held-out enable_roaming",
+      "rule": "ALLOW \u2265",
+      "value": 2,
+      "limit": 3,
+      "ok": false
+    },
+    {
+      "scope": "held-out enable_roaming",
+      "rule": "ASK/DENY \u2265",
+      "value": 1,
+      "limit": 3,
+      "ok": false
+    },
+    {
+      "scope": "held-out enable_roaming",
+      "rule": "UNKNOWN rate \u2264",
+      "value": 0.0,
+      "limit": 0.1,
+      "ok": true
+    },
+    {
+      "scope": "train enable_roaming",
+      "rule": "ALLOW \u2265",
+      "value": 8,
+      "limit": 5,
+      "ok": true
+    },
+    {
+      "scope": "train enable_roaming",
+      "rule": "ASK/DENY \u2265",
+      "value": 2,
+      "limit": 5,
+      "ok": false
+    },
+    {
+      "scope": "held-out refuel_data",
+      "rule": "verdict-bearing \u2265",
+      "value": 2,
+      "limit": 10,
+      "ok": false
+    },
+    {
+      "scope": "held-out refuel_data",
+      "rule": "ALLOW \u2265",
+      "value": 0,
+      "limit": 3,
+      "ok": false
+    },
+    {
+      "scope": "held-out refuel_data",
+      "rule": "ASK/DENY \u2265",
+      "value": 2,
+      "limit": 3,
+      "ok": false
+    },
+    {
+      "scope": "held-out refuel_data",
+      "rule": "UNKNOWN rate \u2264",
+      "value": 0.0,
+      "limit": 0.1,
+      "ok": true
+    },
+    {
+      "scope": "train refuel_data",
+      "rule": "ALLOW \u2265",
+      "value": 1,
+      "limit": 5,
+      "ok": false
+    },
+    {
+      "scope": "train refuel_data",
+      "rule": "ASK/DENY \u2265",
+      "value": 5,
+      "limit": 5,
+      "ok": true
+    }
+  ]
+}

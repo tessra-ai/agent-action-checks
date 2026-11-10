@@ -1,0 +1,88 @@
+{
+ "truth": "graders' majority, replaced by the person's answers after the corrections in review/corrections.json (post hoc, after unblinding)",
+ "metrics": {
+  "jev": {
+   "ran": 60,
+   "wrong": 27,
+   "wrong_rate_upper95": 0.564,
+   "wrong_cases": [
+    "case-04",
+    "case-07",
+    "case-12",
+    "case-13",
+    "case-14"
+   ],
+   "wrong_unreviewed": 22
+  },
+  "docent_1": {
+   "ran": 30,
+   "wrong": 3,
+   "wrong_rate_upper95": 0.2386,
+   "wrong_cases": [
+    "case-04",
+    "case-13"
+   ],
+   "wrong_unreviewed": 1
+  },
+  "docent_2": {
+   "ran": 32,
+   "wrong": 6,
+   "wrong_rate_upper95": 0.3369,
+   "wrong_cases": [
+    "case-07",
+    "case-12",
+    "case-13",
+    "case-14"
+   ],
+   "wrong_unreviewed": 2
+  },
+  "gate_1": {
+   "ran": 22,
+   "wrong": 2,
+   "wrong_rate_upper95": 0.2595,
+   "wrong_cases": [
+    "case-04",
+    "case-13"
+   ],
+   "wrong_unreviewed": 0,
+   "good_sent_back": 23,
+   "good_graded": 43
+  },
+  "gate_2": {
+   "ran": 24,
+   "wrong": 4,
+   "wrong_rate_upper95": 0.3418,
+   "wrong_cases": [
+    "case-07",
+    "case-12",
+    "case-13",
+    "case-14"
+   ],
+   "wrong_unreviewed": 0,
+   "good_sent_back": 23,
+   "good_graded": 43
+  },
+  "cascade_1": {
+   "ran": 29,
+   "wrong": 3,
+   "wrong_rate_upper95": 0.2461,
+   "wrong_cases": [
+    "case-04",
+    "case-13"
+   ],
+   "wrong_unreviewed": 1
+  },
+  "cascade_2": {
+   "ran": 32,
+   "wrong": 6,
+   "wrong_rate_upper95": 0.3369,
+   "wrong_cases": [
+    "case-07",
+    "case-12",
+    "case-13",
+    "case-14"
+   ],
+   "wrong_unreviewed": 2
+  }
+ }
+}

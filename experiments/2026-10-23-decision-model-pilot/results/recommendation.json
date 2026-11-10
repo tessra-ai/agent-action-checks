@@ -1,0 +1,10 @@
+{
+  "decision": "no-go for the $8–12 capture as specified",
+  "reasons": [
+    "Learning showed no value. On the holdout G1 escalated all 30 writes (0/9 approvals saved) against DC's 3/9 and D's 2/9, with 0/21 false allows for all three. Its out-of-fold threshold at the 95% catch target sat at 0.9995. On the revealed stream it saved a median 3 approvals against DC's 7 and D's 12, at 2 false allows (DC 2, D 3). No G1 challenger was ever promoted over 'escalate everything' on the promotion set, in any of 20 orderings.",
+    "Shared concepts showed no measurable value over the baseline. DC versus D on the holdout: same false allows (0/21), asks 27/30 against 28/30 (family bootstrap −4 pts, 90% interval −11 to +11). On the promotion set DC had 3/18 false allows where D had 0/18.",
+    "Transfer is unmeasured. Only one action (exchange: 10 writes, all should escalate) met the coverage rule, and it has no write that should run. Every other action and the telecom domain are inconclusive.",
+    "The one positive signal is adaptation. Revealing real prerequisite failures as corrections raised G1's catches of later prerequisite failures on other actions from 27/59 to 45/59 (summed over 16 usable orderings). It also raised escalations of writes that should run from 145/187 to 162/187. Consent corrections changed nothing, because every arm already caught those failures. The remaining concepts had too few corrections to measure.",
+    "A bigger capture of the same design would mostly add more of the same few scenario families: 16 families in all, with 5 in the holdout. Phase 2 should first change what the pilot shows is binding: more families per action rather than more trials, and a G1 threshold procedure that can pass at this data size. That needs its own go/no-go."
+  ]
+}

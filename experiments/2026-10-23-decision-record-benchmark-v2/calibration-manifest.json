@@ -1,0 +1,22 @@
+{
+ "dataset_sha256": "bf252816984c4e334ce7d612310d5b80973b4eccd442e5188559cb6029c86fe5",
+ "pools": {
+  "cal_P1": {
+   "eligible_families": 32,
+   "families": 32,
+   "records": 160,
+   "sha256": "f0f56a74598b64db10d877e1851ee2ddb44bb24afd88ab0887e402424c572cf5",
+   "should_escalate": 59,
+   "should_run": 101
+  },
+  "cal_P2": {
+   "eligible_families": 32,
+   "families": 32,
+   "records": 160,
+   "sha256": "2fca6fbc50f631a7eb09b6eca0894dcbb82782612907f73911aec121b588cddd",
+   "should_escalate": 71,
+   "should_run": 89
+  }
+ },
+ "seed": 20261024
+}

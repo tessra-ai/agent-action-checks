@@ -1,0 +1,76 @@
+{
+  "path": "/systemone",
+  "request": {
+    "model": "jev-1.14.0",
+    "questions": {
+      "matches_request": {
+        "criteria": [
+          "Not at all: The statement is clearly false for this action.",
+          "Slightly: The statement is mostly false for this action.",
+          "Partly: The statement is about as true as it is false for this action.",
+          "Mostly: The statement is mostly true for this action.",
+          "Fully: The statement is clearly true for this action."
+        ],
+        "instructions": "How true is this statement of the proposed action? This action matches what the customer asked for.",
+        "type": "score"
+      },
+      "policy_ok": {
+        "instructions": "Is this statement true of the proposed action? This refund follows policy.",
+        "type": "noul"
+      },
+      "risk": {
+        "criteria": {
+          "high": null,
+          "low": null,
+          "medium": null
+        },
+        "instructions": "Which risk best describes the proposed action?",
+        "type": "choice"
+      }
+    },
+    "state": "## Context: conversation\nCustomer: I was charged twice for order #W123. Please refund the duplicate $20 charge.\n\n## Earlier writes in this session\n(none)\n\n## Proposed action\nrefund_order({\"amount\":20,\"method\":\"card\",\"order_id\":\"W123\"})\n"
+  },
+  "response": {
+    "answers": {
+      "matches_request": {
+        "confidence": 0.93,
+        "legend": {
+          "0": "Not at all: The statement is clearly false for this action.",
+          "1": "Slightly: The statement is mostly false for this action.",
+          "2": "Partly: The statement is about as true as it is false for this action.",
+          "3": "Mostly: The statement is mostly true for this action.",
+          "4": "Fully: The statement is clearly true for this action."
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.04,
+          "4": 0.95
+        },
+        "score": 3.92,
+        "type": "score"
+      },
+      "policy_ok": {
+        "noul": 0.64,
+        "type": "noul"
+      },
+      "risk": {
+        "choice": "low",
+        "confidence": 0.28,
+        "probabilities": {
+          "high": 0.21,
+          "low": 0.52,
+          "medium": 0.27
+        },
+        "type": "choice"
+      }
+    },
+    "model": "jev-1.14.0",
+    "usage": {
+      "input_tokens": 504,
+      "output_tokens": 70
+    }
+  },
+  "status": 200
+}

@@ -1,0 +1,115 @@
+{
+ "case": "case-047",
+ "action": "update_reservation_flights",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hi! I need to make some changes to my upcoming flights in reservation HXDUBJ. I'd like to change my outgoing flight to a nonstop flight on the next day, and also move my return flight from SFO back by one day. Can you help me with that?",
+   "role": "user"
+  },
+  {
+   "content": "To assist you with modifying your reservation, I\u2019ll need your user ID for verification. Could you please provide your user ID? If you\u2019re not sure, let me know and I can help you locate it.",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure, my user ID is yara_garcia_1905.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "HXDUBJ"
+     },
+     "function": "get_reservation_details",
+     "id": "call_vn5ePTTCXfcqO77lDioIZNkm"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"HXDUBJ\", \"user_id\": \"yara_garcia_1905\", \"origin\": \"IAH\", \"destination\": \"SFO\", \"flight_type\": \"round_trip\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT085\", \"origin\": \"IAH\", \"destination\": \"JFK\", \"date\": \"2024-05-18\", \"price\": 177}, {\"flight_number\": \"HAT023\", \"origin\": \"JFK\", \"destination\": \"SFO\", \"date\": \"2024-05-18\", \"price\": 146}, {\"flight_number\": \"HAT278\", \"origin\": \"SFO\", \"destination\": \"IAH\", \"date\": \"2024-05-22\", \"price\": 180}], \"passengers\": [{\"first_name\": \"Yara\", \"last_name\": \"Garcia\", \"dob\": \"1974-08-15\"}], \"payment_history\": [{\"payment_id\": \"gift_card_6941833\", \"amount\": 533}], \"created_at\": \"2024-05-04T06:04:48\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_vn5ePTTCXfcqO77lDioIZNkm"
+  },
+  {
+   "content": "Here\u2019s a summary of your current reservation:\n\n- Outgoing: IAH \u2192 JFK (HAT085), then JFK \u2192 SFO (HAT023) on 2024-05-18\n- Return: SFO \u2192 IAH (HAT278) on 2024-05-22\n- Cabin: Economy\n- Passenger: Yara Garcia\n- Insurance: Yes\n\nYou requested:\n1. Change your outgoing flight to a nonstop flight from IAH to SFO on 2024-05-19 (next day).\n2. Move your return flight from SFO to IAH back by one day (to 2024-05-23).\n\nCould you please confirm:\n- You want to fly IAH \u2192 SFO nonstop on 2024-05-19.\n- You want to fly SFO \u2192 IAH on 2024-05-23.\n- You want to keep the same cabin class (economy).\n\nOnce you confirm, I\u2019ll search for available nonstop flights and proceed with the changes.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, that's correct. I want to fly nonstop from IAH to SFO on May 19th, and move my return flight from SFO to IAH to May 23rd. I want to keep the same economy cabin class for now. Also, I want to make sure the flights depart after 8am and before 9pm. Please proceed with the search.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-19",
+      "destination": "SFO",
+      "origin": "IAH"
+     },
+     "function": "search_direct_flight",
+     "id": "call_QVSRZws7utaYYko6YW5KoW5q"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-23",
+      "destination": "IAH",
+      "origin": "SFO"
+     },
+     "function": "search_direct_flight",
+     "id": "call_ynfu126QUmZ4FIhGzdOQUEqT"
+    }
+   ]
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT072\", \"origin\": \"IAH\", \"destination\": \"SFO\", \"status\": \"available\", \"scheduled_departure_time_est\": \"09:00:00\", \"scheduled_arrival_time_est\": \"13:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 18, \"economy\": 9, \"business\": 9}, \"prices\": {\"basic_economy\": 68, \"economy\": 130, \"business\": 282}}, {\"flight_number\": \"HAT180\", \"origin\": \"IAH\", \"destination\": \"SFO\", \"status\": \"available\", \"scheduled_departure_time_est\": \"07:00:00\", \"scheduled_arrival_time_est\": \"11:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 4, \"economy\": 17, \"business\": 15}, \"prices\": {\"basic_economy\": 65, \"economy\": 130, \"business\": 346}}]",
+   "role": "tool",
+   "tool_call_id": "call_QVSRZws7utaYYko6YW5KoW5q"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT082\", \"origin\": \"SFO\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"23:00:00\", \"scheduled_arrival_time_est\": \"03:00:00+1\", \"date\": null, \"available_seats\": {\"basic_economy\": 19, \"economy\": 9, \"business\": 2}, \"prices\": {\"basic_economy\": 92, \"economy\": 164, \"business\": 323}}, {\"flight_number\": \"HAT278\", \"origin\": \"SFO\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"16:00:00\", \"scheduled_arrival_time_est\": \"20:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 13, \"economy\": 5, \"business\": 3}, \"prices\": {\"basic_economy\": 67, \"economy\": 187, \"business\": 443}}]",
+   "role": "tool",
+   "tool_call_id": "call_ynfu126QUmZ4FIhGzdOQUEqT"
+  },
+  {
+   "content": "Here are the available nonstop flight options that meet your time preferences:\n\nOutgoing (IAH \u2192 SFO, May 19):\n- HAT072: Departs 09:00, Arrives 13:00, Economy seats available\n\nReturn (SFO \u2192 IAH, May 23):\n- HAT278: Departs 16:00, Arrives 20:00, Economy seats available\n\nWould you like to proceed with changing your reservation to:\n- Outgoing: HAT072 (IAH \u2192 SFO, May 19, 09:00)\n- Return: HAT278 (SFO \u2192 IAH, May 23, 16:00)\n- Cabin: Economy\n\nPlease confirm so I can proceed with updating your reservation.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please go ahead and update my reservation to those flights. Also, I want to mention that I have insurance, so any change fees should be waived according to the policy I read on your website. I expect the fees to be waived for these changes.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "cabin": "economy",
+      "flights": [
+       {
+        "date": "2024-05-19",
+        "flight_number": "HAT072"
+       },
+       {
+        "date": "2024-05-23",
+        "flight_number": "HAT278"
+       }
+      ],
+      "payment_id": "gift_card_6941833",
+      "reservation_id": "HXDUBJ"
+     },
+     "function": "update_reservation_flights",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

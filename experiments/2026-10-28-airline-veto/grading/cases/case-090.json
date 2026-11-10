@@ -1,0 +1,525 @@
+{
+ "case": "case-090",
+ "action": "update_reservation_flights",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hi, this is Omar Davis. I just ran into some serious money issues, and I need to downgrade all my business class flights to economy. I don't want to change the flights or the passengers, just the class. Can you help me with that? Also, I want to know how much money I'll save in total from this downgrade.",
+   "role": "user"
+  },
+  {
+   "content": "To assist you with downgrading your business class flights to economy, I need to know your user ID and the reservation ID for the booking you want to modify. Could you please provide those details?",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure, my user ID is omar_davis_3817. I have multiple reservations, so I want to downgrade all of them. Can you pull up all my bookings under this user ID?",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "omar_davis_3817"
+     },
+     "function": "get_user_details",
+     "id": "call_MMLLUSkdBxinz0p1DKGYkA1S"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"omar_davis_3817\", \"name\": {\"first_name\": \"Omar\", \"last_name\": \"Davis\"}, \"address\": {\"address1\": \"281 Spruce Street\", \"address2\": \"Suite 942\", \"city\": \"San Diego\", \"country\": \"USA\", \"state\": \"CA\", \"zip\": \"92164\"}, \"email\": \"omar.davis7857@example.com\", \"dob\": \"1982-10-19\", \"payment_methods\": {\"gift_card_3481935\": {\"source\": \"gift_card\", \"id\": \"gift_card_3481935\", \"amount\": 22.0}, \"credit_card_2929732\": {\"source\": \"credit_card\", \"id\": \"credit_card_2929732\", \"brand\": \"visa\", \"last_four\": \"7803\"}, \"credit_card_9525117\": {\"source\": \"credit_card\", \"id\": \"credit_card_9525117\", \"brand\": \"visa\", \"last_four\": \"2172\"}, \"gift_card_6847880\": {\"source\": \"gift_card\", \"id\": \"gift_card_6847880\", \"amount\": 31.0}}, \"saved_passengers\": [{\"first_name\": \"Juan\", \"last_name\": \"Ahmed\", \"dob\": \"1992-11-19\"}, {\"first_name\": \"Anya\", \"last_name\": \"Thomas\", \"dob\": \"1990-10-11\"}], \"membership\": \"regular\", \"reservations\": [\"JG7FMM\", \"LQ940Q\", \"2FBBAH\", \"X7BYG1\", \"EQ1G6C\", \"BOH180\"]}",
+   "role": "tool",
+   "tool_call_id": "call_MMLLUSkdBxinz0p1DKGYkA1S"
+  },
+  {
+   "content": "You have six reservations under your user ID omar_davis_3817: JG7FMM, LQ940Q, 2FBBAH, X7BYG1, EQ1G6C, and BOH180.\n\nTo proceed with downgrading all your business class flights to economy, I will need to check the details of each reservation to confirm they are business class and eligible for downgrade. I will start by retrieving the details of these reservations one by one.",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "JG7FMM"
+     },
+     "function": "get_reservation_details",
+     "id": "call_yl0S6NbQ8y57lDodVZy42Eee"
+    },
+    {
+     "arguments": {
+      "reservation_id": "LQ940Q"
+     },
+     "function": "get_reservation_details",
+     "id": "call_LhWsNOrfqY3EWoh3wSOqai4J"
+    },
+    {
+     "arguments": {
+      "reservation_id": "2FBBAH"
+     },
+     "function": "get_reservation_details",
+     "id": "call_FV1jRuYOnF7oDtgMnAjNQLaQ"
+    },
+    {
+     "arguments": {
+      "reservation_id": "X7BYG1"
+     },
+     "function": "get_reservation_details",
+     "id": "call_w9UhzDMU4ZY8aczQ8gQGcLRi"
+    },
+    {
+     "arguments": {
+      "reservation_id": "EQ1G6C"
+     },
+     "function": "get_reservation_details",
+     "id": "call_V6Pc0qlSOPSHANTWtaKbKM0X"
+    },
+    {
+     "arguments": {
+      "reservation_id": "BOH180"
+     },
+     "function": "get_reservation_details",
+     "id": "call_PDL5dqkaBQ9pNr3DoIYQh2Ap"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"JG7FMM\", \"user_id\": \"omar_davis_3817\", \"origin\": \"MCO\", \"destination\": \"CLT\", \"flight_type\": \"one_way\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT028\", \"origin\": \"MCO\", \"destination\": \"BOS\", \"date\": \"2024-05-21\", \"price\": 1859}, {\"flight_number\": \"HAT277\", \"origin\": \"BOS\", \"destination\": \"CLT\", \"date\": \"2024-05-21\", \"price\": 1679}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Davis\", \"dob\": \"1982-10-19\"}, {\"first_name\": \"Fatima\", \"last_name\": \"Patel\", \"dob\": \"1950-05-04\"}], \"payment_history\": [{\"payment_id\": \"credit_card_2929732\", \"amount\": 7136}], \"created_at\": \"2024-05-11T08:28:51\", \"total_baggages\": 3, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_yl0S6NbQ8y57lDodVZy42Eee"
+  },
+  {
+   "content": "{\"reservation_id\": \"LQ940Q\", \"user_id\": \"omar_davis_3817\", \"origin\": \"SFO\", \"destination\": \"MCO\", \"flight_type\": \"round_trip\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT294\", \"origin\": \"SFO\", \"destination\": \"BOS\", \"date\": \"2024-05-16\", \"price\": 133}, {\"flight_number\": \"HAT013\", \"origin\": \"BOS\", \"destination\": \"MCO\", \"date\": \"2024-05-16\", \"price\": 166}, {\"flight_number\": \"HAT161\", \"origin\": \"MCO\", \"destination\": \"PHX\", \"date\": \"2024-05-19\", \"price\": 103}, {\"flight_number\": \"HAT009\", \"origin\": \"PHX\", \"destination\": \"SFO\", \"date\": \"2024-05-19\", \"price\": 101}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Davis\", \"dob\": \"1982-10-19\"}], \"payment_history\": [{\"payment_id\": \"gift_card_6847880\", \"amount\": 533}], \"created_at\": \"2024-05-11T01:11:41\", \"total_baggages\": 1, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_LhWsNOrfqY3EWoh3wSOqai4J"
+  },
+  {
+   "content": "{\"reservation_id\": \"2FBBAH\", \"user_id\": \"omar_davis_3817\", \"origin\": \"DEN\", \"destination\": \"DEN\", \"flight_type\": \"round_trip\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT080\", \"origin\": \"DEN\", \"destination\": \"PHL\", \"date\": \"2024-05-28\", \"price\": 537}, {\"flight_number\": \"HAT076\", \"origin\": \"PHL\", \"destination\": \"DEN\", \"date\": \"2024-05-28\", \"price\": 996}, {\"flight_number\": \"HAT255\", \"origin\": \"DEN\", \"destination\": \"MIA\", \"date\": \"2024-05-30\", \"price\": 1440}, {\"flight_number\": \"HAT148\", \"origin\": \"MIA\", \"destination\": \"DEN\", \"date\": \"2024-05-30\", \"price\": 1417}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Davis\", \"dob\": \"1982-10-19\"}], \"payment_history\": [{\"payment_id\": \"gift_card_3481935\", \"amount\": 4420}], \"created_at\": \"2024-05-14T10:44:24\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_FV1jRuYOnF7oDtgMnAjNQLaQ"
+  },
+  {
+   "content": "{\"reservation_id\": \"X7BYG1\", \"user_id\": \"omar_davis_3817\", \"origin\": \"MIA\", \"destination\": \"EWR\", \"flight_type\": \"one_way\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT232\", \"origin\": \"MIA\", \"destination\": \"LAX\", \"date\": \"2024-05-24\", \"price\": 1505}, {\"flight_number\": \"HAT228\", \"origin\": \"LAX\", \"destination\": \"EWR\", \"date\": \"2024-05-24\", \"price\": 1519}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Davis\", \"dob\": \"1982-10-19\"}, {\"first_name\": \"Juan\", \"last_name\": \"Ahmed\", \"dob\": \"1992-11-19\"}], \"payment_history\": [{\"payment_id\": \"credit_card_2929732\", \"amount\": 6108}], \"created_at\": \"2024-05-12T05:51:40\", \"total_baggages\": 1, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_w9UhzDMU4ZY8aczQ8gQGcLRi"
+  },
+  {
+   "content": "{\"reservation_id\": \"EQ1G6C\", \"user_id\": \"omar_davis_3817\", \"origin\": \"DEN\", \"destination\": \"IAH\", \"flight_type\": \"one_way\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT084\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"date\": \"2024-05-23\", \"price\": 1820}, {\"flight_number\": \"HAT175\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"date\": \"2024-05-23\", \"price\": 940}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Davis\", \"dob\": \"1982-10-19\"}], \"payment_history\": [{\"payment_id\": \"gift_card_6847880\", \"amount\": 2790}], \"created_at\": \"2024-05-01T08:38:39\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_V6Pc0qlSOPSHANTWtaKbKM0X"
+  },
+  {
+   "content": "{\"reservation_id\": \"BOH180\", \"user_id\": \"omar_davis_3817\", \"origin\": \"SEA\", \"destination\": \"IAH\", \"flight_type\": \"one_way\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT276\", \"origin\": \"SEA\", \"destination\": \"JFK\", \"date\": \"2024-05-21\", \"price\": 1981}, {\"flight_number\": \"HAT279\", \"origin\": \"JFK\", \"destination\": \"IAH\", \"date\": \"2024-05-22\", \"price\": 820}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Davis\", \"dob\": \"1982-10-19\"}, {\"first_name\": \"Anya\", \"last_name\": \"Thomas\", \"dob\": \"1990-10-11\"}], \"payment_history\": [{\"payment_id\": \"credit_card_9525117\", \"amount\": 5662}], \"created_at\": \"2024-05-06T19:53:46\", \"total_baggages\": 1, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_PDL5dqkaBQ9pNr3DoIYQh2Ap"
+  },
+  {
+   "content": "Here are the details of your reservations with business class flights that can be downgraded to economy:\n\n1. Reservation JG7FMM: 2 passengers, total price paid $7136, insurance yes.\n2. Reservation 2FBBAH: 1 passenger, total price paid $4420, insurance yes.\n3. Reservation X7BYG1: 2 passengers, total price paid $6108, insurance yes.\n4. Reservation EQ1G6C: 1 passenger, total price paid $2790, insurance yes.\n5. Reservation BOH180: 2 passengers, total price paid $5662, insurance yes.\n\nReservation LQ940Q is already in economy class.\n\nI will now check the current economy prices for the flights in these business class reservations to calculate your total savings from downgrading.",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-21",
+      "flight_number": "HAT028"
+     },
+     "function": "get_flight_status",
+     "id": "call_HLBgo1l7fetXYuySQbRHIW2f"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-21",
+      "flight_number": "HAT277"
+     },
+     "function": "get_flight_status",
+     "id": "call_Ewgr7PL0ZrkHt6RAfuX9P4wk"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-28",
+      "flight_number": "HAT080"
+     },
+     "function": "get_flight_status",
+     "id": "call_t5jdACIdtlEkDVBh0Nbl7AKb"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-28",
+      "flight_number": "HAT076"
+     },
+     "function": "get_flight_status",
+     "id": "call_0R66T8AHnxCCOVQj9TE4G6L9"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-30",
+      "flight_number": "HAT255"
+     },
+     "function": "get_flight_status",
+     "id": "call_jUw4CWLD1Z9JONL6dS8cTebA"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-30",
+      "flight_number": "HAT148"
+     },
+     "function": "get_flight_status",
+     "id": "call_SbUSRBxIa4SeQSbulY8AeVYo"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-24",
+      "flight_number": "HAT232"
+     },
+     "function": "get_flight_status",
+     "id": "call_IfSK0LaAOap44QWuMhgn22Xj"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-24",
+      "flight_number": "HAT228"
+     },
+     "function": "get_flight_status",
+     "id": "call_PJmyeXymra0FFWCwCjow9PMo"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-23",
+      "flight_number": "HAT084"
+     },
+     "function": "get_flight_status",
+     "id": "call_ttPKi1E7IY8bVdauYuovm57P"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-23",
+      "flight_number": "HAT175"
+     },
+     "function": "get_flight_status",
+     "id": "call_Y7Rj9DlUyhpHb5NNaAQX2g0O"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-21",
+      "flight_number": "HAT276"
+     },
+     "function": "get_flight_status",
+     "id": "call_MFyGGTRJ9Fu88sgs5jie3f1K"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-22",
+      "flight_number": "HAT279"
+     },
+     "function": "get_flight_status",
+     "id": "call_i5UFmMhGc1pech9RF1bUhSWq"
+    }
+   ]
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_HLBgo1l7fetXYuySQbRHIW2f"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_Ewgr7PL0ZrkHt6RAfuX9P4wk"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_t5jdACIdtlEkDVBh0Nbl7AKb"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_0R66T8AHnxCCOVQj9TE4G6L9"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_jUw4CWLD1Z9JONL6dS8cTebA"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_SbUSRBxIa4SeQSbulY8AeVYo"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_IfSK0LaAOap44QWuMhgn22Xj"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_PJmyeXymra0FFWCwCjow9PMo"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_ttPKi1E7IY8bVdauYuovm57P"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_Y7Rj9DlUyhpHb5NNaAQX2g0O"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_MFyGGTRJ9Fu88sgs5jie3f1K"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_i5UFmMhGc1pech9RF1bUhSWq"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-21",
+      "destination": "BOS",
+      "origin": "MCO"
+     },
+     "function": "search_direct_flight",
+     "id": "call_tM1VGVRssrJM4Iv3y1ciahQH"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-21",
+      "destination": "CLT",
+      "origin": "BOS"
+     },
+     "function": "search_direct_flight",
+     "id": "call_tRR8nB0Ai3ZQKODFX2iua1Pm"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-28",
+      "destination": "PHL",
+      "origin": "DEN"
+     },
+     "function": "search_direct_flight",
+     "id": "call_blf166SFOR4s3W7KPVZS7xbz"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-28",
+      "destination": "DEN",
+      "origin": "PHL"
+     },
+     "function": "search_direct_flight",
+     "id": "call_2RSnOLG0hxmXZacAVXWylDb0"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-30",
+      "destination": "MIA",
+      "origin": "DEN"
+     },
+     "function": "search_direct_flight",
+     "id": "call_0zIrgjV4zUoyiBVAQbNYu1eF"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-30",
+      "destination": "DEN",
+      "origin": "MIA"
+     },
+     "function": "search_direct_flight",
+     "id": "call_2RE5KSfIN1gfek3Eb2bfLBO1"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-24",
+      "destination": "LAX",
+      "origin": "MIA"
+     },
+     "function": "search_direct_flight",
+     "id": "call_JZ2HwkFpnulFa31D2jQevERV"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-24",
+      "destination": "EWR",
+      "origin": "LAX"
+     },
+     "function": "search_direct_flight",
+     "id": "call_nDKbvsMobnPhqDjR8PG9J70m"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-23",
+      "destination": "LAS",
+      "origin": "DEN"
+     },
+     "function": "search_direct_flight",
+     "id": "call_Dp8vXapS7jkGoXBEU6ofk02h"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-23",
+      "destination": "IAH",
+      "origin": "LAS"
+     },
+     "function": "search_direct_flight",
+     "id": "call_FpSr1OxhlJXtWGfV4TPOPRlJ"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-21",
+      "destination": "JFK",
+      "origin": "SEA"
+     },
+     "function": "search_direct_flight",
+     "id": "call_uhFeILXkGEU1aRsx2OF9lRME"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-22",
+      "destination": "IAH",
+      "origin": "JFK"
+     },
+     "function": "search_direct_flight",
+     "id": "call_bBaGeoLgFhA9EMZZkfVy9gq4"
+    }
+   ]
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT017\", \"origin\": \"MCO\", \"destination\": \"BOS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"10:00:00\", \"scheduled_arrival_time_est\": \"13:30:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 3, \"economy\": 16, \"business\": 14}, \"prices\": {\"basic_economy\": 85, \"economy\": 163, \"business\": 426}}, {\"flight_number\": \"HAT028\", \"origin\": \"MCO\", \"destination\": \"BOS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"05:00:00\", \"scheduled_arrival_time_est\": \"08:30:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 17, \"economy\": 8, \"business\": 3}, \"prices\": {\"basic_economy\": 80, \"economy\": 140, \"business\": 274}}, {\"flight_number\": \"HAT217\", \"origin\": \"MCO\", \"destination\": \"BOS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"13:00:00\", \"scheduled_arrival_time_est\": \"16:30:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 15, \"economy\": 20, \"business\": 12}, \"prices\": {\"basic_economy\": 72, \"economy\": 121, \"business\": 253}}]",
+   "role": "tool",
+   "tool_call_id": "call_tM1VGVRssrJM4Iv3y1ciahQH"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT260\", \"origin\": \"BOS\", \"destination\": \"CLT\", \"status\": \"available\", \"scheduled_departure_time_est\": \"14:00:00\", \"scheduled_arrival_time_est\": \"16:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 0, \"economy\": 6, \"business\": 1}, \"prices\": {\"basic_economy\": 84, \"economy\": 167, \"business\": 480}}, {\"flight_number\": \"HAT277\", \"origin\": \"BOS\", \"destination\": \"CLT\", \"status\": \"available\", \"scheduled_departure_time_est\": \"19:00:00\", \"scheduled_arrival_time_est\": \"21:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 18, \"economy\": 16, \"business\": 20}, \"prices\": {\"basic_economy\": 87, \"economy\": 101, \"business\": 365}}]",
+   "role": "tool",
+   "tool_call_id": "call_tRR8nB0Ai3ZQKODFX2iua1Pm"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT080\", \"origin\": \"DEN\", \"destination\": \"PHL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"07:00:00\", \"scheduled_arrival_time_est\": \"10:30:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 4, \"economy\": 16, \"business\": 3}, \"prices\": {\"basic_economy\": 78, \"economy\": 107, \"business\": 443}}, {\"flight_number\": \"HAT158\", \"origin\": \"DEN\", \"destination\": \"PHL\", \"status\": \"available\", \"scheduled_departure_time_est\": \"06:00:00\", \"scheduled_arrival_time_est\": \"09:30:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 19, \"economy\": 9, \"business\": 15}, \"prices\": {\"basic_economy\": 85, \"economy\": 148, \"business\": 346}}]",
+   "role": "tool",
+   "tool_call_id": "call_blf166SFOR4s3W7KPVZS7xbz"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT076\", \"origin\": \"PHL\", \"destination\": \"DEN\", \"status\": \"available\", \"scheduled_departure_time_est\": \"13:00:00\", \"scheduled_arrival_time_est\": \"16:30:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 18, \"economy\": 15, \"business\": 14}, \"prices\": {\"basic_economy\": 83, \"economy\": 141, \"business\": 298}}]",
+   "role": "tool",
+   "tool_call_id": "call_2RSnOLG0hxmXZacAVXWylDb0"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT130\", \"origin\": \"DEN\", \"destination\": \"MIA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"02:00:00\", \"scheduled_arrival_time_est\": \"06:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 11, \"economy\": 3, \"business\": 8}, \"prices\": {\"basic_economy\": 85, \"economy\": 165, \"business\": 399}}, {\"flight_number\": \"HAT255\", \"origin\": \"DEN\", \"destination\": \"MIA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"07:00:00\", \"scheduled_arrival_time_est\": \"11:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 15, \"economy\": 12, \"business\": 1}, \"prices\": {\"basic_economy\": 91, \"economy\": 108, \"business\": 377}}]",
+   "role": "tool",
+   "tool_call_id": "call_0zIrgjV4zUoyiBVAQbNYu1eF"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT148\", \"origin\": \"MIA\", \"destination\": \"DEN\", \"status\": \"available\", \"scheduled_departure_time_est\": \"22:00:00\", \"scheduled_arrival_time_est\": \"02:00:00+1\", \"date\": null, \"available_seats\": {\"basic_economy\": 9, \"economy\": 17, \"business\": 6}, \"prices\": {\"basic_economy\": 84, \"economy\": 109, \"business\": 500}}, {\"flight_number\": \"HAT193\", \"origin\": \"MIA\", \"destination\": \"DEN\", \"status\": \"available\", \"scheduled_departure_time_est\": \"14:00:00\", \"scheduled_arrival_time_est\": \"18:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 19, \"economy\": 1, \"business\": 5}, \"prices\": {\"basic_economy\": 70, \"economy\": 127, \"business\": 224}}]",
+   "role": "tool",
+   "tool_call_id": "call_2RE5KSfIN1gfek3Eb2bfLBO1"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT008\", \"origin\": \"MIA\", \"destination\": \"LAX\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"16:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 19, \"economy\": 13, \"business\": 6}, \"prices\": {\"basic_economy\": 51, \"economy\": 179, \"business\": 227}}, {\"flight_number\": \"HAT019\", \"origin\": \"MIA\", \"destination\": \"LAX\", \"status\": \"available\", \"scheduled_departure_time_est\": \"15:00:00\", \"scheduled_arrival_time_est\": \"20:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 10, \"economy\": 12, \"business\": 7}, \"prices\": {\"basic_economy\": 88, \"economy\": 175, \"business\": 310}}, {\"flight_number\": \"HAT050\", \"origin\": \"MIA\", \"destination\": \"LAX\", \"status\": \"available\", \"scheduled_departure_time_est\": \"21:00:00\", \"scheduled_arrival_time_est\": \"02:00:00+1\", \"date\": null, \"available_seats\": {\"basic_economy\": 15, \"economy\": 7, \"business\": 8}, \"prices\": {\"basic_economy\": 97, \"economy\": 152, \"business\": 358}}, {\"flight_number\": \"HAT120\", \"origin\": \"MIA\", \"destination\": \"LAX\", \"status\": \"available\", \"scheduled_departure_time_est\": \"23:00:00\", \"scheduled_arrival_time_est\": \"04:00:00+1\", \"date\": null, \"available_seats\": {\"basic_economy\": 9, \"economy\": 2, \"business\": 5}, \"prices\": {\"basic_economy\": 94, \"economy\": 180, \"business\": 413}}, {\"flight_number\": \"HAT185\", \"origin\": \"MIA\", \"destination\": \"LAX\", \"status\": \"available\", \"scheduled_departure_time_est\": \"17:00:00\", \"scheduled_arrival_time_est\": \"22:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 5, \"economy\": 7, \"business\": 6}, \"prices\": {\"basic_economy\": 90, \"economy\": 181, \"business\": 421}}, {\"flight_number\": \"HAT189\", \"origin\": \"MIA\", \"destination\": \"LAX\", \"status\": \"available\", \"scheduled_departure_time_est\": \"09:00:00\", \"scheduled_arrival_time_est\": \"14:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 9, \"economy\": 9, \"business\": 17}, \"prices\": {\"basic_economy\": 68, \"economy\": 106, \"business\": 412}}, {\"flight_number\": \"HAT200\", \"origin\": \"MIA\", \"destination\": \"LAX\", \"status\": \"available\", \"scheduled_departure_time_est\": \"17:00:00\", \"scheduled_arrival_time_est\": \"22:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 3, \"economy\": 14, \"business\": 18}, \"prices\": {\"basic_economy\": 98, \"economy\": 168, \"business\": 474}}, {\"flight_number\": \"HAT232\", \"origin\": \"MIA\", \"destination\": \"LAX\", \"status\": \"available\", \"scheduled_departure_time_est\": \"13:00:00\", \"scheduled_arrival_time_est\": \"18:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 5, \"economy\": 16, \"business\": 10}, \"prices\": {\"basic_economy\": 50, \"economy\": 162, \"business\": 221}}, {\"flight_number\": \"HAT250\", \"origin\": \"MIA\", \"destination\": \"LAX\", \"status\": \"available\", \"scheduled_departure_time_est\": \"22:00:00\", \"scheduled_arrival_time_est\": \"03:00:00+1\", \"date\": null, \"available_seats\": {\"basic_economy\": 10, \"economy\": 19, \"business\": 8}, \"prices\": {\"basic_economy\": 82, \"economy\": 160, \"business\": 282}}]",
+   "role": "tool",
+   "tool_call_id": "call_JZ2HwkFpnulFa31D2jQevERV"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT012\", \"origin\": \"LAX\", \"destination\": \"EWR\", \"status\": \"available\", \"scheduled_departure_time_est\": \"12:00:00\", \"scheduled_arrival_time_est\": \"17:30:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 3, \"economy\": 19, \"business\": 12}, \"prices\": {\"basic_economy\": 63, \"economy\": 177, \"business\": 276}}, {\"flight_number\": \"HAT228\", \"origin\": \"LAX\", \"destination\": \"EWR\", \"status\": \"available\", \"scheduled_departure_time_est\": \"20:00:00\", \"scheduled_arrival_time_est\": \"01:30:00+1\", \"date\": null, \"available_seats\": {\"basic_economy\": 20, \"economy\": 17, \"business\": 3}, \"prices\": {\"basic_economy\": 94, \"economy\": 153, \"business\": 241}}]",
+   "role": "tool",
+   "tool_call_id": "call_nDKbvsMobnPhqDjR8PG9J70m"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT084\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"04:00:00\", \"scheduled_arrival_time_est\": \"06:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 5, \"economy\": 16, \"business\": 12}, \"prices\": {\"basic_economy\": 90, \"economy\": 172, \"business\": 200}}, {\"flight_number\": \"HAT229\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"13:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 4, \"economy\": 17, \"business\": 0}, \"prices\": {\"basic_economy\": 81, \"economy\": 165, \"business\": 291}}, {\"flight_number\": \"HAT290\", \"origin\": \"DEN\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"14:00:00\", \"scheduled_arrival_time_est\": \"16:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 18, \"economy\": 5, \"business\": 10}, \"prices\": {\"basic_economy\": 85, \"economy\": 122, \"business\": 459}}]",
+   "role": "tool",
+   "tool_call_id": "call_Dp8vXapS7jkGoXBEU6ofk02h"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT175\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"17:00:00\", \"scheduled_arrival_time_est\": \"20:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 4, \"economy\": 5, \"business\": 6}, \"prices\": {\"basic_economy\": 72, \"economy\": 136, \"business\": 217}}, {\"flight_number\": \"HAT266\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"13:00:00\", \"scheduled_arrival_time_est\": \"16:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 16, \"economy\": 5, \"business\": 16}, \"prices\": {\"basic_economy\": 86, \"economy\": 156, \"business\": 391}}]",
+   "role": "tool",
+   "tool_call_id": "call_FpSr1OxhlJXtWGfV4TPOPRlJ"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT021\", \"origin\": \"SEA\", \"destination\": \"JFK\", \"status\": \"available\", \"scheduled_departure_time_est\": \"19:00:00\", \"scheduled_arrival_time_est\": \"01:00:00+1\", \"date\": null, \"available_seats\": {\"basic_economy\": 20, \"economy\": 10, \"business\": 20}, \"prices\": {\"basic_economy\": 96, \"economy\": 152, \"business\": 337}}, {\"flight_number\": \"HAT089\", \"origin\": \"SEA\", \"destination\": \"JFK\", \"status\": \"available\", \"scheduled_departure_time_est\": \"10:00:00\", \"scheduled_arrival_time_est\": \"16:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 19, \"economy\": 5, \"business\": 13}, \"prices\": {\"basic_economy\": 89, \"economy\": 126, \"business\": 417}}, {\"flight_number\": \"HAT100\", \"origin\": \"SEA\", \"destination\": \"JFK\", \"status\": \"available\", \"scheduled_departure_time_est\": \"13:00:00\", \"scheduled_arrival_time_est\": \"19:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 15, \"economy\": 8, \"business\": 19}, \"prices\": {\"basic_economy\": 68, \"economy\": 188, \"business\": 353}}, {\"flight_number\": \"HAT276\", \"origin\": \"SEA\", \"destination\": \"JFK\", \"status\": \"available\", \"scheduled_departure_time_est\": \"18:00:00\", \"scheduled_arrival_time_est\": \"00:00:00+1\", \"date\": null, \"available_seats\": {\"basic_economy\": 12, \"economy\": 13, \"business\": 14}, \"prices\": {\"basic_economy\": 80, \"economy\": 117, \"business\": 374}}]",
+   "role": "tool",
+   "tool_call_id": "call_uhFeILXkGEU1aRsx2OF9lRME"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT279\", \"origin\": \"JFK\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"14:30:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 10, \"economy\": 20, \"business\": 0}, \"prices\": {\"basic_economy\": 87, \"economy\": 102, \"business\": 376}}]",
+   "role": "tool",
+   "tool_call_id": "call_bBaGeoLgFhA9EMZZkfVy9gq4"
+  },
+  {
+   "content": "I have gathered the current economy prices for the flights in your business class reservations. To proceed, I will calculate the total price for these flights in economy class and compare it with the amount you originally paid in business class to determine your total savings.\n\nPlease confirm if you want me to proceed with downgrading all your business class reservations to economy and provide the total savings amount.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please go ahead and proceed with downgrading all my business class reservations to economy. I want to know the total savings amount as soon as possible. Thank you.",
+   "role": "user"
+  },
+  {
+   "content": "To proceed with downgrading your business class reservations to economy, here are the details:\n\nReservations to downgrade: JG7FMM, 2FBBAH, X7BYG1, EQ1G6C, BOH180\nNew cabin class: economy\nFlights and passengers remain the same.\nI will calculate the total savings and then proceed with the downgrade.\n\nPlease confirm with a \"yes\" if you agree to proceed.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, I agree to proceed with downgrading all those reservations to economy. Please make sure the refunds go back to the original payment method. I want this done quickly.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "cabin": "economy",
+      "flights": [
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT028"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT277"
+       }
+      ],
+      "payment_id": "credit_card_2929732",
+      "reservation_id": "JG7FMM"
+     },
+     "function": "update_reservation_flights",
+     "id": "call_KzyoDBqihAQZEfQ3vNWOCAlw"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"JG7FMM\", \"user_id\": \"omar_davis_3817\", \"origin\": \"MCO\", \"destination\": \"CLT\", \"flight_type\": \"one_way\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT028\", \"origin\": \"MCO\", \"destination\": \"BOS\", \"date\": \"2024-05-21\", \"price\": 140}, {\"flight_number\": \"HAT277\", \"origin\": \"BOS\", \"destination\": \"CLT\", \"date\": \"2024-05-21\", \"price\": 101}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Davis\", \"dob\": \"1982-10-19\"}, {\"first_name\": \"Fatima\", \"last_name\": \"Patel\", \"dob\": \"1950-05-04\"}], \"payment_history\": [{\"payment_id\": \"credit_card_2929732\", \"amount\": 7136}, {\"payment_id\": \"credit_card_2929732\", \"amount\": -6594}], \"created_at\": \"2024-05-11T08:28:51\", \"total_baggages\": 3, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_KzyoDBqihAQZEfQ3vNWOCAlw"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "cabin": "economy",
+      "flights": [
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT232"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT228"
+       }
+      ],
+      "payment_id": "credit_card_2929732",
+      "reservation_id": "X7BYG1"
+     },
+     "function": "update_reservation_flights",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

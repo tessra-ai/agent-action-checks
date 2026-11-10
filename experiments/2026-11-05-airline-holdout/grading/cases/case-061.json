@@ -1,0 +1,61 @@
+{
+ "case": "case-061",
+ "action": "cancel_reservation",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hello! I need to cancel my flight, please.",
+   "role": "user"
+  },
+  {
+   "content": "I can help you with that. Could you please provide your user ID and the reservation ID for the flight you wish to cancel? If you don\u2019t know your reservation ID, let me know and I can help you locate it. Additionally, please let me know the reason for your cancellation (change of plan, airline cancelled flight, or other reasons).",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure, my user ID is sophia_silva_7557 and my confirmation number is H8Q05L. I want to cancel because the flight coincides with my best friend's birthday.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "H8Q05L"
+     },
+     "function": "get_reservation_details",
+     "id": "call_v60aVjOGWULriYA3FO17BhlX"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"H8Q05L\", \"user_id\": \"sophia_silva_7557\", \"origin\": \"JFK\", \"destination\": \"ATL\", \"flight_type\": \"one_way\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT268\", \"origin\": \"JFK\", \"destination\": \"ATL\", \"date\": \"2024-05-24\", \"price\": 74}], \"passengers\": [{\"first_name\": \"Harper\", \"last_name\": \"Kovacs\", \"dob\": \"1973-10-26\"}], \"payment_history\": [{\"payment_id\": \"credit_card_4196779\", \"amount\": 104}], \"created_at\": \"2024-05-03T15:12:00\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_v60aVjOGWULriYA3FO17BhlX"
+  },
+  {
+   "content": "You have a one-way basic economy reservation from JFK to ATL (flight HAT268 on 2024-05-24) under confirmation number H8Q05L. You also have travel insurance, and your reason for cancellation is a schedule conflict.\n\nTo confirm, you would like to cancel this reservation. Is that correct? Please reply \"yes\" to proceed.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, that's correct. I want to cancel the reservation. I would like to get a full refund for the flight.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "H8Q05L"
+     },
+     "function": "cancel_reservation",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

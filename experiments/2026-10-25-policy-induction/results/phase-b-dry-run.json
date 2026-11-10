@@ -1,0 +1,91 @@
+{
+ "design": {
+  "agreeing_sample": 40,
+  "k": [
+   0,
+   5,
+   10,
+   20
+  ],
+  "precedents": 8,
+  "replicates": 3,
+  "test_per_world": 200,
+  "token_estimate": "4 characters per token"
+ },
+ "example_prompts": {
+  "L-ind_head": "You are reviewing how a retail company actually decides proposed agent actions, against its written policy. Below are cases where the company's decision differed from the policy, and cases where it agreed. Propose at most five rules that explain the differences. Each rule is JSON: {\"effect\": \"escalate\" or \"allow\", \"when\": [literal, ...]}, where a literal is {\"fact\": name, \"op\": \"is\"|\"eq\"|\"has\"|\"gt\"|\"le\", \"value\": v} over the facts listed, or {\"phrase\": text} for words in the customer's messages. Return a JSON list only.\n\n## Policy\n\n# Retail agent policy\n\nAs a retail agent, you can help users:\n\n- **cancel or modify pending orders**\n- **return or exchange delivered orders**\n- **modify their default user address**\n- **provide information about their own profile, orders, and related products**\n\nAt the beginning of the conversation, you have to authenticate the user identity by locating their user id via email, or via name + zip code. This has to be done even when the user already provides the user id.\n\nOnce the user has been authenticated, you can provide the user with information about order, product, profile information, e.g. help the user look up order id.\n\nYou can only help one user per conversation (but you can handle multiple requests from the same user), and must deny any requests for tasks related to any other user.\n\nBefore taking any action that updates the database (cancel, modify, return, exchange), you must list the action details and obtain explicit user confirmation",
+  "L-pol": "You are the approval gate of a retail company. Decide whether the proposed action may run now (ALLOW) or must go to a human (ESCALATE), following the company's policy and, where given, how the company decided similar cases before. Answer with one word: ALLOW or ESCALATE.\n\n## Policy\n\n# Retail agent policy\n\nAs a retail agent, you can help users:\n\n- **cancel or modify pending orders**\n- **return or exchange delivered orders**\n- **modify their default user address**\n- **provide information about their own profile, orders, and related products**\n\nAt the beginning of the conversation, you have to authenticate the user identity by locating their user id via email, or via name + zip code. This has to be done even when the user already provides the user id.\n\nOnce the user has been authenticated, you can provide the user with information about order, product, profile information, e.g. help the user look up order id.\n\nYou can only help one user per conversation (but you can handle multiple requests from the same user), and must deny any requests for tasks related to any other user.\n\nBefore taking any action that updates the database (cancel, modify, return, exchange), you must list the action details and obtain explicit user confirmation (yes) to proceed.\n\nYou should not make up any information or knowledge or procedures not provided by the user or the tools, or give subjective recommendations or comments.\n\nYou should at most make one tool call at a time, and if you take a tool call, you should not respond to the user at the same time. If you respond to the user, you should not make a tool call at the same time.\n\nYou should deny user requests that are against this policy.\n\nYou should transfer the user to a human agent if and only if the request cannot be handled within the scope of your actions. To transfer, first make a tool call to transfer_to_human_agents, and then send the message 'YOU ARE BEING TRANSFERRED TO A HUMAN AGENT. PLEASE HOLD ON.' to the user.\n\n## Domain basic\n\n- All times in the database are EST and 24 hour based. For example \"02:30:00\" means 2:30 AM EST.\n\n### User\n\nEach user has a profile containing:\n\n- unique user id\n- email\n- default address\n- payment methods.\n\nThere are three types of payment methods: **gift card**, **paypal account**, **credit card**.\n\n### Product\n\nOur retail store has 50 types of products.\n\nFor each **type of product**, there are **variant items** of different **options**.\n\nFor example, for a 't-shirt' product, there could be a variant item with option 'color blue size M', and another variant item with option 'color red size L'.\n\nEach product has the following attributes:\n\n- unique product id\n- name\n- list of variants\n\nEach variant item has the following attributes:\n\n- unique item id\n- information about the value of the product options for this item.\n- availability\n- price\n\nNote: Product ID and Item ID have no relations and should not be confused!\n\n### Order\n\nEach order has the following attributes:\n\n- unique order id\n"
+ },
+ "model_calls_made": 0,
+ "per_world": {
+  "C_AUTH": {
+   "test_cases": 200,
+   "training_samples": 12
+  },
+  "C_CONFIRM": {
+   "test_cases": 200,
+   "training_samples": 12
+  },
+  "C_OWNER": {
+   "test_cases": 200,
+   "training_samples": 12
+  },
+  "C_REASON": {
+   "test_cases": 200,
+   "training_samples": 12
+  },
+  "C_REFUND": {
+   "test_cases": 128,
+   "training_samples": 9
+  },
+  "C_STATUS": {
+   "test_cases": 200,
+   "training_samples": 12
+  },
+  "H1_LARGE_REFUND": {
+   "test_cases": 163,
+   "training_samples": 12
+  },
+  "H2_PRODUCT": {
+   "test_cases": 159,
+   "training_samples": 9
+  },
+  "H3_REPEAT_CANCEL": {
+   "test_cases": 192,
+   "training_samples": 12
+  },
+  "H4_UPCHARGE": {
+   "test_cases": 145,
+   "training_samples": 12
+  },
+  "H5_CHARGEBACK": {
+   "test_cases": 200,
+   "training_samples": 12
+  },
+  "H6_SMALL_CANCEL_WAIVER": {
+   "test_cases": 124,
+   "training_samples": 12
+  },
+  "H7_PAYPAL_RETURN": {
+   "test_cases": 141,
+   "training_samples": 12
+  }
+ },
+ "totals": {
+  "L-ind": {
+   "calls": 150,
+   "input_tokens": 1987426,
+   "max_output_tokens": 90000
+  },
+  "L-pol": {
+   "calls": 2252,
+   "input_tokens": 4159826,
+   "max_output_tokens": 11260
+  },
+  "L-prec": {
+   "calls": 19407,
+   "input_tokens": 56636422,
+   "max_output_tokens": 97035
+  }
+ }
+}

@@ -1,0 +1,173 @@
+{
+ "case": "case-067",
+ "action": "book_reservation",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hi! I\u2019d like to make a reservation for my friend, Ivan Smith. I want the booking to be exactly the same as my current reservation. Also, I want to use my certificate for the payment and check how much balance will be left after the booking. If more than $100 of the certificate value will be wasted, I\u2019d prefer to use my gift card and credit card instead. There\u2019s no need for baggage or insurance. Can you help me with this?",
+   "role": "user"
+  },
+  {
+   "content": "Sure, I can help with that! To proceed, I\u2019ll need your user ID to locate your current reservation and check your available payment methods. Could you please provide your user ID?",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, my user ID is ivan_muller_7015.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "ivan_muller_7015"
+     },
+     "function": "get_user_details",
+     "id": "call_Yv9zEdgJVz6z6oU7H7DIdldr"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"ivan_muller_7015\", \"name\": {\"first_name\": \"Ivan\", \"last_name\": \"Muller\"}, \"address\": {\"address1\": \"256 Pine Lane\", \"address2\": \"Suite 661\", \"city\": \"New York\", \"country\": \"USA\", \"state\": \"NY\", \"zip\": \"10029\"}, \"email\": \"ivan.muller6623@example.com\", \"dob\": \"1968-04-25\", \"payment_methods\": {\"certificate_8998287\": {\"source\": \"certificate\", \"id\": \"certificate_8998287\", \"amount\": 500.0}, \"credit_card_3563913\": {\"source\": \"credit_card\", \"id\": \"credit_card_3563913\", \"brand\": \"mastercard\", \"last_four\": \"6710\"}, \"gift_card_8516878\": {\"source\": \"gift_card\", \"id\": \"gift_card_8516878\", \"amount\": 128.0}}, \"saved_passengers\": [{\"first_name\": \"Ivan\", \"last_name\": \"Smith\", \"dob\": \"1986-03-14\"}, {\"first_name\": \"Lucas\", \"last_name\": \"Davis\", \"dob\": \"1988-10-12\"}], \"membership\": \"gold\", \"reservations\": [\"G72NSF\"]}",
+   "role": "tool",
+   "tool_call_id": "call_Yv9zEdgJVz6z6oU7H7DIdldr"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "G72NSF"
+     },
+     "function": "get_reservation_details",
+     "id": "call_qGGg46z11LxMsoeG8uuivWDw"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"G72NSF\", \"user_id\": \"ivan_muller_7015\", \"origin\": \"DTW\", \"destination\": \"SEA\", \"flight_type\": \"one_way\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT097\", \"origin\": \"DTW\", \"destination\": \"PHX\", \"date\": \"2024-05-17\", \"price\": 158}, {\"flight_number\": \"HAT251\", \"origin\": \"PHX\", \"destination\": \"SEA\", \"date\": \"2024-05-17\", \"price\": 141}], \"passengers\": [{\"first_name\": \"Ivan\", \"last_name\": \"Muller\", \"dob\": \"1968-04-25\"}, {\"first_name\": \"Isabella\", \"last_name\": \"Moore\", \"dob\": \"1952-01-28\"}], \"payment_history\": [{\"payment_id\": \"gift_card_8516878\", \"amount\": 658}], \"created_at\": \"2024-05-11T19:32:36\", \"total_baggages\": 2, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_qGGg46z11LxMsoeG8uuivWDw"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-17",
+      "destination": "PHX",
+      "origin": "DTW"
+     },
+     "function": "search_direct_flight",
+     "id": "call_NgH4sc4PdejB9Cgc2oqgXxaV"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-17",
+      "destination": "SEA",
+      "origin": "PHX"
+     },
+     "function": "search_direct_flight",
+     "id": "call_lBlTW1Rm7410zWw4WbIYqdYz"
+    }
+   ]
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT035\", \"origin\": \"DTW\", \"destination\": \"PHX\", \"status\": \"available\", \"scheduled_departure_time_est\": \"15:00:00\", \"scheduled_arrival_time_est\": \"19:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 18, \"economy\": 4, \"business\": 15}, \"prices\": {\"basic_economy\": 58, \"economy\": 178, \"business\": 271}}, {\"flight_number\": \"HAT097\", \"origin\": \"DTW\", \"destination\": \"PHX\", \"status\": \"available\", \"scheduled_departure_time_est\": \"07:00:00\", \"scheduled_arrival_time_est\": \"11:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 0, \"economy\": 7, \"business\": 2}, \"prices\": {\"basic_economy\": 89, \"economy\": 175, \"business\": 400}}, {\"flight_number\": \"HAT275\", \"origin\": \"DTW\", \"destination\": \"PHX\", \"status\": \"available\", \"scheduled_departure_time_est\": \"00:00:00\", \"scheduled_arrival_time_est\": \"04:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 9, \"economy\": 15, \"business\": 17}, \"prices\": {\"basic_economy\": 53, \"economy\": 142, \"business\": 481}}]",
+   "role": "tool",
+   "tool_call_id": "call_NgH4sc4PdejB9Cgc2oqgXxaV"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT045\", \"origin\": \"PHX\", \"destination\": \"SEA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"23:00:00\", \"scheduled_arrival_time_est\": \"02:00:00+1\", \"date\": null, \"available_seats\": {\"basic_economy\": 8, \"economy\": 11, \"business\": 14}, \"prices\": {\"basic_economy\": 63, \"economy\": 137, \"business\": 449}}, {\"flight_number\": \"HAT156\", \"origin\": \"PHX\", \"destination\": \"SEA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"07:00:00\", \"scheduled_arrival_time_est\": \"10:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 11, \"economy\": 16, \"business\": 4}, \"prices\": {\"basic_economy\": 63, \"economy\": 171, \"business\": 244}}, {\"flight_number\": \"HAT251\", \"origin\": \"PHX\", \"destination\": \"SEA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"12:00:00\", \"scheduled_arrival_time_est\": \"15:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 2, \"economy\": 12, \"business\": 15}, \"prices\": {\"basic_economy\": 97, \"economy\": 200, \"business\": 345}}, {\"flight_number\": \"HAT267\", \"origin\": \"PHX\", \"destination\": \"SEA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"01:00:00\", \"scheduled_arrival_time_est\": \"04:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 1, \"economy\": 5, \"business\": 12}, \"prices\": {\"basic_economy\": 75, \"economy\": 181, \"business\": 431}}]",
+   "role": "tool",
+   "tool_call_id": "call_lBlTW1Rm7410zWw4WbIYqdYz"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "expression": "175+200"
+     },
+     "function": "calculate",
+     "id": "call_2lLcu6BF1prfxEWORpVNVf9w"
+    }
+   ]
+  },
+  {
+   "content": "375.0",
+   "role": "tool",
+   "tool_call_id": "call_2lLcu6BF1prfxEWORpVNVf9w"
+  },
+  {
+   "content": "Here\u2019s what I\u2019ll do for your friend Ivan Smith:\n\n- Book a one-way reservation from Detroit (DTW) to Seattle (SEA) on May 17, in economy class, matching your current flights as closely as possible.\n- Passenger: Ivan Smith (1986-03-14).\n- No baggage or insurance will be added.\n- The total fare for the available matching flights is $375.\n\nYou have a certificate with a $500 balance. If you use it, $125 will be non-refundable and lost. Would you like to proceed with the certificate, or would you prefer to use your gift card ($128) and credit card for the remaining amount? Please confirm your preferred payment method.",
+   "role": "assistant"
+  },
+  {
+   "content": "Since using the certificate would waste $125, which is more than $100, I\u2019d prefer to use my gift card and credit card for the payment instead. Please proceed with that option.",
+   "role": "user"
+  },
+  {
+   "content": "Here\u2019s a summary of the booking details for your friend Ivan Smith:\n\n- One-way trip: Detroit (DTW) \u2192 Seattle (SEA)\n- Date: May 17\n- Cabin: Economy\n- Flights: HAT097 (DTW \u2192 PHX), HAT251 (PHX \u2192 SEA)\n- Passenger: Ivan Smith (1986-03-14)\n- No baggage or insurance\n- Payment: $128 from your gift card, $247 from your credit card\n\nDo you confirm these details and want me to proceed with the booking? Please reply \u201cyes\u201d to continue.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, I confirm these details. Please go ahead and proceed with the booking.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "cabin": "economy",
+      "destination": "SEA",
+      "flight_type": "one_way",
+      "flights": [
+       {
+        "date": "2024-05-17",
+        "flight_number": "HAT097"
+       },
+       {
+        "date": "2024-05-17",
+        "flight_number": "HAT251"
+       }
+      ],
+      "insurance": "no",
+      "nonfree_baggages": 0,
+      "origin": "DTW",
+      "passengers": [
+       {
+        "dob": "1986-03-14",
+        "first_name": "Ivan",
+        "last_name": "Smith"
+       }
+      ],
+      "payment_methods": [
+       {
+        "amount": 128,
+        "payment_id": "gift_card_8516878"
+       },
+       {
+        "amount": 247,
+        "payment_id": "credit_card_3563913"
+       }
+      ],
+      "total_baggages": 0,
+      "user_id": "ivan_muller_7015"
+     },
+     "function": "book_reservation",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,99 @@
+{
+  "config": "smoke",
+  "runs": {
+    "retail/gpt-4.1-nano-2025-04-14": {
+      "simulations": 2,
+      "resumed": 0,
+      "ran": 2,
+      "failed": [],
+      "not_started": 0,
+      "passed": 1,
+      "pass_rate": 0.5,
+      "cost_usd_this_run": 0.0065273,
+      "cost_usd_all_finished": 0.0065273,
+      "rewards": {
+        "10/0": 1.0,
+        "13/0": 0.0
+      }
+    },
+    "retail/gpt-4.1-mini-2025-04-14": {
+      "simulations": 2,
+      "resumed": 0,
+      "ran": 2,
+      "failed": [],
+      "not_started": 0,
+      "passed": 2,
+      "pass_rate": 1.0,
+      "cost_usd_this_run": 0.019894799999999997,
+      "cost_usd_all_finished": 0.019894799999999997,
+      "rewards": {
+        "10/0": 1.0,
+        "13/0": 1.0
+      }
+    },
+    "retail/gpt-4.1-2025-04-14": {
+      "simulations": 2,
+      "resumed": 0,
+      "ran": 2,
+      "failed": [],
+      "not_started": 0,
+      "passed": 2,
+      "pass_rate": 1.0,
+      "cost_usd_this_run": 0.0878168,
+      "cost_usd_all_finished": 0.0878168,
+      "rewards": {
+        "10/0": 1.0,
+        "13/0": 1.0
+      }
+    },
+    "telecom/gpt-4.1-nano-2025-04-14": {
+      "simulations": 2,
+      "resumed": 0,
+      "ran": 2,
+      "failed": [],
+      "not_started": 0,
+      "passed": 0,
+      "pass_rate": 0.0,
+      "cost_usd_this_run": 0.041352799999999995,
+      "cost_usd_all_finished": 0.041352799999999995,
+      "rewards": {
+        "[mobile_data_issue]bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:None]/0": 0.0,
+        "[mms_issue]break_app_sms_permission|data_mode_off[PERSONA:None]/0": 0.0
+      }
+    },
+    "telecom/gpt-4.1-mini-2025-04-14": {
+      "simulations": 2,
+      "resumed": 0,
+      "ran": 2,
+      "failed": [],
+      "not_started": 0,
+      "passed": 2,
+      "pass_rate": 1.0,
+      "cost_usd_this_run": 0.09582159999999999,
+      "cost_usd_all_finished": 0.09582159999999999,
+      "rewards": {
+        "[mobile_data_issue]bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:None]/0": 1.0,
+        "[mms_issue]break_app_sms_permission|data_mode_off[PERSONA:None]/0": 1.0
+      }
+    },
+    "telecom/gpt-4.1-2025-04-14": {
+      "simulations": 2,
+      "resumed": 0,
+      "ran": 2,
+      "failed": [],
+      "not_started": 0,
+      "passed": 2,
+      "pass_rate": 1.0,
+      "cost_usd_this_run": 0.1812816,
+      "cost_usd_all_finished": 0.1812816,
+      "rewards": {
+        "[mobile_data_issue]bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:None]/0": 1.0,
+        "[mms_issue]break_app_sms_permission|data_mode_off[PERSONA:None]/0": 1.0
+      }
+    }
+  },
+  "spend_cap_usd": 0.45,
+  "spent_usd_this_run": 0.4326949,
+  "spend_cap_reached": false,
+  "unpriced_simulations": 0
+}

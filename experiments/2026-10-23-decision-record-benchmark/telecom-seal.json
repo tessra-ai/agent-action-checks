@@ -1,0 +1,628 @@
+{
+ "capture": {
+  "smoke2": {
+   "commit": "6acd2e5bac10b2207ff70c8b28d0248a05317199",
+   "experiment": "smoke run 2"
+  },
+  "targeted": {
+   "commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+   "experiment": "targeted stage 1"
+  }
+ },
+ "caveat": "inspected in earlier experiments; directional evidence only",
+ "counts": {
+  "by_action": {
+   "disable_roaming": 2,
+   "enable_roaming": 16,
+   "refuel_data": 12,
+   "resume_line": 3,
+   "send_payment_request": 2
+  },
+  "families": 10,
+  "records": 35,
+  "verdict_bearing": 33
+ },
+ "dataset_sha256": "ff645fd7630647c5c6415a52bbc0310b00ec5b969b4190e4d5c35cdcce06ff0d",
+ "manifest_version": "drb-telecom-seal-1",
+ "oracle_version": "tau2-oracle-1:41ee37217182",
+ "policy_sha256": "cd28bff5048b27ff9487fc445236338f3ec66cd0f75bf927739987bde9e4dcc7",
+ "purpose": "sealed retrospective telecom evaluation set; final-eval only",
+ "records": [
+  {
+   "action": "send_payment_request",
+   "agent_model": "gpt-4.1-nano-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "73c84310521b352800e5a6dfbadce067339110ff202304854e33983cdcca4c97",
+   "family_id": "telecom/[mms_issue]break_app_sms_permission|data_mode_off",
+   "record_id": "01M5JMMJSYFQNMAZ9JMC5QQ8XC",
+   "source": {
+    "capture_commit": "6acd2e5bac10b2207ff70c8b28d0248a05317199",
+    "seq": 0,
+    "session_id": "01M5JMM824NNNPESN2S9F4AMV4",
+    "store": "smoke2",
+    "task_id": "[mms_issue]break_app_sms_permission|data_mode_off[PERSONA:None]"
+   },
+   "state_hash": "fab3be8501aad7d0674a17c75d6878b10683ebda2b01a06d99c04cf778bf5942",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-nano-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "6390bc3b1c632c8ef5a7792feb324327ff9308698543238c3286ceb540343383",
+   "family_id": "telecom/[mobile_data_issue]bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JMMQHFXW9KK2RSCJ1S0J49",
+   "source": {
+    "capture_commit": "6acd2e5bac10b2207ff70c8b28d0248a05317199",
+    "seq": 0,
+    "session_id": "01M5JMM824NNNPESN2S9F4AMV3",
+    "store": "smoke2",
+    "task_id": "[mobile_data_issue]bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:None]"
+   },
+   "state_hash": "328581cb7b0932d55fe5b73cce2ee97270e7d20c1347bb4bd238d54d738357d3",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "refuel_data",
+   "agent_model": "gpt-4.1-nano-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "944ea50b9a5a4c36ca310199a3439b5643f558bd13d59f0304ad41a82f86775c",
+   "family_id": "telecom/[mobile_data_issue]bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JMN1739X66G2F2CTDTE0MA",
+   "source": {
+    "capture_commit": "6acd2e5bac10b2207ff70c8b28d0248a05317199",
+    "seq": 1,
+    "session_id": "01M5JMM824NNNPESN2S9F4AMV3",
+    "store": "smoke2",
+    "task_id": "[mobile_data_issue]bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:None]"
+   },
+   "state_hash": "1d27de20aa1f55923be5a42f3737b08d5c6c4a63d153a790bf137ca5ccea84ec",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-mini-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "2238f2abc6d3a9fe4cfad256a853c91bdb8957a1f0159db56f26a97c7399e906",
+   "family_id": "telecom/[mobile_data_issue]bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JMPS1C0M35EB44ESVKMAMC",
+   "source": {
+    "capture_commit": "6acd2e5bac10b2207ff70c8b28d0248a05317199",
+    "seq": 0,
+    "session_id": "01M5JMPHSHCFS008YBR0ZA0574",
+    "store": "smoke2",
+    "task_id": "[mobile_data_issue]bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:None]"
+   },
+   "state_hash": "4f319d52b1e55212a0a0d29ec2aec2ac44a329ea961c8c3556fae8034695d8ff",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "42fb7d0ca5126361bbdbfee0e5af45854a82d2bebe25ccfb7dfb10146673a64b",
+   "family_id": "telecom/[mobile_data_issue]bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JMRG5GBSBB41EVQTPJHZ7H",
+   "source": {
+    "capture_commit": "6acd2e5bac10b2207ff70c8b28d0248a05317199",
+    "seq": 0,
+    "session_id": "01M5JMR6B1ZAEAR999FRW4VPEE",
+    "store": "smoke2",
+    "task_id": "[mobile_data_issue]bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:None]"
+   },
+   "state_hash": "4fc2e1cef6a2dce2272d8cf6e8c395f11a9a9049507cc8bd1bec291e70792c50",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "refuel_data",
+   "agent_model": "gpt-4.1-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "4ba33a234bb87c5aead348e2ad0c140c4b1649fc6d6a4a06e3a84c662f784c85",
+   "family_id": "telecom/[mobile_data_issue]bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JMRPPT2QV5KVY7NJY87777",
+   "source": {
+    "capture_commit": "6acd2e5bac10b2207ff70c8b28d0248a05317199",
+    "seq": 1,
+    "session_id": "01M5JMR6B1ZAEAR999FRW4VPEE",
+    "store": "smoke2",
+    "task_id": "[mobile_data_issue]bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:None]"
+   },
+   "state_hash": "46a3c53eec5833fa5f4babed3321dc85b757f68b31c1eee02dc3e52a96ec4357",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-nano-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "2d56ca2bd8ad7241c827e2e16217e3a2ef9e27a9052d7ed0bf136c8e8d6b9f4c",
+   "family_id": "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_saver_mode_on|data_usage_exceeded|user_abroad_roaming_enabled_off",
+   "record_id": "01M5JZ9Z1BJ14XATCHRZ8SAEPW",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZ9SBQS490VDZF150XM3NS",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_saver_mode_on|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "4ea1ee7bc6fb3d5da966357efb7579ff3b6ed4b05c28ebd85e409abe5db0570c",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "refuel_data",
+   "agent_model": "gpt-4.1-nano-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "35671623870d3956704723b562e4313b4c469331b2309fa80bf7c78cd454df01",
+   "family_id": "telecom/[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JZA2GM6X9GRQ9ES3W5JBP8",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZ9SA90A0X4HTV4QJ4RDE4",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]"
+   },
+   "state_hash": "2095366b9d34b7cc5901494f97cd6ab721b989553bcd72da4e1cddcd315b72d9",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-nano-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "c9bcddd678ae32e909768d96724f14360a03dce847ab12b084cbf253bab028d9",
+   "family_id": "telecom/[mobile_data_issue]bad_network_preference|bad_vpn|user_abroad_roaming_disabled_on",
+   "record_id": "01M5JZA4S71T6A3DQFKG19RC9H",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZ9S9YSFCK75XHJQXY3ZFG",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]bad_network_preference|bad_vpn|user_abroad_roaming_disabled_on[PERSONA:None]"
+   },
+   "state_hash": "6bd54af25d16fd016f78331df38fd13b6b9f2c8cfdc60ebb9cf58b68eda754c2",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "resume_line",
+   "agent_model": "gpt-4.1-nano-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "0d4841923d3b741760a718b3db5ffd9d7263949a2666d8c30b499e306abae278",
+   "family_id": "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off",
+   "record_id": "01M5JZA5ZY8ASN1NCXWDJCP02A",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZ9SBAQN69WNZH1Y78HWDS",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "0e2b99b3ff42f14c97aacddffca76fd157f020c3a3191d3ed7b15d16579b478e",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "resume_line",
+   "agent_model": "gpt-4.1-nano-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "dc56906ad3b6a08ac7bb015b2b11101c1390081e2ce106a4b3dc201b2e72caeb",
+   "family_id": "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off",
+   "record_id": "01M5JZA84XTCYY4TJ6T51572VJ",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 1,
+    "session_id": "01M5JZ9SBAQN69WNZH1Y78HWDS",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "3771d544f9606cdb5f659c177aa0c3ae6431acb0df38c63e84bdb9c1ce2c2fcc",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "resume_line",
+   "agent_model": "gpt-4.1-nano-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "5c5efc424578e92d1ccb068f3734edd7e3c3a06b05f4856576c206c04c26d396",
+   "family_id": "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off",
+   "record_id": "01M5JZA9YNRJ6DVHW22J70A8F7",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 2,
+    "session_id": "01M5JZ9SBAQN69WNZH1Y78HWDS",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "a941de89e9fba1fd3957537191822e31eea7329d1ee8a56856d968f27e8c91f5",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "refuel_data",
+   "agent_model": "gpt-4.1-nano-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "c694fa96555a81dc8d91586173cb7bb40dfda41a722222cbeba5924095c9546d",
+   "family_id": "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off",
+   "record_id": "01M5JZASWW77AY8W407GK8B92B",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 3,
+    "session_id": "01M5JZ9SBAQN69WNZH1Y78HWDS",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "448e27fb511835962c357d89b803f0b72640944c919919754e8c8508fae53acc",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "send_payment_request",
+   "agent_model": "gpt-4.1-nano-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "8ad1eaa6816239f1215dcf5adf267eb12a6df50cf34ae3ec75d4b92823b5b94a",
+   "family_id": "telecom/[mms_issue]bad_network_preference|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JZB9S130WDJ98F8ZN1E293",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZB2Z1EKKBH5X59XQRP033",
+    "store": "targeted",
+    "task_id": "[mms_issue]bad_network_preference|user_abroad_roaming_disabled_off[PERSONA:None]"
+   },
+   "state_hash": "52623738eb1900cae07006cf70213bd9051b996aaca8b4c3ed618addae92d3b4",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "refuel_data",
+   "agent_model": "gpt-4.1-nano-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "e5e04d1d203c7599bdd1eb0613d48b982b0c3d5ff145d56a4bf61b022a3526d5",
+   "family_id": "telecom/[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JZE37XTG7SHFE7QD56VA2A",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZD323BE21QFG2TK8G4VEZ",
+    "store": "targeted",
+    "task_id": "[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "3ecf7b117b9c0f72b11dbe159f2675597d77ce58270ecc38b99a6ba71f90a975",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-mini-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "bc8b71057e5ac0745db55942811389db5f9e471f35f17d6e3f94aef29ffc2595",
+   "family_id": "telecom/[mobile_data_issue]bad_network_preference|bad_vpn|user_abroad_roaming_disabled_on",
+   "record_id": "01M5JZFNHBTQJ74EG9BP9PH9AH",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZFG4WCVEZXTKA32TYHEHG",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]bad_network_preference|bad_vpn|user_abroad_roaming_disabled_on[PERSONA:None]"
+   },
+   "state_hash": "9592bcfb90cee03ed36a8cc9efc7dccd612f83dee10ab8d8d0f11a70959d702a",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "refuel_data",
+   "agent_model": "gpt-4.1-mini-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "9c991efb333c2fffa2e8308eb14785a1588e5d5f60ea149d87a6e2f026c1e405",
+   "family_id": "telecom/[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JZFR70JBT0429NJRSRE882",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZFG5CF1EP1872YGAWBWTN",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]"
+   },
+   "state_hash": "e166e83054320e91039a45ed9fc27886af50cf611129f750df93336d51c023d0",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "refuel_data",
+   "agent_model": "gpt-4.1-mini-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "497a00a6f145c3ace4ca8492b1cb91dd39a3a1dd66f25ec9906dcc51dae49053",
+   "family_id": "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off",
+   "record_id": "01M5JZFTD4W3JRA978ZJPMA767",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZFG6C2TR343DR6SD753T3",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "cf650e23edea0321ea5e7b7514198964392b193c246c167bc5fb1b4189503219",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "refuel_data",
+   "agent_model": "gpt-4.1-mini-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "d6cbc5ba0372ec4150610d2828595d928c57fe5a43640b6c69e8eb050381dc1d",
+   "family_id": "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_saver_mode_on|data_usage_exceeded|user_abroad_roaming_enabled_off",
+   "record_id": "01M5JZFXWG8T8CRCYWX9XQ7RR9",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZFG8C34FPRX6AJWDD8HGS",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_saver_mode_on|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "13b9399270013de6281065e6642f8a4a2b879f39f7a81e477a0c1441ddb97f78",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "disable_roaming",
+   "agent_model": "gpt-4.1-mini-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "4dbb495c21b7f434633fab26c09b9eda703f88419d16e55764b1f70f7ebc20f1",
+   "family_id": "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off",
+   "record_id": "01M5JZGMDFT9C61VWD2M6HJ51P",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 1,
+    "session_id": "01M5JZFG6C2TR343DR6SD753T3",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "8f28a8d7d86ba1eb2fbf715d6ca30b3faee1cdc970ad5b8e69d983545288c121",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "disable_roaming",
+   "agent_model": "gpt-4.1-mini-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "6d290fd351300366487960f64907a9b65361f7c362bf2100b7f3199e9984926e",
+   "family_id": "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off",
+   "record_id": "01M5JZGMDMC4HRXKZV201R29VG",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 2,
+    "session_id": "01M5JZFG6C2TR343DR6SD753T3",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "49df8d47980e704c79a224f366d6e9655cae9b9a295a6192a7dca1997618a3af",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "refuel_data",
+   "agent_model": "gpt-4.1-mini-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "d2892e17b05cf21fa44250c87c6f77cf59bb1ba0e6387bc82980e2696183510e",
+   "family_id": "telecom/[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JZGMS146N9K6H94Z7ACXDF",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 1,
+    "session_id": "01M5JZFG5CF1EP1872YGAWBWTN",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]"
+   },
+   "state_hash": "cfe0413bce4c512c5175b25fa4b40965817a855dbb1a03aca3e0f600daca9038",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "refuel_data",
+   "agent_model": "gpt-4.1-mini-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "1a71afcb7571d3e67c0b2d547e244f92e6dfe41585dba7ecf49fe395d0671daf",
+   "family_id": "telecom/[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JZGNZ73HBJGRRY0TPNDNBP",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 2,
+    "session_id": "01M5JZFG5CF1EP1872YGAWBWTN",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]"
+   },
+   "state_hash": "06a62ce35667cb5b8f3d85212ce56d77e10073dda42dd8968ccaad35c28a88c7",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-mini-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "42a5952eb7b06a33df4a694b76bf40225c696e9792b8c3d195bc55bbcaa6ee00",
+   "family_id": "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off",
+   "record_id": "01M5JZH4AE1MWZ2QHV07TSWGQY",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 3,
+    "session_id": "01M5JZFG6C2TR343DR6SD753T3",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "9fa28038cea0c2ee35ebe4d6309c8ccf6b35c8d46354b470a6416b2c0fe22883",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-mini-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "b50d2a51cdbba8ec3f6dfeb09da5bde7755367c72f2d70f7bb5f53d802ccbb58",
+   "family_id": "telecom/[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JZH5MF41GMF9RXAXHT53EY",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 3,
+    "session_id": "01M5JZFG5CF1EP1872YGAWBWTN",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]"
+   },
+   "state_hash": "784a23a89f06e9115d64a84e272a81e6508f234365734cc020350830aa2038f8",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-mini-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "5882f82395a7517895cb1ea2dd21b537916431a0fbc50970acd57b060d4232a1",
+   "family_id": "telecom/[mms_issue]bad_network_preference|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JZHET8A9VGA0A9PVCY53EW",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZG27STQC7PF0HBAGGKBRA",
+    "store": "targeted",
+    "task_id": "[mms_issue]bad_network_preference|user_abroad_roaming_disabled_off[PERSONA:None]"
+   },
+   "state_hash": "5c9b112329e5ac674d0084c595398cf984a704558cfab6169cd7cb7412fa739b",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-mini-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "545c73f24db08901d850b4e55bc9957533c3bc6de5ba8787e1f53b6a07b15132",
+   "family_id": "telecom/[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JZJTMA0Y8WBWT4H3SSCPCV",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZHPBA2E0JPJTYSMHSJ033",
+    "store": "targeted",
+    "task_id": "[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "f0a848e34e096b7f96ad55160bf2d00d1cbd18f3c76011c5398335b2fa2c56a5",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-mini-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "e588d06820c62f0870769f97f76fbc4fd896e74f5258d52fa93f76a7808495a8",
+   "family_id": "telecom/[mms_issue]bad_network_preference|break_app_sms_permission|user_abroad_roaming_disabled_on",
+   "record_id": "01M5JZK2PTVAXCA0BPCXEPJYM2",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZH77PF8PDZDZX0EKS8J4K",
+    "store": "targeted",
+    "task_id": "[mms_issue]bad_network_preference|break_app_sms_permission|user_abroad_roaming_disabled_on[PERSONA:Hard]"
+   },
+   "state_hash": "ad6ddddd6ae7fafd322483e7f28c850d3720797e2491d64d18bfc48336cc8b02",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "8d2487069603579c95b42c4b83301f047ea324e104318233e052218fbf006c1d",
+   "family_id": "telecom/[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JZKH35PYHE3KXFKQVFJ8HK",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZKAHCSCJ39BSYZQQPD2FZ",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]"
+   },
+   "state_hash": "95dfdef4f0c381c060f293a21ebca4e40e65d9f5cecb7c31f9ef84e9c5a1c136",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "e6b7ed711f71213eb89016d9a6fcd5566e66aa9a263c0c66c3c13aa219ab3b2c",
+   "family_id": "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off",
+   "record_id": "01M5JZKH6SB4CEYZPBCF8CMB1C",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZKAM8YW7PVYGY83PJ5AZ1",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "13b42135e8c5ade0a298cea322848241468569d8f538e70e0f6fb300e0163c7a",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "fdba6f7a0b1a8c16c17c21cb23e704874d10427590abb8419b0127511e59f33c",
+   "family_id": "telecom/[mobile_data_issue]bad_network_preference|bad_vpn|user_abroad_roaming_disabled_on",
+   "record_id": "01M5JZKHC0XVNQ9ZH9WSEAMTCR",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZKAGTAN94SV55M7CJY1H8",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]bad_network_preference|bad_vpn|user_abroad_roaming_disabled_on[PERSONA:None]"
+   },
+   "state_hash": "47ec87a7fc2d695e76b2f4ca92d835907bed5a418dbaa187838a71c109b007d3",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "refuel_data",
+   "agent_model": "gpt-4.1-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "477934e21aa016b68775e289ab51222806d7b88cc44d7a02a5da1a0006ae1074",
+   "family_id": "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_saver_mode_on|data_usage_exceeded|user_abroad_roaming_enabled_off",
+   "record_id": "01M5JZKP2PFYG6CN1Q8YDE6RF9",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZKAN75RGW3QNTYVB2BVHC",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_saver_mode_on|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "ff86c553112598edfa355b1107fd9933a006d1c937489338ad63b7e4b06df1c8",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "53246fae5d6578674a612cae478ad4af0fcfc8b0f666dca2c64db487a1d80ebc",
+   "family_id": "telecom/[mms_issue]break_app_sms_permission|data_usage_exceeded|user_abroad_roaming_disabled_on",
+   "record_id": "01M5JZMNATBZE6V9CXYKQY6QVB",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZMCVJQ4T67EAQNPDJVN8Y",
+    "store": "targeted",
+    "task_id": "[mms_issue]break_app_sms_permission|data_usage_exceeded|user_abroad_roaming_disabled_on[PERSONA:None]"
+   },
+   "state_hash": "f921df8fe73c8954f0766704e53d278749d6e143dc8549031e329c07af0702d5",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "refuel_data",
+   "agent_model": "gpt-4.1-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "6ee75e890aa77459794e2781a9546991ed4ed1e2dc3a8e2de53eaad85351a85e",
+   "family_id": "telecom/[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JZMRDC4119B9S682Y9DWNM",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 1,
+    "session_id": "01M5JZKAHCSCJ39BSYZQQPD2FZ",
+    "store": "targeted",
+    "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]"
+   },
+   "state_hash": "b7e4e569ea0f9cdc9574026f3a0e010b53ab04e5afae1fedd0899fc3591cc1a9",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  },
+  {
+   "action": "enable_roaming",
+   "agent_model": "gpt-4.1-2025-04-14",
+   "domain_policy_hash": "065b48503bf780153fc671455cdfddb85b4c6ffb11e2ea93bd940233d804c3e9",
+   "evidence_sha256": "bf5bac73347b5dd79dafd9d1d3ee4c27680ce1e6f7b7b4aa466a7bc544857c56",
+   "family_id": "telecom/[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off",
+   "record_id": "01M5JZMZN1P54HGKG8HC7VV76M",
+   "source": {
+    "capture_commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+    "seq": 0,
+    "session_id": "01M5JZMSWG2H1FKREPZZR91JJJ",
+    "store": "targeted",
+    "task_id": "[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Easy]"
+   },
+   "state_hash": "2d1c683122f1bebb1b80bdc5e0ebaae6d6fc640b79110d4cfa51b0e971c91cd5",
+   "user_simulator_model": "gpt-4.1-mini-2025-04-14"
+  }
+ ],
+ "tau2_commit": "c5b2d228d850c59b749b93cf32c4745d3aa53967"
+}

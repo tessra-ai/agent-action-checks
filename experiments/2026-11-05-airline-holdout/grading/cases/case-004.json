@@ -1,0 +1,205 @@
+{
+ "case": "case-004",
+ "action": "update_reservation_baggages",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hi! I have an upcoming trip from New York to Chicago, and I would like to add 3 checked bags to my booking. Also, I need to change the passenger name to myself, Omar Rossi, and upgrade the ticket to economy class. Could you help me with that?",
+   "role": "user"
+  },
+  {
+   "content": "To assist you with adding checked bags, changing the passenger name to Omar Rossi, and upgrading the ticket to economy class, I need to gather some information first:\n\n1. Your user ID.\n2. Your reservation ID for the trip from New York to Chicago.\n\nCould you please provide these details?",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure, my user ID is omar_rossi_1241. Could you please let me know what information you need for the reservation ID?",
+   "role": "user"
+  },
+  {
+   "content": "To locate your reservation ID, I can look up your reservations using your user ID. I will retrieve the list of your reservations so you can identify the correct one for your trip from New York to Chicago. Let me do that for you.",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "omar_rossi_1241"
+     },
+     "function": "get_user_details",
+     "id": "call_RQ2FgkaSm5cTrbFfGqz3FBjg"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"omar_rossi_1241\", \"name\": {\"first_name\": \"Omar\", \"last_name\": \"Rossi\"}, \"address\": {\"address1\": \"901 Pine Lane\", \"address2\": \"Suite 360\", \"city\": \"Houston\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"77271\"}, \"email\": \"omar.rossi5980@example.com\", \"dob\": \"1970-06-06\", \"payment_methods\": {\"gift_card_8190333\": {\"source\": \"gift_card\", \"id\": \"gift_card_8190333\", \"amount\": 280.0}, \"credit_card_6754990\": {\"source\": \"credit_card\", \"id\": \"credit_card_6754990\", \"brand\": \"mastercard\", \"last_four\": \"3848\"}, \"certificate_8390038\": {\"source\": \"certificate\", \"id\": \"certificate_8390038\", \"amount\": 150.0}, \"certificate_1778167\": {\"source\": \"certificate\", \"id\": \"certificate_1778167\", \"amount\": 250.0}, \"gift_card_6490722\": {\"source\": \"gift_card\", \"id\": \"gift_card_6490722\", \"amount\": 127.0}, \"credit_card_7407366\": {\"source\": \"credit_card\", \"id\": \"credit_card_7407366\", \"brand\": \"visa\", \"last_four\": \"6437\"}}, \"saved_passengers\": [{\"first_name\": \"Liam\", \"last_name\": \"Lee\", \"dob\": \"1989-08-12\"}], \"membership\": \"gold\", \"reservations\": [\"UM3OG5\", \"5RJ7UH\", \"FQ8APE\", \"QKRY03\"]}",
+   "role": "tool",
+   "tool_call_id": "call_RQ2FgkaSm5cTrbFfGqz3FBjg"
+  },
+  {
+   "content": "I found four reservations under your user ID omar_rossi_1241. Could you please specify which reservation is for your trip from New York to Chicago? The reservation IDs are UM3OG5, 5RJ7UH, FQ8APE, and QKRY03. If you are unsure, you can provide the date of your trip, and I can help identify the correct reservation.",
+   "role": "assistant"
+  },
+  {
+   "content": "My trip from New York to Chicago is scheduled for next Friday. Could you please check which reservation matches that date?",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "UM3OG5"
+     },
+     "function": "get_reservation_details",
+     "id": "call_GxIuJgbgIpYU5xSA7ugHJabQ"
+    },
+    {
+     "arguments": {
+      "reservation_id": "5RJ7UH"
+     },
+     "function": "get_reservation_details",
+     "id": "call_ZGM38mxW9RXTF5JwkkuUaaOD"
+    },
+    {
+     "arguments": {
+      "reservation_id": "FQ8APE"
+     },
+     "function": "get_reservation_details",
+     "id": "call_RQcKPqvPv6iFX6uiAn1kTDkh"
+    },
+    {
+     "arguments": {
+      "reservation_id": "QKRY03"
+     },
+     "function": "get_reservation_details",
+     "id": "call_6MCHlR2rUuPm5s8nr84HcmDh"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"UM3OG5\", \"user_id\": \"omar_rossi_1241\", \"origin\": \"SEA\", \"destination\": \"DFW\", \"flight_type\": \"round_trip\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT113\", \"origin\": \"SEA\", \"destination\": \"DFW\", \"date\": \"2024-05-26\", \"price\": 117}, {\"flight_number\": \"HAT282\", \"origin\": \"DFW\", \"destination\": \"ATL\", \"date\": \"2024-05-28\", \"price\": 140}, {\"flight_number\": \"HAT239\", \"origin\": \"ATL\", \"destination\": \"SEA\", \"date\": \"2024-05-28\", \"price\": 158}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Rossi\", \"dob\": \"1970-06-06\"}, {\"first_name\": \"Liam\", \"last_name\": \"Lee\", \"dob\": \"1989-08-12\"}], \"payment_history\": [{\"payment_id\": \"gift_card_8190333\", \"amount\": 830}], \"created_at\": \"2024-05-08T14:32:07\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_GxIuJgbgIpYU5xSA7ugHJabQ"
+  },
+  {
+   "content": "{\"reservation_id\": \"5RJ7UH\", \"user_id\": \"omar_rossi_1241\", \"origin\": \"LAX\", \"destination\": \"SFO\", \"flight_type\": \"round_trip\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT034\", \"origin\": \"LAX\", \"destination\": \"SFO\", \"date\": \"2024-05-26\", \"price\": 165}, {\"flight_number\": \"HAT163\", \"origin\": \"SFO\", \"destination\": \"LAX\", \"date\": \"2024-05-29\", \"price\": 190}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Rossi\", \"dob\": \"1970-06-06\"}, {\"first_name\": \"Isabella\", \"last_name\": \"Anderson\", \"dob\": \"1956-06-24\"}], \"payment_history\": [{\"payment_id\": \"credit_card_7407366\", \"amount\": 710}], \"created_at\": \"2024-05-11T02:58:29\", \"total_baggages\": 1, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_ZGM38mxW9RXTF5JwkkuUaaOD"
+  },
+  {
+   "content": "{\"reservation_id\": \"FQ8APE\", \"user_id\": \"omar_rossi_1241\", \"origin\": \"EWR\", \"destination\": \"ORD\", \"flight_type\": \"one_way\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT056\", \"origin\": \"EWR\", \"destination\": \"IAH\", \"date\": \"2024-05-25\", \"price\": 71}, {\"flight_number\": \"HAT138\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"date\": \"2024-05-25\", \"price\": 60}], \"passengers\": [{\"first_name\": \"Ivan\", \"last_name\": \"Garcia\", \"dob\": \"1960-12-01\"}], \"payment_history\": [{\"payment_id\": \"gift_card_8190333\", \"amount\": 161}], \"created_at\": \"2024-05-01T16:18:10\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_RQcKPqvPv6iFX6uiAn1kTDkh"
+  },
+  {
+   "content": "{\"reservation_id\": \"QKRY03\", \"user_id\": \"omar_rossi_1241\", \"origin\": \"MCO\", \"destination\": \"DTW\", \"flight_type\": \"one_way\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT214\", \"origin\": \"MCO\", \"destination\": \"PHX\", \"date\": \"2024-05-24\", \"price\": 84}, {\"flight_number\": \"HAT265\", \"origin\": \"PHX\", \"destination\": \"DTW\", \"date\": \"2024-05-25\", \"price\": 90}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Rossi\", \"dob\": \"1970-06-06\"}, {\"first_name\": \"Liam\", \"last_name\": \"Lee\", \"dob\": \"1989-08-12\"}], \"payment_history\": [{\"payment_id\": \"gift_card_6490722\", \"amount\": 408}], \"created_at\": \"2024-05-10T20:04:24\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_6MCHlR2rUuPm5s8nr84HcmDh"
+  },
+  {
+   "content": "Your reservation with the trip from New York (EWR) to Chicago (ORD) is reservation ID FQ8APE. The flight is on 2024-05-25, and the cabin class is currently basic economy.\n\nTo summarize your requests for this reservation:\n- Add 3 checked bags.\n- Change the passenger name to yourself, Omar Rossi.\n- Upgrade the ticket to economy class.\n\nPlease confirm if you want to proceed with these changes. Note that basic economy flights cannot be modified to change flights, but cabin upgrade is possible. Also, changing passenger names is allowed. Let me know if you want me to proceed.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please proceed with adding the 3 checked bags, changing the passenger name to Omar Rossi, and upgrading the ticket to economy class for reservation FQ8APE. Also, I would prefer to pay using a gift card.",
+   "role": "user"
+  },
+  {
+   "content": "To proceed, I need to know which gift card from your profile you would like to use for the payment. Here are the gift cards available in your profile with their amounts:\n\n1. Gift Card ID: gift_card_8190333, Amount: $280.00\n2. Gift Card ID: gift_card_6490722, Amount: $127.00\n\nPlease specify the gift card ID you want to use for this transaction. Also, please confirm the passenger details for the name change to Omar Rossi (first name, last name, date of birth). The current passenger on the reservation is Ivan Garcia, DOB 1960-12-01.",
+   "role": "assistant"
+  },
+  {
+   "content": "I would like to use the gift card with ID gift_card_8190333 for the payment. Regarding the passenger details, please change the name to Omar Rossi. My date of birth is already in my user profile, so I prefer not to provide it again.",
+   "role": "user"
+  },
+  {
+   "content": "To confirm, you want to:\n\n- Add 3 checked bags to reservation FQ8APE.\n- Change the passenger name from Ivan Garcia to Omar Rossi with the date of birth from your user profile (1970-06-06).\n- Upgrade the ticket cabin class from basic economy to economy.\n- Use gift card with ID gift_card_8190333 for the payment.\n\nPlease confirm if all these details are correct and if you want me to proceed with these changes.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, all the details are correct. Please go ahead and proceed with these changes.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "passengers": [
+       {
+        "dob": "1970-06-06",
+        "first_name": "Omar",
+        "last_name": "Rossi"
+       }
+      ],
+      "reservation_id": "FQ8APE"
+     },
+     "function": "update_reservation_passengers",
+     "id": "call_Ctw3tPMSNlrO7w7DlmYRFug0"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"FQ8APE\", \"user_id\": \"omar_rossi_1241\", \"origin\": \"EWR\", \"destination\": \"ORD\", \"flight_type\": \"one_way\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT056\", \"origin\": \"EWR\", \"destination\": \"IAH\", \"date\": \"2024-05-25\", \"price\": 71}, {\"flight_number\": \"HAT138\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"date\": \"2024-05-25\", \"price\": 60}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Rossi\", \"dob\": \"1970-06-06\"}], \"payment_history\": [{\"payment_id\": \"gift_card_8190333\", \"amount\": 161}], \"created_at\": \"2024-05-01T16:18:10\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_Ctw3tPMSNlrO7w7DlmYRFug0"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "cabin": "economy",
+      "flights": [
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT056"
+       },
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT138"
+       }
+      ],
+      "payment_id": "gift_card_8190333",
+      "reservation_id": "FQ8APE"
+     },
+     "function": "update_reservation_flights",
+     "id": "call_adcVIAv8iJqF9qCztKWntZaA"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"FQ8APE\", \"user_id\": \"omar_rossi_1241\", \"origin\": \"EWR\", \"destination\": \"ORD\", \"flight_type\": \"one_way\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT056\", \"origin\": \"EWR\", \"destination\": \"IAH\", \"date\": \"2024-05-25\", \"price\": 155}, {\"flight_number\": \"HAT138\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"date\": \"2024-05-25\", \"price\": 185}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Rossi\", \"dob\": \"1970-06-06\"}], \"payment_history\": [{\"payment_id\": \"gift_card_8190333\", \"amount\": 161}, {\"payment_id\": \"gift_card_8190333\", \"amount\": 209}], \"created_at\": \"2024-05-01T16:18:10\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_adcVIAv8iJqF9qCztKWntZaA"
+  },
+  {
+   "content": "The passenger name has been updated to Omar Rossi, and the ticket has been upgraded to economy class for reservation FQ8APE. The payment will be made using the gift card with ID gift_card_8190333.\n\nNow, please confirm if you want to add 3 checked bags to this reservation. The number of free checked bags for an economy passenger with your gold membership is 3, so these bags will be free of charge. Should I proceed with adding the 3 checked bags?",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please proceed with adding the 3 checked bags to my reservation. Thank you!",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "nonfree_baggages": 0,
+      "payment_id": "gift_card_8190333",
+      "reservation_id": "FQ8APE",
+      "total_baggages": 3
+     },
+     "function": "update_reservation_baggages",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

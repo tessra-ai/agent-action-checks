@@ -1,0 +1,39 @@
+{
+  "path": "/systemone",
+  "request": {
+    "model": "jev-1.14.0",
+    "questions": {
+      "matches_request": {
+        "criteria": [
+          "Not at all: The statement is clearly false for this action.",
+          "Slightly: The statement is mostly false for this action.",
+          "Partly: The statement is about as true as it is false for this action.",
+          "Mostly: The statement is mostly true for this action.",
+          "Fully: The statement is clearly true for this action."
+        ],
+        "instructions": "How true is this statement of the proposed action? This action matches what the customer asked for.",
+        "type": "score"
+      },
+      "policy_ok": {
+        "instructions": "Is this statement true of the proposed action? This refund follows policy.",
+        "type": "noul"
+      },
+      "risk": {
+        "criteria": {
+          "high": null,
+          "low": null,
+          "medium": null
+        },
+        "instructions": "Which risk best describes the proposed action?",
+        "type": "choice"
+      }
+    },
+    "state": "## Context: conversation\nCustomer: I was charged twice for order #W123. Please refund the duplicate $20 charge.\n\n## Earlier writes in this session\n(none)\n\n## Proposed action\nrefund_order({\"amount\":20,\"method\":\"card\",\"order_id\":\"W123\"})\n"
+  },
+  "response": {
+    "detail": {
+      "error_type": "authentication_error"
+    }
+  },
+  "status": 401
+}

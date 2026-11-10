@@ -1,0 +1,96 @@
+{
+ "seed": 20261106,
+ "cases": [
+  {
+   "case": "case-01",
+   "grading_case": "case-066",
+   "write_id": "01M6PS5SRXMG1SH1MRGZTTXZF3"
+  },
+  {
+   "case": "case-02",
+   "grading_case": "case-057",
+   "write_id": "01M6PSHVYYPR0ZBCHPKGT7RYZQ"
+  },
+  {
+   "case": "case-03",
+   "grading_case": "case-053",
+   "write_id": "01M6PSPP2DCVQK446FWXAAVYT3"
+  },
+  {
+   "case": "case-04",
+   "grading_case": "case-003",
+   "write_id": "01M6PSFHHBSFRPNYDX9NBTXTK8"
+  },
+  {
+   "case": "case-05",
+   "grading_case": "case-036",
+   "write_id": "01M6PSA8YDMHW0GZ1AZYSX7TZK"
+  },
+  {
+   "case": "case-06",
+   "grading_case": "case-050",
+   "write_id": "01M6PS9JMN5C0EJQ345T4AKM53"
+  },
+  {
+   "case": "case-07",
+   "grading_case": "case-019",
+   "write_id": "01M6PS450P35XNSFSN9XH22HBB"
+  },
+  {
+   "case": "case-08",
+   "grading_case": "case-029",
+   "write_id": "01M6PS44B3V25S0NEXE2891HK9"
+  },
+  {
+   "case": "case-09",
+   "grading_case": "case-047",
+   "write_id": "01M6PSHTJ9M44PZ777A867QA84"
+  },
+  {
+   "case": "case-10",
+   "grading_case": "case-046",
+   "write_id": "01M6PS98P1MQH9J5QPFSXRCXZW"
+  },
+  {
+   "case": "case-11",
+   "grading_case": "case-073",
+   "write_id": "01M6PSE974Q7A746PB5M1VQ5SH"
+  },
+  {
+   "case": "case-12",
+   "grading_case": "case-004",
+   "write_id": "01M6PS3PZ5WHQW545SV45JC00T"
+  },
+  {
+   "case": "case-13",
+   "grading_case": "case-042",
+   "write_id": "01M6PSDXGY13ZCNJB67XE7HFHJ"
+  },
+  {
+   "case": "case-14",
+   "grading_case": "case-058",
+   "write_id": "01M6PS1NAX2X5Y57198Y66KSBF"
+  },
+  {
+   "case": "case-15",
+   "grading_case": "case-051",
+   "write_id": "01M6PSD7R1EPMBFN74RCN5WEGA"
+  },
+  {
+   "case": "case-16",
+   "grading_case": "case-072",
+   "write_id": "01M6PS3KTZJWA58EKBDXS92Y30"
+  },
+  {
+   "case": "case-17",
+   "grading_case": "case-006",
+   "write_id": "01M6PSDB70A9CWP8ZN28SJMTSR"
+  },
+  {
+   "case": "case-18",
+   "grading_case": "case-074",
+   "write_id": "01M6PSBTQCT8HHTS5E0ATG5JEX"
+  }
+ ],
+ "selection": "every write the full stack (hand rules + claims check + Docent) ran in either Docent run, plus every split grader vote, minus those settled by review/consistency.json"
+}

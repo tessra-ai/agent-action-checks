@@ -1,0 +1,3766 @@
+{
+ "extraction": {
+  "ok": 133,
+  "writes": 133,
+  "claims": 470,
+  "verdicts": {
+   "true": 220,
+   "false": 81,
+   "unverifiable": 169
+  },
+  "flagged_writes": 61
+ },
+ "metrics": {
+  "corrected_benchmark": {
+   "claims": {
+    "ran": 72,
+    "wrong": 43,
+    "wrong_rate_upper95": 0.6948,
+    "good_sent_back": 17,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PSH89FT7RCSN8YXD892DR",
+     "01M61PT2NG1AA7SCQ0PGK942A7",
+     "01M61PT30XT83HZBJSJ0RDWB5D",
+     "01M61PT6QYAFFZWRWG4V2J8HKZ",
+     "01M61PTMHC2NJEBQ2NR80XNJHA",
+     "01M61PTR8ESVDBEQCPRHQB7042",
+     "01M61PWTD0M8BWXEKGDZ509ZGR",
+     "01M61PX4FK7DA9Z1J1D9QEXRT2",
+     "01M61PX8RE2M6RFADFQBXN6E57",
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61PXKGCSJZJETM64WV2AHM4",
+     "01M61PXKTBR97TZS7D9PJA407T",
+     "01M61PXMEYT40YTMG6Z2179RRR",
+     "01M61PYNWW59WV0G243A2FZW92",
+     "01M61PYTPEQPTZ9JM5DKK0NBWZ",
+     "01M61PZ9FJYVBHXG708TEDGVX3",
+     "01M61PZ9SGJDMA94SS6PQSEGNG",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q0H1DR9TFDTDHB9VAJNFY",
+     "01M61Q0HPA7XMW5YRTABGE2VKE",
+     "01M61Q0JBGTDSPSADB8QD40CH4",
+     "01M61Q0JQ0P7BCN5VP6010AY2T",
+     "01M61Q0TTF7NSD2NHDVC01K52Z",
+     "01M61Q0VJAB2TDDAGT3JNNXECJ",
+     "01M61Q0X25WHGGK980377FFR8M",
+     "01M61Q0XDTXHGW3SZ4FTJG91VF",
+     "01M61Q17VRW160JR4P3C1CXCVP",
+     "01M61Q1DSVFZ0VKAKKBQCS3ZR7",
+     "01M61Q1KSECAJ17000CGCZRZ6J",
+     "01M61Q3PF11TD3XBKQVTZ9P5GQ",
+     "01M61Q484XRHT74GJNDVYMZYTS",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q6YJPFHCG1WPHME955S0F",
+     "01M61Q79VR8ABNANRCE8DF12JV",
+     "01M61Q7E08FRX3S6AGKP0Q2ZSB",
+     "01M61Q7ZCT2QDMECVQCAMC20EQ",
+     "01M61Q87YYRMY7FZ7NBZ3SNCDC",
+     "01M61Q8YRFJ3NHA466H4005NNE",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61Q9V0PEBBX39TDBN9FE1G3",
+     "01M61QAXR13HZH3KDDW3H4VE5Y",
+     "01M61QAZD1C85YBG2KRN638RMF",
+     "01M61QBD9PW1G7Y0B2Y885TT4F"
+    ]
+   },
+   "old_1": {
+    "ran": 22,
+    "wrong": 6,
+    "wrong_rate_upper95": 0.4685,
+    "good_sent_back": 30,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "old_claims_1": {
+    "ran": 15,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.5108,
+    "good_sent_back": 35,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "rules_docent_1": {
+    "ran": 28,
+    "wrong": 7,
+    "wrong_rate_upper95": 0.4187,
+    "good_sent_back": 25,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61Q9WS74N35PTYM20MW0HVE",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "rules_claims_docent_1": {
+    "ran": 17,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.4605,
+    "good_sent_back": 33,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "rules_facts_claims_docent_1": {
+    "ran": 12,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.6091,
+    "good_sent_back": 38,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "old_2": {
+    "ran": 24,
+    "wrong": 8,
+    "wrong_rate_upper95": 0.5214,
+    "good_sent_back": 30,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAXR13HZH3KDDW3H4VE5Y",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "old_claims_2": {
+    "ran": 16,
+    "wrong": 5,
+    "wrong_rate_upper95": 0.5483,
+    "good_sent_back": 35,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAXR13HZH3KDDW3H4VE5Y",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "rules_docent_2": {
+    "ran": 28,
+    "wrong": 9,
+    "wrong_rate_upper95": 0.4938,
+    "good_sent_back": 27,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61Q9WS74N35PTYM20MW0HVE",
+     "01M61QAZD1C85YBG2KRN638RMF",
+     "01M61QCGXQPGRQTHWAHV15T9Q7"
+    ]
+   },
+   "rules_claims_docent_2": {
+    "ran": 16,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.4844,
+    "good_sent_back": 34,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "rules_facts_claims_docent_2": {
+    "ran": 12,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.6091,
+    "good_sent_back": 38,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   }
+  },
+  "adjudicated": {
+   "claims": {
+    "ran": 48,
+    "wrong": 24,
+    "wrong_rate_upper95": 0.6264,
+    "good_sent_back": 19,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PSH89FT7RCSN8YXD892DR",
+     "01M61PSRVRXMARGYBWJZ9YJE0Y",
+     "01M61PWTD0M8BWXEKGDZ509ZGR",
+     "01M61PX4FK7DA9Z1J1D9QEXRT2",
+     "01M61PYTPEQPTZ9JM5DKK0NBWZ",
+     "01M61PZ9SGJDMA94SS6PQSEGNG",
+     "01M61PZW9CFSERA79KP94VW7HC",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q0H1DR9TFDTDHB9VAJNFY",
+     "01M61Q0HPA7XMW5YRTABGE2VKE",
+     "01M61Q0JBGTDSPSADB8QD40CH4",
+     "01M61Q0JQ0P7BCN5VP6010AY2T",
+     "01M61Q0WNE9VH1Y8907XYGY7BR",
+     "01M61Q0XDTXHGW3SZ4FTJG91VF",
+     "01M61Q17VRW160JR4P3C1CXCVP",
+     "01M61Q1DSVFZ0VKAKKBQCS3ZR7",
+     "01M61Q3PXQRD3JHD5TP2CH5AQ7",
+     "01M61Q484XRHT74GJNDVYMZYTS",
+     "01M61Q79VR8ABNANRCE8DF12JV",
+     "01M61Q7E08FRX3S6AGKP0Q2ZSB",
+     "01M61Q87YYRMY7FZ7NBZ3SNCDC",
+     "01M61Q8R9JT4JFVC77GVN9N11Q",
+     "01M61Q9V0PEBBX39TDBN9FE1G3",
+     "01M61QAXR13HZH3KDDW3H4VE5Y"
+    ]
+   },
+   "old_1": {
+    "ran": 22,
+    "wrong": 2,
+    "wrong_rate_upper95": 0.2595,
+    "good_sent_back": 23,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61Q0HD0F0DNRS5WWVBVESGP"
+    ]
+   },
+   "old_claims_1": {
+    "ran": 15,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.181,
+    "good_sent_back": 28,
+    "good_total": 43,
+    "wrong_write_ids": []
+   },
+   "rules_docent_1": {
+    "ran": 28,
+    "wrong": 2,
+    "wrong_rate_upper95": 0.2082,
+    "good_sent_back": 17,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61Q0HD0F0DNRS5WWVBVESGP"
+    ]
+   },
+   "rules_claims_docent_1": {
+    "ran": 17,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.1616,
+    "good_sent_back": 26,
+    "good_total": 43,
+    "wrong_write_ids": []
+   },
+   "rules_facts_claims_docent_1": {
+    "ran": 12,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.2209,
+    "good_sent_back": 31,
+    "good_total": 43,
+    "wrong_write_ids": []
+   },
+   "old_2": {
+    "ran": 24,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.3418,
+    "good_sent_back": 23,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61QAXR13HZH3KDDW3H4VE5Y"
+    ]
+   },
+   "old_claims_2": {
+    "ran": 16,
+    "wrong": 1,
+    "wrong_rate_upper95": 0.264,
+    "good_sent_back": 28,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61QAXR13HZH3KDDW3H4VE5Y"
+    ]
+   },
+   "rules_docent_2": {
+    "ran": 28,
+    "wrong": 3,
+    "wrong_rate_upper95": 0.2542,
+    "good_sent_back": 18,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61Q0HD0F0DNRS5WWVBVESGP"
+    ]
+   },
+   "rules_claims_docent_2": {
+    "ran": 16,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.1707,
+    "good_sent_back": 27,
+    "good_total": 43,
+    "wrong_write_ids": []
+   },
+   "rules_facts_claims_docent_2": {
+    "ran": 12,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.2209,
+    "good_sent_back": 31,
+    "good_total": 43,
+    "wrong_write_ids": []
+   }
+  },
+  "graders": {
+   "claims": {
+    "ran": 48,
+    "wrong": 24,
+    "wrong_rate_upper95": 0.6264,
+    "good_sent_back": 20,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PSH89FT7RCSN8YXD892DR",
+     "01M61PSRVRXMARGYBWJZ9YJE0Y",
+     "01M61PWTD0M8BWXEKGDZ509ZGR",
+     "01M61PX4FK7DA9Z1J1D9QEXRT2",
+     "01M61PYTPEQPTZ9JM5DKK0NBWZ",
+     "01M61PZ9SGJDMA94SS6PQSEGNG",
+     "01M61PZW9CFSERA79KP94VW7HC",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q0H1DR9TFDTDHB9VAJNFY",
+     "01M61Q0HPA7XMW5YRTABGE2VKE",
+     "01M61Q0JBGTDSPSADB8QD40CH4",
+     "01M61Q0JQ0P7BCN5VP6010AY2T",
+     "01M61Q0WNE9VH1Y8907XYGY7BR",
+     "01M61Q0XDTXHGW3SZ4FTJG91VF",
+     "01M61Q17VRW160JR4P3C1CXCVP",
+     "01M61Q1DSVFZ0VKAKKBQCS3ZR7",
+     "01M61Q3PXQRD3JHD5TP2CH5AQ7",
+     "01M61Q484XRHT74GJNDVYMZYTS",
+     "01M61Q79VR8ABNANRCE8DF12JV",
+     "01M61Q7E08FRX3S6AGKP0Q2ZSB",
+     "01M61Q87YYRMY7FZ7NBZ3SNCDC",
+     "01M61Q8R9JT4JFVC77GVN9N11Q",
+     "01M61Q9V0PEBBX39TDBN9FE1G3",
+     "01M61QAXR13HZH3KDDW3H4VE5Y"
+    ]
+   },
+   "old_1": {
+    "ran": 22,
+    "wrong": 1,
+    "wrong_rate_upper95": 0.1981,
+    "good_sent_back": 23,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PYVD9NX93H5VMR1XBYZNQ"
+    ]
+   },
+   "old_claims_1": {
+    "ran": 15,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.181,
+    "good_sent_back": 29,
+    "good_total": 44,
+    "wrong_write_ids": []
+   },
+   "rules_docent_1": {
+    "ran": 28,
+    "wrong": 1,
+    "wrong_rate_upper95": 0.1585,
+    "good_sent_back": 17,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PYVD9NX93H5VMR1XBYZNQ"
+    ]
+   },
+   "rules_claims_docent_1": {
+    "ran": 17,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.1616,
+    "good_sent_back": 27,
+    "good_total": 44,
+    "wrong_write_ids": []
+   },
+   "rules_facts_claims_docent_1": {
+    "ran": 12,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.2209,
+    "good_sent_back": 32,
+    "good_total": 44,
+    "wrong_write_ids": []
+   },
+   "old_2": {
+    "ran": 24,
+    "wrong": 3,
+    "wrong_rate_upper95": 0.2923,
+    "good_sent_back": 23,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61QAXR13HZH3KDDW3H4VE5Y"
+    ]
+   },
+   "old_claims_2": {
+    "ran": 16,
+    "wrong": 1,
+    "wrong_rate_upper95": 0.264,
+    "good_sent_back": 29,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61QAXR13HZH3KDDW3H4VE5Y"
+    ]
+   },
+   "rules_docent_2": {
+    "ran": 28,
+    "wrong": 2,
+    "wrong_rate_upper95": 0.2082,
+    "good_sent_back": 18,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT"
+    ]
+   },
+   "rules_claims_docent_2": {
+    "ran": 16,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.1707,
+    "good_sent_back": 28,
+    "good_total": 44,
+    "wrong_write_ids": []
+   },
+   "rules_facts_claims_docent_2": {
+    "ran": 12,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.2209,
+    "good_sent_back": 32,
+    "good_total": 44,
+    "wrong_write_ids": []
+   }
+  }
+ },
+ "gate_failures": {
+  "01M61PXJFG0ZP04V1QEJD869TJ": {
+   "task": "22",
+   "action": "update_reservation_flights",
+   "person_case": null,
+   "flagged": false,
+   "false_claims": [],
+   "claims": [
+    {
+     "amount": null,
+     "cabin": "basic_economy",
+     "cancellable": null,
+     "flights": [
+      {
+       "date": "2024-05-25",
+       "flight_number": "HAT056"
+      },
+      {
+       "date": "2024-05-25",
+       "flight_number": "HAT138"
+      }
+     ],
+     "kind": "flights",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "To confirm, you want to modify reservation FQ8APE as follows:\n- Keep the passenger as Omar Rossi (DOB: 1970-06-06)\n- Keep the cabin class as basic economy (remove the upgrade to economy)\n- Add 3 checked bags\n- Use gift_card_8190333 for payment",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": 3,
+     "verdict": "true",
+     "truth": [
+      [
+       "HAT056",
+       "2024-05-25"
+      ],
+      [
+       "HAT138",
+       "2024-05-25"
+      ]
+     ],
+     "why": "flights"
+    },
+    {
+     "amount": null,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "payment_method",
+     "paid_bags": null,
+     "payment": "gift_card_8190333",
+     "quote": "To confirm, you want to modify reservation FQ8APE as follows:\n- Keep the passenger as Omar Rossi (DOB: 1970-06-06)\n- Keep the cabin class as basic economy (remove the upgrade to economy)\n- Add 3 checked bags\n- Use gift_card_8190333 for payment",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "true",
+     "truth": [
+      "gift_card_8190333"
+     ],
+     "why": "method"
+    }
+   ]
+  },
+  "01M61PYGRX51BXSSZ4R86R0CQH": {
+   "task": "25",
+   "action": "book_reservation",
+   "person_case": "case-14",
+   "flagged": true,
+   "false_claims": [
+    {
+     "amount": 299,
+     "cabin": "economy",
+     "cancellable": null,
+     "flights": [
+      {
+       "date": "2024-05-17",
+       "flight_number": "HAT097"
+      },
+      {
+       "date": "2024-05-17",
+       "flight_number": "HAT251"
+      }
+     ],
+     "kind": "price_quote",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "The flights prices are $158 and $141, totaling $299.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "false",
+     "truth": 375.0,
+     "why": "price"
+    },
+    {
+     "amount": 201,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "balance_after",
+     "paid_bags": null,
+     "payment": "certificate_8998287",
+     "quote": "After deducting the flight price of $299, the certificate balance would be $201, which means less than $100 of the certificate value would be wasted.",
+     "rank": null,
+     "remaining_usable": true,
+     "total_bags": null,
+     "verdict": "false",
+     "truth": 0.0,
+     "why": "certificate remainder is forfeited, not left"
+    },
+    {
+     "amount": 125,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "balance_after",
+     "paid_bags": null,
+     "payment": "certificate_8998287",
+     "quote": "The certificate balance after deducting $375 would be $125, which is still more than $100 left.",
+     "rank": null,
+     "remaining_usable": true,
+     "total_bags": null,
+     "verdict": "false",
+     "truth": 0.0,
+     "why": "certificate remainder is forfeited, not left"
+    }
+   ],
+   "claims": [
+    {
+     "amount": 299,
+     "cabin": "economy",
+     "cancellable": null,
+     "flights": [
+      {
+       "date": "2024-05-17",
+       "flight_number": "HAT097"
+      },
+      {
+       "date": "2024-05-17",
+       "flight_number": "HAT251"
+      }
+     ],
+     "kind": "price_quote",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "The flights prices are $158 and $141, totaling $299.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "false",
+     "truth": 375.0,
+     "why": "price"
+    },
+    {
+     "amount": 201,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "balance_after",
+     "paid_bags": null,
+     "payment": "certificate_8998287",
+     "quote": "After deducting the flight price of $299, the certificate balance would be $201, which means less than $100 of the certificate value would be wasted.",
+     "rank": null,
+     "remaining_usable": true,
+     "total_bags": null,
+     "verdict": "false",
+     "truth": 0.0,
+     "why": "certificate remainder is forfeited, not left"
+    },
+    {
+     "amount": null,
+     "cabin": "economy",
+     "cancellable": null,
+     "flights": [
+      {
+       "date": "2024-05-17",
+       "flight_number": "HAT097"
+      },
+      {
+       "date": "2024-05-17",
+       "flight_number": "HAT251"
+      }
+     ],
+     "kind": "flights",
+     "paid_bags": 0,
+     "payment": null,
+     "quote": "To confirm, I will proceed with booking the one-way economy trip from DTW to SEA on 2024-05-17 for Ivan Smith, using your certificate for payment, with no baggage or insurance.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": 0,
+     "verdict": "true",
+     "truth": [
+      [
+       "HAT097",
+       "2024-05-17"
+      ],
+      [
+       "HAT251",
+       "2024-05-17"
+      ]
+     ],
+     "why": "flights"
+    },
+    {
+     "amount": 375,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "charge",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "The total price for the flights is actually $375, not $299 as initially calculated.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "true",
+     "truth": 375.0,
+     "why": "charge"
+    },
+    {
+     "amount": 125,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "balance_after",
+     "paid_bags": null,
+     "payment": "certificate_8998287",
+     "quote": "The certificate balance after deducting $375 would be $125, which is still more than $100 left.",
+     "rank": null,
+     "remaining_usable": true,
+     "total_bags": null,
+     "verdict": "false",
+     "truth": 0.0,
+     "why": "certificate remainder is forfeited, not left"
+    },
+    {
+     "amount": null,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "payment_method",
+     "paid_bags": null,
+     "payment": "certificate_8998287",
+     "quote": "Please confirm if you still want to proceed with the booking using your certificate for payment, or if you prefer to use your gift card and credit card instead.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "true",
+     "truth": [
+      "certificate_8998287"
+     ],
+     "why": "method"
+    }
+   ]
+  },
+  "01M61PYV1FP44RV654J2YAQ7AT": {
+   "task": "23",
+   "action": "book_reservation",
+   "person_case": "case-07",
+   "flagged": true,
+   "false_claims": [
+    {
+     "amount": 2240,
+     "cabin": "business",
+     "cancellable": null,
+     "flights": null,
+     "kind": "charge",
+     "paid_bags": null,
+     "payment": "credit_card_5843230",
+     "quote": "Total charges:\n- MasterCard ending in 9363: $1,120\n- Visa ending in 2395: $2,240 ($1,120 x 2)",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "false",
+     "truth": 1120.0,
+     "why": "charge"
+    }
+   ],
+   "claims": [
+    {
+     "amount": 1120,
+     "cabin": "business",
+     "cancellable": null,
+     "flights": null,
+     "kind": "charge",
+     "paid_bags": null,
+     "payment": "credit_card_2198526",
+     "quote": "Total charges:\n- MasterCard ending in 9363: $1,120\n- Visa ending in 2395: $2,240 ($1,120 x 2)",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "true",
+     "truth": 1120.0,
+     "why": "charge"
+    },
+    {
+     "amount": 2240,
+     "cabin": "business",
+     "cancellable": null,
+     "flights": null,
+     "kind": "charge",
+     "paid_bags": null,
+     "payment": "credit_card_5843230",
+     "quote": "Total charges:\n- MasterCard ending in 9363: $1,120\n- Visa ending in 2395: $2,240 ($1,120 x 2)",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "false",
+     "truth": 1120.0,
+     "why": "charge"
+    },
+    {
+     "amount": null,
+     "cabin": "business",
+     "cancellable": null,
+     "flights": [
+      {
+       "date": "2024-05-26",
+       "flight_number": "HAT023"
+      },
+      {
+       "date": "2024-05-28",
+       "flight_number": "HAT082"
+      },
+      {
+       "date": "2024-05-29",
+       "flight_number": "HAT085"
+      }
+     ],
+     "kind": "flights",
+     "paid_bags": 0,
+     "payment": null,
+     "quote": "To proceed, here is a summary of the actions for the three separate bookings:\n\n1. Your reservation:\n- Passenger: Mohamed Silva\n- Flights: Business round trip JFK-SFO (HAT023) on May 26, 2024, and SFO-IAH-JFK (HAT082, HAT085) on May 28-29, 2024",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": 0,
+     "verdict": "true",
+     "truth": [
+      [
+       "HAT023",
+       "2024-05-26"
+      ],
+      [
+       "HAT082",
+       "2024-05-28"
+      ],
+      [
+       "HAT085",
+       "2024-05-29"
+      ]
+     ],
+     "why": "flights"
+    }
+   ]
+  },
+  "01M61PYVD9NX93H5VMR1XBYZNQ": {
+   "task": "23",
+   "action": "book_reservation",
+   "person_case": "case-04",
+   "flagged": true,
+   "false_claims": [
+    {
+     "amount": 2240,
+     "cabin": "business",
+     "cancellable": null,
+     "flights": null,
+     "kind": "charge",
+     "paid_bags": null,
+     "payment": "credit_card_5843230",
+     "quote": "Total charges:\n- MasterCard ending in 9363: $1,120\n- Visa ending in 2395: $2,240 ($1,120 x 2)",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "false",
+     "truth": 1120.0,
+     "why": "charge"
+    }
+   ],
+   "claims": [
+    {
+     "amount": 1120,
+     "cabin": "business",
+     "cancellable": null,
+     "flights": null,
+     "kind": "charge",
+     "paid_bags": null,
+     "payment": "credit_card_2198526",
+     "quote": "Total charges:\n- MasterCard ending in 9363: $1,120\n- Visa ending in 2395: $2,240 ($1,120 x 2)",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "true",
+     "truth": 1120.0,
+     "why": "charge"
+    },
+    {
+     "amount": 2240,
+     "cabin": "business",
+     "cancellable": null,
+     "flights": null,
+     "kind": "charge",
+     "paid_bags": null,
+     "payment": "credit_card_5843230",
+     "quote": "Total charges:\n- MasterCard ending in 9363: $1,120\n- Visa ending in 2395: $2,240 ($1,120 x 2)",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "false",
+     "truth": 1120.0,
+     "why": "charge"
+    },
+    {
+     "amount": null,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "payment_method",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "You want to book three separate reservations for Aarav, Evelyn, and myself using only my credit cards. For my reservation, please use the MasterCard ending in 9363. For Aarav's and Evelyn's reservations, please use the Visa ending in 2395.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "unverifiable",
+     "truth": null,
+     "why": "payment method not resolved"
+    },
+    {
+     "amount": null,
+     "cabin": "business",
+     "cancellable": null,
+     "flights": [
+      {
+       "date": "2024-05-26",
+       "flight_number": "HAT023"
+      },
+      {
+       "date": "2024-05-28",
+       "flight_number": "HAT082"
+      },
+      {
+       "date": "2024-05-29",
+       "flight_number": "HAT085"
+      }
+     ],
+     "kind": "flights",
+     "paid_bags": 0,
+     "payment": null,
+     "quote": "You want to book three separate reservations:\n- Your reservation: pay $1,120 with MasterCard ending in 9363\n- Aarav's reservation: pay $1,120 with Visa ending in 2395\n- Evelyn's reservation: pay $1,120 with Visa ending in 2395",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": 0,
+     "verdict": "true",
+     "truth": [
+      [
+       "HAT023",
+       "2024-05-26"
+      ],
+      [
+       "HAT082",
+       "2024-05-28"
+      ],
+      [
+       "HAT085",
+       "2024-05-29"
+      ]
+     ],
+     "why": "flights"
+    }
+   ]
+  },
+  "01M61Q0HD0F0DNRS5WWVBVESGP": {
+   "task": "35",
+   "action": "book_reservation",
+   "person_case": "case-13",
+   "flagged": true,
+   "false_claims": [
+    {
+     "amount": null,
+     "cabin": "economy",
+     "cancellable": null,
+     "flights": [
+      {
+       "date": "2024-05-24",
+       "flight_number": "HAT023"
+      }
+     ],
+     "kind": "option_rank",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "Since this is the only direct flight available, it is also the second cheapest by default.",
+     "rank": "second_cheapest",
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "false",
+     "truth": [
+      163,
+      290,
+      300
+     ],
+     "why": "second cheapest"
+    }
+   ],
+   "claims": [
+    {
+     "amount": 163,
+     "cabin": "economy",
+     "cancellable": null,
+     "flights": [
+      {
+       "date": "2024-05-24",
+       "flight_number": "HAT023"
+      }
+     ],
+     "kind": "price_quote",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "The price for economy class is $163.",
+     "rank": "second_cheapest",
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "true",
+     "truth": 163.0,
+     "why": "price"
+    },
+    {
+     "amount": null,
+     "cabin": "economy",
+     "cancellable": null,
+     "flights": [
+      {
+       "date": "2024-05-24",
+       "flight_number": "HAT023"
+      }
+     ],
+     "kind": "option_rank",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "Since this is the only direct flight available, it is also the second cheapest by default.",
+     "rank": "second_cheapest",
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "false",
+     "truth": [
+      163,
+      290,
+      300
+     ],
+     "why": "second cheapest"
+    },
+    {
+     "amount": null,
+     "cabin": "economy",
+     "cancellable": null,
+     "flights": [
+      {
+       "date": "2024-05-24",
+       "flight_number": "HAT023"
+      }
+     ],
+     "kind": "flights",
+     "paid_bags": 0,
+     "payment": null,
+     "quote": "There is one direct flight available from JFK to SFO on May 24 in economy class with flight number HAT023.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": 0,
+     "verdict": "true",
+     "truth": [
+      [
+       "HAT023",
+       "2024-05-24"
+      ]
+     ],
+     "why": "flights"
+    },
+    {
+     "amount": null,
+     "cabin": "economy",
+     "cancellable": null,
+     "flights": null,
+     "kind": "cabin",
+     "paid_bags": 0,
+     "payment": null,
+     "quote": "Please provide the passenger details ... and confirm if you want to proceed with booking this flight in economy class without any baggage or insurance.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": 0,
+     "verdict": "true",
+     "truth": "economy",
+     "why": "cabin"
+    },
+    {
+     "amount": 163,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "payment_method",
+     "paid_bags": null,
+     "payment": "credit_card_9074831",
+     "quote": "I want to pay using my credit card ending in 7334.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "true",
+     "truth": [
+      "credit_card_9074831"
+     ],
+     "why": "method"
+    }
+   ]
+  },
+  "01M61Q61W18MDCTTT245C04ZZP": {
+   "task": "17",
+   "action": "book_reservation",
+   "person_case": null,
+   "flagged": false,
+   "false_claims": [],
+   "claims": [
+    {
+     "amount": null,
+     "cabin": "economy",
+     "cancellable": null,
+     "flights": [
+      {
+       "date": "2024-05-25",
+       "flight_number": "HAT179"
+      },
+      {
+       "date": "2024-05-25",
+       "flight_number": "HAT116"
+      }
+     ],
+     "kind": "flights",
+     "paid_bags": 0,
+     "payment": null,
+     "quote": "You have selected the following itinerary for May 25, 2024:\n- HAT179: EWR \u0002161; IAH, departs 05:00, arrives 08:00 (economy)\n- HAT116: IAH \u0002161; ORD, departs 08:00, arrives 10:30 (economy)",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": 3,
+     "verdict": "true",
+     "truth": [
+      [
+       "HAT116",
+       "2024-05-25"
+      ],
+      [
+       "HAT179",
+       "2024-05-25"
+      ]
+     ],
+     "why": "flights"
+    },
+    {
+     "amount": 266,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "charge",
+     "paid_bags": null,
+     "payment": "gift card gift_card_8190333",
+     "quote": "Payment: gift card gift_card_8190333 ($266)",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "true",
+     "truth": 266,
+     "why": "charge to the named method"
+    },
+    {
+     "amount": 14,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "balance_after",
+     "paid_bags": null,
+     "payment": "gift card gift_card_8190333",
+     "quote": "gift card gift_card_8190333 with $280 for payment",
+     "rank": null,
+     "remaining_usable": true,
+     "total_bags": null,
+     "verdict": "true",
+     "truth": 14.0,
+     "why": "balance after"
+    },
+    {
+     "amount": null,
+     "cabin": "economy",
+     "cancellable": null,
+     "flights": null,
+     "kind": "other",
+     "paid_bags": 0,
+     "payment": null,
+     "quote": "As a gold member, you are entitled to 3 free checked bags in economy class, so there will be no extra baggage fees.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": 3,
+     "verdict": "unverifiable",
+     "truth": null,
+     "why": "not a checkable kind"
+    }
+   ]
+  },
+  "01M61Q96DSP7Z14FDFD7DBCK08": {
+   "task": "32",
+   "action": "book_reservation",
+   "person_case": null,
+   "flagged": false,
+   "false_claims": [],
+   "claims": [
+    {
+     "amount": null,
+     "cabin": null,
+     "cancellable": null,
+     "flights": [
+      {
+       "date": "2024-05-21",
+       "flight_number": "HAT041"
+      }
+     ],
+     "kind": "flights",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "Now, I will proceed to book the nonstop flight (HAT041) from EWR to LAX on May 21 for all three passengers: Ivan Rossi, Olivia Santos, and Lei Johansson.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "true",
+     "truth": [
+      [
+       "HAT041",
+       "2024-05-21"
+      ]
+     ],
+     "why": "flights"
+    },
+    {
+     "amount": null,
+     "cabin": "economy",
+     "cancellable": null,
+     "flights": null,
+     "kind": "cabin",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "I would like to book the new flight in economy class for all three passengers.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "true",
+     "truth": "economy",
+     "why": "cabin"
+    },
+    {
+     "amount": 408,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "charge",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "Price: $136 per passenger (total $408)",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "true",
+     "truth": 408.0,
+     "why": "charge"
+    },
+    {
+     "amount": null,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "payment_method",
+     "paid_bags": null,
+     "payment": "gift_card_7344518, gift_card_9823297, credit_card_9659780",
+     "quote": "Please use both gift cards to cover $407 and charge the remaining $1 to my Visa credit card ending in 1777.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "true",
+     "truth": [
+      "credit_card_9659780",
+      "gift_card_7344518",
+      "gift_card_9823297"
+     ],
+     "why": "method"
+    },
+    {
+     "amount": null,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "balance_after",
+     "paid_bags": null,
+     "payment": "gift_card_7344518",
+     "quote": "Gift Card (ending in 7344518, $183 balance) and Gift Card (ending in 9823297, $224 balance)",
+     "rank": null,
+     "remaining_usable": true,
+     "total_bags": null,
+     "verdict": "unverifiable",
+     "truth": null,
+     "why": "no amount"
+    },
+    {
+     "amount": null,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "balance_after",
+     "paid_bags": null,
+     "payment": "gift_card_9823297",
+     "quote": "Gift Card (ending in 7344518, $183 balance) and Gift Card (ending in 9823297, $224 balance)",
+     "rank": null,
+     "remaining_usable": true,
+     "total_bags": null,
+     "verdict": "unverifiable",
+     "truth": null,
+     "why": "no amount"
+    },
+    {
+     "amount": null,
+     "cabin": null,
+     "cancellable": false,
+     "flights": null,
+     "kind": "cancellable",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "Your reason for cancellation is to take care of your sick mother, but since your reservation does not include travel insurance and is in basic economy, a refund may not be available according to policy.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "unverifiable",
+     "truth": null,
+     "why": "depends on the reason, or nothing stated"
+    }
+   ]
+  },
+  "01M61QAXR13HZH3KDDW3H4VE5Y": {
+   "task": "43",
+   "action": "cancel_reservation",
+   "person_case": "case-12",
+   "flagged": false,
+   "false_claims": [],
+   "claims": [
+    {
+     "amount": null,
+     "cabin": "basic_economy",
+     "cancellable": null,
+     "flights": [
+      {
+       "date": "2024-05-17",
+       "flight_number": "HAT130"
+      },
+      {
+       "date": "2024-05-17",
+       "flight_number": "HAT184"
+      }
+     ],
+     "kind": "flights",
+     "paid_bags": 0,
+     "payment": null,
+     "quote": "You have another reservation on May 17 from DEN to BOS (Reservation ID: 9HBUV8), which includes travel insurance.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": 0,
+     "verdict": "unverifiable",
+     "truth": null,
+     "why": "no flights to compare"
+    },
+    {
+     "amount": null,
+     "cabin": null,
+     "cancellable": true,
+     "flights": null,
+     "kind": "cancellable",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "You have another reservation on May 17 from DEN to BOS (Reservation ID: 9HBUV8), which includes travel insurance.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "unverifiable",
+     "truth": null,
+     "why": "depends on the reason, or nothing stated"
+    }
+   ]
+  },
+  "01M61QAZD1C85YBG2KRN638RMF": {
+   "task": "42",
+   "action": "cancel_reservation",
+   "person_case": "case-02",
+   "flagged": false,
+   "false_claims": [],
+   "claims": [
+    {
+     "amount": null,
+     "cabin": null,
+     "cancellable": true,
+     "flights": null,
+     "kind": "cancellable",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "All three reservations are eligible for cancellation.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "true",
+     "truth": true,
+     "why": "cancellable after"
+    },
+    {
+     "amount": null,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "refund",
+     "paid_bags": null,
+     "payment": null,
+     "quote": "Refunds will be processed to your original payment method within 5 to 7 business days.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "unverifiable",
+     "truth": null,
+     "why": "no refund to compare"
+    },
+    {
+     "amount": null,
+     "cabin": null,
+     "cancellable": null,
+     "flights": null,
+     "kind": "payment_method",
+     "paid_bags": null,
+     "payment": "original payment method",
+     "quote": "Refunds will be processed to your original payment method within 5 to 7 business days.",
+     "rank": null,
+     "remaining_usable": null,
+     "total_bags": null,
+     "verdict": "unverifiable",
+     "truth": null,
+     "why": "payment method not resolved"
+    }
+   ]
+  }
+ },
+ "false_flags": {
+  "corrected_benchmark": [
+   {
+    "write_id": "01M61PTMV0JAHQARJNFWV9YQHZ",
+    "task": "11",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 1444,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "refund",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "The total refund amount for downgrading all three passengers from business to basic economy on your flights (HAT003 on May 19 and HAT290 on May 20) would be $1444.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 5244.0,
+      "why": "refund"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61PX5E4JBZB1FQ1ZVYT6W4E",
+    "task": "22",
+    "action": "update_reservation_passengers",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "payment_method",
+      "paid_bags": null,
+      "payment": "gift_card_8190333",
+      "quote": "Use gift_card_8190333 for payment",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [],
+      "why": "method"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61PXK44D3ZYYVPY8R6M2RKX",
+    "task": "23",
+    "action": "cancel_reservation",
+    "false_claims": [
+     {
+      "amount": 2033,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": "credit_card_2198526",
+      "quote": "Payment: Use certificates totaling $1,000 first, gift cards totaling $327 next, and charge the remaining $2,033 to your MasterCard (credit_card_2198526).",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     },
+     {
+      "amount": null,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "payment_method",
+      "paid_bags": null,
+      "payment": "credit_card_2198526",
+      "quote": "Payment: Use certificates totaling $1,000 first, gift cards totaling $327 next, and charge the remaining $2,033 to your MasterCard (credit_card_2198526).",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [],
+      "why": "method"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61PXM3NRZ465H5C04ZSK9HS",
+    "task": "21",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT290"
+       },
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT175"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "To confirm, you want to change the return flight of your reservation ID OBUT9V for your round trip from Houston (IAH) to Denver (DEN) to the following flights on May 27 in economy class:\n\n- Flight HAT290 from Denver (DEN) to Las Vegas (LAS), departing at 02:00 PM and arriving at 04:00 PM\n- Flight HAT175 from Las Vegas (LAS) to Houston (IAH), departing at 05:00 PM and arriving at 08:00 PM",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT078",
+        "2024-05-27"
+       ],
+       [
+        "HAT118",
+        "2024-05-27"
+       ],
+       [
+        "HAT175",
+        "2024-05-27"
+       ],
+       [
+        "HAT290",
+        "2024-05-27"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61PXXC9QDEK1ANHTGK2D9MM",
+    "task": "24",
+    "action": "book_reservation",
+    "false_claims": [
+     {
+      "amount": 51,
+      "cabin": "basic_economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-20",
+        "flight_number": "HAT069"
+       },
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT276"
+       }
+      ],
+      "kind": "price_quote",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I found the cheapest direct flights for your round-trip from New York to the West Coast on the requested dates: Departure on May 20: - From JFK to SEA, flight HAT069, basic economy at $51 (cheapest option) Return on May 25: - From SEA to JFK, flight HAT276, basic economy at $55 (cheapest option)",
+      "rank": "cheapest",
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 106.0,
+      "why": "price"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q451P3SVECDHWKW6KMRD2",
+    "task": "8",
+    "action": "book_reservation",
+    "false_claims": [
+     {
+      "amount": 500,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "balance_after",
+      "paid_bags": null,
+      "payment": "certificate_8045380",
+      "quote": "Certificate ending in 8045380 ($500 balance)",
+      "rank": null,
+      "remaining_usable": true,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "certificate remainder is forfeited, not left"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q4MQ74VY10ANVQ3TJ72TB",
+    "task": "11",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 456,
+      "cabin": "basic_economy",
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "New total in basic economy: $456 (for 3 passengers: $53 + $99 per person, per direction)",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q4QYXR822DYYJRZFTS68K",
+    "task": "12",
+    "action": "update_reservation_baggages",
+    "false_claims": [
+     {
+      "amount": 1200,
+      "cabin": "business",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-18",
+        "flight_number": "HAT235"
+       },
+       {
+        "date": "2024-05-19",
+        "flight_number": "HAT298"
+       }
+      ],
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "The upgrade difference is $1,200.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q5AJ8TM48KBSJDD1BBY3S",
+    "task": "14",
+    "action": "cancel_reservation",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "payment_method",
+      "paid_bags": null,
+      "payment": "certificate_3765853, certificate_9984806, certificate_2765295, gift_card_8020792, gift_card_6136092, credit_card_2198526",
+      "quote": "Payment order: certificates first, then gift cards, then MasterCard (ending 9363).",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [],
+      "why": "method"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q6AN3V63938NHNFX4CFPG",
+    "task": "18",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT028"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT277"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I have gathered the economy class prices for all your business class flights.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT076",
+        "2024-05-28"
+       ],
+       [
+        "HAT080",
+        "2024-05-28"
+       ],
+       [
+        "HAT148",
+        "2024-05-30"
+       ],
+       [
+        "HAT255",
+        "2024-05-30"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q6C290DDER26M1MJBYXRQ",
+    "task": "18",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT028"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT277"
+       },
+       {
+        "date": "2024-05-28",
+        "flight_number": "HAT080"
+       },
+       {
+        "date": "2024-05-28",
+        "flight_number": "HAT076"
+       },
+       {
+        "date": "2024-05-30",
+        "flight_number": "HAT255"
+       },
+       {
+        "date": "2024-05-30",
+        "flight_number": "HAT148"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT232"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT228"
+       },
+       {
+        "date": "2024-05-23",
+        "flight_number": "HAT084"
+       },
+       {
+        "date": "2024-05-23",
+        "flight_number": "HAT175"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT276"
+       },
+       {
+        "date": "2024-05-22",
+        "flight_number": "HAT279"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I have gathered the economy class prices for all your business class flights.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT228",
+        "2024-05-24"
+       ],
+       [
+        "HAT232",
+        "2024-05-24"
+       ]
+      ],
+      "why": "flights"
+     },
+     {
+      "amount": null,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "payment_method",
+      "paid_bags": null,
+      "payment": "gift_card_3481935",
+      "quote": "payment_id: 'gift_card_3481935'",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       "credit_card_2929732"
+      ],
+      "why": "method"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q6E78AQ25SF1EE0AXF273",
+    "task": "18",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT028"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT277"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I have gathered the economy class prices for all your business class flights.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT084",
+        "2024-05-23"
+       ],
+       [
+        "HAT175",
+        "2024-05-23"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q6FMF5B2CE7AHYKT2DTFW",
+    "task": "18",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT028"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT277"
+       },
+       {
+        "date": "2024-05-28",
+        "flight_number": "HAT080"
+       },
+       {
+        "date": "2024-05-28",
+        "flight_number": "HAT076"
+       },
+       {
+        "date": "2024-05-30",
+        "flight_number": "HAT255"
+       },
+       {
+        "date": "2024-05-30",
+        "flight_number": "HAT148"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT232"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT228"
+       },
+       {
+        "date": "2024-05-23",
+        "flight_number": "HAT084"
+       },
+       {
+        "date": "2024-05-23",
+        "flight_number": "HAT175"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT276"
+       },
+       {
+        "date": "2024-05-22",
+        "flight_number": "HAT279"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I have gathered the economy class prices for all your business class flights.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT276",
+        "2024-05-21"
+       ],
+       [
+        "HAT279",
+        "2024-05-22"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q7997MGKADFWPNJYNNEDS",
+    "task": "23",
+    "action": "cancel_reservation",
+    "false_claims": [
+     {
+      "amount": 1286,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": "MasterCard",
+      "quote": "Here\u2019s the payment breakdown for your reservation change:\n- Certificates: $1000 (fully used)\n- Gift cards: $327 (fully used)\n- Remaining amount to be charged to your MasterCard: $1286",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61QBRDS09E99Z418H4DX56V",
+    "task": "44",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 1282,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "The total additional cost to upgrade all eligible flights to business class is $1,282.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 484.0,
+      "why": "charge"
+     },
+     {
+      "amount": null,
+      "cabin": "business",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT300"
+       },
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT208"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT215"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT157"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT268"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "The following flights are eligible for upgrade to business class (all are 3 hours or less): HAT300 (MSP\u2013EWR, 2024-05-25), HAT208 (EWR\u2013MSP, 2024-05-27), HAT215 (EWR\u2013CLT, 2024-05-21), HAT157 (CLT\u2013EWR, 2024-05-24), HAT268 (JFK\u2013ATL, 2024-05-24).",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT208",
+        "2024-05-27"
+       ],
+       [
+        "HAT300",
+        "2024-05-25"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61QBSPH8AFEAG9C0BD3NRFH",
+    "task": "44",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 1282,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "The total additional cost to upgrade all eligible flights to business class is $1,282.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 740.0,
+      "why": "charge"
+     },
+     {
+      "amount": null,
+      "cabin": "business",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT300"
+       },
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT208"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT215"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT157"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT268"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "Prepare upgrade quotes for the following flights: HAT300 (MSP\u2013EWR, 2024-05-25), HAT208 (EWR\u2013MSP, 2024-05-27), HAT215 (EWR\u2013CLT, 2024-05-21), HAT157 (CLT\u2013EWR, 2024-05-24), HAT268 (JFK\u2013ATL, 2024-05-24)",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT215",
+        "2024-05-21"
+       ],
+       [
+        "HAT300",
+        "2024-05-21"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61QBV3BCVRKNX4J3WDGKFH7",
+    "task": "44",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 1282,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "The total additional cost to upgrade all eligible flights to business class is $1,282.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 163.0,
+      "why": "charge"
+     }
+    ]
+   }
+  ],
+  "adjudicated": [
+   {
+    "write_id": "01M61PTMV0JAHQARJNFWV9YQHZ",
+    "task": "11",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 1444,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "refund",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "The total refund amount for downgrading all three passengers from business to basic economy on your flights (HAT003 on May 19 and HAT290 on May 20) would be $1444.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 5244.0,
+      "why": "refund"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61PX5E4JBZB1FQ1ZVYT6W4E",
+    "task": "22",
+    "action": "update_reservation_passengers",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "payment_method",
+      "paid_bags": null,
+      "payment": "gift_card_8190333",
+      "quote": "Use gift_card_8190333 for payment",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [],
+      "why": "method"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61PXK44D3ZYYVPY8R6M2RKX",
+    "task": "23",
+    "action": "cancel_reservation",
+    "false_claims": [
+     {
+      "amount": 2033,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": "credit_card_2198526",
+      "quote": "Payment: Use certificates totaling $1,000 first, gift cards totaling $327 next, and charge the remaining $2,033 to your MasterCard (credit_card_2198526).",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     },
+     {
+      "amount": null,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "payment_method",
+      "paid_bags": null,
+      "payment": "credit_card_2198526",
+      "quote": "Payment: Use certificates totaling $1,000 first, gift cards totaling $327 next, and charge the remaining $2,033 to your MasterCard (credit_card_2198526).",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [],
+      "why": "method"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61PXM3NRZ465H5C04ZSK9HS",
+    "task": "21",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT290"
+       },
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT175"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "To confirm, you want to change the return flight of your reservation ID OBUT9V for your round trip from Houston (IAH) to Denver (DEN) to the following flights on May 27 in economy class:\n\n- Flight HAT290 from Denver (DEN) to Las Vegas (LAS), departing at 02:00 PM and arriving at 04:00 PM\n- Flight HAT175 from Las Vegas (LAS) to Houston (IAH), departing at 05:00 PM and arriving at 08:00 PM",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT078",
+        "2024-05-27"
+       ],
+       [
+        "HAT118",
+        "2024-05-27"
+       ],
+       [
+        "HAT175",
+        "2024-05-27"
+       ],
+       [
+        "HAT290",
+        "2024-05-27"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61PXXC9QDEK1ANHTGK2D9MM",
+    "task": "24",
+    "action": "book_reservation",
+    "false_claims": [
+     {
+      "amount": 51,
+      "cabin": "basic_economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-20",
+        "flight_number": "HAT069"
+       },
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT276"
+       }
+      ],
+      "kind": "price_quote",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I found the cheapest direct flights for your round-trip from New York to the West Coast on the requested dates: Departure on May 20: - From JFK to SEA, flight HAT069, basic economy at $51 (cheapest option) Return on May 25: - From SEA to JFK, flight HAT276, basic economy at $55 (cheapest option)",
+      "rank": "cheapest",
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 106.0,
+      "why": "price"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q451P3SVECDHWKW6KMRD2",
+    "task": "8",
+    "action": "book_reservation",
+    "false_claims": [
+     {
+      "amount": 500,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "balance_after",
+      "paid_bags": null,
+      "payment": "certificate_8045380",
+      "quote": "Certificate ending in 8045380 ($500 balance)",
+      "rank": null,
+      "remaining_usable": true,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "certificate remainder is forfeited, not left"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q4MQ74VY10ANVQ3TJ72TB",
+    "task": "11",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 456,
+      "cabin": "basic_economy",
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "New total in basic economy: $456 (for 3 passengers: $53 + $99 per person, per direction)",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q4QYXR822DYYJRZFTS68K",
+    "task": "12",
+    "action": "update_reservation_baggages",
+    "false_claims": [
+     {
+      "amount": 1200,
+      "cabin": "business",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-18",
+        "flight_number": "HAT235"
+       },
+       {
+        "date": "2024-05-19",
+        "flight_number": "HAT298"
+       }
+      ],
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "The upgrade difference is $1,200.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q5AJ8TM48KBSJDD1BBY3S",
+    "task": "14",
+    "action": "cancel_reservation",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "payment_method",
+      "paid_bags": null,
+      "payment": "certificate_3765853, certificate_9984806, certificate_2765295, gift_card_8020792, gift_card_6136092, credit_card_2198526",
+      "quote": "Payment order: certificates first, then gift cards, then MasterCard (ending 9363).",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [],
+      "why": "method"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q6AN3V63938NHNFX4CFPG",
+    "task": "18",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT028"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT277"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I have gathered the economy class prices for all your business class flights.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT076",
+        "2024-05-28"
+       ],
+       [
+        "HAT080",
+        "2024-05-28"
+       ],
+       [
+        "HAT148",
+        "2024-05-30"
+       ],
+       [
+        "HAT255",
+        "2024-05-30"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q6C290DDER26M1MJBYXRQ",
+    "task": "18",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT028"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT277"
+       },
+       {
+        "date": "2024-05-28",
+        "flight_number": "HAT080"
+       },
+       {
+        "date": "2024-05-28",
+        "flight_number": "HAT076"
+       },
+       {
+        "date": "2024-05-30",
+        "flight_number": "HAT255"
+       },
+       {
+        "date": "2024-05-30",
+        "flight_number": "HAT148"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT232"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT228"
+       },
+       {
+        "date": "2024-05-23",
+        "flight_number": "HAT084"
+       },
+       {
+        "date": "2024-05-23",
+        "flight_number": "HAT175"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT276"
+       },
+       {
+        "date": "2024-05-22",
+        "flight_number": "HAT279"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I have gathered the economy class prices for all your business class flights.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT228",
+        "2024-05-24"
+       ],
+       [
+        "HAT232",
+        "2024-05-24"
+       ]
+      ],
+      "why": "flights"
+     },
+     {
+      "amount": null,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "payment_method",
+      "paid_bags": null,
+      "payment": "gift_card_3481935",
+      "quote": "payment_id: 'gift_card_3481935'",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       "credit_card_2929732"
+      ],
+      "why": "method"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q6E78AQ25SF1EE0AXF273",
+    "task": "18",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT028"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT277"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I have gathered the economy class prices for all your business class flights.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT084",
+        "2024-05-23"
+       ],
+       [
+        "HAT175",
+        "2024-05-23"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q6FMF5B2CE7AHYKT2DTFW",
+    "task": "18",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT028"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT277"
+       },
+       {
+        "date": "2024-05-28",
+        "flight_number": "HAT080"
+       },
+       {
+        "date": "2024-05-28",
+        "flight_number": "HAT076"
+       },
+       {
+        "date": "2024-05-30",
+        "flight_number": "HAT255"
+       },
+       {
+        "date": "2024-05-30",
+        "flight_number": "HAT148"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT232"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT228"
+       },
+       {
+        "date": "2024-05-23",
+        "flight_number": "HAT084"
+       },
+       {
+        "date": "2024-05-23",
+        "flight_number": "HAT175"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT276"
+       },
+       {
+        "date": "2024-05-22",
+        "flight_number": "HAT279"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I have gathered the economy class prices for all your business class flights.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT276",
+        "2024-05-21"
+       ],
+       [
+        "HAT279",
+        "2024-05-22"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q7997MGKADFWPNJYNNEDS",
+    "task": "23",
+    "action": "cancel_reservation",
+    "false_claims": [
+     {
+      "amount": 1286,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": "MasterCard",
+      "quote": "Here\u2019s the payment breakdown for your reservation change:\n- Certificates: $1000 (fully used)\n- Gift cards: $327 (fully used)\n- Remaining amount to be charged to your MasterCard: $1286",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q95BW3S5HF0MZV7BCFSZS",
+    "task": "34",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 192,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "Your original payment was $533, so you would only need to pay the fare difference of $192. No change fees will be applied due to your travel insurance.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 222.0,
+      "why": "charge"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q9WS74N35PTYM20MW0HVE",
+    "task": "35",
+    "action": "book_reservation",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT023"
+       }
+      ],
+      "kind": "option_rank",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "Since there is only one available economy class flight, this is both the cheapest and the second cheapest option.",
+      "rank": "second_cheapest",
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       163,
+       290,
+       300
+      ],
+      "why": "second cheapest"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61QBV3BCVRKNX4J3WDGKFH7",
+    "task": "44",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 1282,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "The total additional cost to upgrade all eligible flights to business class is $1,282.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 163.0,
+      "why": "charge"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61QCGXQPGRQTHWAHV15T9Q7",
+    "task": "44",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 1282,
+      "cabin": "business",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT300"
+       },
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT208"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT300"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT215"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT268"
+       }
+      ],
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": "credit card on file (credit_card_4196779)",
+      "quote": "Your upgrades to business class for all eligible flights are being processed using your credit card on file. The total additional cost is $1,282.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     },
+     {
+      "amount": null,
+      "cabin": "business",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT300"
+       },
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT208"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT300"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT215"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT268"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "Here\u2019s what\u2019s being upgraded:\n- MSP\u2013EWR (HAT300, 2024-05-25)\n- EWR\u2013MSP (HAT208, 2024-05-27)\n- MSP\u2013EWR\u2013CLT (HAT300 & HAT215, 2024-05-21)\n- JFK\u2013ATL (HAT268, 2024-05-24)",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT208",
+        "2024-05-27"
+       ],
+       [
+        "HAT300",
+        "2024-05-25"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61QCJY1J0DDNGGA55AK1PJX",
+    "task": "44",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 1282,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "The total additional cost to upgrade all eligible flights to business class is $1,282.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     },
+     {
+      "amount": null,
+      "cabin": "business",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT300"
+       },
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT208"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT300"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT215"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT268"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "Here\u2019s what\u2019s being upgraded: MSP\u2013EWR (HAT300, 2024-05-25), EWR\u2013MSP (HAT208, 2024-05-27), MSP\u2013EWR\u2013CLT (HAT300 & HAT215, 2024-05-21), JFK\u2013ATL (HAT268, 2024-05-24)",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT268",
+        "2024-05-24"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   }
+  ],
+  "graders": [
+   {
+    "write_id": "01M61PTMV0JAHQARJNFWV9YQHZ",
+    "task": "11",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 1444,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "refund",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "The total refund amount for downgrading all three passengers from business to basic economy on your flights (HAT003 on May 19 and HAT290 on May 20) would be $1444.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 5244.0,
+      "why": "refund"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61PX5E4JBZB1FQ1ZVYT6W4E",
+    "task": "22",
+    "action": "update_reservation_passengers",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "payment_method",
+      "paid_bags": null,
+      "payment": "gift_card_8190333",
+      "quote": "Use gift_card_8190333 for payment",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [],
+      "why": "method"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61PXK44D3ZYYVPY8R6M2RKX",
+    "task": "23",
+    "action": "cancel_reservation",
+    "false_claims": [
+     {
+      "amount": 2033,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": "credit_card_2198526",
+      "quote": "Payment: Use certificates totaling $1,000 first, gift cards totaling $327 next, and charge the remaining $2,033 to your MasterCard (credit_card_2198526).",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     },
+     {
+      "amount": null,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "payment_method",
+      "paid_bags": null,
+      "payment": "credit_card_2198526",
+      "quote": "Payment: Use certificates totaling $1,000 first, gift cards totaling $327 next, and charge the remaining $2,033 to your MasterCard (credit_card_2198526).",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [],
+      "why": "method"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61PXM3NRZ465H5C04ZSK9HS",
+    "task": "21",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT290"
+       },
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT175"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "To confirm, you want to change the return flight of your reservation ID OBUT9V for your round trip from Houston (IAH) to Denver (DEN) to the following flights on May 27 in economy class:\n\n- Flight HAT290 from Denver (DEN) to Las Vegas (LAS), departing at 02:00 PM and arriving at 04:00 PM\n- Flight HAT175 from Las Vegas (LAS) to Houston (IAH), departing at 05:00 PM and arriving at 08:00 PM",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT078",
+        "2024-05-27"
+       ],
+       [
+        "HAT118",
+        "2024-05-27"
+       ],
+       [
+        "HAT175",
+        "2024-05-27"
+       ],
+       [
+        "HAT290",
+        "2024-05-27"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61PXXC9QDEK1ANHTGK2D9MM",
+    "task": "24",
+    "action": "book_reservation",
+    "false_claims": [
+     {
+      "amount": 51,
+      "cabin": "basic_economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-20",
+        "flight_number": "HAT069"
+       },
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT276"
+       }
+      ],
+      "kind": "price_quote",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I found the cheapest direct flights for your round-trip from New York to the West Coast on the requested dates: Departure on May 20: - From JFK to SEA, flight HAT069, basic economy at $51 (cheapest option) Return on May 25: - From SEA to JFK, flight HAT276, basic economy at $55 (cheapest option)",
+      "rank": "cheapest",
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 106.0,
+      "why": "price"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q0HD0F0DNRS5WWVBVESGP",
+    "task": "35",
+    "action": "book_reservation",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT023"
+       }
+      ],
+      "kind": "option_rank",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "Since this is the only direct flight available, it is also the second cheapest by default.",
+      "rank": "second_cheapest",
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       163,
+       290,
+       300
+      ],
+      "why": "second cheapest"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q451P3SVECDHWKW6KMRD2",
+    "task": "8",
+    "action": "book_reservation",
+    "false_claims": [
+     {
+      "amount": 500,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "balance_after",
+      "paid_bags": null,
+      "payment": "certificate_8045380",
+      "quote": "Certificate ending in 8045380 ($500 balance)",
+      "rank": null,
+      "remaining_usable": true,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "certificate remainder is forfeited, not left"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q4MQ74VY10ANVQ3TJ72TB",
+    "task": "11",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 456,
+      "cabin": "basic_economy",
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "New total in basic economy: $456 (for 3 passengers: $53 + $99 per person, per direction)",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q4QYXR822DYYJRZFTS68K",
+    "task": "12",
+    "action": "update_reservation_baggages",
+    "false_claims": [
+     {
+      "amount": 1200,
+      "cabin": "business",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-18",
+        "flight_number": "HAT235"
+       },
+       {
+        "date": "2024-05-19",
+        "flight_number": "HAT298"
+       }
+      ],
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "The upgrade difference is $1,200.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q5AJ8TM48KBSJDD1BBY3S",
+    "task": "14",
+    "action": "cancel_reservation",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "payment_method",
+      "paid_bags": null,
+      "payment": "certificate_3765853, certificate_9984806, certificate_2765295, gift_card_8020792, gift_card_6136092, credit_card_2198526",
+      "quote": "Payment order: certificates first, then gift cards, then MasterCard (ending 9363).",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [],
+      "why": "method"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q6AN3V63938NHNFX4CFPG",
+    "task": "18",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT028"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT277"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I have gathered the economy class prices for all your business class flights.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT076",
+        "2024-05-28"
+       ],
+       [
+        "HAT080",
+        "2024-05-28"
+       ],
+       [
+        "HAT148",
+        "2024-05-30"
+       ],
+       [
+        "HAT255",
+        "2024-05-30"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q6C290DDER26M1MJBYXRQ",
+    "task": "18",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT028"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT277"
+       },
+       {
+        "date": "2024-05-28",
+        "flight_number": "HAT080"
+       },
+       {
+        "date": "2024-05-28",
+        "flight_number": "HAT076"
+       },
+       {
+        "date": "2024-05-30",
+        "flight_number": "HAT255"
+       },
+       {
+        "date": "2024-05-30",
+        "flight_number": "HAT148"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT232"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT228"
+       },
+       {
+        "date": "2024-05-23",
+        "flight_number": "HAT084"
+       },
+       {
+        "date": "2024-05-23",
+        "flight_number": "HAT175"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT276"
+       },
+       {
+        "date": "2024-05-22",
+        "flight_number": "HAT279"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I have gathered the economy class prices for all your business class flights.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT228",
+        "2024-05-24"
+       ],
+       [
+        "HAT232",
+        "2024-05-24"
+       ]
+      ],
+      "why": "flights"
+     },
+     {
+      "amount": null,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "payment_method",
+      "paid_bags": null,
+      "payment": "gift_card_3481935",
+      "quote": "payment_id: 'gift_card_3481935'",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       "credit_card_2929732"
+      ],
+      "why": "method"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q6E78AQ25SF1EE0AXF273",
+    "task": "18",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT028"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT277"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I have gathered the economy class prices for all your business class flights.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT084",
+        "2024-05-23"
+       ],
+       [
+        "HAT175",
+        "2024-05-23"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q6FMF5B2CE7AHYKT2DTFW",
+    "task": "18",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT028"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT277"
+       },
+       {
+        "date": "2024-05-28",
+        "flight_number": "HAT080"
+       },
+       {
+        "date": "2024-05-28",
+        "flight_number": "HAT076"
+       },
+       {
+        "date": "2024-05-30",
+        "flight_number": "HAT255"
+       },
+       {
+        "date": "2024-05-30",
+        "flight_number": "HAT148"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT232"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT228"
+       },
+       {
+        "date": "2024-05-23",
+        "flight_number": "HAT084"
+       },
+       {
+        "date": "2024-05-23",
+        "flight_number": "HAT175"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT276"
+       },
+       {
+        "date": "2024-05-22",
+        "flight_number": "HAT279"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "I have gathered the economy class prices for all your business class flights.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT276",
+        "2024-05-21"
+       ],
+       [
+        "HAT279",
+        "2024-05-22"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q7997MGKADFWPNJYNNEDS",
+    "task": "23",
+    "action": "cancel_reservation",
+    "false_claims": [
+     {
+      "amount": 1286,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": "MasterCard",
+      "quote": "Here\u2019s the payment breakdown for your reservation change:\n- Certificates: $1000 (fully used)\n- Gift cards: $327 (fully used)\n- Remaining amount to be charged to your MasterCard: $1286",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q95BW3S5HF0MZV7BCFSZS",
+    "task": "34",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 192,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "Your original payment was $533, so you would only need to pay the fare difference of $192. No change fees will be applied due to your travel insurance.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 222.0,
+      "why": "charge"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61Q9WS74N35PTYM20MW0HVE",
+    "task": "35",
+    "action": "book_reservation",
+    "false_claims": [
+     {
+      "amount": null,
+      "cabin": "economy",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT023"
+       }
+      ],
+      "kind": "option_rank",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "Since there is only one available economy class flight, this is both the cheapest and the second cheapest option.",
+      "rank": "second_cheapest",
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       163,
+       290,
+       300
+      ],
+      "why": "second cheapest"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61QBV3BCVRKNX4J3WDGKFH7",
+    "task": "44",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 1282,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "The total additional cost to upgrade all eligible flights to business class is $1,282.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 163.0,
+      "why": "charge"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61QCGXQPGRQTHWAHV15T9Q7",
+    "task": "44",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 1282,
+      "cabin": "business",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT300"
+       },
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT208"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT300"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT215"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT268"
+       }
+      ],
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": "credit card on file (credit_card_4196779)",
+      "quote": "Your upgrades to business class for all eligible flights are being processed using your credit card on file. The total additional cost is $1,282.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     },
+     {
+      "amount": null,
+      "cabin": "business",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT300"
+       },
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT208"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT300"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT215"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT268"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "Here\u2019s what\u2019s being upgraded:\n- MSP\u2013EWR (HAT300, 2024-05-25)\n- EWR\u2013MSP (HAT208, 2024-05-27)\n- MSP\u2013EWR\u2013CLT (HAT300 & HAT215, 2024-05-21)\n- JFK\u2013ATL (HAT268, 2024-05-24)",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT208",
+        "2024-05-27"
+       ],
+       [
+        "HAT300",
+        "2024-05-25"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   },
+   {
+    "write_id": "01M61QCJY1J0DDNGGA55AK1PJX",
+    "task": "44",
+    "action": "update_reservation_flights",
+    "false_claims": [
+     {
+      "amount": 1282,
+      "cabin": null,
+      "cancellable": null,
+      "flights": null,
+      "kind": "charge",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "The total additional cost to upgrade all eligible flights to business class is $1,282.",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": 0.0,
+      "why": "charge"
+     },
+     {
+      "amount": null,
+      "cabin": "business",
+      "cancellable": null,
+      "flights": [
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT300"
+       },
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT208"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT300"
+       },
+       {
+        "date": "2024-05-21",
+        "flight_number": "HAT215"
+       },
+       {
+        "date": "2024-05-24",
+        "flight_number": "HAT268"
+       }
+      ],
+      "kind": "flights",
+      "paid_bags": null,
+      "payment": null,
+      "quote": "Here\u2019s what\u2019s being upgraded: MSP\u2013EWR (HAT300, 2024-05-25), EWR\u2013MSP (HAT208, 2024-05-27), MSP\u2013EWR\u2013CLT (HAT300 & HAT215, 2024-05-21), JFK\u2013ATL (HAT268, 2024-05-24)",
+      "rank": null,
+      "remaining_usable": null,
+      "total_bags": null,
+      "verdict": "false",
+      "truth": [
+       [
+        "HAT268",
+        "2024-05-24"
+       ]
+      ],
+      "why": "flights"
+     }
+    ]
+   }
+  ]
+ }
+}

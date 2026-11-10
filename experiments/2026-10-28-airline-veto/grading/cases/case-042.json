@@ -1,0 +1,217 @@
+{
+ "case": "case-042",
+ "action": "book_reservation",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hi! I have an upcoming trip from New York to Chicago, and I would like to make a few changes. First, I want to add 3 checked bags to my booking. Then, I need to change the passenger name to myself. Finally, I would like to upgrade the ticket to economy class. Could you help me with that?",
+   "role": "user"
+  },
+  {
+   "content": "I\u2019d be happy to help you with your reservation changes. To proceed, I\u2019ll need your user ID and your reservation ID. If you don\u2019t know your reservation ID, please let me know your user ID and I can help locate it for you.",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure, my user ID is omar_rossi_1241. Could you please help me find the reservation ID?",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "omar_rossi_1241"
+     },
+     "function": "get_user_details",
+     "id": "call_xYnvGvquIbkr5lqzqWHzV8gf"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"omar_rossi_1241\", \"name\": {\"first_name\": \"Omar\", \"last_name\": \"Rossi\"}, \"address\": {\"address1\": \"901 Pine Lane\", \"address2\": \"Suite 360\", \"city\": \"Houston\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"77271\"}, \"email\": \"omar.rossi5980@example.com\", \"dob\": \"1970-06-06\", \"payment_methods\": {\"gift_card_8190333\": {\"source\": \"gift_card\", \"id\": \"gift_card_8190333\", \"amount\": 280.0}, \"credit_card_6754990\": {\"source\": \"credit_card\", \"id\": \"credit_card_6754990\", \"brand\": \"mastercard\", \"last_four\": \"3848\"}, \"certificate_8390038\": {\"source\": \"certificate\", \"id\": \"certificate_8390038\", \"amount\": 150.0}, \"certificate_1778167\": {\"source\": \"certificate\", \"id\": \"certificate_1778167\", \"amount\": 250.0}, \"gift_card_6490722\": {\"source\": \"gift_card\", \"id\": \"gift_card_6490722\", \"amount\": 127.0}, \"credit_card_7407366\": {\"source\": \"credit_card\", \"id\": \"credit_card_7407366\", \"brand\": \"visa\", \"last_four\": \"6437\"}}, \"saved_passengers\": [{\"first_name\": \"Liam\", \"last_name\": \"Lee\", \"dob\": \"1989-08-12\"}], \"membership\": \"gold\", \"reservations\": [\"UM3OG5\", \"5RJ7UH\", \"FQ8APE\", \"QKRY03\"]}",
+   "role": "tool",
+   "tool_call_id": "call_xYnvGvquIbkr5lqzqWHzV8gf"
+  },
+  {
+   "content": "You have several reservations under your profile. Could you please confirm which reservation (from the following IDs) is for your New York to Chicago trip?\n\nYour reservation IDs are:\n- UM3OG5\n- 5RJ7UH\n- FQ8APE\n- QKRY03\n\nIf you\u2019re not sure, I can provide more details about each reservation to help you identify the correct one. Would you like to see the details for each reservation?",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please provide the details for each reservation so I can identify the correct one for my New York to Chicago trip.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "UM3OG5"
+     },
+     "function": "get_reservation_details",
+     "id": "call_IswtIo8Enh6FaexSHiboJAVn"
+    },
+    {
+     "arguments": {
+      "reservation_id": "5RJ7UH"
+     },
+     "function": "get_reservation_details",
+     "id": "call_R0qmjAi3UTj5dzt3EJSXlVKz"
+    },
+    {
+     "arguments": {
+      "reservation_id": "FQ8APE"
+     },
+     "function": "get_reservation_details",
+     "id": "call_JwHrNbo74ngBzQIRPVOZYquK"
+    },
+    {
+     "arguments": {
+      "reservation_id": "QKRY03"
+     },
+     "function": "get_reservation_details",
+     "id": "call_nz1WfnsZNZm8QZu77bhEukwg"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"UM3OG5\", \"user_id\": \"omar_rossi_1241\", \"origin\": \"SEA\", \"destination\": \"DFW\", \"flight_type\": \"round_trip\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT113\", \"origin\": \"SEA\", \"destination\": \"DFW\", \"date\": \"2024-05-26\", \"price\": 117}, {\"flight_number\": \"HAT282\", \"origin\": \"DFW\", \"destination\": \"ATL\", \"date\": \"2024-05-28\", \"price\": 140}, {\"flight_number\": \"HAT239\", \"origin\": \"ATL\", \"destination\": \"SEA\", \"date\": \"2024-05-28\", \"price\": 158}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Rossi\", \"dob\": \"1970-06-06\"}, {\"first_name\": \"Liam\", \"last_name\": \"Lee\", \"dob\": \"1989-08-12\"}], \"payment_history\": [{\"payment_id\": \"gift_card_8190333\", \"amount\": 830}], \"created_at\": \"2024-05-08T14:32:07\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_IswtIo8Enh6FaexSHiboJAVn"
+  },
+  {
+   "content": "{\"reservation_id\": \"5RJ7UH\", \"user_id\": \"omar_rossi_1241\", \"origin\": \"LAX\", \"destination\": \"SFO\", \"flight_type\": \"round_trip\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT034\", \"origin\": \"LAX\", \"destination\": \"SFO\", \"date\": \"2024-05-26\", \"price\": 165}, {\"flight_number\": \"HAT163\", \"origin\": \"SFO\", \"destination\": \"LAX\", \"date\": \"2024-05-29\", \"price\": 190}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Rossi\", \"dob\": \"1970-06-06\"}, {\"first_name\": \"Isabella\", \"last_name\": \"Anderson\", \"dob\": \"1956-06-24\"}], \"payment_history\": [{\"payment_id\": \"credit_card_7407366\", \"amount\": 710}], \"created_at\": \"2024-05-11T02:58:29\", \"total_baggages\": 1, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_R0qmjAi3UTj5dzt3EJSXlVKz"
+  },
+  {
+   "content": "{\"reservation_id\": \"FQ8APE\", \"user_id\": \"omar_rossi_1241\", \"origin\": \"EWR\", \"destination\": \"ORD\", \"flight_type\": \"one_way\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT056\", \"origin\": \"EWR\", \"destination\": \"IAH\", \"date\": \"2024-05-25\", \"price\": 71}, {\"flight_number\": \"HAT138\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"date\": \"2024-05-25\", \"price\": 60}], \"passengers\": [{\"first_name\": \"Ivan\", \"last_name\": \"Garcia\", \"dob\": \"1960-12-01\"}], \"payment_history\": [{\"payment_id\": \"gift_card_8190333\", \"amount\": 161}], \"created_at\": \"2024-05-01T16:18:10\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_JwHrNbo74ngBzQIRPVOZYquK"
+  },
+  {
+   "content": "{\"reservation_id\": \"QKRY03\", \"user_id\": \"omar_rossi_1241\", \"origin\": \"MCO\", \"destination\": \"DTW\", \"flight_type\": \"one_way\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT214\", \"origin\": \"MCO\", \"destination\": \"PHX\", \"date\": \"2024-05-24\", \"price\": 84}, {\"flight_number\": \"HAT265\", \"origin\": \"PHX\", \"destination\": \"DTW\", \"date\": \"2024-05-25\", \"price\": 90}], \"passengers\": [{\"first_name\": \"Omar\", \"last_name\": \"Rossi\", \"dob\": \"1970-06-06\"}, {\"first_name\": \"Liam\", \"last_name\": \"Lee\", \"dob\": \"1989-08-12\"}], \"payment_history\": [{\"payment_id\": \"gift_card_6490722\", \"amount\": 408}], \"created_at\": \"2024-05-10T20:04:24\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_nz1WfnsZNZm8QZu77bhEukwg"
+  },
+  {
+   "content": "Here are the details for your reservations:\n\n1. UM3OG5: Seattle (SEA) \u2194 Dallas (DFW), round trip, economy class, flights on 2024-05-26 and 2024-05-28.\n2. 5RJ7UH: Los Angeles (LAX) \u2194 San Francisco (SFO), round trip, economy class, flights on 2024-05-26 and 2024-05-29.\n3. FQ8APE: Newark (EWR) \u2192 Chicago (ORD), one way, basic economy, flights on 2024-05-25 (via Houston).\n4. QKRY03: Orlando (MCO) \u2192 Detroit (DTW), one way, basic economy, flights on 2024-05-24 and 2024-05-25.\n\nYour New York (EWR) to Chicago (ORD) trip is under reservation FQ8APE.\n\nPlease note: Basic economy reservations cannot be modified, including changing passenger names, adding bags, or upgrading cabin class. Would you like to book a new reservation in economy class for yourself instead, or do you need help with something else?",
+   "role": "assistant"
+  },
+  {
+   "content": "Since my current reservation is basic economy and cannot be modified, I would like to book a new reservation in economy class for the New York to Chicago trip under my name, Omar Rossi. Also, I want to add 3 checked bags to this new booking. I prefer to pay using a gift card. Could you assist me with this?",
+   "role": "user"
+  },
+  {
+   "content": "To proceed with booking your new reservation in economy class from New York (EWR) to Chicago (ORD) with 3 checked bags, I need a few more details:\n\n1. Is this a one-way or round-trip booking?\n2. What is your preferred travel date (and return date, if round-trip)?\n3. Would you like to purchase travel insurance for this trip? It is $30 per passenger and enables a full refund for health or weather-related cancellations.\n\nOnce I have this information, I\u2019ll search for available flights and provide you with options.",
+   "role": "assistant"
+  },
+  {
+   "content": "I would like to book a one-way trip from New York (EWR) to Chicago (ORD). My preferred travel date is May 25, 2024. I am not interested in purchasing travel insurance for this trip. Please proceed with finding available flights for me.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-25",
+      "destination": "ORD",
+      "origin": "EWR"
+     },
+     "function": "search_direct_flight",
+     "id": "call_Mek4P1jTlHcaMKCGocu0sFLl"
+    }
+   ]
+  },
+  {
+   "content": "[]",
+   "role": "tool",
+   "tool_call_id": "call_Mek4P1jTlHcaMKCGocu0sFLl"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-25",
+      "destination": "ORD",
+      "origin": "EWR"
+     },
+     "function": "search_onestop_flight",
+     "id": "call_yw2KitSzHmZBie39P71wPuJ0"
+    }
+   ]
+  },
+  {
+   "content": "[[{\"flight_number\": \"HAT041\", \"origin\": \"EWR\", \"destination\": \"LAX\", \"status\": \"available\", \"scheduled_departure_time_est\": \"07:00:00\", \"scheduled_arrival_time_est\": \"12:30:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 0, \"economy\": 17, \"business\": 1}, \"prices\": {\"basic_economy\": 89, \"economy\": 110, \"business\": 397}}, {\"flight_number\": \"HAT030\", \"origin\": \"LAX\", \"destination\": \"ORD\", \"status\": \"available\", \"scheduled_departure_time_est\": \"20:00:00\", \"scheduled_arrival_time_est\": \"00:00:00+1\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 5, \"economy\": 2, \"business\": 18}, \"prices\": {\"basic_economy\": 83, \"economy\": 153, \"business\": 257}}], [{\"flight_number\": \"HAT056\", \"origin\": \"EWR\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"06:00:00\", \"scheduled_arrival_time_est\": \"09:00:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 10, \"economy\": 15, \"business\": 12}, \"prices\": {\"basic_economy\": 84, \"economy\": 155, \"business\": 320}}, {\"flight_number\": \"HAT044\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"status\": \"available\", \"scheduled_departure_time_est\": \"20:00:00\", \"scheduled_arrival_time_est\": \"22:30:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 19, \"economy\": 12, \"business\": 20}, \"prices\": {\"basic_economy\": 73, \"economy\": 105, \"business\": 355}}], [{\"flight_number\": \"HAT056\", \"origin\": \"EWR\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"06:00:00\", \"scheduled_arrival_time_est\": \"09:00:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 10, \"economy\": 15, \"business\": 12}, \"prices\": {\"basic_economy\": 84, \"economy\": 155, \"business\": 320}}, {\"flight_number\": \"HAT138\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"13:30:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 1, \"economy\": 18, \"business\": 7}, \"prices\": {\"basic_economy\": 83, \"economy\": 185, \"business\": 473}}], [{\"flight_number\": \"HAT166\", \"origin\": \"EWR\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"06:00:00\", \"scheduled_arrival_time_est\": \"09:00:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 4, \"economy\": 17, \"business\": 15}, \"prices\": {\"basic_economy\": 78, \"economy\": 104, \"business\": 477}}, {\"flight_number\": \"HAT044\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"status\": \"available\", \"scheduled_departure_time_est\": \"20:00:00\", \"scheduled_arrival_time_est\": \"22:30:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 19, \"economy\": 12, \"business\": 20}, \"prices\": {\"basic_economy\": 73, \"economy\": 105, \"business\": 355}}], [{\"flight_number\": \"HAT166\", \"origin\": \"EWR\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"06:00:00\", \"scheduled_arrival_time_est\": \"09:00:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 4, \"economy\": 17, \"business\": 15}, \"prices\": {\"basic_economy\": 78, \"economy\": 104, \"business\": 477}}, {\"flight_number\": \"HAT138\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"13:30:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 1, \"economy\": 18, \"business\": 7}, \"prices\": {\"basic_economy\": 83, \"economy\": 185, \"business\": 473}}], [{\"flight_number\": \"HAT179\", \"origin\": \"EWR\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"05:00:00\", \"scheduled_arrival_time_est\": \"08:00:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 8, \"economy\": 10, \"business\": 12}, \"prices\": {\"basic_economy\": 66, \"economy\": 114, \"business\": 458}}, {\"flight_number\": \"HAT044\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"status\": \"available\", \"scheduled_departure_time_est\": \"20:00:00\", \"scheduled_arrival_time_est\": \"22:30:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 19, \"economy\": 12, \"business\": 20}, \"prices\": {\"basic_economy\": 73, \"economy\": 105, \"business\": 355}}], [{\"flight_number\": \"HAT179\", \"origin\": \"EWR\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"05:00:00\", \"scheduled_arrival_time_est\": \"08:00:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 8, \"economy\": 10, \"business\": 12}, \"prices\": {\"basic_economy\": 66, \"economy\": 114, \"business\": 458}}, {\"flight_number\": \"HAT116\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"status\": \"available\", \"scheduled_departure_time_est\": \"08:00:00\", \"scheduled_arrival_time_est\": \"10:30:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 13, \"economy\": 5, \"business\": 0}, \"prices\": {\"basic_economy\": 55, \"economy\": 152, \"business\": 265}}], [{\"flight_number\": \"HAT179\", \"origin\": \"EWR\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"05:00:00\", \"scheduled_arrival_time_est\": \"08:00:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 8, \"economy\": 10, \"business\": 12}, \"prices\": {\"basic_economy\": 66, \"economy\": 114, \"business\": 458}}, {\"flight_number\": \"HAT138\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"13:30:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 1, \"economy\": 18, \"business\": 7}, \"prices\": {\"basic_economy\": 83, \"economy\": 185, \"business\": 473}}], [{\"flight_number\": \"HAT188\", \"origin\": \"EWR\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"02:00:00\", \"scheduled_arrival_time_est\": \"05:00:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 15, \"economy\": 13, \"business\": 17}, \"prices\": {\"basic_economy\": 72, \"economy\": 117, \"business\": 242}}, {\"flight_number\": \"HAT044\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"status\": \"available\", \"scheduled_departure_time_est\": \"20:00:00\", \"scheduled_arrival_time_est\": \"22:30:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 19, \"economy\": 12, \"business\": 20}, \"prices\": {\"basic_economy\": 73, \"economy\": 105, \"business\": 355}}], [{\"flight_number\": \"HAT188\", \"origin\": \"EWR\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"02:00:00\", \"scheduled_arrival_time_est\": \"05:00:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 15, \"economy\": 13, \"business\": 17}, \"prices\": {\"basic_economy\": 72, \"economy\": 117, \"business\": 242}}, {\"flight_number\": \"HAT116\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"status\": \"available\", \"scheduled_departure_time_est\": \"08:00:00\", \"scheduled_arrival_time_est\": \"10:30:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 13, \"economy\": 5, \"business\": 0}, \"prices\": {\"basic_economy\": 55, \"economy\": 152, \"business\": 265}}], [{\"flight_number\": \"HAT188\", \"origin\": \"EWR\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"02:00:00\", \"scheduled_arrival_time_est\": \"05:00:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 15, \"economy\": 13, \"business\": 17}, \"prices\": {\"basic_economy\": 72, \"economy\": 117, \"business\": 242}}, {\"flight_number\": \"HAT138\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"status\": \"available\", \"scheduled_departure_time_est\": \"11:00:00\", \"scheduled_arrival_time_est\": \"13:30:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 1, \"economy\": 18, \"business\": 7}, \"prices\": {\"basic_economy\": 83, \"economy\": 185, \"business\": 473}}], [{\"flight_number\": \"HAT202\", \"origin\": \"EWR\", \"destination\": \"MIA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"07:00:00\", \"scheduled_arrival_time_est\": \"10:00:00\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 6, \"economy\": 20, \"business\": 9}, \"prices\": {\"basic_economy\": 87, \"economy\": 196, \"business\": 453}}, {\"flight_number\": \"HAT129\", \"origin\": \"MIA\", \"destination\": \"ORD\", \"status\": \"available\", \"scheduled_departure_time_est\": \"21:00:00\", \"scheduled_arrival_time_est\": \"00:00:00+1\", \"date\": \"2024-05-25\", \"available_seats\": {\"basic_economy\": 14, \"economy\": 11, \"business\": 15}, \"prices\": {\"basic_economy\": 62, \"economy\": 199, \"business\": 229}}]]",
+   "role": "tool",
+   "tool_call_id": "call_yw2KitSzHmZBie39P71wPuJ0"
+  },
+  {
+   "content": "Here are some available one-stop economy class options from New York (EWR) to Chicago (ORD) on May 25, 2024:\n\n1. HAT056 (EWR \u2192 IAH, departs 06:00, arrives 09:00) + HAT138 (IAH \u2192 ORD, departs 11:00, arrives 13:30) \u2014 $155 + $185 = $340\n2. HAT179 (EWR \u2192 IAH, departs 05:00, arrives 08:00) + HAT116 (IAH \u2192 ORD, departs 08:00, arrives 10:30) \u2014 $114 + $152 = $266\n3. HAT188 (EWR \u2192 IAH, departs 02:00, arrives 05:00) + HAT138 (IAH \u2192 ORD, departs 11:00, arrives 13:30) \u2014 $117 + $185 = $302\n\nAs a gold member, you are entitled to 3 free checked bags in economy class, so there will be no extra baggage fees.\n\nPlease confirm which flight combination you would like to book, and let me know which gift card you want to use for payment (you have gift_card_8190333 with $280 and gift_card_6490722 with $127). If the total exceeds your gift card balance, you can use a credit card for the remaining amount.",
+   "role": "assistant"
+  },
+  {
+   "content": "I would like to book the second option: HAT179 departing at 05:00 from EWR to IAH and HAT116 departing at 08:00 from IAH to ORD for a total of $266. Please use my gift card gift_card_8190333 with $280 for payment. Thank you!",
+   "role": "user"
+  },
+  {
+   "content": "You have selected the following itinerary for May 25, 2024:\n- HAT179: EWR \u2192 IAH, departs 05:00, arrives 08:00 (economy)\n- HAT116: IAH \u2192 ORD, departs 08:00, arrives 10:30 (economy)\n- Passenger: Omar Rossi\n- 3 checked bags (all free as a gold member)\n- No travel insurance\n- Payment: gift card gift_card_8190333 ($266)\n\nPlease confirm that all details are correct and that you would like me to proceed with booking this reservation.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, all the details are correct. Please proceed with booking this reservation. Thank you!",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "cabin": "economy",
+      "destination": "ORD",
+      "flight_type": "one_way",
+      "flights": [
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT179"
+       },
+       {
+        "date": "2024-05-25",
+        "flight_number": "HAT116"
+       }
+      ],
+      "insurance": "no",
+      "nonfree_baggages": 0,
+      "origin": "EWR",
+      "passengers": [
+       {
+        "dob": "1970-06-06",
+        "first_name": "Omar",
+        "last_name": "Rossi"
+       }
+      ],
+      "payment_methods": [
+       {
+        "amount": 266,
+        "payment_id": "gift_card_8190333"
+       }
+      ],
+      "total_baggages": 3,
+      "user_id": "omar_rossi_1241"
+     },
+     "function": "book_reservation",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

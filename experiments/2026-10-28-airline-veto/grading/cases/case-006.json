@@ -1,0 +1,209 @@
+{
+ "case": "case-006",
+ "action": "cancel_reservation",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hello! I would like to know the total balance I have on my gift cards and certificates. Also, I want to change my recent reservation to the cheapest business round trip without changing the dates. Can you help me with that?",
+   "role": "user"
+  },
+  {
+   "content": "To assist you, I\u2019ll need your user ID. Could you please provide your user ID? If you don\u2019t know it, let me know and I can help you locate it.",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure, my user ID is mohamed_silva_9265.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "mohamed_silva_9265"
+     },
+     "function": "get_user_details",
+     "id": "call_MzywnW5hvoi37tqp9gSReJRd"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"mohamed_silva_9265\", \"name\": {\"first_name\": \"Mohamed\", \"last_name\": \"Silva\"}, \"address\": {\"address1\": \"638 Elm Street\", \"address2\": \"Suite 548\", \"city\": \"Los Angeles\", \"country\": \"USA\", \"state\": \"CA\", \"zip\": \"91365\"}, \"email\": \"mohamed.silva9198@example.com\", \"dob\": \"1960-11-26\", \"payment_methods\": {\"credit_card_5843230\": {\"source\": \"credit_card\", \"id\": \"credit_card_5843230\", \"brand\": \"visa\", \"last_four\": \"2395\"}, \"gift_card_8020792\": {\"source\": \"gift_card\", \"id\": \"gift_card_8020792\", \"amount\": 198.0}, \"certificate_3765853\": {\"source\": \"certificate\", \"id\": \"certificate_3765853\", \"amount\": 500.0}, \"gift_card_6136092\": {\"source\": \"gift_card\", \"id\": \"gift_card_6136092\", \"amount\": 129.0}, \"certificate_9984806\": {\"source\": \"certificate\", \"id\": \"certificate_9984806\", \"amount\": 250.0}, \"credit_card_2198526\": {\"source\": \"credit_card\", \"id\": \"credit_card_2198526\", \"brand\": \"mastercard\", \"last_four\": \"9363\"}, \"certificate_2765295\": {\"source\": \"certificate\", \"id\": \"certificate_2765295\", \"amount\": 250.0}}, \"saved_passengers\": [{\"first_name\": \"Raj\", \"last_name\": \"Sanchez\", \"dob\": \"1986-09-12\"}, {\"first_name\": \"Liam\", \"last_name\": \"Wilson\", \"dob\": \"1980-03-27\"}], \"membership\": \"regular\", \"reservations\": [\"K1NW8N\"]}",
+   "role": "tool",
+   "tool_call_id": "call_MzywnW5hvoi37tqp9gSReJRd"
+  },
+  {
+   "content": "Here\u2019s what I can do for you:\n\n1. Calculate your total balance on all gift cards and certificates.\n2. Help you change your recent reservation (ID: K1NW8N) to the cheapest business round trip without changing the dates.\n\nBefore proceeding, could you please confirm that you want to:\n- Change reservation K1NW8N to the cheapest business round trip (dates will remain the same)?\n\nOnce you confirm, I\u2019ll proceed with both requests.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please go ahead and change my reservation K1NW8N to the cheapest business round trip with the same dates. Also, please provide me with the total balances on my gift cards and certificates.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "K1NW8N"
+     },
+     "function": "get_reservation_details",
+     "id": "call_oWJ7KRxdOmETtzuxVE1IMBrT"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"K1NW8N\", \"user_id\": \"mohamed_silva_9265\", \"origin\": \"JFK\", \"destination\": \"SFO\", \"flight_type\": \"round_trip\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT023\", \"origin\": \"JFK\", \"destination\": \"SFO\", \"date\": \"2024-05-26\", \"price\": 53}, {\"flight_number\": \"HAT204\", \"origin\": \"SFO\", \"destination\": \"SEA\", \"date\": \"2024-05-28\", \"price\": 71}, {\"flight_number\": \"HAT021\", \"origin\": \"SEA\", \"destination\": \"JFK\", \"date\": \"2024-05-28\", \"price\": 65}], \"passengers\": [{\"first_name\": \"Mohamed\", \"last_name\": \"Silva\", \"dob\": \"1960-11-26\"}, {\"first_name\": \"Raj\", \"last_name\": \"Sanchez\", \"dob\": \"1986-09-12\"}, {\"first_name\": \"Liam\", \"last_name\": \"Wilson\", \"dob\": \"1980-03-27\"}], \"payment_history\": [{\"payment_id\": \"gift_card_6136092\", \"amount\": 567}], \"created_at\": \"2024-05-14T16:03:16\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_oWJ7KRxdOmETtzuxVE1IMBrT"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-26",
+      "destination": "SFO",
+      "origin": "JFK"
+     },
+     "function": "search_direct_flight",
+     "id": "call_WF1P13Aw0nQldIVFRVEzFbeZ"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-28",
+      "destination": "SEA",
+      "origin": "SFO"
+     },
+     "function": "search_direct_flight",
+     "id": "call_Iz4QQ8WFUfW4QALvn9limEO1"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-28",
+      "destination": "JFK",
+      "origin": "SEA"
+     },
+     "function": "search_direct_flight",
+     "id": "call_zbDHkQybvRhMVAliZnBMrREW"
+    },
+    {
+     "arguments": {
+      "expression": "198 + 129"
+     },
+     "function": "calculate",
+     "id": "call_Cskh92McvA5gCsmZ4Xyrqfqn"
+    },
+    {
+     "arguments": {
+      "expression": "500 + 250 + 250"
+     },
+     "function": "calculate",
+     "id": "call_B5LbVRpF7g2ugQ9nhIAaD4tl"
+    }
+   ]
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT023\", \"origin\": \"JFK\", \"destination\": \"SFO\", \"status\": \"available\", \"scheduled_departure_time_est\": \"14:00:00\", \"scheduled_arrival_time_est\": \"20:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 8, \"economy\": 14, \"business\": 6}, \"prices\": {\"basic_economy\": 69, \"economy\": 162, \"business\": 364}}]",
+   "role": "tool",
+   "tool_call_id": "call_WF1P13Aw0nQldIVFRVEzFbeZ"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT204\", \"origin\": \"SFO\", \"destination\": \"SEA\", \"status\": \"available\", \"scheduled_departure_time_est\": \"08:00:00\", \"scheduled_arrival_time_est\": \"10:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 4, \"economy\": 1, \"business\": 17}, \"prices\": {\"basic_economy\": 100, \"economy\": 121, \"business\": 248}}]",
+   "role": "tool",
+   "tool_call_id": "call_Iz4QQ8WFUfW4QALvn9limEO1"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT021\", \"origin\": \"SEA\", \"destination\": \"JFK\", \"status\": \"available\", \"scheduled_departure_time_est\": \"19:00:00\", \"scheduled_arrival_time_est\": \"01:00:00+1\", \"date\": null, \"available_seats\": {\"basic_economy\": 20, \"economy\": 16, \"business\": 16}, \"prices\": {\"basic_economy\": 88, \"economy\": 108, \"business\": 453}}, {\"flight_number\": \"HAT089\", \"origin\": \"SEA\", \"destination\": \"JFK\", \"status\": \"available\", \"scheduled_departure_time_est\": \"10:00:00\", \"scheduled_arrival_time_est\": \"16:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 4, \"economy\": 5, \"business\": 7}, \"prices\": {\"basic_economy\": 69, \"economy\": 147, \"business\": 477}}, {\"flight_number\": \"HAT100\", \"origin\": \"SEA\", \"destination\": \"JFK\", \"status\": \"available\", \"scheduled_departure_time_est\": \"13:00:00\", \"scheduled_arrival_time_est\": \"19:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 8, \"economy\": 20, \"business\": 9}, \"prices\": {\"basic_economy\": 94, \"economy\": 108, \"business\": 259}}, {\"flight_number\": \"HAT276\", \"origin\": \"SEA\", \"destination\": \"JFK\", \"status\": \"available\", \"scheduled_departure_time_est\": \"18:00:00\", \"scheduled_arrival_time_est\": \"00:00:00+1\", \"date\": null, \"available_seats\": {\"basic_economy\": 19, \"economy\": 1, \"business\": 8}, \"prices\": {\"basic_economy\": 53, \"economy\": 197, \"business\": 430}}]",
+   "role": "tool",
+   "tool_call_id": "call_zbDHkQybvRhMVAliZnBMrREW"
+  },
+  {
+   "content": "327.0",
+   "role": "tool",
+   "tool_call_id": "call_Cskh92McvA5gCsmZ4Xyrqfqn"
+  },
+  {
+   "content": "1000.0",
+   "role": "tool",
+   "tool_call_id": "call_B5LbVRpF7g2ugQ9nhIAaD4tl"
+  },
+  {
+   "content": "Here are your balances:\n- Total gift card balance: $327\n- Total certificate balance: $1000\n\nFor your reservation change:\n- I found available business class flights on your original dates.\n- The cheapest business class combination is:\n  - JFK to SFO (HAT023) on 2024-05-26: $364\n  - SFO to SEA (HAT204) on 2024-05-28: $248\n  - SEA to JFK (HAT100) on 2024-05-28: $259\n\nTotal business fare per passenger: $364 + $248 + $259 = $871  \nFor 3 passengers: $2613\n\nWould you like to proceed with this change? If yes, please specify which payment method(s) from your profile you want to use for the $2613 total. Your options are:\n- Gift cards (up to 3)\n- Certificates (up to 1)\n- Credit cards (up to 1)\n\nLet me know your preferred payment method(s) and I\u2019ll proceed!",
+   "role": "assistant"
+  },
+  {
+   "content": "Thanks for the details. I want to use my certificates as much as possible first, then gift cards, and cover the rest with my MasterCard. Please proceed with that payment method. Also, please tell me how much my MasterCard will be charged after applying certificates and gift cards.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "expression": "2613 - 1000 - 327"
+     },
+     "function": "calculate",
+     "id": "call_erEdxrNBuBdyfQV6DTefcdgW"
+    }
+   ]
+  },
+  {
+   "content": "1286.0",
+   "role": "tool",
+   "tool_call_id": "call_erEdxrNBuBdyfQV6DTefcdgW"
+  },
+  {
+   "content": "Here\u2019s the payment breakdown for your reservation change:\n- Certificates: $1000 (fully used)\n- Gift cards: $327 (fully used)\n- Remaining amount to be charged to your MasterCard: $1286\n\nI will now proceed to change your reservation K1NW8N to the cheapest business round trip on your original dates, using your certificates, gift cards, and MasterCard as described.\n\nPlease confirm one last time that you want to proceed with this change and payment breakdown.",
+   "role": "assistant"
+  },
+  {
+   "content": "Before confirming, could you please check if my current reservation is a basic economy ticket? If it is, I might want to consider canceling it and booking a new one if that would reduce the amount charged to my MasterCard.",
+   "role": "user"
+  },
+  {
+   "content": "Yes, your current reservation (K1NW8N) is a basic economy ticket. According to policy, basic economy reservations cannot be modified. \n\nIf you wish to switch to business class, you would need to cancel your current reservation (if eligible for cancellation) and then book a new business class reservation. Would you like to check if your reservation is eligible for cancellation, or would you like to proceed with booking a new business class ticket instead?",
+   "role": "assistant"
+  },
+  {
+   "content": "Please check if my current reservation is eligible for cancellation. If it is, I want to cancel it and then book the new business class ticket. Also, after doing that, please tell me the total amount my MasterCard will be charged.",
+   "role": "user"
+  },
+  {
+   "content": "To check your cancellation eligibility, I need to know your reason for cancellation. Please select one of the following:\n- Change of plan\n- Airline cancelled flight\n- Other reasons\n\nOnce you provide the reason, I\u2019ll verify if your reservation can be cancelled and proceed accordingly.",
+   "role": "assistant"
+  },
+  {
+   "content": "The reason for cancellation is change of plan. Please check if my reservation is eligible for cancellation.",
+   "role": "user"
+  },
+  {
+   "content": "Thank you for providing the reason. Your reservation was made on 2024-05-14, and today is 2024-05-15, so it is within 24 hours of booking. This means your reservation is eligible for cancellation.\n\nWould you like me to proceed with canceling your current reservation and then book the new business class ticket using your certificates, gift cards, and MasterCard as previously discussed? Please confirm to proceed.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please proceed with canceling my current reservation and then book the new business class ticket using my certificates, gift cards, and MasterCard as discussed. Also, please let me know the final amount that will be charged to my MasterCard after this process.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "K1NW8N"
+     },
+     "function": "cancel_reservation",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

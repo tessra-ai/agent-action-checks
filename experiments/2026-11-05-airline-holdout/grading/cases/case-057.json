@@ -1,0 +1,399 @@
+{
+ "case": "case-057",
+ "action": "cancel_reservation",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hello! I want to cancel all my upcoming flights, please. I am Amelia Davis. I don't have my reservation numbers with me. Can you help me with this? Merci.",
+   "role": "user"
+  },
+  {
+   "content": "Thank you, Amelia. To assist you with cancelling your upcoming flights, could you please provide your user ID? This will help me locate your reservations and proceed with your request.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, of course. My user ID is amelia_davis_8890. Please, can you find all my flights and cancel them? I want to give my seats to other people who need to travel.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "user_id": "amelia_davis_8890"
+     },
+     "function": "get_user_details",
+     "id": "call_JeSORBvQxc4hwhBaGmJ8RceI"
+    }
+   ]
+  },
+  {
+   "content": "{\"user_id\": \"amelia_davis_8890\", \"name\": {\"first_name\": \"Amelia\", \"last_name\": \"Davis\"}, \"address\": {\"address1\": \"442 Sunset Drive\", \"address2\": \"Suite 708\", \"city\": \"San Diego\", \"country\": \"USA\", \"state\": \"CA\", \"zip\": \"92125\"}, \"email\": \"amelia.davis1624@example.com\", \"dob\": \"1984-03-05\", \"payment_methods\": {\"gift_card_7397998\": {\"source\": \"gift_card\", \"id\": \"gift_card_7397998\", \"amount\": 74.0}, \"gift_card_1647044\": {\"source\": \"gift_card\", \"id\": \"gift_card_1647044\", \"amount\": 236.0}, \"credit_card_4074252\": {\"source\": \"credit_card\", \"id\": \"credit_card_4074252\", \"brand\": \"mastercard\", \"last_four\": \"5435\"}, \"credit_card_6738701\": {\"source\": \"credit_card\", \"id\": \"credit_card_6738701\", \"brand\": \"visa\", \"last_four\": \"5308\"}, \"credit_card_5799376\": {\"source\": \"credit_card\", \"id\": \"credit_card_5799376\", \"brand\": \"mastercard\", \"last_four\": \"9326\"}, \"gift_card_5251654\": {\"source\": \"gift_card\", \"id\": \"gift_card_5251654\", \"amount\": 179.0}}, \"saved_passengers\": [{\"first_name\": \"Amelia\", \"last_name\": \"Jackson\", \"dob\": \"1999-04-26\"}], \"membership\": \"silver\", \"reservations\": [\"8C8K4E\", \"UDMOP1\", \"XAZ3C0\", \"LU15PA\", \"MSJ4OA\", \"I6M8JQ\", \"4XGCCM\"]}",
+   "role": "tool",
+   "tool_call_id": "call_JeSORBvQxc4hwhBaGmJ8RceI"
+  },
+  {
+   "content": "I have located your user profile and found several upcoming reservations under your account. To proceed, I will need to check the details of each reservation to ensure they are eligible for cancellation.\n\nWould you like to cancel all reservations listed under your account, or only specific ones? Please confirm if you want to proceed with cancelling all reservations: 8C8K4E, UDMOP1, XAZ3C0, LU15PA, MSJ4OA, I6M8JQ, and 4XGCCM.\n\nOnce you confirm, I will review each reservation and begin the cancellation process.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, I want to cancel all of them, please. Even if some are not refundable, it is okay. I want to give my seats to others who need to travel. Please continue.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "8C8K4E"
+     },
+     "function": "get_reservation_details",
+     "id": "call_yEv27riYDZ8zXZy4kwd1fSgM"
+    },
+    {
+     "arguments": {
+      "reservation_id": "UDMOP1"
+     },
+     "function": "get_reservation_details",
+     "id": "call_fKP8VoQFrKZVUPaEUHzvTN4u"
+    },
+    {
+     "arguments": {
+      "reservation_id": "XAZ3C0"
+     },
+     "function": "get_reservation_details",
+     "id": "call_3J6Q3CKsaT890BpCrpuariSv"
+    },
+    {
+     "arguments": {
+      "reservation_id": "LU15PA"
+     },
+     "function": "get_reservation_details",
+     "id": "call_EteEUpQAwq83tn87Kt7kMK5g"
+    },
+    {
+     "arguments": {
+      "reservation_id": "MSJ4OA"
+     },
+     "function": "get_reservation_details",
+     "id": "call_v8qG5vLs645gWaPwtkQXXkYU"
+    },
+    {
+     "arguments": {
+      "reservation_id": "I6M8JQ"
+     },
+     "function": "get_reservation_details",
+     "id": "call_dvsPhFgfxmiw71uI9iEFVchI"
+    },
+    {
+     "arguments": {
+      "reservation_id": "4XGCCM"
+     },
+     "function": "get_reservation_details",
+     "id": "call_NhZJd4r76OtPWCOT88xSLED4"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"8C8K4E\", \"user_id\": \"amelia_davis_8890\", \"origin\": \"BOS\", \"destination\": \"DEN\", \"flight_type\": \"one_way\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT247\", \"origin\": \"BOS\", \"destination\": \"MIA\", \"date\": \"2024-05-24\", \"price\": 904}, {\"flight_number\": \"HAT193\", \"origin\": \"MIA\", \"destination\": \"DEN\", \"date\": \"2024-05-24\", \"price\": 1906}], \"passengers\": [{\"first_name\": \"Amelia\", \"last_name\": \"Davis\", \"dob\": \"1984-03-05\"}, {\"first_name\": \"Amelia\", \"last_name\": \"Jackson\", \"dob\": \"1999-04-26\"}], \"payment_history\": [{\"payment_id\": \"gift_card_1647044\", \"amount\": 5680}], \"created_at\": \"2024-05-08T10:31:36\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_yEv27riYDZ8zXZy4kwd1fSgM"
+  },
+  {
+   "content": "{\"reservation_id\": \"UDMOP1\", \"user_id\": \"amelia_davis_8890\", \"origin\": \"SFO\", \"destination\": \"SFO\", \"flight_type\": \"round_trip\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT134\", \"origin\": \"SFO\", \"destination\": \"PHX\", \"date\": \"2024-05-28\", \"price\": 89}, {\"flight_number\": \"HAT032\", \"origin\": \"PHX\", \"destination\": \"SFO\", \"date\": \"2024-05-28\", \"price\": 52}, {\"flight_number\": \"HAT280\", \"origin\": \"SFO\", \"destination\": \"PHL\", \"date\": \"2024-05-29\", \"price\": 55}, {\"flight_number\": \"HAT199\", \"origin\": \"PHL\", \"destination\": \"SFO\", \"date\": \"2024-05-29\", \"price\": 55}], \"passengers\": [{\"first_name\": \"Amelia\", \"last_name\": \"Davis\", \"dob\": \"1984-03-05\"}], \"payment_history\": [{\"payment_id\": \"gift_card_7397998\", \"amount\": 251}], \"created_at\": \"2024-05-09T11:34:16\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_fKP8VoQFrKZVUPaEUHzvTN4u"
+  },
+  {
+   "content": "{\"reservation_id\": \"XAZ3C0\", \"user_id\": \"amelia_davis_8890\", \"origin\": \"ATL\", \"destination\": \"CLT\", \"flight_type\": \"one_way\", \"cabin\": \"basic_economy\", \"flights\": [{\"flight_number\": \"HAT110\", \"origin\": \"ATL\", \"destination\": \"LGA\", \"date\": \"2024-05-27\", \"price\": 70}, {\"flight_number\": \"HAT272\", \"origin\": \"LGA\", \"destination\": \"CLT\", \"date\": \"2024-05-27\", \"price\": 78}], \"passengers\": [{\"first_name\": \"Fatima\", \"last_name\": \"Johnson\", \"dob\": \"1989-12-05\"}, {\"first_name\": \"Amelia\", \"last_name\": \"Jackson\", \"dob\": \"1999-04-26\"}], \"payment_history\": [{\"payment_id\": \"credit_card_4074252\", \"amount\": 296}], \"created_at\": \"2024-05-06T15:43:54\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_3J6Q3CKsaT890BpCrpuariSv"
+  },
+  {
+   "content": "{\"reservation_id\": \"LU15PA\", \"user_id\": \"amelia_davis_8890\", \"origin\": \"SFO\", \"destination\": \"SFO\", \"flight_type\": \"one_way\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT144\", \"origin\": \"SFO\", \"destination\": \"PHX\", \"date\": \"2024-05-23\", \"price\": 740}, {\"flight_number\": \"HAT009\", \"origin\": \"PHX\", \"destination\": \"SFO\", \"date\": \"2024-05-23\", \"price\": 443}], \"passengers\": [{\"first_name\": \"Amelia\", \"last_name\": \"Davis\", \"dob\": \"1984-03-05\"}, {\"first_name\": \"Amelia\", \"last_name\": \"Jackson\", \"dob\": \"1999-04-26\"}], \"payment_history\": [{\"payment_id\": \"gift_card_7397998\", \"amount\": 2366}], \"created_at\": \"2024-05-01T00:08:44\", \"total_baggages\": 4, \"nonfree_baggages\": 0, \"insurance\": \"no\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_EteEUpQAwq83tn87Kt7kMK5g"
+  },
+  {
+   "content": "{\"reservation_id\": \"MSJ4OA\", \"user_id\": \"amelia_davis_8890\", \"origin\": \"DFW\", \"destination\": \"SFO\", \"flight_type\": \"one_way\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT099\", \"origin\": \"DFW\", \"destination\": \"SEA\", \"date\": \"2024-05-22\", \"price\": 176}, {\"flight_number\": \"HAT274\", \"origin\": \"SEA\", \"destination\": \"SFO\", \"date\": \"2024-05-22\", \"price\": 122}], \"passengers\": [{\"first_name\": \"Amelia\", \"last_name\": \"Jackson\", \"dob\": \"1999-04-26\"}, {\"first_name\": \"Anya\", \"last_name\": \"Brown\", \"dob\": \"1980-07-26\"}, {\"first_name\": \"Mei\", \"last_name\": \"Wilson\", \"dob\": \"1963-05-09\"}], \"payment_history\": [{\"payment_id\": \"gift_card_1647044\", \"amount\": 984}], \"created_at\": \"2024-05-05T14:36:15\", \"total_baggages\": 3, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_v8qG5vLs645gWaPwtkQXXkYU"
+  },
+  {
+   "content": "{\"reservation_id\": \"I6M8JQ\", \"user_id\": \"amelia_davis_8890\", \"origin\": \"LAS\", \"destination\": \"EWR\", \"flight_type\": \"one_way\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT115\", \"origin\": \"LAS\", \"destination\": \"MIA\", \"date\": \"2024-05-09\", \"price\": 153}, {\"flight_number\": \"HAT192\", \"origin\": \"MIA\", \"destination\": \"EWR\", \"date\": \"2024-05-09\", \"price\": 193}], \"passengers\": [{\"first_name\": \"Amelia\", \"last_name\": \"Davis\", \"dob\": \"1984-03-05\"}, {\"first_name\": \"Juan\", \"last_name\": \"Sanchez\", \"dob\": \"1972-06-04\"}], \"payment_history\": [{\"payment_id\": \"credit_card_5799376\", \"amount\": 752}], \"created_at\": \"2024-05-08T14:58:17\", \"total_baggages\": 0, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_dvsPhFgfxmiw71uI9iEFVchI"
+  },
+  {
+   "content": "{\"reservation_id\": \"4XGCCM\", \"user_id\": \"amelia_davis_8890\", \"origin\": \"IAH\", \"destination\": \"DTW\", \"flight_type\": \"round_trip\", \"cabin\": \"business\", \"flights\": [{\"flight_number\": \"HAT116\", \"origin\": \"IAH\", \"destination\": \"ORD\", \"date\": \"2024-05-03\", \"price\": 1359}, {\"flight_number\": \"HAT020\", \"origin\": \"ORD\", \"destination\": \"DTW\", \"date\": \"2024-05-03\", \"price\": 1292}, {\"flight_number\": \"HAT169\", \"origin\": \"DTW\", \"destination\": \"JFK\", \"date\": \"2024-05-04\", \"price\": 1115}, {\"flight_number\": \"HAT279\", \"origin\": \"JFK\", \"destination\": \"IAH\", \"date\": \"2024-05-04\", \"price\": 1278}], \"passengers\": [{\"first_name\": \"Amelia\", \"last_name\": \"Davis\", \"dob\": \"1984-03-05\"}], \"payment_history\": [{\"payment_id\": \"credit_card_4074252\", \"amount\": 5074}], \"created_at\": \"2024-05-02T14:48:47\", \"total_baggages\": 2, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_NhZJd4r76OtPWCOT88xSLED4"
+  },
+  {
+   "content": "Thank you for confirming. Before proceeding, I need to ensure that none of your flights in these reservations have already been flown, as cancellations are not allowed if any portion has been flown.\n\nI will now check the flight dates and statuses for all your reservations. If all flights are eligible, I will proceed to cancel them. Please hold on while I verify this.",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-24",
+      "flight_number": "HAT247"
+     },
+     "function": "get_flight_status",
+     "id": "call_7i4us28Ltg6xvTQAvfZhuU3Y"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-24",
+      "flight_number": "HAT193"
+     },
+     "function": "get_flight_status",
+     "id": "call_6VBmuuhojvs0tDe4TsKR7VGT"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-28",
+      "flight_number": "HAT134"
+     },
+     "function": "get_flight_status",
+     "id": "call_LimzWpAb3PwpDeP1NVeMmZ05"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-28",
+      "flight_number": "HAT032"
+     },
+     "function": "get_flight_status",
+     "id": "call_UjU5zPYw2E0Nl3C0ZaRWth0N"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-29",
+      "flight_number": "HAT280"
+     },
+     "function": "get_flight_status",
+     "id": "call_ZmnBIhLbBZvQjOoGKUtA3cSs"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-29",
+      "flight_number": "HAT199"
+     },
+     "function": "get_flight_status",
+     "id": "call_ymtbJcivJiwtZ58S6JTVJquC"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-27",
+      "flight_number": "HAT110"
+     },
+     "function": "get_flight_status",
+     "id": "call_hriIODT7i8kDYcL5mxhXlWui"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-27",
+      "flight_number": "HAT272"
+     },
+     "function": "get_flight_status",
+     "id": "call_bOzzfzGEwsBRCdHtjCQVEWNu"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-23",
+      "flight_number": "HAT144"
+     },
+     "function": "get_flight_status",
+     "id": "call_csNXf0ffQMq9DPqnA9SUzPRG"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-23",
+      "flight_number": "HAT009"
+     },
+     "function": "get_flight_status",
+     "id": "call_vqqT8fISRxOvVg3oXNrIO0LH"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-22",
+      "flight_number": "HAT099"
+     },
+     "function": "get_flight_status",
+     "id": "call_RPKl0LIB1pzhh5nw101Cj3bK"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-22",
+      "flight_number": "HAT274"
+     },
+     "function": "get_flight_status",
+     "id": "call_XPFcRHgc5vAf5S2fv92mA2iL"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-09",
+      "flight_number": "HAT115"
+     },
+     "function": "get_flight_status",
+     "id": "call_cezmPzcJdDAitUX1MtNBnBDJ"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-09",
+      "flight_number": "HAT192"
+     },
+     "function": "get_flight_status",
+     "id": "call_Kke183F2aTlUgoK0QRpDyYjK"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-03",
+      "flight_number": "HAT116"
+     },
+     "function": "get_flight_status",
+     "id": "call_peEbkCfC3CDqwEse0Av5PNEQ"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-03",
+      "flight_number": "HAT020"
+     },
+     "function": "get_flight_status",
+     "id": "call_ZvO4Rsk1kzV8ZlI7UV0m7blB"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-04",
+      "flight_number": "HAT169"
+     },
+     "function": "get_flight_status",
+     "id": "call_BD2Uf3OFyPTwoUa5c6zril6k"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-04",
+      "flight_number": "HAT279"
+     },
+     "function": "get_flight_status",
+     "id": "call_LNdYRP16JFZjQCeUUqZ2wwOP"
+    }
+   ]
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_7i4us28Ltg6xvTQAvfZhuU3Y"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_6VBmuuhojvs0tDe4TsKR7VGT"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_LimzWpAb3PwpDeP1NVeMmZ05"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_UjU5zPYw2E0Nl3C0ZaRWth0N"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_ZmnBIhLbBZvQjOoGKUtA3cSs"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_ymtbJcivJiwtZ58S6JTVJquC"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_hriIODT7i8kDYcL5mxhXlWui"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_bOzzfzGEwsBRCdHtjCQVEWNu"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_csNXf0ffQMq9DPqnA9SUzPRG"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_vqqT8fISRxOvVg3oXNrIO0LH"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_RPKl0LIB1pzhh5nw101Cj3bK"
+  },
+  {
+   "content": "available",
+   "role": "tool",
+   "tool_call_id": "call_XPFcRHgc5vAf5S2fv92mA2iL"
+  },
+  {
+   "content": "landed",
+   "role": "tool",
+   "tool_call_id": "call_cezmPzcJdDAitUX1MtNBnBDJ"
+  },
+  {
+   "content": "landed",
+   "role": "tool",
+   "tool_call_id": "call_Kke183F2aTlUgoK0QRpDyYjK"
+  },
+  {
+   "content": "cancelled",
+   "role": "tool",
+   "tool_call_id": "call_peEbkCfC3CDqwEse0Av5PNEQ"
+  },
+  {
+   "content": "landed",
+   "role": "tool",
+   "tool_call_id": "call_ZvO4Rsk1kzV8ZlI7UV0m7blB"
+  },
+  {
+   "content": "landed",
+   "role": "tool",
+   "tool_call_id": "call_BD2Uf3OFyPTwoUa5c6zril6k"
+  },
+  {
+   "content": "cancelled",
+   "role": "tool",
+   "tool_call_id": "call_LNdYRP16JFZjQCeUUqZ2wwOP"
+  },
+  {
+   "content": "I have checked the status of all flights in your reservations. Most flights are eligible for cancellation, but some flights in reservation I6M8JQ and 4XGCCM have already been flown or have landed, so I cannot process cancellations for those reservations.\n\nI will proceed to cancel the following eligible reservations:\n- 8C8K4E\n- UDMOP1\n- XAZ3C0\n- LU15PA\n- MSJ4OA\n\nDo you confirm that you want to proceed with cancelling these five reservations? Please reply \"yes\" to continue.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, I confirm. Please cancel these five reservations. Thank you very much.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "LU15PA"
+     },
+     "function": "cancel_reservation",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

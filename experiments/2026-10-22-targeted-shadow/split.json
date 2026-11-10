@@ -1,0 +1,126 @@
+{
+  "definition_sha256": "21bd172117dc5c171f1ca419c4143ef251b507677feee30c4393c081f270cf56",
+  "families": {
+    "test": [
+      "retail/user:mei_davis_8935",
+      "telecom/[mms_issue]bad_network_preference|user_abroad_roaming_disabled_off",
+      "telecom/[mms_issue]break_app_sms_permission|data_usage_exceeded|user_abroad_roaming_disabled_on",
+      "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_saver_mode_on|data_usage_exceeded|user_abroad_roaming_enabled_off"
+    ],
+    "train": [
+      "retail/user:chen_silva_7485",
+      "retail/user:fatima_johnson_7581",
+      "retail/user:liam_thomas_7882",
+      "retail/user:mei_kovacs_8020",
+      "retail/user:mia_garcia_4516",
+      "telecom/[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off",
+      "telecom/[mms_issue]bad_network_preference|break_app_sms_permission|user_abroad_roaming_disabled_on",
+      "telecom/[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off",
+      "telecom/[mobile_data_issue]bad_network_preference|bad_vpn|user_abroad_roaming_disabled_on",
+      "telecom/[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off"
+    ]
+  },
+  "overlap": 0,
+  "seed": 0,
+  "strata": {
+    "retail:return_delivered_order_items": {
+      "families": 6,
+      "train_families": 5,
+      "train_writes": 41,
+      "writes": 45
+    },
+    "telecom:enable_roaming": {
+      "families": 3,
+      "train_families": 2,
+      "train_writes": 4,
+      "writes": 5
+    },
+    "telecom:enable_roaming+refuel_data": {
+      "families": 3,
+      "train_families": 2,
+      "train_writes": 10,
+      "writes": 11
+    },
+    "telecom:refuel_data": {
+      "families": 2,
+      "train_families": 1,
+      "train_writes": 4,
+      "writes": 7
+    }
+  },
+  "train_share": 0.6,
+  "write_ids": {
+    "test": [
+      "01M5JZ50S18W0JMGFM3T677JV3",
+      "01M5JZ59MHE9X7XFMC6ABKYK7Q",
+      "01M5JZ75JB70RW5WZ3HTHRFT8J",
+      "01M5JZ8ZGFJFEAWXENFATGBCJB",
+      "01M5JZ9Z1BJ14XATCHRZ8SAEPW",
+      "01M5JZFXWG8T8CRCYWX9XQ7RR9",
+      "01M5JZHET8A9VGA0A9PVCY53EW",
+      "01M5JZKP2PFYG6CN1Q8YDE6RF9",
+      "01M5JZMNATBZE6V9CXYKQY6QVB"
+    ],
+    "train": [
+      "01M5JZ4FJNSY49D6GH62NHR3T5",
+      "01M5JZ4FQ7N37RJXVD6FW00S14",
+      "01M5JZ4H7WB7XXHKW3XDBENJKE",
+      "01M5JZ4HDTBD3TFZNSCV5SF34S",
+      "01M5JZ4HHCR7P9XNZ3N60M0KYH",
+      "01M5JZ4MRXHTNKQG9R1Z09V388",
+      "01M5JZ4QQZXWGB94PYTMMX7Y7Q",
+      "01M5JZ4X932P1F842EVYZ09DTY",
+      "01M5JZ50CY9AWVGK70D1V5XXDF",
+      "01M5JZ50JK3SXWYXBR2VA0RBZB",
+      "01M5JZ514HKPYVPHEY1BW7SGTK",
+      "01M5JZ53BEFJZ298SGE8SY5R9V",
+      "01M5JZ53HDAV2K8DP4RDA51Y1V",
+      "01M5JZ54J1EZ7T1K608RWJ1E9S",
+      "01M5JZ569MXMXMNKGFAQKD4C9Q",
+      "01M5JZ58T6TR5VJ7RC1QXZAZQX",
+      "01M5JZ5AKVE2QZ5NS0KVZTB57S",
+      "01M5JZ5BGDG74M5VTD6YN9FR3T",
+      "01M5JZ5EDFDZN54MQMB4MP6WV6",
+      "01M5JZ5FVM4YXJHBMWCGHNQA7G",
+      "01M5JZ5G910Y7ARY1GVCW4J58N",
+      "01M5JZ6ATBEEKTG3TJWW7DGJ1P",
+      "01M5JZ6CKEDNMW1K2GTKGCK8B1",
+      "01M5JZ6GX6MMASE0YGDF0T90CV",
+      "01M5JZ6THJ5CT7VG53CC1MN2C7",
+      "01M5JZ6XV19WNQPTEYGY67CH3S",
+      "01M5JZ6Y0PCJGTZBGV2ES6XMZA",
+      "01M5JZ7CN2010PXYFJQ798QER9",
+      "01M5JZ7WRDCJJDGS5WK70MRR9A",
+      "01M5JZ8B8THC9A0XF2HZD3GHB6",
+      "01M5JZ8BVJWCCS1EFW5CNMNFXT",
+      "01M5JZ8C0A464AYBE5H45RF9GP",
+      "01M5JZ8C543144DT73B6PKHASY",
+      "01M5JZ8EWDBX97WB0MFX4GWA4M",
+      "01M5JZ8R9HM6RSRFHY07002ZXS",
+      "01M5JZ8SCMD97WNC8EK3F49JYM",
+      "01M5JZ8WV4TTNVS440ZZKMNF5K",
+      "01M5JZ91W7FWACM25ZX0E5W1KG",
+      "01M5JZ97CPQVXC3EJT7WMP11ZH",
+      "01M5JZ9GNMV4JYQDYWY9WSHF03",
+      "01M5JZ9P9G1E6T3N8PV9HGQHKV",
+      "01M5JZA2GM6X9GRQ9ES3W5JBP8",
+      "01M5JZA4S71T6A3DQFKG19RC9H",
+      "01M5JZASWW77AY8W407GK8B92B",
+      "01M5JZE37XTG7SHFE7QD56VA2A",
+      "01M5JZFNHBTQJ74EG9BP9PH9AH",
+      "01M5JZFR70JBT0429NJRSRE882",
+      "01M5JZFTD4W3JRA978ZJPMA767",
+      "01M5JZGMS146N9K6H94Z7ACXDF",
+      "01M5JZGNZ73HBJGRRY0TPNDNBP",
+      "01M5JZH4AE1MWZ2QHV07TSWGQY",
+      "01M5JZH5MF41GMF9RXAXHT53EY",
+      "01M5JZJTMA0Y8WBWT4H3SSCPCV",
+      "01M5JZK2PTVAXCA0BPCXEPJYM2",
+      "01M5JZKH35PYHE3KXFKQVFJ8HK",
+      "01M5JZKH6SB4CEYZPBCF8CMB1C",
+      "01M5JZKHC0XVNQ9ZH9WSEAMTCR",
+      "01M5JZMRDC4119B9S682Y9DWNM",
+      "01M5JZMZN1P54HGKG8HC7VV76M"
+    ]
+  }
+}

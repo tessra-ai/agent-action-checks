@@ -1,0 +1,523 @@
+{
+ "capture": {
+  "smoke2": {
+   "commit": "6acd2e5bac10b2207ff70c8b28d0248a05317199",
+   "experiment": "smoke run 2"
+  },
+  "targeted": {
+   "commit": "29b5af7d8a183ef7366efbfce810757803f7c37f",
+   "experiment": "targeted stage 1"
+  }
+ },
+ "coverage_by_action": {
+  "cancel_pending_order": {
+   "ALLOW": 6,
+   "ASK": 0,
+   "DENY": 1
+  },
+  "exchange_delivered_order_items": {
+   "ALLOW": 0,
+   "ASK": 1,
+   "DENY": 11
+  },
+  "modify_pending_order_items": {
+   "ALLOW": 1,
+   "ASK": 1,
+   "DENY": 0
+  },
+  "modify_user_address": {
+   "ALLOW": 0,
+   "ASK": 0,
+   "DENY": 2
+  },
+  "return_delivered_order_items": {
+   "ALLOW": 18,
+   "ASK": 7,
+   "DENY": 24
+  }
+ },
+ "dataset_sha256": "c3be30ab7ff062132dc05c2d60f5be533055d7bf01b001ff8d5c08753d860655",
+ "file_sha256": "8ae5dad11feb3f0d152b52dd377da5acbc7c1c08b1e0ed0ce7e8ea5818e28ed3",
+ "left_out": {
+  "no_verdict": 0,
+  "unknown_verdict": 1
+ },
+ "manifest": "retail",
+ "mapping_version": "drb-realmap-1",
+ "oracle_version": "tau2-oracle-1:41ee37217182",
+ "partitions": {
+  "retail_adapt": {
+   "families": [
+    "retail/user:fatima_johnson_7581",
+    "retail/user:mei_kovacs_8020",
+    "retail/user:mia_garcia_4516"
+   ],
+   "hard_rule": 0,
+   "records": 37,
+   "sha256": "34408db26624d2f3c0b54e99c424c4a688a1b6569c9009907dcc82e76af2c570",
+   "should_escalate": 18,
+   "should_run": 19
+  },
+  "retail_holdout": {
+   "families": [
+    "retail/user:liam_thomas_7882",
+    "retail/user:mei_davis_8935"
+   ],
+   "hard_rule": 0,
+   "records": 21,
+   "sha256": "b628265e2482d4d3c9d7ea40b8b8cd2383da30cc59eb7043a7b6964e958599fd",
+   "should_escalate": 16,
+   "should_run": 5
+  },
+  "retail_promotion": {
+   "families": [
+    "retail/user:chen_silva_7485"
+   ],
+   "hard_rule": 0,
+   "records": 14,
+   "sha256": "b9b63d5ec8cfec7fdf1e2fb31913d03e9c123f971ffecc1d4cd76ccebe890512",
+   "should_escalate": 13,
+   "should_run": 1
+  }
+ },
+ "policy_sha256": "cd28bff5048b27ff9487fc445236338f3ec66cd0f75bf927739987bde9e4dcc7",
+ "records": [
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "2d9d8e1a9f918d2f5506710c84c224b848ce3a4a070a084d3390bc8e79dd9fd4",
+   "record_id": "01M5JMJS4CB1V66T1XTFQMFFPD",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "6df81930723e60ab3e178f34aa8242bc75afe8987f3dfc8e75dafee2769bce44",
+   "record_id": "01M5JMJVCJQM1EQ0B0NPQTKHV8",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "e117f4521fddad3dcbfe74d99838b13795a418ee07aaa9ea50512d44d6e70e7b",
+   "record_id": "01M5JMKGBFP684SJXBM82Z05F5",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "34efa2503d217f8432b479eb10fd70784904a81a5470de7f2a9927b9c02873f3",
+   "record_id": "01M5JMKJZ89YMCJ0N6FJ94V46Q",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "ec316385f20a047fbad3f8e9f77f616f56a6346efd949adf03167af122efe83a",
+   "record_id": "01M5JMM4XXKQVYHKNDHSG0Y0H2",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mei_kovacs_8020",
+   "record_hash": "346207a09f67fc48325cb5bcf02586a520c40d12ae1defad6e4abc36a6531361",
+   "record_id": "01M5JZ4D5E6CMP314QYVP9GPAN",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mei_kovacs_8020",
+   "record_hash": "4cf20f4fda1d121084de5cf9a23bc94064cdda0a5ea4b6b4dd4f9143f0d3c527",
+   "record_id": "01M5JZ4F7FEZTY5Q95P9BX5SAS",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "906ca7b9272c1af4365f22d7d8b8dd9e3de7985e08c8ca3ec6741ea046a8516e",
+   "record_id": "01M5JZ4FJNSY49D6GH62NHR3T5",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "8d34d3099b5a016fef04e0bee9be64b240ce317abfb14016b122c8aa87603e96",
+   "record_id": "01M5JZ4FQ7N37RJXVD6FW00S14",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "07a3de856b237a448b339f435b15c5f7812809d80b1cd331d89558387082c3af",
+   "record_id": "01M5JZ4H7WB7XXHKW3XDBENJKE",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mei_kovacs_8020",
+   "record_hash": "1235f01ad60c00de7704757d33385b3e7c676773672ce84294f2e9936ee19d3b",
+   "record_id": "01M5JZ4HDTBD3TFZNSCV5SF34S",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "f263a1d7d213b771b2e78cfef6f62a44e3bc0fa36bbefa8cf38e155bda6624c4",
+   "record_id": "01M5JZ4HHCR7P9XNZ3N60M0KYH",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "6480bf4de094c626c93b03f7c782099ff0358e33a37c05b1bb018a62da8d7483",
+   "record_id": "01M5JZ4MRXHTNKQG9R1Z09V388",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "c7e6b8b97a04a57112ad42cc192e210c986cb146befa9818b71ae98acb29b06f",
+   "record_id": "01M5JZ4QQZXWGB94PYTMMX7Y7Q",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:fatima_johnson_7581",
+   "record_hash": "9f892be2193a0460f467fa590f6d3ebde494bbeb3914afd15fd901303ca74fdd",
+   "record_id": "01M5JZ4WKXD7GXV289WCA5J6XF",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:fatima_johnson_7581",
+   "record_hash": "c7f5c7cb0425ac9cc2065ebb7310e70ecfeb8d0b27badbf30f960d4998b3333d",
+   "record_id": "01M5JZ4WSHQW3E5RAK48C9JBJQ",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:fatima_johnson_7581",
+   "record_hash": "684e23cccd6a4786c0dd5ccdb8cf1e0e8afa073e3e2221958cc8fd7e039977f8",
+   "record_id": "01M5JZ4X932P1F842EVYZ09DTY",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "4d342f583b8930ed90229aeb6b11d67c117177c4f41ced2522d106f554bc61e1",
+   "record_id": "01M5JZ50CY9AWVGK70D1V5XXDF",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "268a312cfa6a8aa6324b9807407e3641c763c237902feff977fd717862b514a7",
+   "record_id": "01M5JZ50JK3SXWYXBR2VA0RBZB",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mei_davis_8935",
+   "record_hash": "81bef76481da1190e074a6fc86560e04bdf362ec18aef8336fb014229f901a03",
+   "record_id": "01M5JZ50S18W0JMGFM3T677JV3",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:chen_silva_7485",
+   "record_hash": "9d7e35971452f55017605b55b671370e88add687da44ba873ac13a3d104d7322",
+   "record_id": "01M5JZ514HKPYVPHEY1BW7SGTK",
+   "split": "retail_promotion"
+  },
+  {
+   "family_id": "retail/user:chen_silva_7485",
+   "record_hash": "6519272ebb0b38658c52e66e47cb4ca18dd2874ee716c65404322e680c005b48",
+   "record_id": "01M5JZ53BEFJZ298SGE8SY5R9V",
+   "split": "retail_promotion"
+  },
+  {
+   "family_id": "retail/user:chen_silva_7485",
+   "record_hash": "37e8caaf36e90544a663ca9c508b540c06a95dc80d70967567db938604989b06",
+   "record_id": "01M5JZ53HDAV2K8DP4RDA51Y1V",
+   "split": "retail_promotion"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "eb31537aa9d10a28d116a4318c9236b6ddaf011e39689f30fc37c0364ec183dd",
+   "record_id": "01M5JZ54J1EZ7T1K608RWJ1E9S",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:chen_silva_7485",
+   "record_hash": "dbccf6d6f61511c47123687bcb2060bb58ed0d6ac068aab38f105fb246afa186",
+   "record_id": "01M5JZ569MXMXMNKGFAQKD4C9Q",
+   "split": "retail_promotion"
+  },
+  {
+   "family_id": "retail/user:mei_davis_8935",
+   "record_hash": "0909167636fb91fd179ab4fe41e196ab5b5a16a4b6f36979efb7a10ec109a78f",
+   "record_id": "01M5JZ57HHF4560N7GD2S6BT3G",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:chen_silva_7485",
+   "record_hash": "6cc26945b051c51bdd03018ddb31ef024f240bf29f7756e8c3ea684a1d26bd63",
+   "record_id": "01M5JZ58T6TR5VJ7RC1QXZAZQX",
+   "split": "retail_promotion"
+  },
+  {
+   "family_id": "retail/user:mei_davis_8935",
+   "record_hash": "e744673d52daeb687d86ec9d77552aaa7eb6f0a0bcf8dfbe74c159459ea859c2",
+   "record_id": "01M5JZ59MHE9X7XFMC6ABKYK7Q",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:chen_silva_7485",
+   "record_hash": "de0c16e6b597888ea4ecc0811d59ad22d0d702f0780861920def13c56e054c47",
+   "record_id": "01M5JZ5AKVE2QZ5NS0KVZTB57S",
+   "split": "retail_promotion"
+  },
+  {
+   "family_id": "retail/user:chen_silva_7485",
+   "record_hash": "f27811df7a606466756f0a27b8fca2572eeff2982bc4502de0b4532b38d379f3",
+   "record_id": "01M5JZ5BGDG74M5VTD6YN9FR3T",
+   "split": "retail_promotion"
+  },
+  {
+   "family_id": "retail/user:mei_davis_8935",
+   "record_hash": "a13532d643f17300786e1bcfb70591229f45be78bd0c0c19c33344eaafe3f92c",
+   "record_id": "01M5JZ5BZQ37Z0YKPTD97HJA3A",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:chen_silva_7485",
+   "record_hash": "e37fc1ca18ee27c55bd2ef5ab0945a5075d783c514d8c6aeb5ab5ea83dc1ad64",
+   "record_id": "01M5JZ5EDFDZN54MQMB4MP6WV6",
+   "split": "retail_promotion"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "35f0237c7a52588c28fcced8ca1b4a0c2eac92fc4963da64910ff42a1de92499",
+   "record_id": "01M5JZ5FVM4YXJHBMWCGHNQA7G",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "cf606bee111608f1927ae33b960a147077ae008ecb902d4bd513010d13566118",
+   "record_id": "01M5JZ5G910Y7ARY1GVCW4J58N",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:chen_silva_7485",
+   "record_hash": "487bd633221288ad7415fcbaa0a541162af3f3ad753570f8b38d95c8a6502f58",
+   "record_id": "01M5JZ5M5N873C11NGFQVTP05Z",
+   "split": "retail_promotion"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "6f45251ea815507f1f5e76fe1a74549650680129f820ecb8e507cc13bca54eb0",
+   "record_id": "01M5JZ5MBFEG8RZ8JEKXZWXNXD",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "ba12a9af237c8ffc7efa936389a6da66247a03d265a1ffe3082de40971a7ae2b",
+   "record_id": "01M5JZ5MGPBWTXZYQ135Q4TA74",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:chen_silva_7485",
+   "record_hash": "e10e6bc2815be76c19c45c64288486aef90a370fd1db86023d0a02fd555cf360",
+   "record_id": "01M5JZ5NQTFNSBN9MCPTRZRAJH",
+   "split": "retail_promotion"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "1aca89eb3f50a986d7a0cc868a7ee37b02abafabe4c2dd20c436b6114cf3d6b5",
+   "record_id": "01M5JZ5Q5CNJR8Y4KWEVMC0NMK",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "1734da9dd36467e8c1095893164314dbd04d9fe18cc02f48984c9ea6562d20e8",
+   "record_id": "01M5JZ5QACWH55WR7A51QRC0WY",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "fd62b9c26c9fb1b4d6cc9422e32f0c7dcc724cac471d7f3e8b4d8643c145be20",
+   "record_id": "01M5JZ5SP0C9E67EM74AS0YJY1",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "c1bebc947899b4be95675d5cfc4dca47f61a210c9035ec220dac8693ee860b14",
+   "record_id": "01M5JZ5SXX45K1CHY4NDVBWM3D",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "f76b78d423f82325756378ead950f9dd27ab7c307f9e267677f6b82ce34f6467",
+   "record_id": "01M5JZ5WJ9VN9DFMWCPYHWADA8",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "874d73ea08a2a620099a7dd34f1b8287631018bd3d33901b659db3a67b18af2f",
+   "record_id": "01M5JZ5WR67W4T7NMNSAY64TY8",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "1e9dc92d05aecb67140971f4e68d1aebac5ceeb2502de2239a7a34df07e175d8",
+   "record_id": "01M5JZ5ZBF168ZDD9V2D0TFSBV",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "231cb99e6d5613840dd1cd53981c0df21cf2e34a34354f5f53b87011dfc110c4",
+   "record_id": "01M5JZ6ATBEEKTG3TJWW7DGJ1P",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "6031dc6d77db685f89d820a67d6ed9a7f1d3247b45113cbda8fd09b013f44b10",
+   "record_id": "01M5JZ6CKEDNMW1K2GTKGCK8B1",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "44cdd9cdc77cebb4223c7051191e4874e2e658e9789d309ddb3a676effbd91bf",
+   "record_id": "01M5JZ6GX6MMASE0YGDF0T90CV",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:fatima_johnson_7581",
+   "record_hash": "06e32a97f2a792fe009dd5b63a2f10a0a19127eea96ce4b9b57ff9855826506e",
+   "record_id": "01M5JZ6STVV5NYVNFS98N5XMED",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:fatima_johnson_7581",
+   "record_hash": "d4b575a08c34d1af3dd0dc6b5477aeea8f5882bd3f4ccd28b352cefc5ac3b38a",
+   "record_id": "01M5JZ6T1H438VPDDHPPA4461M",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:fatima_johnson_7581",
+   "record_hash": "cc12353e45be50588faee06cd856ac5e4c9b7aa17381d09a1c1b1d7586945a7e",
+   "record_id": "01M5JZ6THJ5CT7VG53CC1MN2C7",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "c7a22f2894ea691d7cbdf58d90a264616634385cd20f6c729b5b6209369a9605",
+   "record_id": "01M5JZ6XV19WNQPTEYGY67CH3S",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "69f6f99a5e8634d9e05e9692b78ed3c0ffe09b1230055a2253366140aa6daefc",
+   "record_id": "01M5JZ6Y0PCJGTZBGV2ES6XMZA",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mei_davis_8935",
+   "record_hash": "56b42cc2065705aad8d9b4f82dcd8c069c13477d13c0129d471ffa70e7ba3b56",
+   "record_id": "01M5JZ75JB70RW5WZ3HTHRFT8J",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:chen_silva_7485",
+   "record_hash": "8271eec1484a6294d17a463cfeca6306dda8391404ca51e1593a552794b5c072",
+   "record_id": "01M5JZ7CN2010PXYFJQ798QER9",
+   "split": "retail_promotion"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "50a1ecaf8be32b78207aa736c81f56e0658e663c2e4990e4e279c6ca23847732",
+   "record_id": "01M5JZ7WC7B4BXKPHYMFS19WER",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "aa01fc8701cb80b867bb0f77b502909b65023b26d25434a24ade2870dd3f99e8",
+   "record_id": "01M5JZ7WRDCJJDGS5WK70MRR9A",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "91ba7df9a9d0c4aaddcb143bc1ec8389bd4c5deb64521a58de0b4222c8273247",
+   "record_id": "01M5JZ8B8THC9A0XF2HZD3GHB6",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "5bcc1517036acc4d6370478f1bb47fcdca2412c6eb00999ce8e90e2645ac7d58",
+   "record_id": "01M5JZ8BVJWCCS1EFW5CNMNFXT",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "e78776c399ae9af44ed6cb974b6c1cf2e7b581c20175621c411a17b1822391dc",
+   "record_id": "01M5JZ8C0A464AYBE5H45RF9GP",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "92cf22142973192b6d7f1e3f3de6ec6730138eee372cdc4fd43c2ec84ad5377c",
+   "record_id": "01M5JZ8C543144DT73B6PKHASY",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "f236cd32f61cf50cbb3a592d822106760243a512352392104b5057e8cb30b0b5",
+   "record_id": "01M5JZ8EWDBX97WB0MFX4GWA4M",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:mia_garcia_4516",
+   "record_hash": "54763e0dc16bb3484e76ade0c8984c6af2671c20aeecbd65c9c77ca01974f84d",
+   "record_id": "01M5JZ8R9HM6RSRFHY07002ZXS",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:fatima_johnson_7581",
+   "record_hash": "da39e8316d9c025531377f4c9869afdb83ad2b4698bb988d45f9137583e695a6",
+   "record_id": "01M5JZ8RRBK9GE6SNZ9K0AKR7V",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:fatima_johnson_7581",
+   "record_hash": "aca877a652c472fcae0fb8e3e2b61d6cc19f5b398d5b5736cc8af5e86efbaa65",
+   "record_id": "01M5JZ8RY1RS4PQ45QV29TFP9J",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:fatima_johnson_7581",
+   "record_hash": "8f393b273326832596544c3b3f3af0e33d8775bbe07ac0d82598da83509b684e",
+   "record_id": "01M5JZ8SCMD97WNC8EK3F49JYM",
+   "split": "retail_adapt"
+  },
+  {
+   "family_id": "retail/user:chen_silva_7485",
+   "record_hash": "0c98d07e97615b12ff1d28eb498cc1740cb6d98d36203228c17c7489d1d14c88",
+   "record_id": "01M5JZ8WV4TTNVS440ZZKMNF5K",
+   "split": "retail_promotion"
+  },
+  {
+   "family_id": "retail/user:mei_davis_8935",
+   "record_hash": "ba90a54ae6d0b10b8c5cac3b52d580adf0e027e5b294995b2c0e9f98636978ea",
+   "record_id": "01M5JZ8ZGFJFEAWXENFATGBCJB",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:chen_silva_7485",
+   "record_hash": "d9d93b65157f7902ad35d04bf4ec90f9f0afe9ae50f0bcc183ef834c1f952292",
+   "record_id": "01M5JZ97CPQVXC3EJT7WMP11ZH",
+   "split": "retail_promotion"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "33966706bc373319a0c636938c0f12d653ce877bc540f832df52166cfdd38f6d",
+   "record_id": "01M5JZ9FMAWJ45HTBCVXEBKVH4",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:liam_thomas_7882",
+   "record_hash": "a2eaa78a239e22f79d41161904696c79be8ab0b185a3ae4aa01b3adcaf9d6737",
+   "record_id": "01M5JZ9GNMV4JYQDYWY9WSHF03",
+   "split": "retail_holdout"
+  },
+  {
+   "family_id": "retail/user:chen_silva_7485",
+   "record_hash": "8dccba9cdb6cca1f5a56988d5cd643426e4398262d3e9464efb552989a5bd41d",
+   "record_id": "01M5JZ9P9G1E6T3N8PV9HGQHKV",
+   "split": "retail_promotion"
+  }
+ ],
+ "split_seed": 20261023,
+ "stores": {
+  "smoke2": "runs/smoke2.db",
+  "targeted": "runs/targeted.db"
+ }
+}

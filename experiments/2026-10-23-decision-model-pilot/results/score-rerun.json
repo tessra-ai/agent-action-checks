@@ -1,0 +1,93 @@
+{
+  "ledger": {
+    "caps": {
+      "scoring": 1.0,
+      "total": 1.0
+    },
+    "committed": {
+      "scoring": 0.118308246,
+      "total": 0.118308246
+    },
+    "rows": [
+      {
+        "actual_usd": 0.118308246,
+        "calls": 216,
+        "category": "scoring",
+        "reserved_usd": 0.22318565,
+        "status": "settled"
+      }
+    ]
+  },
+  "stores": {
+    "smoke2": {
+      "abandoned_writes": 0,
+      "batches": [],
+      "dry_run": false,
+      "filtered_writes": 0,
+      "judges": [
+        {
+          "_latencies": [],
+          "attempts": 0,
+          "calls": 0,
+          "cost_usd": 0.0,
+          "errors": 0,
+          "judge_name": "openai_decisions",
+          "model_id": "gpt-6-luna",
+          "not_scheduled": 0,
+          "ok": 0,
+          "p50_first_attempt_latency_ms": null,
+          "p95_first_attempt_latency_ms": null,
+          "pending": 0,
+          "refused_write_ids": [],
+          "skipped": 11,
+          "unpriced_calls": 0
+        }
+      ],
+      "rubric_mismatch_writes": 0,
+      "score_keys": 11,
+      "skipped_by_task": [],
+      "skipped_keys": 0,
+      "skipped_writes": 0,
+      "spend_cap_reached": false,
+      "spend_cap_usd": null,
+      "spent_usd": 0.0,
+      "unknown_action_writes": 0,
+      "writes": 11
+    },
+    "targeted": {
+      "abandoned_writes": 0,
+      "batches": [],
+      "dry_run": false,
+      "filtered_writes": 0,
+      "judges": [
+        {
+          "_latencies": [],
+          "attempts": 0,
+          "calls": 0,
+          "cost_usd": 0.0,
+          "errors": 0,
+          "judge_name": "openai_decisions",
+          "model_id": "gpt-6-luna",
+          "not_scheduled": 0,
+          "ok": 0,
+          "p50_first_attempt_latency_ms": null,
+          "p95_first_attempt_latency_ms": null,
+          "pending": 0,
+          "refused_write_ids": [],
+          "skipped": 97,
+          "unpriced_calls": 0
+        }
+      ],
+      "rubric_mismatch_writes": 0,
+      "score_keys": 97,
+      "skipped_by_task": [],
+      "skipped_keys": 0,
+      "skipped_writes": 0,
+      "spend_cap_reached": false,
+      "spend_cap_usd": null,
+      "spent_usd": 0.0,
+      "unknown_action_writes": 0,
+      "writes": 97
+    }
+  }
+}

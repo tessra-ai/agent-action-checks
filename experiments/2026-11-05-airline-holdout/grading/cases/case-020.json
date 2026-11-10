@@ -1,0 +1,101 @@
+{
+ "case": "case-020",
+ "action": "update_reservation_flights",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hi, I have an upcoming flight from LAS to IAH with a stop, and I'd like to change it to a nonstop flight. Also, I want to remove my checked bag from the reservation and get a refund for it if possible. Can you help me with that?",
+   "role": "user"
+  },
+  {
+   "content": "To assist you with changing your flight from LAS to IAH to a nonstop flight and removing your checked bag, I will need the following information:\n\n1. Your user ID\n2. Your reservation ID\n\nAlso, please note that removing checked bags is not allowed, only adding checked bags is possible. Regarding the flight change, I need to confirm if your current reservation is not in basic economy class and that the origin, destination, and trip type remain the same.\n\nCould you please provide your user ID and reservation ID?",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure, my user ID is james_taylor_7043 and my reservation ID is 1N99U6. Also, my current reservation is not in basic economy class, and I want to keep the origin, destination, and trip type the same.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "1N99U6"
+     },
+     "function": "get_reservation_details",
+     "id": "call_D7HO6Ag403SArQANs6AbLRGG"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"1N99U6\", \"user_id\": \"james_taylor_7043\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"flight_type\": \"round_trip\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT284\", \"origin\": \"LAS\", \"destination\": \"PHX\", \"date\": \"2024-05-19\", \"price\": 161}, {\"flight_number\": \"HAT152\", \"origin\": \"PHX\", \"destination\": \"IAH\", \"date\": \"2024-05-19\", \"price\": 192}, {\"flight_number\": \"HAT112\", \"origin\": \"IAH\", \"destination\": \"LAS\", \"date\": \"2024-05-27\", \"price\": 184}], \"passengers\": [{\"first_name\": \"James\", \"last_name\": \"Taylor\", \"dob\": \"1997-01-23\"}, {\"first_name\": \"Ivan\", \"last_name\": \"Taylor\", \"dob\": \"1975-09-15\"}], \"payment_history\": [{\"payment_id\": \"gift_card_5634230\", \"amount\": 1134}], \"created_at\": \"2024-05-08T11:37:17\", \"total_baggages\": 1, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_D7HO6Ag403SArQANs6AbLRGG"
+  },
+  {
+   "content": "Your current reservation is a round trip in economy class with two passengers. The outbound flight from LAS to IAH has a stop in PHX. You have one checked bag included, which is free of charge, and you have travel insurance.\n\nTo proceed, I will look for nonstop flight options from LAS to IAH on your outbound flight date (2024-05-19). After that, I will provide you with the options and the price difference if any.\n\nPlease hold on a moment while I search for nonstop flights.",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-19",
+      "destination": "IAH",
+      "origin": "LAS"
+     },
+     "function": "search_direct_flight",
+     "id": "call_d8BHnyV55GKHGsZs4iGs22O2"
+    }
+   ]
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT175\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"17:00:00\", \"scheduled_arrival_time_est\": \"20:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 10, \"economy\": 3, \"business\": 2}, \"prices\": {\"basic_economy\": 96, \"economy\": 155, \"business\": 203}}, {\"flight_number\": \"HAT266\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"13:00:00\", \"scheduled_arrival_time_est\": \"16:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 8, \"economy\": 16, \"business\": 13}, \"prices\": {\"basic_economy\": 89, \"economy\": 146, \"business\": 373}}]",
+   "role": "tool",
+   "tool_call_id": "call_d8BHnyV55GKHGsZs4iGs22O2"
+  },
+  {
+   "content": "I found two nonstop flight options from LAS to IAH on 2024-05-19 in economy class:\n\n1. Flight HAT175, departing at 17:00, arriving at 20:00, price $155 per passenger.\n2. Flight HAT266, departing at 13:00, arriving at 16:00, price $146 per passenger.\n\nYour current flights for the outbound trip are priced at $161 and $192 per passenger for the two segments, totaling $353 per passenger.\n\nPlease confirm if you want to change to one of these nonstop flights and which one you prefer. Also, please confirm that you want to remove the checked bag (note that removing checked bags is generally not allowed, so I will confirm this with you before proceeding).",
+   "role": "assistant"
+  },
+  {
+   "content": "Thanks for the options. I would like to switch to the nonstop flight HAT266 departing at 13:00 and arriving at 16:00. And yes, please proceed with removing the checked bag if possible.",
+   "role": "user"
+  },
+  {
+   "content": "To confirm, you want to:\n\n- Change your outbound flight on 2024-05-19 from the current two-segment flights (LAS-PHX-IAH) to the nonstop flight HAT266 (LAS-IAH) in economy class for 2 passengers.\n- Remove the 1 checked bag from your reservation if allowed.\n\nPlease confirm with a \"yes\" to proceed with these changes.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, that's correct. Please go ahead with those changes.",
+   "role": "user"
+  },
+  {
+   "content": "The nonstop flight HAT266 in economy class is priced at $146 per passenger, which is lower than your current total outbound flight price of $353 per passenger. This means you will be refunded the difference for the outbound flight segment change.\n\nRegarding the checked bag removal, the policy does not allow removing checked bags once booked, so the checked bag will remain as is.\n\nI will proceed with updating your outbound flight to the nonstop flight HAT266 and keep the checked bag as it is. The refund for the flight price difference will be processed accordingly.\n\nProceeding with the update now.",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "cabin": "economy",
+      "flights": [
+       {
+        "date": "2024-05-19",
+        "flight_number": "HAT266"
+       },
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT112"
+       }
+      ],
+      "payment_id": "gift_card_5634230",
+      "reservation_id": "1N99U6"
+     },
+     "function": "update_reservation_flights",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "writes": 73,
+ "extracted_ok": 73,
+ "claims": 222,
+ "verdicts": {
+  "false": 63,
+  "true": 122,
+  "unverifiable": 37
+ },
+ "flagged_writes": 39,
+ "oracle_allow": 25,
+ "flagged_among_allow": 15,
+ "oracle_stop": 47,
+ "flagged_among_stop": 23,
+ "judge_false_allows": [
+  "01M5JZ6THJ5CT7VG53CC1MN2C7"
+ ],
+ "judge_false_allows_flagged": [
+  "01M5JZ6THJ5CT7VG53CC1MN2C7"
+ ],
+ "gate_ran": 22,
+ "gate_ran_and_flagged": 13,
+ "flagged_by_kind_on_allow": {
+  "items": 17,
+  "charge": 2,
+  "refund": 7,
+  "payment_method": 4
+ }
+}

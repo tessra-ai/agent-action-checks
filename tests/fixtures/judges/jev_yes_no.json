@@ -1,0 +1,27 @@
+{
+  "path": "/systemone",
+  "request": {
+    "model": "jev-1.14.0",
+    "questions": {
+      "policy_ok": {
+        "instructions": "Is this statement true of the proposed action? This refund follows policy.",
+        "type": "noul"
+      }
+    },
+    "state": "## Context: conversation\nCustomer: I was charged twice for order #W123. Please refund the duplicate $20 charge.\n\n## Earlier writes in this session\n(none)\n\n## Proposed action\nrefund_order({\"amount\":20,\"method\":\"card\",\"order_id\":\"W123\"})\n"
+  },
+  "response": {
+    "answers": {
+      "policy_ok": {
+        "noul": 0.65,
+        "type": "noul"
+      }
+    },
+    "model": "jev-1.14.0",
+    "usage": {
+      "input_tokens": 344,
+      "output_tokens": 21
+    }
+  },
+  "status": 200
+}

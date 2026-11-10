@@ -1,0 +1,218 @@
+{
+ "airline": {
+  "plan_all": {
+   "corrected_benchmark": {
+    "good_total": 46,
+    "good_flagged_before": 17,
+    "good_flagged_after": 11,
+    "good_flags_removed": {
+     "01M61PX5E4JBZB1FQ1ZVYT6W4E": "task 22",
+     "01M61PXK44D3ZYYVPY8R6M2RKX": "task 23",
+     "01M61Q6AN3V63938NHNFX4CFPG": "task 18",
+     "01M61Q6C290DDER26M1MJBYXRQ": "task 18",
+     "01M61Q6E78AQ25SF1EE0AXF273": "task 18",
+     "01M61Q6FMF5B2CE7AHYKT2DTFW": "task 18"
+    },
+    "stop_total": 87,
+    "stop_flagged_before": 44,
+    "stop_flagged_after": 35,
+    "stop_flags_removed": [
+     "01M61PSTDDZHYXW0HEVTJTFXGX",
+     "01M61PSTQH5ENQFW5W2NA6QTYZ",
+     "01M61PYC3M0Y8M9VYYM8SWTHPZ",
+     "01M61PYCFVXDJPD3D590KB1Y09",
+     "01M61PYCWMZ96J0QS9ZMJ3X7NZ",
+     "01M61PZB57S4F6BPVCMMXFBA2F",
+     "01M61Q173G5J372Y6S90AC6FVS",
+     "01M61Q3RXQGMXJ4EH3VB7AR7B2",
+     "01M61Q71WGYZWHH0AW1FCWVKP6"
+    ]
+   },
+   "adjudicated": {
+    "good_total": 43,
+    "good_flagged_before": 19,
+    "good_flagged_after": 13,
+    "good_flags_removed": {
+     "01M61PX5E4JBZB1FQ1ZVYT6W4E": "task 22",
+     "01M61PXK44D3ZYYVPY8R6M2RKX": "task 23",
+     "01M61Q6AN3V63938NHNFX4CFPG": "task 18",
+     "01M61Q6C290DDER26M1MJBYXRQ": "task 18",
+     "01M61Q6E78AQ25SF1EE0AXF273": "task 18",
+     "01M61Q6FMF5B2CE7AHYKT2DTFW": "task 18"
+    },
+    "stop_total": 48,
+    "stop_flagged_before": 24,
+    "stop_flagged_after": 19,
+    "stop_flags_removed": [
+     "01M61PSTDDZHYXW0HEVTJTFXGX",
+     "01M61PYC3M0Y8M9VYYM8SWTHPZ",
+     "01M61PYCWMZ96J0QS9ZMJ3X7NZ",
+     "01M61Q173G5J372Y6S90AC6FVS",
+     "01M61Q3RXQGMXJ4EH3VB7AR7B2"
+    ]
+   },
+   "catches": {
+    "01M61PYGRX51BXSSZ4R86R0CQH": {
+     "what": "case 14, task 25: price and certificate remainder",
+     "before": true,
+     "after": true
+    },
+    "01M61Q0HD0F0DNRS5WWVBVESGP": {
+     "what": "case 13, task 35: second cheapest",
+     "before": true,
+     "after": true
+    },
+    "01M61PTMV0JAHQARJNFWV9YQHZ": {
+     "what": "task 11: refund quoted at $1,444, the call refunds $5,244",
+     "before": true,
+     "after": true
+    }
+   },
+   "plan_reasons": {
+    "other": 19,
+    "union": 4
+   },
+   "flagged_before": 61,
+   "flagged_after": 46
+  },
+  "plan_so_far": {
+   "corrected_benchmark": {
+    "good_total": 46,
+    "good_flagged_before": 17,
+    "good_flagged_after": 14,
+    "good_flags_removed": {
+     "01M61Q6AN3V63938NHNFX4CFPG": "task 18",
+     "01M61Q6E78AQ25SF1EE0AXF273": "task 18",
+     "01M61Q6FMF5B2CE7AHYKT2DTFW": "task 18"
+    },
+    "stop_total": 87,
+    "stop_flagged_before": 44,
+    "stop_flagged_after": 36,
+    "stop_flags_removed": [
+     "01M61PSTDDZHYXW0HEVTJTFXGX",
+     "01M61PSTQH5ENQFW5W2NA6QTYZ",
+     "01M61PYC3M0Y8M9VYYM8SWTHPZ",
+     "01M61PYCFVXDJPD3D590KB1Y09",
+     "01M61PYCWMZ96J0QS9ZMJ3X7NZ",
+     "01M61PZB57S4F6BPVCMMXFBA2F",
+     "01M61Q3RXQGMXJ4EH3VB7AR7B2",
+     "01M61Q71WGYZWHH0AW1FCWVKP6"
+    ]
+   },
+   "adjudicated": {
+    "good_total": 43,
+    "good_flagged_before": 19,
+    "good_flagged_after": 16,
+    "good_flags_removed": {
+     "01M61Q6AN3V63938NHNFX4CFPG": "task 18",
+     "01M61Q6E78AQ25SF1EE0AXF273": "task 18",
+     "01M61Q6FMF5B2CE7AHYKT2DTFW": "task 18"
+    },
+    "stop_total": 48,
+    "stop_flagged_before": 24,
+    "stop_flagged_after": 20,
+    "stop_flags_removed": [
+     "01M61PSTDDZHYXW0HEVTJTFXGX",
+     "01M61PYC3M0Y8M9VYYM8SWTHPZ",
+     "01M61PYCWMZ96J0QS9ZMJ3X7NZ",
+     "01M61Q3RXQGMXJ4EH3VB7AR7B2"
+    ]
+   },
+   "catches": {
+    "01M61PYGRX51BXSSZ4R86R0CQH": {
+     "what": "case 14, task 25: price and certificate remainder",
+     "before": true,
+     "after": true
+    },
+    "01M61Q0HD0F0DNRS5WWVBVESGP": {
+     "what": "case 13, task 35: second cheapest",
+     "before": true,
+     "after": true
+    },
+    "01M61PTMV0JAHQARJNFWV9YQHZ": {
+     "what": "task 11: refund quoted at $1,444, the call refunds $5,244",
+     "before": true,
+     "after": true
+    }
+   },
+   "plan_reasons": {
+    "other": 15,
+    "union": 3
+   },
+   "flagged_before": 61,
+   "flagged_after": 50
+  }
+ },
+ "retail": {
+  "plan_all": {
+   "oracle": {
+    "good_total": 25,
+    "good_flagged_before": 15,
+    "good_flagged_after": 10,
+    "good_flags_removed": {
+     "01M5JZ4FQ7N37RJXVD6FW00S14": "real misstatement",
+     "01M5JZ6XV19WNQPTEYGY67CH3S": "scope",
+     "01M5JZ6Y0PCJGTZBGV2ES6XMZA": "scope",
+     "01M5JZ7WC7B4BXKPHYMFS19WER": "scope",
+     "01M5JZ8BVJWCCS1EFW5CNMNFXT": "scope"
+    },
+    "stop_total": 47,
+    "stop_flagged_before": 22,
+    "stop_flagged_after": 18,
+    "stop_flags_removed": [
+     "01M5JZ4H7WB7XXHKW3XDBENJKE",
+     "01M5JZ4HHCR7P9XNZ3N60M0KYH",
+     "01M5JZ57HHF4560N7GD2S6BT3G",
+     "01M5JZ5G910Y7ARY1GVCW4J58N"
+    ]
+   },
+   "catches": {
+    "01M5JZ4FQ7N37RJXVD6FW00S14": {
+     "what": "task 12: the Gaming Mouse",
+     "before": true,
+     "after": false
+    }
+   },
+   "plan_reasons": {
+    "other": 20,
+    "union": 4
+   },
+   "flagged_before": 38,
+   "flagged_after": 28
+  },
+  "plan_so_far": {
+   "oracle": {
+    "good_total": 25,
+    "good_flagged_before": 15,
+    "good_flagged_after": 13,
+    "good_flags_removed": {
+     "01M5JZ4FQ7N37RJXVD6FW00S14": "real misstatement",
+     "01M5JZ6Y0PCJGTZBGV2ES6XMZA": "scope"
+    },
+    "stop_total": 47,
+    "stop_flagged_before": 22,
+    "stop_flagged_after": 18,
+    "stop_flags_removed": [
+     "01M5JZ4H7WB7XXHKW3XDBENJKE",
+     "01M5JZ4HHCR7P9XNZ3N60M0KYH",
+     "01M5JZ57HHF4560N7GD2S6BT3G",
+     "01M5JZ5G910Y7ARY1GVCW4J58N"
+    ]
+   },
+   "catches": {
+    "01M5JZ4FQ7N37RJXVD6FW00S14": {
+     "what": "task 12: the Gaming Mouse",
+     "before": true,
+     "after": false
+    }
+   },
+   "plan_reasons": {
+    "other": 9,
+    "union": 2,
+    "sum": 1
+   },
+   "flagged_before": 38,
+   "flagged_after": 31
+  }
+ }
+}

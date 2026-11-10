@@ -1,0 +1,69 @@
+{
+ "writes": 122,
+ "extracted_ok": 121,
+ "claims": 465,
+ "verdicts": {
+  "unverifiable": 191,
+  "false": 82,
+  "true": 192
+ },
+ "scopes": {
+  "this_call": 366,
+  "other_call": 86,
+  "plan": 13
+ },
+ "plan_reasons": {
+  "other_call": 51
+ },
+ "flagged_writes": 55,
+ "catches": {},
+ "by_truth": {
+  "graders": {
+   "good_total": 40,
+   "good_flagged": 16,
+   "good_flagged_ids": [
+    "01M6PS3HM5HCZ8230CKV669Z3X",
+    "01M6PS440T7K7B6XEQXPFMQBJJ",
+    "01M6PS45B0Q5KFSWFTRFGKWB4C",
+    "01M6PS45PE4HY9JTWRD4D7ZRE8",
+    "01M6PS4ZGTE1B9AW4V43RGKH2S",
+    "01M6PS5F64DVVNJXFVENFJS1W3",
+    "01M6PS97QP4VJ6VW9DW4N7RN7T",
+    "01M6PS98P1MQH9J5QPFSXRCXZW",
+    "01M6PS991WQTG13PENKJJ46B0Z",
+    "01M6PS9WNYGZMJFYVVSEHWH62C",
+    "01M6PSCBEWZ21ZEYRCDTP76AAN",
+    "01M6PSDY73RFMQ1MQ6SG6ZEN6V",
+    "01M6PSDZ7FFY1KR9V94NY31J96",
+    "01M6PSFCCQW6E0AS4HV3ZYR2FM",
+    "01M6PSP2HN1NQP6PBPHD9N84N9",
+    "01M6PSQ9DZZV0KHRS7GAESEA0E"
+   ],
+   "stop_total": 36,
+   "stop_flagged": 17
+  },
+  "corrected_benchmark": {
+   "good_total": 43,
+   "good_flagged": 15,
+   "good_flagged_ids": [
+    "01M6PS3HM5HCZ8230CKV669Z3X",
+    "01M6PS440T7K7B6XEQXPFMQBJJ",
+    "01M6PS45B0Q5KFSWFTRFGKWB4C",
+    "01M6PS45PE4HY9JTWRD4D7ZRE8",
+    "01M6PS4ZGTE1B9AW4V43RGKH2S",
+    "01M6PS5F64DVVNJXFVENFJS1W3",
+    "01M6PS5RDXRPWTQT6J5TNN9HTJ",
+    "01M6PS7HMH9PDDSSP1ENXA97DA",
+    "01M6PS97QP4VJ6VW9DW4N7RN7T",
+    "01M6PS98P1MQH9J5QPFSXRCXZW",
+    "01M6PS991WQTG13PENKJJ46B0Z",
+    "01M6PSCBEWZ21ZEYRCDTP76AAN",
+    "01M6PSDY73RFMQ1MQ6SG6ZEN6V",
+    "01M6PSDZ7FFY1KR9V94NY31J96",
+    "01M6PSP6T7DZFHBZJDNW70AEY9"
+   ],
+   "stop_total": 79,
+   "stop_flagged": 40
+  }
+ }
+}

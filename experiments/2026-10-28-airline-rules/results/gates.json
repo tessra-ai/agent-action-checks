@@ -1,0 +1,2103 @@
+{
+ "metrics": {
+  "corrected_benchmark": {
+   "rules": {
+    "ran": 62,
+    "wrong": 18,
+    "wrong_rate_upper95": 0.3995,
+    "good_sent_back": 2,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PSHJ57DPZ8HXW30VMAVBV",
+     "01M61PTMHC2NJEBQ2NR80XNJHA",
+     "01M61PX4644DWNDVHGC7EKSWPT",
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q0JQ0P7BCN5VP6010AY2T",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q6Q9RX39XQ12JWMAK0RN1",
+     "01M61Q6WZDGT9C2SH60B4DKT0S",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61Q9WS74N35PTYM20MW0HVE",
+     "01M61QAZD1C85YBG2KRN638RMF",
+     "01M61QCGXQPGRQTHWAHV15T9Q7",
+     "01M61QCJY1J0DDNGGA55AK1PJX"
+    ]
+   },
+   "rules_no_duplicate": {
+    "ran": 63,
+    "wrong": 19,
+    "wrong_rate_upper95": 0.4104,
+    "good_sent_back": 2,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PSHJ57DPZ8HXW30VMAVBV",
+     "01M61PTMHC2NJEBQ2NR80XNJHA",
+     "01M61PX4644DWNDVHGC7EKSWPT",
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYTPEQPTZ9JM5DKK0NBWZ",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q0JQ0P7BCN5VP6010AY2T",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q6Q9RX39XQ12JWMAK0RN1",
+     "01M61Q6WZDGT9C2SH60B4DKT0S",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61Q9WS74N35PTYM20MW0HVE",
+     "01M61QAZD1C85YBG2KRN638RMF",
+     "01M61QCGXQPGRQTHWAHV15T9Q7",
+     "01M61QCJY1J0DDNGGA55AK1PJX"
+    ]
+   },
+   "rules_facts": {
+    "ran": 30,
+    "wrong": 9,
+    "wrong_rate_upper95": 0.4651,
+    "good_sent_back": 25,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PTMHC2NJEBQ2NR80XNJHA",
+     "01M61PX4644DWNDVHGC7EKSWPT",
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q6Q9RX39XQ12JWMAK0RN1",
+     "01M61Q6WZDGT9C2SH60B4DKT0S",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "rules_facts_no_duplicate": {
+    "ran": 30,
+    "wrong": 9,
+    "wrong_rate_upper95": 0.4651,
+    "good_sent_back": 25,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PTMHC2NJEBQ2NR80XNJHA",
+     "01M61PX4644DWNDVHGC7EKSWPT",
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q6Q9RX39XQ12JWMAK0RN1",
+     "01M61Q6WZDGT9C2SH60B4DKT0S",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "old_1": {
+    "ran": 22,
+    "wrong": 6,
+    "wrong_rate_upper95": 0.4685,
+    "good_sent_back": 30,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "docent_1": {
+    "ran": 30,
+    "wrong": 8,
+    "wrong_rate_upper95": 0.4299,
+    "good_sent_back": 24,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXFATXSKNSSM2J0EQME5Z",
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61Q9WS74N35PTYM20MW0HVE",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "rules_docent_1": {
+    "ran": 28,
+    "wrong": 7,
+    "wrong_rate_upper95": 0.4187,
+    "good_sent_back": 25,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61Q9WS74N35PTYM20MW0HVE",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "rules_facts_docent_1": {
+    "ran": 18,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.4389,
+    "good_sent_back": 32,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "rules_old_1": {
+    "ran": 16,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.4844,
+    "good_sent_back": 34,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "old_2": {
+    "ran": 24,
+    "wrong": 8,
+    "wrong_rate_upper95": 0.5214,
+    "good_sent_back": 30,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAXR13HZH3KDDW3H4VE5Y",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "docent_2": {
+    "ran": 32,
+    "wrong": 12,
+    "wrong_rate_upper95": 0.5356,
+    "good_sent_back": 26,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61PYC3M0Y8M9VYYM8SWTHPZ",
+     "01M61PYCWMZ96J0QS9ZMJ3X7NZ",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61Q9WS74N35PTYM20MW0HVE",
+     "01M61QAXR13HZH3KDDW3H4VE5Y",
+     "01M61QAZD1C85YBG2KRN638RMF",
+     "01M61QCGXQPGRQTHWAHV15T9Q7"
+    ]
+   },
+   "rules_docent_2": {
+    "ran": 28,
+    "wrong": 9,
+    "wrong_rate_upper95": 0.4938,
+    "good_sent_back": 27,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61Q9WS74N35PTYM20MW0HVE",
+     "01M61QAZD1C85YBG2KRN638RMF",
+     "01M61QCGXQPGRQTHWAHV15T9Q7"
+    ]
+   },
+   "rules_facts_docent_2": {
+    "ran": 17,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.4605,
+    "good_sent_back": 33,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "rules_old_2": {
+    "ran": 16,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.4844,
+    "good_sent_back": 34,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61QAZD1C85YBG2KRN638RMF"
+    ]
+   },
+   "jev_policy_ok": {
+    "ran": 60,
+    "wrong": 28,
+    "wrong_rate_upper95": 0.5803,
+    "good_sent_back": 14,
+    "good_total": 46,
+    "wrong_write_ids": [
+     "01M61PWPDBDVTYVXJ7P2DGXJGF",
+     "01M61PWTD0M8BWXEKGDZ509ZGR",
+     "01M61PXJFG0ZP04V1QEJD869TJ",
+     "01M61PYBSHWN4KY7TYCEDZAHXH",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYTPEQPTZ9JM5DKK0NBWZ",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61PZ9SGJDMA94SS6PQSEGNG",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q0HPA7XMW5YRTABGE2VKE",
+     "01M61Q0JBGTDSPSADB8QD40CH4",
+     "01M61Q0JQ0P7BCN5VP6010AY2T",
+     "01M61Q17VRW160JR4P3C1CXCVP",
+     "01M61Q346P36J830S236T7GDY6",
+     "01M61Q3R6NT6HY6NMXWJA78AHT",
+     "01M61Q3RXQGMXJ4EH3VB7AR7B2",
+     "01M61Q61W18MDCTTT245C04ZZP",
+     "01M61Q79VR8ABNANRCE8DF12JV",
+     "01M61Q7E08FRX3S6AGKP0Q2ZSB",
+     "01M61Q87YYRMY7FZ7NBZ3SNCDC",
+     "01M61Q96DSP7Z14FDFD7DBCK08",
+     "01M61Q9VWQ06EQKHM3FTKVMMMV",
+     "01M61QAQHD89C11D1ZMTG5RH67",
+     "01M61QAXR13HZH3KDDW3H4VE5Y",
+     "01M61QAZD1C85YBG2KRN638RMF",
+     "01M61QCJY1J0DDNGGA55AK1PJX"
+    ]
+   }
+  },
+  "adjudicated": {
+   "rules": {
+    "ran": 53,
+    "wrong": 12,
+    "wrong_rate_upper95": 0.3409,
+    "good_sent_back": 2,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PSRVRXMARGYBWJZ9YJE0Y",
+     "01M61PX4644DWNDVHGC7EKSWPT",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61PZW9CFSERA79KP94VW7HC",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q0JQ0P7BCN5VP6010AY2T",
+     "01M61Q3PXQRD3JHD5TP2CH5AQ7",
+     "01M61Q6WZDGT9C2SH60B4DKT0S",
+     "01M61Q8R9JT4JFVC77GVN9N11Q"
+    ]
+   },
+   "rules_no_duplicate": {
+    "ran": 54,
+    "wrong": 13,
+    "wrong_rate_upper95": 0.3553,
+    "good_sent_back": 2,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PSRVRXMARGYBWJZ9YJE0Y",
+     "01M61PX4644DWNDVHGC7EKSWPT",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYTPEQPTZ9JM5DKK0NBWZ",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61PZW9CFSERA79KP94VW7HC",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q0JQ0P7BCN5VP6010AY2T",
+     "01M61Q3PXQRD3JHD5TP2CH5AQ7",
+     "01M61Q6WZDGT9C2SH60B4DKT0S",
+     "01M61Q8R9JT4JFVC77GVN9N11Q"
+    ]
+   },
+   "rules_facts": {
+    "ran": 26,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.3182,
+    "good_sent_back": 21,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PSRVRXMARGYBWJZ9YJE0Y",
+     "01M61PX4644DWNDVHGC7EKSWPT",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q6WZDGT9C2SH60B4DKT0S"
+    ]
+   },
+   "rules_facts_no_duplicate": {
+    "ran": 26,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.3182,
+    "good_sent_back": 21,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PSRVRXMARGYBWJZ9YJE0Y",
+     "01M61PX4644DWNDVHGC7EKSWPT",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q6WZDGT9C2SH60B4DKT0S"
+    ]
+   },
+   "old_1": {
+    "ran": 22,
+    "wrong": 2,
+    "wrong_rate_upper95": 0.2595,
+    "good_sent_back": 23,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61Q0HD0F0DNRS5WWVBVESGP"
+    ]
+   },
+   "docent_1": {
+    "ran": 30,
+    "wrong": 3,
+    "wrong_rate_upper95": 0.2386,
+    "good_sent_back": 16,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PXFATXSKNSSM2J0EQME5Z",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61Q0HD0F0DNRS5WWVBVESGP"
+    ]
+   },
+   "rules_docent_1": {
+    "ran": 28,
+    "wrong": 2,
+    "wrong_rate_upper95": 0.2082,
+    "good_sent_back": 17,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61Q0HD0F0DNRS5WWVBVESGP"
+    ]
+   },
+   "rules_facts_docent_1": {
+    "ran": 18,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.1533,
+    "good_sent_back": 25,
+    "good_total": 43,
+    "wrong_write_ids": []
+   },
+   "rules_old_1": {
+    "ran": 16,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.1707,
+    "good_sent_back": 27,
+    "good_total": 43,
+    "wrong_write_ids": []
+   },
+   "old_2": {
+    "ran": 24,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.3418,
+    "good_sent_back": 23,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61QAXR13HZH3KDDW3H4VE5Y"
+    ]
+   },
+   "docent_2": {
+    "ran": 32,
+    "wrong": 6,
+    "wrong_rate_upper95": 0.3369,
+    "good_sent_back": 17,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PYC3M0Y8M9VYYM8SWTHPZ",
+     "01M61PYCWMZ96J0QS9ZMJ3X7NZ",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61QAXR13HZH3KDDW3H4VE5Y"
+    ]
+   },
+   "rules_docent_2": {
+    "ran": 28,
+    "wrong": 3,
+    "wrong_rate_upper95": 0.2542,
+    "good_sent_back": 18,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61Q0HD0F0DNRS5WWVBVESGP"
+    ]
+   },
+   "rules_facts_docent_2": {
+    "ran": 17,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.1616,
+    "good_sent_back": 26,
+    "good_total": 43,
+    "wrong_write_ids": []
+   },
+   "rules_old_2": {
+    "ran": 16,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.1707,
+    "good_sent_back": 27,
+    "good_total": 43,
+    "wrong_write_ids": []
+   },
+   "jev_policy_ok": {
+    "ran": 60,
+    "wrong": 27,
+    "wrong_rate_upper95": 0.564,
+    "good_sent_back": 10,
+    "good_total": 43,
+    "wrong_write_ids": [
+     "01M61PSRVRXMARGYBWJZ9YJE0Y",
+     "01M61PWPDBDVTYVXJ7P2DGXJGF",
+     "01M61PWTD0M8BWXEKGDZ509ZGR",
+     "01M61PYBSHWN4KY7TYCEDZAHXH",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYTPEQPTZ9JM5DKK0NBWZ",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61PZ9SGJDMA94SS6PQSEGNG",
+     "01M61PZW9CFSERA79KP94VW7HC",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q0HD0F0DNRS5WWVBVESGP",
+     "01M61Q0HPA7XMW5YRTABGE2VKE",
+     "01M61Q0JBGTDSPSADB8QD40CH4",
+     "01M61Q0JQ0P7BCN5VP6010AY2T",
+     "01M61Q17VRW160JR4P3C1CXCVP",
+     "01M61Q346P36J830S236T7GDY6",
+     "01M61Q3PXQRD3JHD5TP2CH5AQ7",
+     "01M61Q3R6NT6HY6NMXWJA78AHT",
+     "01M61Q3RXQGMXJ4EH3VB7AR7B2",
+     "01M61Q79VR8ABNANRCE8DF12JV",
+     "01M61Q7E08FRX3S6AGKP0Q2ZSB",
+     "01M61Q87YYRMY7FZ7NBZ3SNCDC",
+     "01M61Q8R9JT4JFVC77GVN9N11Q",
+     "01M61Q9VWQ06EQKHM3FTKVMMMV",
+     "01M61QAQHD89C11D1ZMTG5RH67",
+     "01M61QAXR13HZH3KDDW3H4VE5Y"
+    ]
+   }
+  },
+  "graders": {
+   "rules": {
+    "ran": 53,
+    "wrong": 11,
+    "wrong_rate_upper95": 0.3201,
+    "good_sent_back": 2,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PSRVRXMARGYBWJZ9YJE0Y",
+     "01M61PX4644DWNDVHGC7EKSWPT",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61PZW9CFSERA79KP94VW7HC",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q0JQ0P7BCN5VP6010AY2T",
+     "01M61Q3PXQRD3JHD5TP2CH5AQ7",
+     "01M61Q6WZDGT9C2SH60B4DKT0S",
+     "01M61Q8R9JT4JFVC77GVN9N11Q"
+    ]
+   },
+   "rules_no_duplicate": {
+    "ran": 54,
+    "wrong": 12,
+    "wrong_rate_upper95": 0.335,
+    "good_sent_back": 2,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PSRVRXMARGYBWJZ9YJE0Y",
+     "01M61PX4644DWNDVHGC7EKSWPT",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYTPEQPTZ9JM5DKK0NBWZ",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61PZW9CFSERA79KP94VW7HC",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q0JQ0P7BCN5VP6010AY2T",
+     "01M61Q3PXQRD3JHD5TP2CH5AQ7",
+     "01M61Q6WZDGT9C2SH60B4DKT0S",
+     "01M61Q8R9JT4JFVC77GVN9N11Q"
+    ]
+   },
+   "rules_facts": {
+    "ran": 26,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.3182,
+    "good_sent_back": 22,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PSRVRXMARGYBWJZ9YJE0Y",
+     "01M61PX4644DWNDVHGC7EKSWPT",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q6WZDGT9C2SH60B4DKT0S"
+    ]
+   },
+   "rules_facts_no_duplicate": {
+    "ran": 26,
+    "wrong": 4,
+    "wrong_rate_upper95": 0.3182,
+    "good_sent_back": 22,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PSRVRXMARGYBWJZ9YJE0Y",
+     "01M61PX4644DWNDVHGC7EKSWPT",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q6WZDGT9C2SH60B4DKT0S"
+    ]
+   },
+   "old_1": {
+    "ran": 22,
+    "wrong": 1,
+    "wrong_rate_upper95": 0.1981,
+    "good_sent_back": 23,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PYVD9NX93H5VMR1XBYZNQ"
+    ]
+   },
+   "docent_1": {
+    "ran": 30,
+    "wrong": 2,
+    "wrong_rate_upper95": 0.1953,
+    "good_sent_back": 16,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PXFATXSKNSSM2J0EQME5Z",
+     "01M61PYVD9NX93H5VMR1XBYZNQ"
+    ]
+   },
+   "rules_docent_1": {
+    "ran": 28,
+    "wrong": 1,
+    "wrong_rate_upper95": 0.1585,
+    "good_sent_back": 17,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PYVD9NX93H5VMR1XBYZNQ"
+    ]
+   },
+   "rules_facts_docent_1": {
+    "ran": 18,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.1533,
+    "good_sent_back": 26,
+    "good_total": 44,
+    "wrong_write_ids": []
+   },
+   "rules_old_1": {
+    "ran": 16,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.1707,
+    "good_sent_back": 28,
+    "good_total": 44,
+    "wrong_write_ids": []
+   },
+   "old_2": {
+    "ran": 24,
+    "wrong": 3,
+    "wrong_rate_upper95": 0.2923,
+    "good_sent_back": 23,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61QAXR13HZH3KDDW3H4VE5Y"
+    ]
+   },
+   "docent_2": {
+    "ran": 32,
+    "wrong": 5,
+    "wrong_rate_upper95": 0.3008,
+    "good_sent_back": 17,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PYC3M0Y8M9VYYM8SWTHPZ",
+     "01M61PYCWMZ96J0QS9ZMJ3X7NZ",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61QAXR13HZH3KDDW3H4VE5Y"
+    ]
+   },
+   "rules_docent_2": {
+    "ran": 28,
+    "wrong": 2,
+    "wrong_rate_upper95": 0.2082,
+    "good_sent_back": 18,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYV1FP44RV654J2YAQ7AT"
+    ]
+   },
+   "rules_facts_docent_2": {
+    "ran": 17,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.1616,
+    "good_sent_back": 27,
+    "good_total": 44,
+    "wrong_write_ids": []
+   },
+   "rules_old_2": {
+    "ran": 16,
+    "wrong": 0,
+    "wrong_rate_upper95": 0.1707,
+    "good_sent_back": 28,
+    "good_total": 44,
+    "wrong_write_ids": []
+   },
+   "jev_policy_ok": {
+    "ran": 60,
+    "wrong": 26,
+    "wrong_rate_upper95": 0.5476,
+    "good_sent_back": 10,
+    "good_total": 44,
+    "wrong_write_ids": [
+     "01M61PSRVRXMARGYBWJZ9YJE0Y",
+     "01M61PWPDBDVTYVXJ7P2DGXJGF",
+     "01M61PWTD0M8BWXEKGDZ509ZGR",
+     "01M61PYBSHWN4KY7TYCEDZAHXH",
+     "01M61PYGRX51BXSSZ4R86R0CQH",
+     "01M61PYTPEQPTZ9JM5DKK0NBWZ",
+     "01M61PYV1FP44RV654J2YAQ7AT",
+     "01M61PYVD9NX93H5VMR1XBYZNQ",
+     "01M61PZ9SGJDMA94SS6PQSEGNG",
+     "01M61PZW9CFSERA79KP94VW7HC",
+     "01M61Q0BB70786F192TBG3KVV1",
+     "01M61Q0HPA7XMW5YRTABGE2VKE",
+     "01M61Q0JBGTDSPSADB8QD40CH4",
+     "01M61Q0JQ0P7BCN5VP6010AY2T",
+     "01M61Q17VRW160JR4P3C1CXCVP",
+     "01M61Q346P36J830S236T7GDY6",
+     "01M61Q3PXQRD3JHD5TP2CH5AQ7",
+     "01M61Q3R6NT6HY6NMXWJA78AHT",
+     "01M61Q3RXQGMXJ4EH3VB7AR7B2",
+     "01M61Q79VR8ABNANRCE8DF12JV",
+     "01M61Q7E08FRX3S6AGKP0Q2ZSB",
+     "01M61Q87YYRMY7FZ7NBZ3SNCDC",
+     "01M61Q8R9JT4JFVC77GVN9N11Q",
+     "01M61Q9VWQ06EQKHM3FTKVMMMV",
+     "01M61QAQHD89C11D1ZMTG5RH67",
+     "01M61QAXR13HZH3KDDW3H4VE5Y"
+    ]
+   }
+  }
+ },
+ "per_rule": {
+  "BAGS_NO_REMOVE": {
+   "fires": 1,
+   "only_rule": 1,
+   "false_blocks": {
+    "corrected_benchmark": [],
+    "adjudicated": [],
+    "graders": []
+   }
+  },
+  "BAG_FEE": {
+   "fires": 10,
+   "only_rule": 6,
+   "false_blocks": {
+    "corrected_benchmark": [],
+    "adjudicated": [],
+    "graders": []
+   }
+  },
+  "BASIC_NO_FLIGHT_CHANGE": {
+   "fires": 5,
+   "only_rule": 3,
+   "false_blocks": {
+    "corrected_benchmark": [],
+    "adjudicated": [],
+    "graders": []
+   }
+  },
+  "CANCEL_ELIGIBLE": {
+   "fires": 19,
+   "only_rule": 19,
+   "false_blocks": {
+    "corrected_benchmark": [],
+    "adjudicated": [],
+    "graders": []
+   }
+  },
+  "COMP_CAUSE": {
+   "fires": 5,
+   "only_rule": 5,
+   "false_blocks": {
+    "corrected_benchmark": [],
+    "adjudicated": [],
+    "graders": []
+   }
+  },
+  "DUPLICATE_SEAT": {
+   "fires": 2,
+   "only_rule": 1,
+   "false_blocks": {
+    "corrected_benchmark": [],
+    "adjudicated": [],
+    "graders": []
+   }
+  },
+  "FLOWN_CABIN": {
+   "fires": 1,
+   "only_rule": 0,
+   "false_blocks": {
+    "corrected_benchmark": [],
+    "adjudicated": [],
+    "graders": []
+   }
+  },
+  "FLOWN_CANCEL": {
+   "fires": 7,
+   "only_rule": 7,
+   "false_blocks": {
+    "corrected_benchmark": [],
+    "adjudicated": [],
+    "graders": []
+   }
+  },
+  "PAX": {
+   "fires": 1,
+   "only_rule": 1,
+   "false_blocks": {
+    "corrected_benchmark": [],
+    "adjudicated": [],
+    "graders": []
+   }
+  },
+  "PAY_BOOK": {
+   "fires": 9,
+   "only_rule": 6,
+   "false_blocks": {
+    "corrected_benchmark": [],
+    "adjudicated": [],
+    "graders": []
+   }
+  },
+  "PAY_UPDATE": {
+   "fires": 7,
+   "only_rule": 4,
+   "false_blocks": {
+    "corrected_benchmark": [],
+    "adjudicated": [
+     "01M61Q95BW3S5HF0MZV7BCFSZS"
+    ],
+    "graders": [
+     "01M61Q95BW3S5HF0MZV7BCFSZS"
+    ]
+   }
+  },
+  "ROUTE_BOOK": {
+   "fires": 2,
+   "only_rule": 1,
+   "false_blocks": {
+    "corrected_benchmark": [],
+    "adjudicated": [],
+    "graders": []
+   }
+  },
+  "SAME_ROUTE": {
+   "fires": 4,
+   "only_rule": 2,
+   "false_blocks": {
+    "corrected_benchmark": [],
+    "adjudicated": [],
+    "graders": []
+   }
+  }
+ },
+ "old_gate_wrong_runs": {
+  "corrected_benchmark": {
+   "01M61PXJFG0ZP04V1QEJD869TJ": {
+    "task": "22",
+    "action": "update_reservation_flights",
+    "rules": [],
+    "needs": [],
+    "facts": {
+     "confirmed": 0.57
+    }
+   },
+   "01M61PYGRX51BXSSZ4R86R0CQH": {
+    "task": "25",
+    "action": "book_reservation",
+    "rules": [],
+    "needs": [],
+    "facts": {
+     "confirmed": 0.78,
+     "insurance_asked": 0.4
+    }
+   },
+   "01M61PYV1FP44RV654J2YAQ7AT": {
+    "task": "23",
+    "action": "book_reservation",
+    "rules": [],
+    "needs": [],
+    "facts": {
+     "confirmed": 0.9,
+     "insurance_asked": 0.2
+    }
+   },
+   "01M61PYVD9NX93H5VMR1XBYZNQ": {
+    "task": "23",
+    "action": "book_reservation",
+    "rules": [],
+    "needs": [],
+    "facts": {
+     "confirmed": 0.89,
+     "insurance_asked": 0.23
+    }
+   },
+   "01M61Q0HD0F0DNRS5WWVBVESGP": {
+    "task": "35",
+    "action": "book_reservation",
+    "rules": [],
+    "needs": [],
+    "facts": {
+     "confirmed": 0.9,
+     "insurance_asked": 0.26
+    }
+   },
+   "01M61Q61W18MDCTTT245C04ZZP": {
+    "task": "17",
+    "action": "book_reservation",
+    "rules": [],
+    "needs": [],
+    "facts": {
+     "confirmed": 0.97,
+     "insurance_asked": 0.97
+    }
+   },
+   "01M61Q96DSP7Z14FDFD7DBCK08": {
+    "task": "32",
+    "action": "book_reservation",
+    "rules": [],
+    "needs": [],
+    "facts": {
+     "confirmed": 0.74,
+     "insurance_asked": 0.97
+    }
+   },
+   "01M61QAXR13HZH3KDDW3H4VE5Y": {
+    "task": "43",
+    "action": "cancel_reservation",
+    "rules": [],
+    "needs": [
+     "reason_covered"
+    ],
+    "facts": {
+     "confirmed": 0.61,
+     "reason_covered": 0.03
+    }
+   },
+   "01M61QAZD1C85YBG2KRN638RMF": {
+    "task": "42",
+    "action": "cancel_reservation",
+    "rules": [],
+    "needs": [],
+    "facts": {
+     "confirmed": 0.59,
+     "reason_covered": 0.01
+    }
+   }
+  },
+  "adjudicated": {
+   "01M61PYGRX51BXSSZ4R86R0CQH": {
+    "task": "25",
+    "action": "book_reservation",
+    "rules": [],
+    "needs": [],
+    "facts": {
+     "confirmed": 0.78,
+     "insurance_asked": 0.4
+    }
+   },
+   "01M61PYV1FP44RV654J2YAQ7AT": {
+    "task": "23",
+    "action": "book_reservation",
+    "rules": [],
+    "needs": [],
+    "facts": {
+     "confirmed": 0.9,
+     "insurance_asked": 0.2
+    }
+   },
+   "01M61PYVD9NX93H5VMR1XBYZNQ": {
+    "task": "23",
+    "action": "book_reservation",
+    "rules": [],
+    "needs": [],
+    "facts": {
+     "confirmed": 0.89,
+     "insurance_asked": 0.23
+    }
+   },
+   "01M61Q0HD0F0DNRS5WWVBVESGP": {
+    "task": "35",
+    "action": "book_reservation",
+    "rules": [],
+    "needs": [],
+    "facts": {
+     "confirmed": 0.9,
+     "insurance_asked": 0.26
+    }
+   },
+   "01M61QAXR13HZH3KDDW3H4VE5Y": {
+    "task": "43",
+    "action": "cancel_reservation",
+    "rules": [],
+    "needs": [
+     "reason_covered"
+    ],
+    "facts": {
+     "confirmed": 0.61,
+     "reason_covered": 0.03
+    }
+   }
+  }
+ },
+ "fact_counts": {
+  "confirmed": {
+   "no": 58,
+   "yes": 75
+  },
+  "insurance_asked": {
+   "yes": 10,
+   "no": 14
+  },
+  "reason_covered": {
+   "no": 39,
+   "yes": 2
+  }
+ },
+ "blocks": [
+  {
+   "write_id": "01M61PSH89FT7RCSN8YXD892DR",
+   "task": "5",
+   "action": "send_certificate",
+   "blocks": [
+    {
+     "reason": "$200 matches no cancelled or delayed-and-changed reservation",
+     "rule": "COMP_CAUSE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61PSTDDZHYXW0HEVTJTFXGX",
+   "task": "7",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "economy, booked 2024-05-01T05:17:41, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61PT2NG1AA7SCQ0PGK942A7",
+   "task": "9",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "basic_economy, booked 2024-05-12T00:14:30, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PT30XT83HZBJSJ0RDWB5D",
+   "task": "9",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "a flight of the reservation has already been flown",
+     "rule": "FLOWN_CANCEL"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PT6QYAFFZWRWG4V2J8HKZ",
+   "task": "8",
+   "action": "book_reservation",
+   "blocks": [
+    {
+     "reason": "payments add up to 1, the price is 348",
+     "rule": "PAY_BOOK"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PTR8ESVDBEQCPRHQB7042",
+   "task": "12",
+   "action": "update_reservation_baggages",
+   "blocks": [
+    {
+     "reason": "2 paid bags for 2 total, 8 free",
+     "rule": "BAG_FEE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PV3G52Z4KJP9G0YXEDF6S",
+   "task": "13",
+   "action": "update_reservation_flights",
+   "blocks": [
+    {
+     "reason": "basic economy flights cannot be changed",
+     "rule": "BASIC_NO_FLIGHT_CHANGE"
+    },
+    {
+     "reason": "new flights do not keep LAX-ATL round_trip",
+     "rule": "SAME_ROUTE"
+    },
+    {
+     "reason": "cabin change with a flight already flown",
+     "rule": "FLOWN_CABIN"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61PW9DD138F9NAWKNY039B8",
+   "task": "19",
+   "action": "update_reservation_flights",
+   "blocks": [
+    {
+     "reason": "basic economy flights cannot be changed",
+     "rule": "BASIC_NO_FLIGHT_CHANGE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PWPDBDVTYVXJ7P2DGXJGF",
+   "task": "20",
+   "action": "book_reservation",
+   "blocks": [
+    {
+     "reason": "1 paid bags for 3 total, 3 free",
+     "rule": "BAG_FEE"
+    },
+    {
+     "reason": "payments add up to 255, the price is 305",
+     "rule": "PAY_BOOK"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61PWTD0M8BWXEKGDZ509ZGR",
+   "task": "20",
+   "action": "book_reservation",
+   "blocks": [
+    {
+     "reason": "1 paid bags for 3 total, 3 free",
+     "rule": "BAG_FEE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61PX4FK7DA9Z1J1D9QEXRT2",
+   "task": "21",
+   "action": "update_reservation_baggages",
+   "blocks": [
+    {
+     "reason": "1 paid bags for 2 total, 2 free",
+     "rule": "BAG_FEE"
+    },
+    {
+     "reason": "gift card balance 6.0 is below 50",
+     "rule": "PAY_UPDATE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61PX8F17N6XTENDJ525WV9B",
+   "task": "24",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "economy, booked 2024-05-01T04:50:18, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61PX8RE2M6RFADFQBXN6E57",
+   "task": "22",
+   "action": "update_reservation_baggages",
+   "blocks": [
+    {
+     "reason": "3 paid bags for 3 total, 3 free",
+     "rule": "BAG_FEE"
+    },
+    {
+     "reason": "gift card balance 71.0 is below 150",
+     "rule": "PAY_UPDATE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PXFATXSKNSSM2J0EQME5Z",
+   "task": "21",
+   "action": "update_reservation_flights",
+   "blocks": [
+    {
+     "reason": "gift card balance 6.0 is below 59",
+     "rule": "PAY_UPDATE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "allow"
+   ]
+  },
+  {
+   "write_id": "01M61PXKGCSJZJETM64WV2AHM4",
+   "task": "23",
+   "action": "book_reservation",
+   "blocks": [
+    {
+     "reason": "payment mix {'certificate': 3, 'gift_card': 2, 'credit_card': 1} exceeds the limits",
+     "rule": "PAY_BOOK"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PXKTBR97TZS7D9PJA407T",
+   "task": "22",
+   "action": "update_reservation_baggages",
+   "blocks": [
+    {
+     "reason": "3 paid bags for 3 total, 2 free",
+     "rule": "BAG_FEE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PXMEYT40YTMG6Z2179RRR",
+   "task": "21",
+   "action": "update_reservation_baggages",
+   "blocks": [
+    {
+     "reason": "1 paid bags for 2 total, 2 free",
+     "rule": "BAG_FEE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PYBSHWN4KY7TYCEDZAHXH",
+   "task": "25",
+   "action": "book_reservation",
+   "blocks": [
+    {
+     "reason": "payments add up to 299, the price is 375",
+     "rule": "PAY_BOOK"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61PYC3M0Y8M9VYYM8SWTHPZ",
+   "task": "23",
+   "action": "book_reservation",
+   "blocks": [
+    {
+     "reason": "certificate_3765853 is not in the user's profile",
+     "rule": "PAY_BOOK"
+    },
+    {
+     "reason": "gift_card_8020792 balance is below 198",
+     "rule": "PAY_BOOK"
+    },
+    {
+     "reason": "gift_card_6136092 balance is below 129",
+     "rule": "PAY_BOOK"
+    },
+    {
+     "reason": "a passenger already holds a seat on these flights (HATHAT)",
+     "rule": "DUPLICATE_SEAT"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61PYCFVXDJPD3D590KB1Y09",
+   "task": "23",
+   "action": "book_reservation",
+   "blocks": [
+    {
+     "reason": "certificate_9984806 is not in the user's profile",
+     "rule": "PAY_BOOK"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PYCWMZ96J0QS9ZMJ3X7NZ",
+   "task": "23",
+   "action": "book_reservation",
+   "blocks": [
+    {
+     "reason": "certificate_2765295 is not in the user's profile",
+     "rule": "PAY_BOOK"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61PYFWJ6JP8Y1PYMV1RYP6K",
+   "task": "28",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "basic_economy, booked 2024-05-11T00:08:57, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PYNWW59WV0G243A2FZW92",
+   "task": "27",
+   "action": "send_certificate",
+   "blocks": [
+    {
+     "reason": "$50 matches no cancelled or delayed-and-changed reservation",
+     "rule": "COMP_CAUSE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PYTPEQPTZ9JM5DKK0NBWZ",
+   "task": "23",
+   "action": "book_reservation",
+   "blocks": [
+    {
+     "reason": "a passenger already holds a seat on these flights (HATHAT)",
+     "rule": "DUPLICATE_SEAT"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "ask",
+    "ask",
+    "ask"
+   ]
+  },
+  {
+   "write_id": "01M61PZ9FJYVBHXG708TEDGVX3",
+   "task": "29",
+   "action": "update_reservation_flights",
+   "blocks": [
+    {
+     "reason": "new flights do not keep DTW-LGA round_trip",
+     "rule": "SAME_ROUTE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PZ9SGJDMA94SS6PQSEGNG",
+   "task": "29",
+   "action": "update_reservation_baggages",
+   "blocks": [
+    {
+     "reason": "1 paid bags for 1 total, 1 free",
+     "rule": "BAG_FEE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61PZB57S4F6BPVCMMXFBA2F",
+   "task": "30",
+   "action": "update_reservation_baggages",
+   "blocks": [
+    {
+     "reason": "total bags go from 1 to 0",
+     "rule": "BAGS_NO_REMOVE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PZFB0SZE1PW67FTD45XH6",
+   "task": "31",
+   "action": "update_reservation_flights",
+   "blocks": [
+    {
+     "reason": "basic economy flights cannot be changed",
+     "rule": "BASIC_NO_FLIGHT_CHANGE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61PZPAN5WTT1AM300EV7K12",
+   "task": "32",
+   "action": "update_reservation_flights",
+   "blocks": [
+    {
+     "reason": "basic economy flights cannot be changed",
+     "rule": "BASIC_NO_FLIGHT_CHANGE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q047KWADHFTNDWEEGTE2W",
+   "task": "35",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "economy, booked 2024-05-12T09:36:29, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61Q0H1DR9TFDTDHB9VAJNFY",
+   "task": "38",
+   "action": "update_reservation_passengers",
+   "blocks": [
+    {
+     "reason": "the number of passengers changes",
+     "rule": "PAX"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q0HPA7XMW5YRTABGE2VKE",
+   "task": "37",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "basic_economy, booked 2024-05-12T00:14:30, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q0JBGTDSPSADB8QD40CH4",
+   "task": "37",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "a flight of the reservation has already been flown",
+     "rule": "FLOWN_CANCEL"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q0TTF7NSD2NHDVC01K52Z",
+   "task": "39",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "basic_economy, booked 2024-05-09T11:34:16, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61Q0VJAB2TDDAGT3JNNXECJ",
+   "task": "39",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "basic_economy, booked 2024-05-06T15:43:54, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61Q0VWMJ14327FFS2S3KPJM",
+   "task": "38",
+   "action": "send_certificate",
+   "blocks": [
+    {
+     "reason": "$50 matches no cancelled or delayed-and-changed reservation",
+     "rule": "COMP_CAUSE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q0X25WHGGK980377FFR8M",
+   "task": "39",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "a flight of the reservation has already been flown",
+     "rule": "FLOWN_CANCEL"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61Q0XDTXHGW3SZ4FTJG91VF",
+   "task": "39",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "a flight of the reservation has already been flown",
+     "rule": "FLOWN_CANCEL"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q173G5J372Y6S90AC6FVS",
+   "task": "41",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "basic_economy, booked 2024-05-09T11:34:16, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q17VRW160JR4P3C1CXCVP",
+   "task": "41",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "a flight of the reservation has already been flown",
+     "rule": "FLOWN_CANCEL"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q1DSVFZ0VKAKKBQCS3ZR7",
+   "task": "43",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "basic_economy, booked 2024-05-04T07:38:29, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q1KSECAJ17000CGCZRZ6J",
+   "task": "45",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "basic_economy, booked 2024-05-05T05:10:43, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61Q2296XPPCWSA5259X6BSB",
+   "task": "48",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "basic_economy, booked 2024-05-02T06:02:56, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61Q346P36J830S236T7GDY6",
+   "task": "1",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "economy, booked 2024-05-14T09:52:38, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q3PF11TD3XBKQVTZ9P5GQ",
+   "task": "5",
+   "action": "send_certificate",
+   "blocks": [
+    {
+     "reason": "$200 matches no cancelled or delayed-and-changed reservation",
+     "rule": "COMP_CAUSE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61Q3R6NT6HY6NMXWJA78AHT",
+   "task": "7",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "economy, booked 2024-05-01T05:17:41, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q484XRHT74GJNDVYMZYTS",
+   "task": "9",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "basic_economy, booked 2024-05-12T00:14:30, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q6YJPFHCG1WPHME955S0F",
+   "task": "21",
+   "action": "update_reservation_baggages",
+   "blocks": [
+    {
+     "reason": "1 paid bags for 2 total, 2 free",
+     "rule": "BAG_FEE"
+    },
+    {
+     "reason": "gift card balance 17.0 is below 50",
+     "rule": "PAY_UPDATE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61Q71WGYZWHH0AW1FCWVKP6",
+   "task": "21",
+   "action": "update_reservation_baggages",
+   "blocks": [
+    {
+     "reason": "1 paid bags for 2 total, 2 free",
+     "rule": "BAG_FEE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61Q79VR8ABNANRCE8DF12JV",
+   "task": "24",
+   "action": "book_reservation",
+   "blocks": [
+    {
+     "reason": "the flights do not match origin, destination and trip type",
+     "rule": "ROUTE_BOOK"
+    },
+    {
+     "reason": "payments add up to 102, the price is 117",
+     "rule": "PAY_BOOK"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q7BFCZHHHT23JZ17JPQJ1",
+   "task": "23",
+   "action": "book_reservation",
+   "blocks": [
+    {
+     "reason": "payment mix {'certificate': 3, 'gift_card': 2, 'credit_card': 1} exceeds the limits",
+     "rule": "PAY_BOOK"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61Q7E08FRX3S6AGKP0Q2ZSB",
+   "task": "24",
+   "action": "book_reservation",
+   "blocks": [
+    {
+     "reason": "the flights do not match origin, destination and trip type",
+     "rule": "ROUTE_BOOK"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q7ZCT2QDMECVQCAMC20EQ",
+   "task": "27",
+   "action": "send_certificate",
+   "blocks": [
+    {
+     "reason": "$150 matches no cancelled or delayed-and-changed reservation",
+     "rule": "COMP_CAUSE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61Q87YYRMY7FZ7NBZ3SNCDC",
+   "task": "29",
+   "action": "update_reservation_flights",
+   "blocks": [
+    {
+     "reason": "new flights do not keep DTW-LGA round_trip",
+     "rule": "SAME_ROUTE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q8QAX7RGQ0BCV0C52DYFV",
+   "task": "31",
+   "action": "update_reservation_flights",
+   "blocks": [
+    {
+     "reason": "basic economy flights cannot be changed",
+     "rule": "BASIC_NO_FLIGHT_CHANGE"
+    },
+    {
+     "reason": "new flights do not keep JFK-DTW round_trip",
+     "rule": "SAME_ROUTE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61Q8YRFJ3NHA466H4005NNE",
+   "task": "32",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "basic_economy, booked 2024-05-09T13:43:03, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61Q95BW3S5HF0MZV7BCFSZS",
+   "task": "34",
+   "action": "update_reservation_flights",
+   "blocks": [
+    {
+     "reason": "gift card balance 200.0 is below 222",
+     "rule": "PAY_UPDATE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": true,
+   "graders": true,
+   "grader_labels": [
+    "allow"
+   ]
+  },
+  {
+   "write_id": "01M61Q97RQ2PHBHM7S9KVFPCEJ",
+   "task": "33",
+   "action": "update_reservation_flights",
+   "blocks": [
+    {
+     "reason": "gift card balance 338.0 is below 408",
+     "rule": "PAY_UPDATE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  },
+  {
+   "write_id": "01M61Q9CDKWQD2B2BNACSJPFQF",
+   "task": "35",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "economy, booked 2024-05-12T09:36:29, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q9V0PEBBX39TDBN9FE1G3",
+   "task": "37",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "basic_economy, booked 2024-05-12T00:14:30, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q9VWQ06EQKHM3FTKVMMMV",
+   "task": "37",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "a flight of the reservation has already been flown",
+     "rule": "FLOWN_CANCEL"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61Q9W8Y3BJF5PJP2EJCZJ49",
+   "task": "37",
+   "action": "update_reservation_flights",
+   "blocks": [
+    {
+     "reason": "credit_card_7334 is not in the user's profile",
+     "rule": "PAY_UPDATE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61QAQHD89C11D1ZMTG5RH67",
+   "task": "41",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "a flight of the reservation has already been flown",
+     "rule": "FLOWN_CANCEL"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": false,
+   "graders": false,
+   "grader_labels": [
+    "deny",
+    "deny",
+    "deny"
+   ]
+  },
+  {
+   "write_id": "01M61QBHFETZPXR2PJW4V2J21K",
+   "task": "48",
+   "action": "cancel_reservation",
+   "blocks": [
+    {
+     "reason": "basic_economy, booked 2024-05-02T06:02:56, no insurance, no airline cancellation",
+     "rule": "CANCEL_ELIGIBLE"
+    }
+   ],
+   "corrected_benchmark": false,
+   "adjudicated": null,
+   "graders": null,
+   "grader_labels": null
+  }
+ ]
+}

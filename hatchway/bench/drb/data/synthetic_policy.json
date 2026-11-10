@@ -1,0 +1,27 @@
+{
+  "version": "drb-synth-policy-1",
+  "note": "Synthetic non-telecom actions. No telecom action, line management or telecom policy text appears here. `not_applicable` lists the concepts that do not bear on an action.",
+  "domains": {
+    "support": {
+      "issue_refund": {"verb": "refund", "object": "charge", "prerequisite": "the charge has settled", "amounts": ["$45", "$2,400"], "not_applicable": []},
+      "change_shipping_address": {"verb": "change the shipping address of", "object": "order", "prerequisite": "the order has not shipped", "amounts": ["one parcel", "a pallet of 40 parcels"], "not_applicable": []}
+    },
+    "expenses": {
+      "approve_expense_claim": {"verb": "approve", "object": "expense claim", "prerequisite": "receipts are attached", "amounts": ["$60", "$8,500"], "not_applicable": []},
+      "issue_reimbursement": {"verb": "pay out the reimbursement for", "object": "approved claim", "prerequisite": "the claim was approved", "amounts": ["$60", "$8,500"], "not_applicable": []}
+    },
+    "marketing": {
+      "increase_campaign_budget": {"verb": "raise the daily budget of", "object": "campaign", "prerequisite": "the campaign is live", "amounts": ["$100", "$25,000"], "not_applicable": []},
+      "pause_campaign": {"verb": "pause", "object": "campaign", "prerequisite": "the campaign is live", "amounts": ["a test campaign", "the flagship campaign"], "not_applicable": ["terms_disclosed", "consent_obtained"]}
+    },
+    "access": {
+      "grant_system_access": {"verb": "grant access to", "object": "system role", "prerequisite": "the manager approved the role", "amounts": ["read-only access", "administrator access"], "not_applicable": []},
+      "reset_mfa": {"verb": "reset multi-factor authentication for", "object": "account", "prerequisite": "the account is not locked for fraud review", "amounts": ["a staff account", "a finance-admin account"], "not_applicable": ["terms_disclosed"]}
+    },
+    "procurement": {
+      "create_purchase_order": {"verb": "issue a purchase order for", "object": "supplier quote", "prerequisite": "the supplier is approved", "amounts": ["$300", "$60,000"], "not_applicable": []},
+      "update_vendor_bank_details": {"verb": "change the bank account on", "object": "vendor record", "prerequisite": "the change was requested through the vendor portal", "amounts": ["a small supplier", "a top-10 supplier"], "not_applicable": []}
+    }
+  },
+  "hard_rule": {"code": "HARD_PROHIBITION", "text": "The action breaks an absolute policy prohibition (for example, an amount above the hard cap or a sanctioned counterparty)."}
+}

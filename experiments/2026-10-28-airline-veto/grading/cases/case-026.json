@@ -1,0 +1,123 @@
+{
+ "case": "case-026",
+ "action": "update_reservation_flights",
+ "messages": [
+  {
+   "content": "Hi! How can I help you today?",
+   "role": "assistant"
+  },
+  {
+   "content": "Hi, I have an upcoming flight from LAS to IAH with a stop, and I'd like to change it to a nonstop flight. Also, I want to remove my checked bag from the reservation and get a refund for it. Can you help me with that?",
+   "role": "user"
+  },
+  {
+   "content": "I can help you with your request. To proceed, I\u2019ll need your user ID and reservation ID. If you don\u2019t know your reservation ID, please provide your user ID and I can help locate it for you.\n\nPlease note:\n- Checked bags can only be added, not removed, after booking.\n- I can assist with changing your flight to a nonstop option if your reservation is not in basic economy and the origin, destination, and trip type remain the same.\n\nCould you please provide your user ID and reservation ID (or just your user ID if you need help finding the reservation)?",
+   "role": "assistant"
+  },
+  {
+   "content": "Sure, my user ID is james_taylor_7043 and my reservation ID is 1N99U6.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "reservation_id": "1N99U6"
+     },
+     "function": "get_reservation_details",
+     "id": "call_5vAH8Vb7uhegAFZ1k1Arojfd"
+    }
+   ]
+  },
+  {
+   "content": "{\"reservation_id\": \"1N99U6\", \"user_id\": \"james_taylor_7043\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"flight_type\": \"round_trip\", \"cabin\": \"economy\", \"flights\": [{\"flight_number\": \"HAT284\", \"origin\": \"LAS\", \"destination\": \"PHX\", \"date\": \"2024-05-19\", \"price\": 161}, {\"flight_number\": \"HAT152\", \"origin\": \"PHX\", \"destination\": \"IAH\", \"date\": \"2024-05-19\", \"price\": 192}, {\"flight_number\": \"HAT112\", \"origin\": \"IAH\", \"destination\": \"LAS\", \"date\": \"2024-05-27\", \"price\": 184}], \"passengers\": [{\"first_name\": \"James\", \"last_name\": \"Taylor\", \"dob\": \"1997-01-23\"}, {\"first_name\": \"Ivan\", \"last_name\": \"Taylor\", \"dob\": \"1975-09-15\"}], \"payment_history\": [{\"payment_id\": \"gift_card_5634230\", \"amount\": 1134}], \"created_at\": \"2024-05-08T11:37:17\", \"total_baggages\": 1, \"nonfree_baggages\": 0, \"insurance\": \"yes\", \"status\": null}",
+   "role": "tool",
+   "tool_call_id": "call_5vAH8Vb7uhegAFZ1k1Arojfd"
+  },
+  {
+   "content": "Thank you for providing your details. Here\u2019s a summary of your request and some important information:\n\n- You want to change your current round-trip reservation (LAS\u2013IAH with a stop in PHX) to a nonstop flight, keeping the same origin, destination, and trip type.\n- You want to remove your checked bag and get a refund for it.\n\nPlease note:\n- Checked bags can only be added, not removed, after booking, so I cannot remove your checked bag or refund it.\n- I can help you change your flights to a nonstop option. The cabin class (economy) and number of passengers will remain the same.\n\nWould you like to proceed with searching for available nonstop flights between LAS and IAH for your travel dates (May 19 and May 27)? Please confirm so I can continue.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please go ahead and search for nonstop flights on those dates. I'd like to see what options are available.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "date": "2024-05-19",
+      "destination": "IAH",
+      "origin": "LAS"
+     },
+     "function": "search_direct_flight",
+     "id": "call_Q5vqwk2T1gXhacZVq9rnJDwe"
+    },
+    {
+     "arguments": {
+      "date": "2024-05-27",
+      "destination": "LAS",
+      "origin": "IAH"
+     },
+     "function": "search_direct_flight",
+     "id": "call_LaIq4lZ4l5ux7SYlNKitMIHX"
+    }
+   ]
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT175\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"17:00:00\", \"scheduled_arrival_time_est\": \"20:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 10, \"economy\": 3, \"business\": 2}, \"prices\": {\"basic_economy\": 96, \"economy\": 155, \"business\": 203}}, {\"flight_number\": \"HAT266\", \"origin\": \"LAS\", \"destination\": \"IAH\", \"status\": \"available\", \"scheduled_departure_time_est\": \"13:00:00\", \"scheduled_arrival_time_est\": \"16:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 8, \"economy\": 16, \"business\": 13}, \"prices\": {\"basic_economy\": 89, \"economy\": 146, \"business\": 373}}]",
+   "role": "tool",
+   "tool_call_id": "call_Q5vqwk2T1gXhacZVq9rnJDwe"
+  },
+  {
+   "content": "[{\"flight_number\": \"HAT112\", \"origin\": \"IAH\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"22:00:00\", \"scheduled_arrival_time_est\": \"01:00:00+1\", \"date\": null, \"available_seats\": {\"basic_economy\": 5, \"economy\": 15, \"business\": 0}, \"prices\": {\"basic_economy\": 67, \"economy\": 149, \"business\": 471}}, {\"flight_number\": \"HAT131\", \"origin\": \"IAH\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"18:00:00\", \"scheduled_arrival_time_est\": \"21:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 3, \"economy\": 3, \"business\": 13}, \"prices\": {\"basic_economy\": 73, \"economy\": 198, \"business\": 359}}, {\"flight_number\": \"HAT190\", \"origin\": \"IAH\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"01:00:00\", \"scheduled_arrival_time_est\": \"04:00:00\", \"date\": null, \"available_seats\": {\"basic_economy\": 1, \"economy\": 20, \"business\": 20}, \"prices\": {\"basic_economy\": 86, \"economy\": 149, \"business\": 314}}, {\"flight_number\": \"HAT286\", \"origin\": \"IAH\", \"destination\": \"LAS\", \"status\": \"available\", \"scheduled_departure_time_est\": \"22:00:00\", \"scheduled_arrival_time_est\": \"01:00:00+1\", \"date\": null, \"available_seats\": {\"basic_economy\": 15, \"economy\": 5, \"business\": 4}, \"prices\": {\"basic_economy\": 86, \"economy\": 170, \"business\": 496}}]",
+   "role": "tool",
+   "tool_call_id": "call_LaIq4lZ4l5ux7SYlNKitMIHX"
+  },
+  {
+   "content": "Here are the available nonstop flight options for your new itinerary:\n\nMay 19 (LAS \u2192 IAH):\n- HAT175: Departs 17:00, Arrives 20:00, Economy seats: 3, Price: $155\n- HAT266: Departs 13:00, Arrives 16:00, Economy seats: 16, Price: $146\n\nMay 27 (IAH \u2192 LAS):\n- HAT112: Departs 22:00, Arrives 01:00 (+1), Economy seats: 15, Price: $149\n- HAT131: Departs 18:00, Arrives 21:00, Economy seats: 3, Price: $198\n- HAT190: Departs 01:00, Arrives 04:00, Economy seats: 20, Price: $149\n- HAT286: Departs 22:00, Arrives 01:00 (+1), Economy seats: 5, Price: $170\n\nPlease let me know which outbound and return flights you would like to select for your reservation.",
+   "role": "assistant"
+  },
+  {
+   "content": "For the outbound flight on May 19, I'll take the HAT266 departing at 13:00. For the return flight on May 27, I'll choose the HAT112 departing at 22:00. Please proceed with updating my reservation.",
+   "role": "user"
+  },
+  {
+   "content": "You have selected the following nonstop flights for your updated reservation:\n- Outbound: HAT266 (LAS \u2192 IAH) on May 19, departs at 13:00\n- Return: HAT112 (IAH \u2192 LAS) on May 27, departs at 22:00\n\nYour cabin class (economy), number of passengers, and other reservation details will remain the same. The payment method for any fare difference or refund will be your gift card on file.\n\nPlease confirm that you would like to proceed with updating your reservation to these nonstop flights. Once you confirm, I will process the change.",
+   "role": "assistant"
+  },
+  {
+   "content": "Yes, please go ahead and update my reservation with these nonstop flights. Thank you.",
+   "role": "user"
+  },
+  {
+   "content": "",
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "arguments": {
+      "cabin": "economy",
+      "flights": [
+       {
+        "date": "2024-05-19",
+        "flight_number": "HAT266"
+       },
+       {
+        "date": "2024-05-27",
+        "flight_number": "HAT112"
+       }
+      ],
+      "payment_id": "gift_card_5634230",
+      "reservation_id": "1N99U6"
+     },
+     "function": "update_reservation_flights",
+     "id": "proposed"
+    }
+   ]
+  }
+ ]
+}

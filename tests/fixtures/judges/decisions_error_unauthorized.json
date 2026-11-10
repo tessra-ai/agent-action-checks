@@ -1,0 +1,64 @@
+{
+  "path": "/decisions",
+  "request": {
+    "input": "## Context: conversation\nCustomer: I was charged twice for order #W123. Please refund the duplicate $20 charge.\n\n## Earlier writes in this session\n(none)\n\n## Proposed action\nrefund_order({\"amount\":20,\"method\":\"card\",\"order_id\":\"W123\"})\n",
+    "model": "gpt-6-luna",
+    "questions": [
+      {
+        "instructions": "Is this statement true of the proposed action? This refund follows policy.",
+        "name": "policy_ok",
+        "type": "predicate"
+      },
+      {
+        "choices": [
+          {
+            "value": "low"
+          },
+          {
+            "value": "medium"
+          },
+          {
+            "value": "high"
+          }
+        ],
+        "instructions": "Which risk best describes the proposed action?",
+        "name": "risk",
+        "type": "choice"
+      },
+      {
+        "instructions": "How true is this statement of the proposed action? This action matches what the customer asked for.",
+        "levels": [
+          {
+            "description": "The statement is clearly false for this action.",
+            "label": "Not at all"
+          },
+          {
+            "description": "The statement is mostly false for this action.",
+            "label": "Slightly"
+          },
+          {
+            "description": "The statement is about as true as it is false for this action.",
+            "label": "Partly"
+          },
+          {
+            "description": "The statement is mostly true for this action.",
+            "label": "Mostly"
+          },
+          {
+            "description": "The statement is clearly true for this action.",
+            "label": "Fully"
+          }
+        ],
+        "name": "matches_request",
+        "type": "score"
+      }
+    ]
+  },
+  "response": {
+    "error": {
+      "code": null,
+      "type": "invalid_request_error"
+    }
+  },
+  "status": 401
+}

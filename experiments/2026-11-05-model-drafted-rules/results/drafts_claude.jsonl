@@ -1,0 +1,2 @@
+{"completion_tokens": 8000, "model": "claude-sonnet-5-5", "name": "claude_sonnet55", "prompt_tokens": 4881, "status": "ok", "stop_reason": "max_tokens", "temperature": null, "usd": 0.0898}
+{"completion_tokens": 8927, "max_tokens": 32000, "model": "claude-sonnet-5-5", "name": "claude_sonnet55_b", "prompt_tokens": 4880, "status": "ok", "stop_reason": "end_turn", "temperature": null, "thinking": {"type": "between_tools"}, "usd": 0.099}
