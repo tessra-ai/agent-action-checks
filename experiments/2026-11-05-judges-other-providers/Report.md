@@ -16,7 +16,7 @@ Swapping the judge's model changes how much the judge lets through more than how
 wrong. On the same 80 writes, Docent's OpenAI judge (`gpt-5.6-luna`, low effort) lets 18 to 20
 run and is wrong on 1 to 4 of them by the adjudicated truth; Claude Sonnet 5.5 lets 27 run and
 is wrong on 2 of the 25 that were graded (the other 2 match the benchmark's reference action);
-Gemini 3.1 Pro is the strictest in its one run (within the OpenAI judge's run-to-run spread), letting 15 run with 1 of the 14 graded wrong. Claude
+Gemini 3.1 Pro is the strictest in its one run, letting 15 run (against 18 and 20 for the OpenAI judge, whose two runs differ by 2; one run cannot show Gemini is stricter) with 1 of the 14 graded wrong. Claude
 sends back 3 of 26 good writes where the OpenAI judge sends back 9 to 10: a similar wrong-run
 rate (2 of 25 against 1 of 18 and 4 of 20) and a third as many good writes sent back; Gemini
 sends back 13, half of them. Behind Jev's veto, Claude's

@@ -156,7 +156,8 @@ validated these results.
     - Claude ran 27 of 80 against 18 to 20 for the OpenAI model, with 2 of the 25 graded wrong
       (OpenAI 1 of 18, 4 of 20), and sent back 3 of 26 good writes (OpenAI 9 to 10).
     - Gemini was the strictest in its one run: 15 of 80 ran, 1 of 14 graded wrong, half the good
-      writes sent back; that is within the OpenAI judge's run-to-run spread (18 to 20).
+      writes sent back. With one run, and the OpenAI judge's two runs at 18 and 20, that does
+      not show Gemini is stricter.
     - The rubric transfers across models; the allow threshold does not, and price tier does
       not explain the order: Claude and Gemini, priced alike, sit at opposite ends.
 
