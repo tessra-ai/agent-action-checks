@@ -1,0 +1,386 @@
+[
+ {
+  "write_id": "01M61PSH89FT7RCSN8YXD892DR",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "5"
+ },
+ {
+  "write_id": "01M61PSHJ57DPZ8HXW30VMAVBV",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "6"
+ },
+ {
+  "write_id": "01M61PT6QYAFFZWRWG4V2J8HKZ",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "8"
+ },
+ {
+  "write_id": "01M61PTC89QBNP3E7K6TPDSVM2",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "8"
+ },
+ {
+  "write_id": "01M61PW934VMA4RGJ2ASDJE843",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M61PW9DD138F9NAWKNY039B8",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "19"
+ },
+ {
+  "write_id": "01M61PWCYD1R9AK487SHRG7YG3",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M61PWDAR806NGJEDH9YJS8K5",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M61PWDMGVXKESDVHBBC0DYR8",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M61PWDXMX78DJAV5EM2EM7NW",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M61PYFWJ6JP8Y1PYMV1RYP6K",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "28"
+ },
+ {
+  "write_id": "01M61PYNJF4D5YQBPWVAXSE4WJ",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "27"
+ },
+ {
+  "write_id": "01M61PYNWW59WV0G243A2FZW92",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "27"
+ },
+ {
+  "write_id": "01M61PZAC0RRX2BP6EACJPS0RZ",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "30"
+ },
+ {
+  "write_id": "01M61PZB57S4F6BPVCMMXFBA2F",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "30"
+ },
+ {
+  "write_id": "01M61Q0TCKYV6R9AYJXEXANQQ2",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M61Q0TTF7NSD2NHDVC01K52Z",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M61Q0VJAB2TDDAGT3JNNXECJ",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M61Q0W8H3AZ6CJ2H2DHQCV6V",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M61Q0WNE9VH1Y8907XYGY7BR",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M61Q0X25WHGGK980377FFR8M",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M61Q0XDTXHGW3SZ4FTJG91VF",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M61Q3PF11TD3XBKQVTZ9P5GQ",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "5"
+ },
+ {
+  "write_id": "01M61Q451P3SVECDHWKW6KMRD2",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "8"
+ },
+ {
+  "write_id": "01M61Q644TP0XP7Q5C8P4C4BVN",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "19"
+ },
+ {
+  "write_id": "01M61Q673F46SRZW43ZVV4WXAM",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M61Q6AN3V63938NHNFX4CFPG",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M61Q6C290DDER26M1MJBYXRQ",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M61Q6E78AQ25SF1EE0AXF273",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M61Q6FMF5B2CE7AHYKT2DTFW",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M61Q7ZCT2QDMECVQCAMC20EQ",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "27"
+ },
+ {
+  "write_id": "01M61Q870DVS8J8W3XSXGF54EW",
+  "capture": "airline1",
+  "domain": "airline",
+  "task_id": "30"
+ },
+ {
+  "write_id": "01M6PS1NAX2X5Y57198Y66KSBF",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "8"
+ },
+ {
+  "write_id": "01M6PS440T7K7B6XEQXPFMQBJJ",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M6PS44B3V25S0NEXE2891HK9",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M6PS450P35XNSFSN9XH22HBB",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M6PS45B0Q5KFSWFTRFGKWB4C",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M6PS45PE4HY9JTWRD4D7ZRE8",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M6PS46E2QS2W7DECSRH0WM1M",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "19"
+ },
+ {
+  "write_id": "01M6PS5S3MR0TMTBJ60VBFHER0",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "26"
+ },
+ {
+  "write_id": "01M6PS5ZFY114JDCZGJ8W8Q3HR",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "27"
+ },
+ {
+  "write_id": "01M6PS6GC7J0X0ZZYCSE5BJTAV",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "30"
+ },
+ {
+  "write_id": "01M6PS81XA9ZGBEXPT33DHJEC1",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M6PS83048TKVMD2MR6TH46W1",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M6PS84B488N500M42DZSY07C",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M6PS85NV2F977VF7RNP5Z4TX",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M6PS863AXF6P0WNZGFEZB060",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M6PS86EBVYZTBNWQV77H997S",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M6PS883AY0D7F2HMTFVA7TSQ",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M6PSB91AARXF1EWM1RHZV0NT",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "5"
+ },
+ {
+  "write_id": "01M6PSBTQCT8HHTS5E0ATG5JEX",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "8"
+ },
+ {
+  "write_id": "01M6PSDXGY13ZCNJB67XE7HFHJ",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M6PSDY73RFMQ1MQ6SG6ZEN6V",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M6PSDYKQZ8NGMYS5W9SBJHTA",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M6PSDYXVRT6RP8SHGK8NK12S",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M6PSDZ7FFY1KR9V94NY31J96",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "18"
+ },
+ {
+  "write_id": "01M6PSE4W1HT689356TDGC48KR",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "19"
+ },
+ {
+  "write_id": "01M6PSFKTGEGB636VKNNHAB2A3",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "27"
+ },
+ {
+  "write_id": "01M6PSHTJ9M44PZ777A867QA84",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M6PSHTWGH63F9Y6YBA7F0NV3",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M6PSHVMC85P6S487XRVBQSBV",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M6PSHVYYPR0ZBCHPKGT7RYZQ",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M6PSHW8TPZJJSNA7AYBG1YKP",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "39"
+ },
+ {
+  "write_id": "01M6PSJNQ0WR2MWWZZ1AG7SYFS",
+  "capture": "airline2",
+  "domain": "airline",
+  "task_id": "47"
+ }
+]

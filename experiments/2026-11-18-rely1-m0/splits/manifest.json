@@ -1,0 +1,153 @@
+{
+ "seed": 20261118,
+ "airline_task_ids": [
+  "1",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "11",
+  "12",
+  "13",
+  "14",
+  "15",
+  "16",
+  "17",
+  "18",
+  "19",
+  "20",
+  "21",
+  "22",
+  "23",
+  "24",
+  "25",
+  "26",
+  "27",
+  "28",
+  "29",
+  "30",
+  "31",
+  "32",
+  "33",
+  "34",
+  "35",
+  "37",
+  "38",
+  "39",
+  "40",
+  "41",
+  "42",
+  "43",
+  "44",
+  "45",
+  "47",
+  "48"
+ ],
+ "anchor_tasks_not_eligible": [
+  "airline:25",
+  "airline:35",
+  "retail:12"
+ ],
+ "unseen_task_ids": [
+  "5",
+  "6",
+  "8",
+  "18",
+  "19",
+  "26",
+  "27",
+  "28",
+  "30",
+  "39"
+ ],
+ "unseen_task_ids_only_in_second_capture": [
+  "47"
+ ],
+ "dev_task_ids": {
+  "airline": [
+   "1",
+   "13",
+   "14",
+   "23",
+   "25",
+   "35",
+   "38",
+   "40"
+  ],
+  "retail": [
+   "12",
+   "14",
+   "84"
+  ]
+ },
+ "splits": {
+  "train": {
+   "actions": 133,
+   "sha256": "23ef5024656a57ca4763f8a7b716cf93dfa044b6f77caeb7d049a5d94a879b91"
+  },
+  "dev": {
+   "actions": 41,
+   "sha256": "63a92e43bbadcde4baff1b810a2c176d1b00379371652b4fcd51674eb18cbf9b"
+  },
+  "test_repeat": {
+   "actions": 90,
+   "sha256": "a7b44ae06bc41b7e0928cca523ed6eab2e82ce8e1c45fbf7a4ac751ac06f265a"
+  },
+  "test_unseen": {
+   "actions": 64,
+   "sha256": "1e67e56b5665e61d634858e13fde763724e8695987e1670746aabc44a147b061"
+  }
+ },
+ "checks": {
+  "task_overlap": {
+   "dev|test_repeat": [
+    "airline:1",
+    "airline:13",
+    "airline:23",
+    "airline:25",
+    "airline:35",
+    "airline:38",
+    "airline:40"
+   ],
+   "dev|test_unseen": [],
+   "dev|train": [],
+   "test_repeat|test_unseen": [],
+   "test_repeat|train": [
+    "airline:11",
+    "airline:12",
+    "airline:15",
+    "airline:16",
+    "airline:17",
+    "airline:20",
+    "airline:21",
+    "airline:22",
+    "airline:24",
+    "airline:31",
+    "airline:33",
+    "airline:37",
+    "airline:41",
+    "airline:43",
+    "airline:44",
+    "airline:45",
+    "airline:48",
+    "airline:7",
+    "airline:9"
+   ],
+   "test_unseen|train": []
+  },
+  "session_overlap": {
+   "dev|test_repeat": 0,
+   "dev|test_unseen": 0,
+   "dev|train": 0,
+   "test_repeat|test_unseen": 0,
+   "test_repeat|train": 0,
+   "test_unseen|train": 0
+  },
+  "train_dev_unseen_disjoint_and_unseen_disjoint_from_all": true,
+  "repeat_shares_tasks_only_with": [
+   "dev",
+   "train"
+  ]
+ }
+}

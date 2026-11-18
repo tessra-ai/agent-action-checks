@@ -1,0 +1,552 @@
+{
+ "seed": 20261118,
+ "split": "train",
+ "rows": [
+  {
+   "write_id": "01M5JZ97CPQVXC3EJT7WMP11ZH",
+   "sentence": "You will receive an email with instructions on how to return the item, and the refund will be processed to your credit card.",
+   "claims": [
+    {
+     "kind": "refund",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "the refund will be processed to your credit card"
+    },
+    {
+     "kind": "other",
+     "scope": "this_call",
+     "verdict": "unverifiable",
+     "quote": "You will receive an email with instructions on how to return the item"
+    }
+   ]
+  },
+  {
+   "write_id": "01M61Q0JQ0P7BCN5VP6010AY2T",
+   "sentence": "For the upgrade of reservation M20IZO to business class, I will proceed with the cabin change.",
+   "claims": [
+    {
+     "kind": "flights",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "For the upgrade of reservation M20IZO to business class, I will proceed with the cabin change."
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ5Q5CNJR8Y4KWEVMC0NMK",
+   "sentence": "I will now proceed to exchange the luggage set for a red one and the skateboard for a 34-inch custom design.",
+   "claims": [
+    {
+     "kind": "items",
+     "scope": "this_call",
+     "verdict": "false",
+     "quote": "I will now proceed to exchange the luggage set for a red one and the skateboard for a 34-inch custom design."
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ58T6TR5VJ7RC1QXZAZQX",
+   "sentence": "The other tablet with 10-inch, 128GB, gold is available for $950.96.",
+   "claims": [
+    {
+     "kind": "price_quote",
+     "scope": "this_call",
+     "verdict": "unverifiable",
+     "quote": "The other tablet with 10-inch, 128GB, gold is available for $950.96."
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ514HKPYVPHEY1BW7SGTK",
+   "sentence": "Would you like to proceed with returning this specific tablet and getting a refund to your credit card?",
+   "claims": [
+    {
+     "kind": "items",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "returning this specific tablet"
+    },
+    {
+     "kind": "refund",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "getting a refund to your credit card"
+    }
+   ]
+  },
+  {
+   "write_id": "01M61PSTQH5ENQFW5W2NA6QTYZ",
+   "sentence": "1. Upgrade reservation XEHM4B from basic economy to economy with the same flights (HAT005 on 2024-05-20 and HAT178 on 2024-05-30) using the default payment method on your profile.",
+   "claims": [
+    {
+     "kind": "other",
+     "scope": "other_call",
+     "verdict": "unverifiable",
+     "quote": "Upgrade reservation XEHM4B from basic economy to economy with the same flights (HAT005 on 2024-05-20 and HAT178 on 2024-05-30) using the default payment method on your profile."
+    }
+   ]
+  },
+  {
+   "write_id": "01M61Q4QYXR822DYYJRZFTS68K",
+   "sentence": "- For two passengers, the total business class fare would be $1,698.",
+   "claims": [
+    {
+     "kind": "charge",
+     "scope": "this_call",
+     "verdict": "false",
+     "quote": "For two passengers, the total business class fare would be $1,698."
+    }
+   ]
+  },
+  {
+   "write_id": "01M61PZFB0SZE1PW67FTD45XH6",
+   "sentence": "The current reservation DF89BM has two flights on May 17 with prices $63 and $78, totaling $141.",
+   "claims": [
+    {
+     "kind": "price_quote",
+     "scope": "this_call",
+     "verdict": "false",
+     "quote": "The current reservation DF89BM has two flights on May 17 with prices $63 and $78, totaling $141."
+    }
+   ]
+  },
+  {
+   "write_id": "01M61QBHFETZPXR2PJW4V2J21K",
+   "sentence": "You booked a one-way basic economy flight from MCO to SFO for two passengers about 10 hours ago, and your reservation ID is 3RK2T9.",
+   "claims": [
+    {
+     "kind": "flights",
+     "scope": "this_call",
+     "verdict": "unverifiable",
+     "quote": "You booked a one-way basic economy flight from MCO to SFO for two passengers about 10 hours ago, and your reservation ID is 3RK2T9."
+    }
+   ]
+  },
+  {
+   "write_id": "01M61Q79VR8ABNANRCE8DF12JV",
+   "sentence": "The lowest fare is to Seattle (SEA) for $51 each way in basic economy.",
+   "claims": [
+    {
+     "kind": "price_quote",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "The lowest fare is to Seattle (SEA) for $51 each way in basic economy."
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ8RY1RS4PQ45QV29TFP9J",
+   "sentence": "- For the return: Please confirm if you want to return the \u201cSmart Watch\u201d (item ID: 2554056026, gold, metal band, AMOLED display) from your delivered order #W9389413.",
+   "claims": [
+    {
+     "kind": "items",
+     "scope": "other_call",
+     "verdict": "true",
+     "quote": "return the \u201cSmart Watch\u201d (item ID: 2554056026, gold, metal band, AMOLED display) from your delivered order #W9389413"
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JMKGBFP684SJXBM82Z05F5",
+   "sentence": "You want to return the Water Bottle, Action Camera, and Backpack from order #W5490111, and you prefer the refund to be processed through your PayPal account.",
+   "claims": [
+    {
+     "kind": "items",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "You want to return the Water Bottle, Action Camera, and Backpack from order #W5490111"
+    },
+    {
+     "kind": "payment_method",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "you prefer the refund to be processed through your PayPal account"
+    }
+   ]
+  },
+  {
+   "write_id": "01M61Q0JBGTDSPSADB8QD40CH4",
+   "sentence": "For the cancellations of reservations IFOYYZ and NQNU5R, since both reservations have not been flown yet and the booking was made within the last 24 hours for IFOYYZ, and NQNU5R is a business class flight, both are eligible for cancellation.",
+   "claims": [
+    {
+     "kind": "other",
+     "scope": "plan",
+     "verdict": "unverifiable",
+     "quote": "For the cancellations of reservations IFOYYZ and NQNU5R, since both reservations have not been flown yet and the booking was made within the last 24 hours for IFOYYZ, and NQNU5R is a business class flight, both are eligible for cancellation."
+    }
+   ]
+  },
+  {
+   "write_id": "01M61Q87YYRMY7FZ7NBZ3SNCDC",
+   "sentence": "4. Since you have travel insurance, any change fees will be waived.",
+   "claims": [
+    {
+     "kind": "other",
+     "scope": "this_call",
+     "verdict": "unverifiable",
+     "quote": "Since you have travel insurance, any change fees will be waived."
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ4MRXHTNKQG9R1Z09V388",
+   "sentence": "I will now proceed with returning the Water Bottle, Action Camera, and Backpack, and I will arrange the refund to be processed through PayPal.",
+   "claims": [
+    {
+     "kind": "items",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "I will now proceed with returning the Water Bottle, Action Camera, and Backpack"
+    },
+    {
+     "kind": "payment_method",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "I will arrange the refund to be processed through PayPal"
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ7CN2010PXYFJQ798QER9",
+   "sentence": "- Item to return: Gold tablet (item ID 6065192424), price $989.70",
+   "claims": [
+    {
+     "kind": "items",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "Item to return: Gold tablet (item ID 6065192424)"
+    },
+    {
+     "kind": "price_quote",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "Gold tablet (item ID 6065192424), price $989.70"
+    }
+   ]
+  },
+  {
+   "write_id": "01M61PX4FK7DA9Z1J1D9QEXRT2",
+   "sentence": "I will use the gift card with the smallest balance, which is $6.00, for any additional charges.",
+   "claims": [
+    {
+     "kind": "payment_method",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "I will use the gift card with the smallest balance, which is $6.00, for any additional charges."
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ53HDAV2K8DP4RDA51Y1V",
+   "sentence": "I can help you with returning the more expensive tablet from your delivered order and process the refund to your credit card.",
+   "claims": [
+    {
+     "kind": "items",
+     "scope": "this_call",
+     "verdict": "false",
+     "quote": "returning the more expensive tablet from your delivered order"
+    },
+    {
+     "kind": "refund",
+     "scope": "this_call",
+     "verdict": "false",
+     "quote": "process the refund to your credit card"
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ8ZGFJFEAWXENFATGBCJB",
+   "sentence": "To confirm, you would like to return the water bottle (item price: $54.04) from your delivered order #W2890441.",
+   "claims": [
+    {
+     "kind": "items",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "return the water bottle (item price: $54.04) from your delivered order #W2890441"
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ4QQZXWGB94PYTMMX7Y7Q",
+   "sentence": "I will now proceed with returning the Water Bottle, Action Camera, and Backpack, and I will arrange the refund to be processed through PayPal.",
+   "claims": [
+    {
+     "kind": "items",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "I will now proceed with returning the Water Bottle, Action Camera, and Backpack"
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ6THJ5CT7VG53CC1MN2C7",
+   "sentence": "The delivered order #W9389413 includes a watch (Smart Watch, item id 2554056026) that you want to return.",
+   "claims": [
+    {
+     "kind": "charge",
+     "scope": "this_call",
+     "verdict": "unverifiable",
+     "quote": "The delivered order #W9389413 includes a watch (Smart Watch, item id 2554056026) that you want to return."
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ8BVJWCCS1EFW5CNMNFXT",
+   "sentence": "- You will receive an email with instructions on how to return the items.",
+   "claims": [
+    {
+     "kind": "other",
+     "scope": "this_call",
+     "verdict": "unverifiable",
+     "quote": "You will receive an email with instructions on how to return the items."
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ8WV4TTNVS440ZZKMNF5K",
+   "sentence": "- The refund will be issued to your credit card ending in 2732.",
+   "claims": [
+    {
+     "kind": "refund",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "The refund will be issued to your credit card ending in 2732."
+    },
+    {
+     "kind": "payment_method",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "The refund will be issued to your credit card ending in 2732."
+    }
+   ]
+  },
+  {
+   "write_id": "01M61Q484XRHT74GJNDVYMZYTS",
+   "sentence": "- Reservation IFOYYZ is eligible for cancellation due to your change of plan.",
+   "claims": [
+    {
+     "kind": "cancellable",
+     "scope": "this_call",
+     "verdict": "false",
+     "quote": "Reservation IFOYYZ is eligible for cancellation due to your change of plan."
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ58T6TR5VJ7RC1QXZAZQX",
+   "sentence": "Since you want to return the pricier one, which is the 10-inch, 128GB, gold tablet, I will proceed with the return process for that item.",
+   "claims": [
+    {
+     "kind": "items",
+     "scope": "this_call",
+     "verdict": "false",
+     "quote": "Since you want to return the pricier one, which is the 10-inch, 128GB, gold tablet, I will proceed with the return process for that item."
+    }
+   ]
+  },
+  {
+   "write_id": "01M61PX78BTBS6N3D4MQKMRGKH",
+   "sentence": "- gift_card_8190333 with $280.0",
+   "claims": [
+    {
+     "kind": "balance_after",
+     "scope": "this_call",
+     "verdict": "false",
+     "quote": "gift_card_8190333 with $280.0"
+    }
+   ]
+  },
+  {
+   "write_id": "01M61Q9V0PEBBX39TDBN9FE1G3",
+   "sentence": "1. Cancel reservation IFOYYZ (CLT \u2194 EWR, basic economy, 1 passenger, no insurance, booked on 2024-05-12) due to change of plan.",
+   "claims": [
+    {
+     "kind": "flights",
+     "scope": "this_call",
+     "verdict": "unverifiable",
+     "quote": "Cancel reservation IFOYYZ (CLT \u2194 EWR, basic economy, 1 passenger, no insurance, booked on 2024-05-12) due to change of plan."
+    }
+   ]
+  },
+  {
+   "write_id": "01M61PWPDBDVTYVXJ7P2DGXJGF",
+   "sentence": "- Total price: $255",
+   "claims": [
+    {
+     "kind": "charge",
+     "scope": "this_call",
+     "verdict": "false",
+     "quote": "Total price: $255"
+    }
+   ]
+  },
+  {
+   "write_id": "01M61QAYDHB0GRMZX185D8ANBW",
+   "sentence": "Refunds will be processed to your original payment method within 5 to 7 business days.",
+   "claims": [
+    {
+     "kind": "refund",
+     "scope": "this_call",
+     "verdict": "unverifiable",
+     "quote": "Refunds will be processed to your original payment method within 5 to 7 business days."
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ91W7FWACM25ZX0E5W1KG",
+   "sentence": "The refund for your return must go to the original payment method used for this order, which is your gift card, not your credit card.",
+   "claims": [
+    {
+     "kind": "other",
+     "scope": "this_call",
+     "verdict": "unverifiable",
+     "quote": "The refund for your return must go to the original payment method used for this order, which is your gift card, not your credit card."
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ5G910Y7ARY1GVCW4J58N",
+   "sentence": "I will now prepare the return for the hiking boots and initiate the process for the other items.",
+   "claims": [
+    {
+     "kind": "items",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "I will now prepare the return for the hiking boots"
+    },
+    {
+     "kind": "refund",
+     "scope": "this_call",
+     "verdict": "unverifiable",
+     "quote": "I will now prepare the return for the hiking boots"
+    },
+    {
+     "kind": "payment_method",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "I will now prepare the return for the hiking boots"
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ6THJ5CT7VG53CC1MN2C7",
+   "sentence": "- Return the watch (item id 2554056026) from delivered order #W9389413 with refund to the original payment method.",
+   "claims": [
+    {
+     "kind": "items",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "Return the watch (item id 2554056026) from delivered order #W9389413"
+    }
+   ]
+  },
+  {
+   "write_id": "01M61PXJFG0ZP04V1QEJD869TJ",
+   "sentence": "- Use gift_card_8190333 for payment",
+   "claims": [
+    {
+     "kind": "payment_method",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "- Use gift_card_8190333 for payment"
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ7CN2010PXYFJQ798QER9",
+   "sentence": "- Refund method: Credit card ending in 2732",
+   "claims": [
+    {
+     "kind": "payment_method",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "Refund method: Credit card ending in 2732"
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ58T6TR5VJ7RC1QXZAZQX",
+   "sentence": "I will now proceed with the return process for this item and refund to your credit card.",
+   "claims": [
+    {
+     "kind": "other",
+     "scope": "this_call",
+     "verdict": "unverifiable",
+     "quote": "I will now proceed with the return process for this item and refund to your credit card."
+    }
+   ]
+  },
+  {
+   "write_id": "01M61PTMV0JAHQARJNFWV9YQHZ",
+   "sentence": "The total refund amount for downgrading all three passengers from business to basic economy on your flights (HAT003 on May 19 and HAT290 on May 20) would be $1444.",
+   "claims": [
+    {
+     "kind": "refund",
+     "scope": "this_call",
+     "verdict": "false",
+     "quote": "The total refund amount for downgrading all three passengers from business to basic economy on your flights (HAT003 on May 19 and HAT290 on May 20) would be $1444."
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JMJVCJQM1EQ0B0NPQTKHV8",
+   "sentence": "I will proceed with returning the Water Bottle, Action Camera, and Backpack, and keep the Mechanical Keyboard.",
+   "claims": [
+    {
+     "kind": "items",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "I will proceed with returning the Water Bottle, Action Camera, and Backpack"
+    }
+   ]
+  },
+  {
+   "write_id": "01M5JZ75JB70RW5WZ3HTHRFT8J",
+   "sentence": "The refund amount is $54.04.",
+   "claims": [
+    {
+     "kind": "refund",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "The refund amount is $54.04."
+    }
+   ]
+  },
+  {
+   "write_id": "01M61QAZRCFF15XVF4MZQV9R18",
+   "sentence": "All three reservations are eligible for cancellation.",
+   "claims": [
+    {
+     "kind": "cancellable",
+     "scope": "other_call",
+     "verdict": "true",
+     "quote": "All three reservations are eligible for cancellation."
+    },
+    {
+     "kind": "cancellable",
+     "scope": "other_call",
+     "verdict": "true",
+     "quote": "All three reservations are eligible for cancellation."
+    },
+    {
+     "kind": "cancellable",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "All three reservations are eligible for cancellation."
+    }
+   ]
+  },
+  {
+   "write_id": "01M61Q7E08FRX3S6AGKP0Q2ZSB",
+   "sentence": "The lowest fare is to Seattle (SEA) for $51 each way in basic economy.",
+   "claims": [
+    {
+     "kind": "price_quote",
+     "scope": "this_call",
+     "verdict": "false",
+     "quote": "The lowest fare is to Seattle (SEA) for $51 each way in basic economy."
+    }
+   ]
+  }
+ ]
+}

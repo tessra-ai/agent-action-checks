@@ -1,0 +1,101 @@
+{
+ "split": "train",
+ "actions": 133,
+ "agent_sentences": 4222,
+ "claims_in_train": 490,
+ "claims_by_location": {
+  "one_sentence": 314,
+  "spans_sentences": 69,
+  "stitched_from_parts": 59,
+  "customer_text": 27,
+  "tool_call_text": 11,
+  "ambiguous_several_sentences": 10
+ },
+ "stitched_examples": [
+  "The total amount for your pending orders is:\n- Order #W8665881: $4,777.75",
+  "The total amount for your pending orders is:\n- Order #W8665881: $4,777.75",
+  "return for the water bottle in order #W2890441 ... payment_method_id: 'credit_card_1061405'",
+  "I will handle the return of the hiking boots from the delivered order ... payment_method_id: 'paypal_3650980'",
+  "payment_method_id': 'credit_card_3261838",
+  "payment_method_id': 'credit_card_3261838'",
+  "payment_method_id': 'credit_card_3261838'",
+  "the luggage set for a red one and the skateboard with a 34-inch length and custom design"
+ ],
+ "sentences_with_a_claim": 267,
+ "sentences_mixing_this_call_and_other_call_claims": 3,
+ "mixed_examples": [
+  {
+   "write_id": "01M61QAYDHB0GRMZX185D8ANBW",
+   "sentence": "All three reservations are eligible for cancellation.",
+   "claims": [
+    {
+     "kind": "cancellable",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "All three reservations are eligible for cancellation."
+    },
+    {
+     "kind": "cancellable",
+     "scope": "other_call",
+     "verdict": "true",
+     "quote": "All three reservations are eligible for cancellation."
+    },
+    {
+     "kind": "cancellable",
+     "scope": "other_call",
+     "verdict": "true",
+     "quote": "All three reservations are eligible for cancellation."
+    }
+   ]
+  },
+  {
+   "write_id": "01M61QAZD1C85YBG2KRN638RMF",
+   "sentence": "All three reservations are eligible for cancellation.",
+   "claims": [
+    {
+     "kind": "cancellable",
+     "scope": "other_call",
+     "verdict": "true",
+     "quote": "All three reservations are eligible for cancellation."
+    },
+    {
+     "kind": "cancellable",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "All three reservations are eligible for cancellation."
+    },
+    {
+     "kind": "cancellable",
+     "scope": "other_call",
+     "verdict": "true",
+     "quote": "All three reservations are eligible for cancellation."
+    }
+   ]
+  },
+  {
+   "write_id": "01M61QAZRCFF15XVF4MZQV9R18",
+   "sentence": "All three reservations are eligible for cancellation.",
+   "claims": [
+    {
+     "kind": "cancellable",
+     "scope": "other_call",
+     "verdict": "true",
+     "quote": "All three reservations are eligible for cancellation."
+    },
+    {
+     "kind": "cancellable",
+     "scope": "other_call",
+     "verdict": "true",
+     "quote": "All three reservations are eligible for cancellation."
+    },
+    {
+     "kind": "cancellable",
+     "scope": "this_call",
+     "verdict": "true",
+     "quote": "All three reservations are eligible for cancellation."
+    }
+   ]
+  }
+ ],
+ "sample_for_reading": "review/sentence_sample.json"
+}
