@@ -1,0 +1,3072 @@
+{
+ "kev_code": {
+  "repo": "github.com/jaredpalmer/kev",
+  "commit": "2074cc44256200bb37540103fa4572901faa10f3",
+  "package_version": "0.1.0"
+ },
+ "tokenizer": {
+  "used": "Qwen/Qwen3.5-4B-Base@1001bb4d826a52d1f399e183466143f4da7b741b",
+  "why": "kev.checkpoint loads the base tokenizer at the provenance base_revision; kev-4b v1.0 provenance.json pins this",
+  "class": "Qwen3_5Tokenizer",
+  "cross_check": "jaredpalmer/kev-4b@v1.0 tokenizer files",
+  "cross_check_identical_counts": true
+ },
+ "packets_sha256": "1e0443d79df58982ad5bad031d543a18a96321efe95bafefffa92673e76b7023",
+ "scope": "train and dev splits only; test splits not read",
+ "packet_version": "rely1-packet-v1",
+ "by_split": {
+  "train": {
+   "n": 133,
+   "median": 4455,
+   "p95": 8377,
+   "max": 12436,
+   "over_8192": 8,
+   "over_7552": 13
+  },
+  "dev": {
+   "n": 41,
+   "median": 3932,
+   "p95": 11042,
+   "max": 11043,
+   "over_8192": 6,
+   "over_7552": 6
+  }
+ },
+ "with_plan_calls": 21,
+ "state": {
+  "n": 174,
+  "median": 4278,
+  "p95": 9087,
+  "max": 12436,
+  "over_8192": 14,
+  "over_7552": 19
+ },
+ "state_by_domain": {
+  "airline": {
+   "n": 101,
+   "median": 4694,
+   "p95": 9352,
+   "max": 12436,
+   "over_8192": 14,
+   "over_7552": 19
+  },
+  "retail": {
+   "n": 73,
+   "median": 3900,
+   "p95": 6964,
+   "max": 7443,
+   "over_8192": 0,
+   "over_7552": 0
+  }
+ },
+ "row_with_longest_statement_question": {
+  "n": 174,
+  "median": 4356,
+  "p95": 9186,
+  "max": 12535,
+  "over_8192": 15,
+  "over_7552": 21
+ },
+ "sections": {
+  "conversation": {
+   "n": 174,
+   "median": 865,
+   "p95": 2552,
+   "max": 3851,
+   "over_8192": 0,
+   "over_7552": 0
+  },
+  "proposed_action": {
+   "n": 174,
+   "median": 263,
+   "p95": 472,
+   "max": 656,
+   "over_8192": 0,
+   "over_7552": 0
+  },
+  "plan_calls": {
+   "n": 174,
+   "median": 18,
+   "p95": 87,
+   "max": 418,
+   "over_8192": 0,
+   "over_7552": 0
+  },
+  "policy": {
+   "n": 174,
+   "median": 1695,
+   "p95": 1695,
+   "max": 1695,
+   "over_8192": 0,
+   "over_7552": 0
+  },
+  "ledger": {
+   "n": 174,
+   "median": 1632,
+   "p95": 4853,
+   "max": 7416,
+   "over_8192": 0,
+   "over_7552": 0
+  }
+ },
+ "rows": [
+  {
+   "write_id": "01M5JZ4D5E6CMP314QYVP9GPAN",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 2807,
+   "row_tokens_longest_statement": 2876,
+   "state_tokens_card_tokenizer": 2807,
+   "sections": {
+    "conversation": 350,
+    "proposed_action": 352,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 632
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 13
+  },
+  {
+   "write_id": "01M5JZ4F7FEZTY5Q95P9BX5SAS",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3723,
+   "row_tokens_longest_statement": 3809,
+   "state_tokens_card_tokenizer": 3723,
+   "sections": {
+    "conversation": 501,
+    "proposed_action": 337,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1412
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 17
+  },
+  {
+   "write_id": "01M5JZ4FJNSY49D6GH62NHR3T5",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 3432,
+   "row_tokens_longest_statement": 3509,
+   "state_tokens_card_tokenizer": 3432,
+   "sections": {
+    "conversation": 550,
+    "proposed_action": 287,
+    "plan_calls": 147,
+    "policy": 1458,
+    "ledger": 993
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 15
+  },
+  {
+   "write_id": "01M5JZ4FQ7N37RJXVD6FW00S14",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 3355,
+   "row_tokens_longest_statement": 3432,
+   "state_tokens_card_tokenizer": 3355,
+   "sections": {
+    "conversation": 550,
+    "proposed_action": 263,
+    "plan_calls": 94,
+    "policy": 1458,
+    "ledger": 993
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 15
+  },
+  {
+   "write_id": "01M5JZ4H7WB7XXHKW3XDBENJKE",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 3792,
+   "row_tokens_longest_statement": 3875,
+   "state_tokens_card_tokenizer": 3792,
+   "sections": {
+    "conversation": 629,
+    "proposed_action": 288,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1402
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 17
+  },
+  {
+   "write_id": "01M5JZ4HDTBD3TFZNSCV5SF34S",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 4268,
+   "row_tokens_longest_statement": 4354,
+   "state_tokens_card_tokenizer": 4268,
+   "sections": {
+    "conversation": 634,
+    "proposed_action": 263,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1898
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 21
+  },
+  {
+   "write_id": "01M5JZ4HHCR7P9XNZ3N60M0KYH",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 3767,
+   "row_tokens_longest_statement": 3850,
+   "state_tokens_card_tokenizer": 3767,
+   "sections": {
+    "conversation": 629,
+    "proposed_action": 263,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1402
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 17
+  },
+  {
+   "write_id": "01M5JZ4MRXHTNKQG9R1Z09V388",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3411,
+   "row_tokens_longest_statement": 3488,
+   "state_tokens_card_tokenizer": 3411,
+   "sections": {
+    "conversation": 866,
+    "proposed_action": 287,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 785
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 25
+  },
+  {
+   "write_id": "01M5JZ4QQZXWGB94PYTMMX7Y7Q",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3628,
+   "row_tokens_longest_statement": 3705,
+   "state_tokens_card_tokenizer": 3628,
+   "sections": {
+    "conversation": 962,
+    "proposed_action": 288,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 905
+   },
+   "ledger_entries": 7,
+   "agent_sentences": 28
+  },
+  {
+   "write_id": "01M5JZ4WKXD7GXV289WCA5J6XF",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3780,
+   "row_tokens_longest_statement": 3850,
+   "state_tokens_card_tokenizer": 3780,
+   "sections": {
+    "conversation": 387,
+    "proposed_action": 218,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1702
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 15
+  },
+  {
+   "write_id": "01M5JZ4WSHQW3E5RAK48C9JBJQ",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3780,
+   "row_tokens_longest_statement": 3850,
+   "state_tokens_card_tokenizer": 3780,
+   "sections": {
+    "conversation": 387,
+    "proposed_action": 218,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1702
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 15
+  },
+  {
+   "write_id": "01M5JZ4X932P1F842EVYZ09DTY",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3826,
+   "row_tokens_longest_statement": 3896,
+   "state_tokens_card_tokenizer": 3826,
+   "sections": {
+    "conversation": 387,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1702
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 15
+  },
+  {
+   "write_id": "01M5JZ50CY9AWVGK70D1V5XXDF",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 3309,
+   "row_tokens_longest_statement": 3395,
+   "state_tokens_card_tokenizer": 3309,
+   "sections": {
+    "conversation": 758,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 814
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 23
+  },
+  {
+   "write_id": "01M5JZ50JK3SXWYXBR2VA0RBZB",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 3309,
+   "row_tokens_longest_statement": 3395,
+   "state_tokens_card_tokenizer": 3309,
+   "sections": {
+    "conversation": 758,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 814
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 23
+  },
+  {
+   "write_id": "01M5JZ50S18W0JMGFM3T677JV3",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3448,
+   "row_tokens_longest_statement": 3527,
+   "state_tokens_card_tokenizer": 3448,
+   "sections": {
+    "conversation": 518,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1193
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 13
+  },
+  {
+   "write_id": "01M5JZ514HKPYVPHEY1BW7SGTK",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3712,
+   "row_tokens_longest_statement": 3782,
+   "state_tokens_card_tokenizer": 3712,
+   "sections": {
+    "conversation": 362,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1613
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 7
+  },
+  {
+   "write_id": "01M5JZ53BEFJZ298SGE8SY5R9V",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3900,
+   "row_tokens_longest_statement": 3970,
+   "state_tokens_card_tokenizer": 3900,
+   "sections": {
+    "conversation": 482,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1681
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 10
+  },
+  {
+   "write_id": "01M5JZ53HDAV2K8DP4RDA51Y1V",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3924,
+   "row_tokens_longest_statement": 3994,
+   "state_tokens_card_tokenizer": 3924,
+   "sections": {
+    "conversation": 482,
+    "proposed_action": 288,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1681
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 10
+  },
+  {
+   "write_id": "01M5JZ54J1EZ7T1K608RWJ1E9S",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 4157,
+   "row_tokens_longest_statement": 4239,
+   "state_tokens_card_tokenizer": 4157,
+   "sections": {
+    "conversation": 992,
+    "proposed_action": 276,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1416
+   },
+   "ledger_entries": 8,
+   "agent_sentences": 29
+  },
+  {
+   "write_id": "01M5JZ569MXMXMNKGFAQKD4C9Q",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3753,
+   "row_tokens_longest_statement": 3838,
+   "state_tokens_card_tokenizer": 3753,
+   "sections": {
+    "conversation": 400,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1616
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 8
+  },
+  {
+   "write_id": "01M5JZ57HHF4560N7GD2S6BT3G",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 6040,
+   "row_tokens_longest_statement": 6119,
+   "state_tokens_card_tokenizer": 6040,
+   "sections": {
+    "conversation": 831,
+    "proposed_action": 218,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 3518
+   },
+   "ledger_entries": 10,
+   "agent_sentences": 24
+  },
+  {
+   "write_id": "01M5JZ58T6TR5VJ7RC1QXZAZQX",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3977,
+   "row_tokens_longest_statement": 4062,
+   "state_tokens_card_tokenizer": 3977,
+   "sections": {
+    "conversation": 530,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1710
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 12
+  },
+  {
+   "write_id": "01M5JZ59MHE9X7XFMC6ABKYK7Q",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 6224,
+   "row_tokens_longest_statement": 6303,
+   "state_tokens_card_tokenizer": 6224,
+   "sections": {
+    "conversation": 928,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 3559
+   },
+   "ledger_entries": 11,
+   "agent_sentences": 27
+  },
+  {
+   "write_id": "01M5JZ5AKVE2QZ5NS0KVZTB57S",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 4175,
+   "row_tokens_longest_statement": 4260,
+   "state_tokens_card_tokenizer": 4175,
+   "sections": {
+    "conversation": 634,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1804
+   },
+   "ledger_entries": 8,
+   "agent_sentences": 16
+  },
+  {
+   "write_id": "01M5JZ5BGDG74M5VTD6YN9FR3T",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 2704,
+   "row_tokens_longest_statement": 2770,
+   "state_tokens_card_tokenizer": 2704,
+   "sections": {
+    "conversation": 199,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 768
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 4
+  },
+  {
+   "write_id": "01M5JZ5BZQ37Z0YKPTD97HJA3A",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 6499,
+   "row_tokens_longest_statement": 6578,
+   "state_tokens_card_tokenizer": 6499,
+   "sections": {
+    "conversation": 1037,
+    "proposed_action": 362,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 3627
+   },
+   "ledger_entries": 12,
+   "agent_sentences": 29
+  },
+  {
+   "write_id": "01M5JZ5EDFDZN54MQMB4MP6WV6",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 2948,
+   "row_tokens_longest_statement": 3021,
+   "state_tokens_card_tokenizer": 2948,
+   "sections": {
+    "conversation": 375,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 836
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 10
+  },
+  {
+   "write_id": "01M5JZ5FVM4YXJHBMWCGHNQA7G",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3738,
+   "row_tokens_longest_statement": 3820,
+   "state_tokens_card_tokenizer": 3738,
+   "sections": {
+    "conversation": 601,
+    "proposed_action": 263,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1401
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 16
+  },
+  {
+   "write_id": "01M5JZ5G910Y7ARY1GVCW4J58N",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3738,
+   "row_tokens_longest_statement": 3820,
+   "state_tokens_card_tokenizer": 3738,
+   "sections": {
+    "conversation": 601,
+    "proposed_action": 263,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1401
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 16
+  },
+  {
+   "write_id": "01M5JZ5M5N873C11NGFQVTP05Z",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 3818,
+   "row_tokens_longest_statement": 3894,
+   "state_tokens_card_tokenizer": 3818,
+   "sections": {
+    "conversation": 728,
+    "proposed_action": 244,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1373
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 20
+  },
+  {
+   "write_id": "01M5JZ5MBFEG8RZ8JEKXZWXNXD",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 6076,
+   "row_tokens_longest_statement": 6158,
+   "state_tokens_card_tokenizer": 6076,
+   "sections": {
+    "conversation": 864,
+    "proposed_action": 338,
+    "plan_calls": 158,
+    "policy": 1458,
+    "ledger": 3261
+   },
+   "ledger_entries": 9,
+   "agent_sentences": 25
+  },
+  {
+   "write_id": "01M5JZ5MGPBWTXZYQ135Q4TA74",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 6005,
+   "row_tokens_longest_statement": 6087,
+   "state_tokens_card_tokenizer": 6005,
+   "sections": {
+    "conversation": 864,
+    "proposed_action": 338,
+    "plan_calls": 87,
+    "policy": 1458,
+    "ledger": 3261
+   },
+   "ledger_entries": 9,
+   "agent_sentences": 25
+  },
+  {
+   "write_id": "01M5JZ5NQTFNSBN9MCPTRZRAJH",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 4160,
+   "row_tokens_longest_statement": 4236,
+   "state_tokens_card_tokenizer": 4160,
+   "sections": {
+    "conversation": 793,
+    "proposed_action": 244,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1650
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 23
+  },
+  {
+   "write_id": "01M5JZ5Q5CNJR8Y4KWEVMC0NMK",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 6356,
+   "row_tokens_longest_statement": 6438,
+   "state_tokens_card_tokenizer": 6356,
+   "sections": {
+    "conversation": 963,
+    "proposed_action": 338,
+    "plan_calls": 87,
+    "policy": 1458,
+    "ledger": 3513
+   },
+   "ledger_entries": 13,
+   "agent_sentences": 29
+  },
+  {
+   "write_id": "01M5JZ5QACWH55WR7A51QRC0WY",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 6356,
+   "row_tokens_longest_statement": 6438,
+   "state_tokens_card_tokenizer": 6356,
+   "sections": {
+    "conversation": 963,
+    "proposed_action": 338,
+    "plan_calls": 87,
+    "policy": 1458,
+    "ledger": 3513
+   },
+   "ledger_entries": 13,
+   "agent_sentences": 29
+  },
+  {
+   "write_id": "01M5JZ5SP0C9E67EM74AS0YJY1",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 6700,
+   "row_tokens_longest_statement": 6782,
+   "state_tokens_card_tokenizer": 6700,
+   "sections": {
+    "conversation": 1066,
+    "proposed_action": 338,
+    "plan_calls": 87,
+    "policy": 1458,
+    "ledger": 3754
+   },
+   "ledger_entries": 17,
+   "agent_sentences": 34
+  },
+  {
+   "write_id": "01M5JZ5SXX45K1CHY4NDVBWM3D",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 6700,
+   "row_tokens_longest_statement": 6782,
+   "state_tokens_card_tokenizer": 6700,
+   "sections": {
+    "conversation": 1066,
+    "proposed_action": 338,
+    "plan_calls": 87,
+    "policy": 1458,
+    "ledger": 3754
+   },
+   "ledger_entries": 17,
+   "agent_sentences": 34
+  },
+  {
+   "write_id": "01M5JZ5WJ9VN9DFMWCPYHWADA8",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 6964,
+   "row_tokens_longest_statement": 7046,
+   "state_tokens_card_tokenizer": 6964,
+   "sections": {
+    "conversation": 1169,
+    "proposed_action": 338,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 3984
+   },
+   "ledger_entries": 21,
+   "agent_sentences": 39
+  },
+  {
+   "write_id": "01M5JZ5WR67W4T7NMNSAY64TY8",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 7033,
+   "row_tokens_longest_statement": 7115,
+   "state_tokens_card_tokenizer": 7033,
+   "sections": {
+    "conversation": 1169,
+    "proposed_action": 338,
+    "plan_calls": 87,
+    "policy": 1458,
+    "ledger": 3984
+   },
+   "ledger_entries": 21,
+   "agent_sentences": 39
+  },
+  {
+   "write_id": "01M5JZ5ZBF168ZDD9V2D0TFSBV",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 7297,
+   "row_tokens_longest_statement": 7379,
+   "state_tokens_card_tokenizer": 7297,
+   "sections": {
+    "conversation": 1272,
+    "proposed_action": 338,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 4214
+   },
+   "ledger_entries": 25,
+   "agent_sentences": 44
+  },
+  {
+   "write_id": "01M5JZ6ATBEEKTG3TJWW7DGJ1P",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 3455,
+   "row_tokens_longest_statement": 3527,
+   "state_tokens_card_tokenizer": 3455,
+   "sections": {
+    "conversation": 702,
+    "proposed_action": 287,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 993
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 24
+  },
+  {
+   "write_id": "01M5JZ6CKEDNMW1K2GTKGCK8B1",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3686,
+   "row_tokens_longest_statement": 3766,
+   "state_tokens_card_tokenizer": 3686,
+   "sections": {
+    "conversation": 933,
+    "proposed_action": 287,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 993
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 31
+  },
+  {
+   "write_id": "01M5JZ6GX6MMASE0YGDF0T90CV",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3997,
+   "row_tokens_longest_statement": 4088,
+   "state_tokens_card_tokenizer": 3997,
+   "sections": {
+    "conversation": 1152,
+    "proposed_action": 288,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1084
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 37
+  },
+  {
+   "write_id": "01M5JZ6STVV5NYVNFS98N5XMED",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3989,
+   "row_tokens_longest_statement": 4096,
+   "state_tokens_card_tokenizer": 3989,
+   "sections": {
+    "conversation": 596,
+    "proposed_action": 218,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1702
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 17
+  },
+  {
+   "write_id": "01M5JZ6T1H438VPDDHPPA4461M",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3989,
+   "row_tokens_longest_statement": 4096,
+   "state_tokens_card_tokenizer": 3989,
+   "sections": {
+    "conversation": 596,
+    "proposed_action": 218,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1702
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 17
+  },
+  {
+   "write_id": "01M5JZ6THJ5CT7VG53CC1MN2C7",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 4034,
+   "row_tokens_longest_statement": 4141,
+   "state_tokens_card_tokenizer": 4034,
+   "sections": {
+    "conversation": 596,
+    "proposed_action": 263,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1702
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 17
+  },
+  {
+   "write_id": "01M5JZ6XV19WNQPTEYGY67CH3S",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 3450,
+   "row_tokens_longest_statement": 3546,
+   "state_tokens_card_tokenizer": 3450,
+   "sections": {
+    "conversation": 720,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 993
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 27
+  },
+  {
+   "write_id": "01M5JZ6Y0PCJGTZBGV2ES6XMZA",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 3449,
+   "row_tokens_longest_statement": 3545,
+   "state_tokens_card_tokenizer": 3449,
+   "sections": {
+    "conversation": 720,
+    "proposed_action": 263,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 993
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 27
+  },
+  {
+   "write_id": "01M5JZ75JB70RW5WZ3HTHRFT8J",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 5948,
+   "row_tokens_longest_statement": 6048,
+   "state_tokens_card_tokenizer": 5948,
+   "sections": {
+    "conversation": 1280,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 2931
+   },
+   "ledger_entries": 8,
+   "agent_sentences": 37
+  },
+  {
+   "write_id": "01M5JZ7CN2010PXYFJQ798QER9",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 4720,
+   "row_tokens_longest_statement": 4824,
+   "state_tokens_card_tokenizer": 4720,
+   "sections": {
+    "conversation": 1120,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1863
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 31
+  },
+  {
+   "write_id": "01M5JZ7WC7B4BXKPHYMFS19WER",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 7443,
+   "row_tokens_longest_statement": 7535,
+   "state_tokens_card_tokenizer": 7443,
+   "sections": {
+    "conversation": 1792,
+    "proposed_action": 354,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 3824
+   },
+   "ledger_entries": 9,
+   "agent_sentences": 48
+  },
+  {
+   "write_id": "01M5JZ7WRDCJJDGS5WK70MRR9A",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 7352,
+   "row_tokens_longest_statement": 7444,
+   "state_tokens_card_tokenizer": 7352,
+   "sections": {
+    "conversation": 1792,
+    "proposed_action": 263,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 3824
+   },
+   "ledger_entries": 9,
+   "agent_sentences": 48
+  },
+  {
+   "write_id": "01M5JZ8B8THC9A0XF2HZD3GHB6",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 3494,
+   "row_tokens_longest_statement": 3581,
+   "state_tokens_card_tokenizer": 3494,
+   "sections": {
+    "conversation": 741,
+    "proposed_action": 287,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 993
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 30
+  },
+  {
+   "write_id": "01M5JZ8BVJWCCS1EFW5CNMNFXT",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3381,
+   "row_tokens_longest_statement": 3464,
+   "state_tokens_card_tokenizer": 3381,
+   "sections": {
+    "conversation": 615,
+    "proposed_action": 300,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 993
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 25
+  },
+  {
+   "write_id": "01M5JZ8C0A464AYBE5H45RF9GP",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3344,
+   "row_tokens_longest_statement": 3427,
+   "state_tokens_card_tokenizer": 3344,
+   "sections": {
+    "conversation": 615,
+    "proposed_action": 263,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 993
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 25
+  },
+  {
+   "write_id": "01M5JZ8C543144DT73B6PKHASY",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3563,
+   "row_tokens_longest_statement": 3644,
+   "state_tokens_card_tokenizer": 3563,
+   "sections": {
+    "conversation": 810,
+    "proposed_action": 287,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 993
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 30
+  },
+  {
+   "write_id": "01M5JZ8EWDBX97WB0MFX4GWA4M",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3781,
+   "row_tokens_longest_statement": 3862,
+   "state_tokens_card_tokenizer": 3781,
+   "sections": {
+    "conversation": 936,
+    "proposed_action": 288,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1084
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 34
+  },
+  {
+   "write_id": "01M5JZ8R9HM6RSRFHY07002ZXS",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 2739,
+   "row_tokens_longest_statement": 2810,
+   "state_tokens_card_tokenizer": 2739,
+   "sections": {
+    "conversation": 492,
+    "proposed_action": 263,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 511
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 17
+  },
+  {
+   "write_id": "01M5JZ8RRBK9GE6SNZ9K0AKR7V",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3980,
+   "row_tokens_longest_statement": 4081,
+   "state_tokens_card_tokenizer": 3980,
+   "sections": {
+    "conversation": 587,
+    "proposed_action": 218,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1702
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 19
+  },
+  {
+   "write_id": "01M5JZ8RY1RS4PQ45QV29TFP9J",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3980,
+   "row_tokens_longest_statement": 4081,
+   "state_tokens_card_tokenizer": 3980,
+   "sections": {
+    "conversation": 587,
+    "proposed_action": 218,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1702
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 19
+  },
+  {
+   "write_id": "01M5JZ8SCMD97WNC8EK3F49JYM",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 4025,
+   "row_tokens_longest_statement": 4126,
+   "state_tokens_card_tokenizer": 4025,
+   "sections": {
+    "conversation": 587,
+    "proposed_action": 263,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1702
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 19
+  },
+  {
+   "write_id": "01M5JZ8WV4TTNVS440ZZKMNF5K",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 4289,
+   "row_tokens_longest_statement": 4359,
+   "state_tokens_card_tokenizer": 4289,
+   "sections": {
+    "conversation": 689,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1863
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 20
+  },
+  {
+   "write_id": "01M5JZ8ZGFJFEAWXENFATGBCJB",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 5380,
+   "row_tokens_longest_statement": 5461,
+   "state_tokens_card_tokenizer": 5380,
+   "sections": {
+    "conversation": 676,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 2967
+   },
+   "ledger_entries": 9,
+   "agent_sentences": 20
+  },
+  {
+   "write_id": "01M5JZ91W7FWACM25ZX0E5W1KG",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 4755,
+   "row_tokens_longest_statement": 4862,
+   "state_tokens_card_tokenizer": 4755,
+   "sections": {
+    "conversation": 1051,
+    "proposed_action": 300,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1931
+   },
+   "ledger_entries": 7,
+   "agent_sentences": 29
+  },
+  {
+   "write_id": "01M5JZ97CPQVXC3EJT7WMP11ZH",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 4344,
+   "row_tokens_longest_statement": 4448,
+   "state_tokens_card_tokenizer": 4344,
+   "sections": {
+    "conversation": 744,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1863
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 23
+  },
+  {
+   "write_id": "01M5JZ9FMAWJ45HTBCVXEBKVH4",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 6595,
+   "row_tokens_longest_statement": 6669,
+   "state_tokens_card_tokenizer": 6595,
+   "sections": {
+    "conversation": 893,
+    "proposed_action": 354,
+    "plan_calls": 69,
+    "policy": 1458,
+    "ledger": 3824
+   },
+   "ledger_entries": 9,
+   "agent_sentences": 26
+  },
+  {
+   "write_id": "01M5JZ9GNMV4JYQDYWY9WSHF03",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 6943,
+   "row_tokens_longest_statement": 7017,
+   "state_tokens_card_tokenizer": 6943,
+   "sections": {
+    "conversation": 907,
+    "proposed_action": 263,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 4300
+   },
+   "ledger_entries": 10,
+   "agent_sentences": 26
+  },
+  {
+   "write_id": "01M5JZ9P9G1E6T3N8PV9HGQHKV",
+   "split": "dev",
+   "domain": "retail",
+   "state_tokens": 5034,
+   "row_tokens_longest_statement": 5113,
+   "state_tokens_card_tokenizer": 5034,
+   "sections": {
+    "conversation": 1434,
+    "proposed_action": 264,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 1863
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 56
+  },
+  {
+   "write_id": "01M5JMJS4CB1V66T1XTFQMFFPD",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3167,
+   "row_tokens_longest_statement": 3242,
+   "state_tokens_card_tokenizer": 3167,
+   "sections": {
+    "conversation": 652,
+    "proposed_action": 287,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 755
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 19
+  },
+  {
+   "write_id": "01M5JMJVCJQM1EQ0B0NPQTKHV8",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3399,
+   "row_tokens_longest_statement": 3473,
+   "state_tokens_card_tokenizer": 3399,
+   "sections": {
+    "conversation": 763,
+    "proposed_action": 288,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 875
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 22
+  },
+  {
+   "write_id": "01M5JMKGBFP684SJXBM82Z05F5",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3652,
+   "row_tokens_longest_statement": 3737,
+   "state_tokens_card_tokenizer": 3652,
+   "sections": {
+    "conversation": 1078,
+    "proposed_action": 287,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 814
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 27
+  },
+  {
+   "write_id": "01M5JMKJZ89YMCJ0N6FJ94V46Q",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3849,
+   "row_tokens_longest_statement": 3934,
+   "state_tokens_card_tokenizer": 3849,
+   "sections": {
+    "conversation": 1183,
+    "proposed_action": 288,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 905
+   },
+   "ledger_entries": 7,
+   "agent_sentences": 31
+  },
+  {
+   "write_id": "01M5JMM4XXKQVYHKNDHSG0Y0H2",
+   "split": "train",
+   "domain": "retail",
+   "state_tokens": 3558,
+   "row_tokens_longest_statement": 3637,
+   "state_tokens_card_tokenizer": 3558,
+   "sections": {
+    "conversation": 804,
+    "proposed_action": 288,
+    "plan_calls": 18,
+    "policy": 1458,
+    "ledger": 993
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 34
+  },
+  {
+   "write_id": "01M61PSRVRXMARGYBWJZ9YJE0Y",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3461,
+   "row_tokens_longest_statement": 3572,
+   "state_tokens_card_tokenizer": 3461,
+   "sections": {
+    "conversation": 645,
+    "proposed_action": 252,
+    "plan_calls": 46,
+    "policy": 1695,
+    "ledger": 826
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 18
+  },
+  {
+   "write_id": "01M61PSTDDZHYXW0HEVTJTFXGX",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4805,
+   "row_tokens_longest_statement": 4916,
+   "state_tokens_card_tokenizer": 4805,
+   "sections": {
+    "conversation": 670,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 2373
+   },
+   "ledger_entries": 8,
+   "agent_sentences": 18
+  },
+  {
+   "write_id": "01M61PSTQH5ENQFW5W2NA6QTYZ",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4805,
+   "row_tokens_longest_statement": 4916,
+   "state_tokens_card_tokenizer": 4805,
+   "sections": {
+    "conversation": 670,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 2373
+   },
+   "ledger_entries": 8,
+   "agent_sentences": 18
+  },
+  {
+   "write_id": "01M61PT2NG1AA7SCQ0PGK942A7",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3117,
+   "row_tokens_longest_statement": 3196,
+   "state_tokens_card_tokenizer": 3117,
+   "sections": {
+    "conversation": 567,
+    "proposed_action": 50,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 790
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 27
+  },
+  {
+   "write_id": "01M61PT30XT83HZBJSJ0RDWB5D",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3118,
+   "row_tokens_longest_statement": 3197,
+   "state_tokens_card_tokenizer": 3118,
+   "sections": {
+    "conversation": 567,
+    "proposed_action": 51,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 790
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 27
+  },
+  {
+   "write_id": "01M61PTMHC2NJEBQ2NR80XNJHA",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 2706,
+   "row_tokens_longest_statement": 2785,
+   "state_tokens_card_tokenizer": 2706,
+   "sections": {
+    "conversation": 469,
+    "proposed_action": 250,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 277
+   },
+   "ledger_entries": 1,
+   "agent_sentences": 16
+  },
+  {
+   "write_id": "01M61PTMV0JAHQARJNFWV9YQHZ",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4511,
+   "row_tokens_longest_statement": 4607,
+   "state_tokens_card_tokenizer": 4511,
+   "sections": {
+    "conversation": 900,
+    "proposed_action": 253,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1648
+   },
+   "ledger_entries": 7,
+   "agent_sentences": 31
+  },
+  {
+   "write_id": "01M61PTR8ESVDBEQCPRHQB7042",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3120,
+   "row_tokens_longest_statement": 3199,
+   "state_tokens_card_tokenizer": 3120,
+   "sections": {
+    "conversation": 579,
+    "proposed_action": 188,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 643
+   },
+   "ledger_entries": 2,
+   "agent_sentences": 20
+  },
+  {
+   "write_id": "01M61PV3G52Z4KJP9G0YXEDF6S",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 3919,
+   "row_tokens_longest_statement": 4011,
+   "state_tokens_card_tokenizer": 3919,
+   "sections": {
+    "conversation": 975,
+    "proposed_action": 277,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 957
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 31
+  },
+  {
+   "write_id": "01M61PVG98QWC7JVAEJEJQZ0PS",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 8080,
+   "row_tokens_longest_statement": 8178,
+   "state_tokens_card_tokenizer": 8080,
+   "sections": {
+    "conversation": 1265,
+    "proposed_action": 252,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 4853
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 47
+  },
+  {
+   "write_id": "01M61PWPDBDVTYVXJ7P2DGXJGF",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4975,
+   "row_tokens_longest_statement": 5088,
+   "state_tokens_card_tokenizer": 4975,
+   "sections": {
+    "conversation": 1307,
+    "proposed_action": 467,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1491
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 53
+  },
+  {
+   "write_id": "01M61PWTD0M8BWXEKGDZ509ZGR",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 5364,
+   "row_tokens_longest_statement": 5477,
+   "state_tokens_card_tokenizer": 5364,
+   "sections": {
+    "conversation": 1455,
+    "proposed_action": 468,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1731
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 58
+  },
+  {
+   "write_id": "01M61PX4644DWNDVHGC7EKSWPT",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 7584,
+   "row_tokens_longest_statement": 7677,
+   "state_tokens_card_tokenizer": 7584,
+   "sections": {
+    "conversation": 1817,
+    "proposed_action": 303,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 3754
+   },
+   "ledger_entries": 10,
+   "agent_sentences": 61
+  },
+  {
+   "write_id": "01M61PX4FK7DA9Z1J1D9QEXRT2",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 7469,
+   "row_tokens_longest_statement": 7562,
+   "state_tokens_card_tokenizer": 7469,
+   "sections": {
+    "conversation": 1817,
+    "proposed_action": 188,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 3754
+   },
+   "ledger_entries": 10,
+   "agent_sentences": 61
+  },
+  {
+   "write_id": "01M61PX5E4JBZB1FQ1ZVYT6W4E",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4124,
+   "row_tokens_longest_statement": 4212,
+   "state_tokens_card_tokenizer": 4124,
+   "sections": {
+    "conversation": 935,
+    "proposed_action": 113,
+    "plan_calls": 165,
+    "policy": 1695,
+    "ledger": 1219
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 31
+  },
+  {
+   "write_id": "01M61PX78BTBS6N3D4MQKMRGKH",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4453,
+   "row_tokens_longest_statement": 4541,
+   "state_tokens_card_tokenizer": 4453,
+   "sections": {
+    "conversation": 948,
+    "proposed_action": 251,
+    "plan_calls": 68,
+    "policy": 1695,
+    "ledger": 1494
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 31
+  },
+  {
+   "write_id": "01M61PX8F17N6XTENDJ525WV9B",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 2517,
+   "row_tokens_longest_statement": 2604,
+   "state_tokens_card_tokenizer": 2517,
+   "sections": {
+    "conversation": 449,
+    "proposed_action": 53,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 305
+   },
+   "ledger_entries": 1,
+   "agent_sentences": 14
+  },
+  {
+   "write_id": "01M61PX8RE2M6RFADFQBXN6E57",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4694,
+   "row_tokens_longest_statement": 4782,
+   "state_tokens_card_tokenizer": 4694,
+   "sections": {
+    "conversation": 961,
+    "proposed_action": 188,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1835
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 31
+  },
+  {
+   "write_id": "01M61PXFATXSKNSSM2J0EQME5Z",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 8377,
+   "row_tokens_longest_statement": 8475,
+   "state_tokens_card_tokenizer": 8377,
+   "sections": {
+    "conversation": 2379,
+    "proposed_action": 303,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 3985
+   },
+   "ledger_entries": 12,
+   "agent_sentences": 76
+  },
+  {
+   "write_id": "01M61PXJFG0ZP04V1QEJD869TJ",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 5385,
+   "row_tokens_longest_statement": 5473,
+   "state_tokens_card_tokenizer": 5385,
+   "sections": {
+    "conversation": 1444,
+    "proposed_action": 252,
+    "plan_calls": 68,
+    "policy": 1695,
+    "ledger": 1929
+   },
+   "ledger_entries": 8,
+   "agent_sentences": 50
+  },
+  {
+   "write_id": "01M61PXK44D3ZYYVPY8R6M2RKX",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 6288,
+   "row_tokens_longest_statement": 6384,
+   "state_tokens_card_tokenizer": 6288,
+   "sections": {
+    "conversation": 1942,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 2584
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 59
+  },
+  {
+   "write_id": "01M61PXKGCSJZJETM64WV2AHM4",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 6892,
+   "row_tokens_longest_statement": 6988,
+   "state_tokens_card_tokenizer": 6892,
+   "sections": {
+    "conversation": 1942,
+    "proposed_action": 656,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 2584
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 59
+  },
+  {
+   "write_id": "01M61PXKTBR97TZS7D9PJA407T",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 5645,
+   "row_tokens_longest_statement": 5733,
+   "state_tokens_card_tokenizer": 5645,
+   "sections": {
+    "conversation": 1457,
+    "proposed_action": 188,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 2290
+   },
+   "ledger_entries": 9,
+   "agent_sentences": 50
+  },
+  {
+   "write_id": "01M61PXM3NRZ465H5C04ZSK9HS",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 8712,
+   "row_tokens_longest_statement": 8810,
+   "state_tokens_card_tokenizer": 8712,
+   "sections": {
+    "conversation": 2552,
+    "proposed_action": 303,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 4147
+   },
+   "ledger_entries": 13,
+   "agent_sentences": 80
+  },
+  {
+   "write_id": "01M61PXMEYT40YTMG6Z2179RRR",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 8597,
+   "row_tokens_longest_statement": 8695,
+   "state_tokens_card_tokenizer": 8597,
+   "sections": {
+    "conversation": 2552,
+    "proposed_action": 188,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 4147
+   },
+   "ledger_entries": 13,
+   "agent_sentences": 80
+  },
+  {
+   "write_id": "01M61PXXC9QDEK1ANHTGK2D9MM",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 5897,
+   "row_tokens_longest_statement": 6001,
+   "state_tokens_card_tokenizer": 5897,
+   "sections": {
+    "conversation": 1382,
+    "proposed_action": 470,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 2335
+   },
+   "ledger_entries": 15,
+   "agent_sentences": 48
+  },
+  {
+   "write_id": "01M61PYBSHWN4KY7TYCEDZAHXH",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 4030,
+   "row_tokens_longest_statement": 4117,
+   "state_tokens_card_tokenizer": 4030,
+   "sections": {
+    "conversation": 1238,
+    "proposed_action": 447,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 635
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 39
+  },
+  {
+   "write_id": "01M61PYC3M0Y8M9VYYM8SWTHPZ",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 9334,
+   "row_tokens_longest_statement": 9430,
+   "state_tokens_card_tokenizer": 9334,
+   "sections": {
+    "conversation": 3274,
+    "proposed_action": 548,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 3802
+   },
+   "ledger_entries": 10,
+   "agent_sentences": 100
+  },
+  {
+   "write_id": "01M61PYCFVXDJPD3D590KB1Y09",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 9287,
+   "row_tokens_longest_statement": 9383,
+   "state_tokens_card_tokenizer": 9287,
+   "sections": {
+    "conversation": 3274,
+    "proposed_action": 501,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 3802
+   },
+   "ledger_entries": 10,
+   "agent_sentences": 100
+  },
+  {
+   "write_id": "01M61PYCWMZ96J0QS9ZMJ3X7NZ",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 9287,
+   "row_tokens_longest_statement": 9383,
+   "state_tokens_card_tokenizer": 9287,
+   "sections": {
+    "conversation": 3274,
+    "proposed_action": 501,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 3802
+   },
+   "ledger_entries": 10,
+   "agent_sentences": 100
+  },
+  {
+   "write_id": "01M61PYGRX51BXSSZ4R86R0CQH",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 4409,
+   "row_tokens_longest_statement": 4496,
+   "state_tokens_card_tokenizer": 4409,
+   "sections": {
+    "conversation": 1397,
+    "proposed_action": 447,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 855
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 42
+  },
+  {
+   "write_id": "01M61PYTPEQPTZ9JM5DKK0NBWZ",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 11042,
+   "row_tokens_longest_statement": 11138,
+   "state_tokens_card_tokenizer": 11042,
+   "sections": {
+    "conversation": 3851,
+    "proposed_action": 478,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 5003
+   },
+   "ledger_entries": 14,
+   "agent_sentences": 121
+  },
+  {
+   "write_id": "01M61PYV1FP44RV654J2YAQ7AT",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 11043,
+   "row_tokens_longest_statement": 11139,
+   "state_tokens_card_tokenizer": 11043,
+   "sections": {
+    "conversation": 3851,
+    "proposed_action": 479,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 5003
+   },
+   "ledger_entries": 14,
+   "agent_sentences": 121
+  },
+  {
+   "write_id": "01M61PYVD9NX93H5VMR1XBYZNQ",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 11043,
+   "row_tokens_longest_statement": 11139,
+   "state_tokens_card_tokenizer": 11043,
+   "sections": {
+    "conversation": 3851,
+    "proposed_action": 479,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 5003
+   },
+   "ledger_entries": 14,
+   "agent_sentences": 121
+  },
+  {
+   "write_id": "01M61PZ9FJYVBHXG708TEDGVX3",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4464,
+   "row_tokens_longest_statement": 4558,
+   "state_tokens_card_tokenizer": 4464,
+   "sections": {
+    "conversation": 1394,
+    "proposed_action": 251,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1109
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 50
+  },
+  {
+   "write_id": "01M61PZ9SGJDMA94SS6PQSEGNG",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4401,
+   "row_tokens_longest_statement": 4495,
+   "state_tokens_card_tokenizer": 4401,
+   "sections": {
+    "conversation": 1394,
+    "proposed_action": 188,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1109
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 50
+  },
+  {
+   "write_id": "01M61PZFB0SZE1PW67FTD45XH6",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4455,
+   "row_tokens_longest_statement": 4545,
+   "state_tokens_card_tokenizer": 4455,
+   "sections": {
+    "conversation": 996,
+    "proposed_action": 252,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1497
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 35
+  },
+  {
+   "write_id": "01M61PZPAN5WTT1AM300EV7K12",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3550,
+   "row_tokens_longest_statement": 3636,
+   "state_tokens_card_tokenizer": 3550,
+   "sections": {
+    "conversation": 853,
+    "proposed_action": 225,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 762
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 24
+  },
+  {
+   "write_id": "01M61PZW9CFSERA79KP94VW7HC",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3399,
+   "row_tokens_longest_statement": 3474,
+   "state_tokens_card_tokenizer": 3399,
+   "sections": {
+    "conversation": 666,
+    "proposed_action": 251,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 772
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 18
+  },
+  {
+   "write_id": "01M61Q047KWADHFTNDWEEGTE2W",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 3942,
+   "row_tokens_longest_statement": 4026,
+   "state_tokens_card_tokenizer": 3942,
+   "sections": {
+    "conversation": 838,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1342
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 21
+  },
+  {
+   "write_id": "01M61Q0BB70786F192TBG3KVV1",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4784,
+   "row_tokens_longest_statement": 4875,
+   "state_tokens_card_tokenizer": 4784,
+   "sections": {
+    "conversation": 1769,
+    "proposed_action": 188,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1117
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 52
+  },
+  {
+   "write_id": "01M61Q0H1DR9TFDTDHB9VAJNFY",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 3127,
+   "row_tokens_longest_statement": 3196,
+   "state_tokens_card_tokenizer": 3127,
+   "sections": {
+    "conversation": 355,
+    "proposed_action": 145,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 917
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 9
+  },
+  {
+   "write_id": "01M61Q0HD0F0DNRS5WWVBVESGP",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 5328,
+   "row_tokens_longest_statement": 5412,
+   "state_tokens_card_tokenizer": 5328,
+   "sections": {
+    "conversation": 1425,
+    "proposed_action": 426,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1767
+   },
+   "ledger_entries": 7,
+   "agent_sentences": 39
+  },
+  {
+   "write_id": "01M61Q0HPA7XMW5YRTABGE2VKE",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3131,
+   "row_tokens_longest_statement": 3239,
+   "state_tokens_card_tokenizer": 3131,
+   "sections": {
+    "conversation": 581,
+    "proposed_action": 50,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 790
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 18
+  },
+  {
+   "write_id": "01M61Q0JBGTDSPSADB8QD40CH4",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3132,
+   "row_tokens_longest_statement": 3240,
+   "state_tokens_card_tokenizer": 3132,
+   "sections": {
+    "conversation": 581,
+    "proposed_action": 51,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 790
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 18
+  },
+  {
+   "write_id": "01M61Q0JQ0P7BCN5VP6010AY2T",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3332,
+   "row_tokens_longest_statement": 3440,
+   "state_tokens_card_tokenizer": 3332,
+   "sections": {
+    "conversation": 581,
+    "proposed_action": 251,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 790
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 18
+  },
+  {
+   "write_id": "01M61Q0VWMJ14327FFS2S3KPJM",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 3932,
+   "row_tokens_longest_statement": 4019,
+   "state_tokens_card_tokenizer": 3932,
+   "sections": {
+    "conversation": 777,
+    "proposed_action": 92,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1353
+   },
+   "ledger_entries": 8,
+   "agent_sentences": 22
+  },
+  {
+   "write_id": "01M61Q0Y57NCHP0DMZEFKEZNDP",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 2455,
+   "row_tokens_longest_statement": 2538,
+   "state_tokens_card_tokenizer": 2455,
+   "sections": {
+    "conversation": 319,
+    "proposed_action": 147,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 279
+   },
+   "ledger_entries": 1,
+   "agent_sentences": 10
+  },
+  {
+   "write_id": "01M61Q173G5J372Y6S90AC6FVS",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4595,
+   "row_tokens_longest_statement": 4668,
+   "state_tokens_card_tokenizer": 4595,
+   "sections": {
+    "conversation": 411,
+    "proposed_action": 51,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 2423
+   },
+   "ledger_entries": 8,
+   "agent_sentences": 13
+  },
+  {
+   "write_id": "01M61Q17VRW160JR4P3C1CXCVP",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4595,
+   "row_tokens_longest_statement": 4668,
+   "state_tokens_card_tokenizer": 4595,
+   "sections": {
+    "conversation": 411,
+    "proposed_action": 51,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 2423
+   },
+   "ledger_entries": 8,
+   "agent_sentences": 13
+  },
+  {
+   "write_id": "01M61Q1DSVFZ0VKAKKBQCS3ZR7",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4091,
+   "row_tokens_longest_statement": 4173,
+   "state_tokens_card_tokenizer": 4091,
+   "sections": {
+    "conversation": 443,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1886
+   },
+   "ledger_entries": 7,
+   "agent_sentences": 15
+  },
+  {
+   "write_id": "01M61Q1KSECAJ17000CGCZRZ6J",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 2441,
+   "row_tokens_longest_statement": 2530,
+   "state_tokens_card_tokenizer": 2441,
+   "sections": {
+    "conversation": 425,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 254
+   },
+   "ledger_entries": 1,
+   "agent_sentences": 10
+  },
+  {
+   "write_id": "01M61Q2296XPPCWSA5259X6BSB",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 2373,
+   "row_tokens_longest_statement": 2453,
+   "state_tokens_card_tokenizer": 2373,
+   "sections": {
+    "conversation": 332,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 279
+   },
+   "ledger_entries": 1,
+   "agent_sentences": 10
+  },
+  {
+   "write_id": "01M61Q346P36J830S236T7GDY6",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 4202,
+   "row_tokens_longest_statement": 4291,
+   "state_tokens_card_tokenizer": 4202,
+   "sections": {
+    "conversation": 655,
+    "proposed_action": 53,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1784
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 22
+  },
+  {
+   "write_id": "01M61Q3PXQRD3JHD5TP2CH5AQ7",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3073,
+   "row_tokens_longest_statement": 3159,
+   "state_tokens_card_tokenizer": 3073,
+   "sections": {
+    "conversation": 537,
+    "proposed_action": 252,
+    "plan_calls": 46,
+    "policy": 1695,
+    "ledger": 546
+   },
+   "ledger_entries": 2,
+   "agent_sentences": 21
+  },
+  {
+   "write_id": "01M61Q3R6NT6HY6NMXWJA78AHT",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3227,
+   "row_tokens_longest_statement": 3313,
+   "state_tokens_card_tokenizer": 3227,
+   "sections": {
+    "conversation": 550,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 915
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 21
+  },
+  {
+   "write_id": "01M61Q3RXQGMXJ4EH3VB7AR7B2",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3227,
+   "row_tokens_longest_statement": 3313,
+   "state_tokens_card_tokenizer": 3227,
+   "sections": {
+    "conversation": 550,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 915
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 21
+  },
+  {
+   "write_id": "01M61Q484XRHT74GJNDVYMZYTS",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3784,
+   "row_tokens_longest_statement": 3858,
+   "state_tokens_card_tokenizer": 3784,
+   "sections": {
+    "conversation": 822,
+    "proposed_action": 50,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1202
+   },
+   "ledger_entries": 7,
+   "agent_sentences": 25
+  },
+  {
+   "write_id": "01M61Q4MQ74VY10ANVQ3TJ72TB",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3449,
+   "row_tokens_longest_statement": 3533,
+   "state_tokens_card_tokenizer": 3449,
+   "sections": {
+    "conversation": 578,
+    "proposed_action": 253,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 908
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 14
+  },
+  {
+   "write_id": "01M61Q4QYXR822DYYJRZFTS68K",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3822,
+   "row_tokens_longest_statement": 3903,
+   "state_tokens_card_tokenizer": 3822,
+   "sections": {
+    "conversation": 764,
+    "proposed_action": 188,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1160
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 25
+  },
+  {
+   "write_id": "01M61Q5AJ8TM48KBSJDD1BBY3S",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 3616,
+   "row_tokens_longest_statement": 3719,
+   "state_tokens_card_tokenizer": 3616,
+   "sections": {
+    "conversation": 973,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 881
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 28
+  },
+  {
+   "write_id": "01M61Q5CMVPSBC1WFMYJCFYE7Y",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 5785,
+   "row_tokens_longest_statement": 5864,
+   "state_tokens_card_tokenizer": 5785,
+   "sections": {
+    "conversation": 764,
+    "proposed_action": 252,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 3059
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 21
+  },
+  {
+   "write_id": "01M61Q5JBSA6S6T3TS6A8J6AKK",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 8149,
+   "row_tokens_longest_statement": 8246,
+   "state_tokens_card_tokenizer": 8149,
+   "sections": {
+    "conversation": 1258,
+    "proposed_action": 252,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 4929
+   },
+   "ledger_entries": 7,
+   "agent_sentences": 42
+  },
+  {
+   "write_id": "01M61Q61W18MDCTTT245C04ZZP",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 7945,
+   "row_tokens_longest_statement": 8051,
+   "state_tokens_card_tokenizer": 7945,
+   "sections": {
+    "conversation": 1580,
+    "proposed_action": 449,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 4206
+   },
+   "ledger_entries": 7,
+   "agent_sentences": 43
+  },
+  {
+   "write_id": "01M61Q6DF6SSM47DQM51WGY436",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 5109,
+   "row_tokens_longest_statement": 5198,
+   "state_tokens_card_tokenizer": 5109,
+   "sections": {
+    "conversation": 1441,
+    "proposed_action": 467,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1491
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 58
+  },
+  {
+   "write_id": "01M61Q6Q9RX39XQ12JWMAK0RN1",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 6639,
+   "row_tokens_longest_statement": 6729,
+   "state_tokens_card_tokenizer": 6639,
+   "sections": {
+    "conversation": 872,
+    "proposed_action": 303,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 3754
+   },
+   "ledger_entries": 10,
+   "agent_sentences": 26
+  },
+  {
+   "write_id": "01M61Q6WZDGT9C2SH60B4DKT0S",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 7146,
+   "row_tokens_longest_statement": 7236,
+   "state_tokens_card_tokenizer": 7146,
+   "sections": {
+    "conversation": 1163,
+    "proposed_action": 303,
+    "plan_calls": 68,
+    "policy": 1695,
+    "ledger": 3920
+   },
+   "ledger_entries": 11,
+   "agent_sentences": 35
+  },
+  {
+   "write_id": "01M61Q6YJPFHCG1WPHME955S0F",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 7459,
+   "row_tokens_longest_statement": 7549,
+   "state_tokens_card_tokenizer": 7459,
+   "sections": {
+    "conversation": 1177,
+    "proposed_action": 188,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 4384
+   },
+   "ledger_entries": 12,
+   "agent_sentences": 35
+  },
+  {
+   "write_id": "01M61Q71WGYZWHH0AW1FCWVKP6",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 7640,
+   "row_tokens_longest_statement": 7730,
+   "state_tokens_card_tokenizer": 7640,
+   "sections": {
+    "conversation": 1293,
+    "proposed_action": 188,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 4449
+   },
+   "ledger_entries": 13,
+   "agent_sentences": 38
+  },
+  {
+   "write_id": "01M61Q75TVRXBGTGBEX6HVMHMY",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 4197,
+   "row_tokens_longest_statement": 4279,
+   "state_tokens_card_tokenizer": 4197,
+   "sections": {
+    "conversation": 633,
+    "proposed_action": 472,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1382
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 24
+  },
+  {
+   "write_id": "01M61Q7997MGKADFWPNJYNNEDS",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 5024,
+   "row_tokens_longest_statement": 5104,
+   "state_tokens_card_tokenizer": 5024,
+   "sections": {
+    "conversation": 1266,
+    "proposed_action": 52,
+    "plan_calls": 418,
+    "policy": 1695,
+    "ledger": 1596
+   },
+   "ledger_entries": 8,
+   "agent_sentences": 50
+  },
+  {
+   "write_id": "01M61Q79VR8ABNANRCE8DF12JV",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4360,
+   "row_tokens_longest_statement": 4449,
+   "state_tokens_card_tokenizer": 4360,
+   "sections": {
+    "conversation": 1214,
+    "proposed_action": 470,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 966
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 40
+  },
+  {
+   "write_id": "01M61Q7BFCZHHHT23JZ17JPQJ1",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 5588,
+   "row_tokens_longest_statement": 5668,
+   "state_tokens_card_tokenizer": 5588,
+   "sections": {
+    "conversation": 1279,
+    "proposed_action": 656,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1943
+   },
+   "ledger_entries": 9,
+   "agent_sentences": 50
+  },
+  {
+   "write_id": "01M61Q7E08FRX3S6AGKP0Q2ZSB",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4777,
+   "row_tokens_longest_statement": 4866,
+   "state_tokens_card_tokenizer": 4777,
+   "sections": {
+    "conversation": 1388,
+    "proposed_action": 470,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1209
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 45
+  },
+  {
+   "write_id": "01M61Q87YYRMY7FZ7NBZ3SNCDC",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4852,
+   "row_tokens_longest_statement": 4940,
+   "state_tokens_card_tokenizer": 4852,
+   "sections": {
+    "conversation": 1290,
+    "proposed_action": 251,
+    "plan_calls": 68,
+    "policy": 1695,
+    "ledger": 1551
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 43
+  },
+  {
+   "write_id": "01M61Q898SANXVYSR8JB95ZAN5",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 5093,
+   "row_tokens_longest_statement": 5181,
+   "state_tokens_card_tokenizer": 5093,
+   "sections": {
+    "conversation": 1303,
+    "proposed_action": 188,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1892
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 43
+  },
+  {
+   "write_id": "01M61Q8QAX7RGQ0BCV0C52DYFV",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4581,
+   "row_tokens_longest_statement": 4675,
+   "state_tokens_card_tokenizer": 4581,
+   "sections": {
+    "conversation": 1175,
+    "proposed_action": 226,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1470
+   },
+   "ledger_entries": 5,
+   "agent_sentences": 37
+  },
+  {
+   "write_id": "01M61Q8R9JT4JFVC77GVN9N11Q",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3519,
+   "row_tokens_longest_statement": 3599,
+   "state_tokens_card_tokenizer": 3519,
+   "sections": {
+    "conversation": 786,
+    "proposed_action": 251,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 772
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 29
+  },
+  {
+   "write_id": "01M61Q8YRFJ3NHA466H4005NNE",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4553,
+   "row_tokens_longest_statement": 4638,
+   "state_tokens_card_tokenizer": 4553,
+   "sections": {
+    "conversation": 1214,
+    "proposed_action": 51,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1578
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 41
+  },
+  {
+   "write_id": "01M61Q95BW3S5HF0MZV7BCFSZS",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4293,
+   "row_tokens_longest_statement": 4372,
+   "state_tokens_card_tokenizer": 4293,
+   "sections": {
+    "conversation": 1213,
+    "proposed_action": 250,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1120
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 42
+  },
+  {
+   "write_id": "01M61Q96DSP7Z14FDFD7DBCK08",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 5813,
+   "row_tokens_longest_statement": 5898,
+   "state_tokens_card_tokenizer": 5813,
+   "sections": {
+    "conversation": 1684,
+    "proposed_action": 532,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1887
+   },
+   "ledger_entries": 7,
+   "agent_sentences": 62
+  },
+  {
+   "write_id": "01M61Q97RQ2PHBHM7S9KVFPCEJ",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4775,
+   "row_tokens_longest_statement": 4862,
+   "state_tokens_card_tokenizer": 4775,
+   "sections": {
+    "conversation": 1528,
+    "proposed_action": 250,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1287
+   },
+   "ledger_entries": 9,
+   "agent_sentences": 48
+  },
+  {
+   "write_id": "01M61Q9CDKWQD2B2BNACSJPFQF",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 3514,
+   "row_tokens_longest_statement": 3622,
+   "state_tokens_card_tokenizer": 3514,
+   "sections": {
+    "conversation": 893,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 859
+   },
+   "ledger_entries": 4,
+   "agent_sentences": 21
+  },
+  {
+   "write_id": "01M61Q9V0PEBBX39TDBN9FE1G3",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3244,
+   "row_tokens_longest_statement": 3356,
+   "state_tokens_card_tokenizer": 3244,
+   "sections": {
+    "conversation": 694,
+    "proposed_action": 50,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 790
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 24
+  },
+  {
+   "write_id": "01M61Q9VWQ06EQKHM3FTKVMMMV",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3245,
+   "row_tokens_longest_statement": 3357,
+   "state_tokens_card_tokenizer": 3245,
+   "sections": {
+    "conversation": 694,
+    "proposed_action": 51,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 790
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 24
+  },
+  {
+   "write_id": "01M61Q9W8Y3BJF5PJP2EJCZJ49",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 3442,
+   "row_tokens_longest_statement": 3554,
+   "state_tokens_card_tokenizer": 3442,
+   "sections": {
+    "conversation": 694,
+    "proposed_action": 248,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 790
+   },
+   "ledger_entries": 3,
+   "agent_sentences": 24
+  },
+  {
+   "write_id": "01M61Q9WS74N35PTYM20MW0HVE",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 4939,
+   "row_tokens_longest_statement": 5047,
+   "state_tokens_card_tokenizer": 4939,
+   "sections": {
+    "conversation": 1519,
+    "proposed_action": 426,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1284
+   },
+   "ledger_entries": 6,
+   "agent_sentences": 43
+  },
+  {
+   "write_id": "01M61QA4VVG9YRFK36ECZQ97YG",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4731,
+   "row_tokens_longest_statement": 4843,
+   "state_tokens_card_tokenizer": 4731,
+   "sections": {
+    "conversation": 1024,
+    "proposed_action": 251,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1746
+   },
+   "ledger_entries": 7,
+   "agent_sentences": 35
+  },
+  {
+   "write_id": "01M61QABN0FBHG37FYXGS7XWT1",
+   "split": "dev",
+   "domain": "airline",
+   "state_tokens": 2444,
+   "row_tokens_longest_statement": 2516,
+   "state_tokens_card_tokenizer": 2444,
+   "sections": {
+    "conversation": 308,
+    "proposed_action": 147,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 279
+   },
+   "ledger_entries": 1,
+   "agent_sentences": 11
+  },
+  {
+   "write_id": "01M61QAQHD89C11D1ZMTG5RH67",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4707,
+   "row_tokens_longest_statement": 4792,
+   "state_tokens_card_tokenizer": 4707,
+   "sections": {
+    "conversation": 523,
+    "proposed_action": 51,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 2423
+   },
+   "ledger_entries": 8,
+   "agent_sentences": 20
+  },
+  {
+   "write_id": "01M61QAXR13HZH3KDDW3H4VE5Y",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 4492,
+   "row_tokens_longest_statement": 4576,
+   "state_tokens_card_tokenizer": 4492,
+   "sections": {
+    "conversation": 844,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 1886
+   },
+   "ledger_entries": 7,
+   "agent_sentences": 34
+  },
+  {
+   "write_id": "01M61QAYDHB0GRMZX185D8ANBW",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 5330,
+   "row_tokens_longest_statement": 5403,
+   "state_tokens_card_tokenizer": 5330,
+   "sections": {
+    "conversation": 1318,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 2250
+   },
+   "ledger_entries": 8,
+   "agent_sentences": 48
+  },
+  {
+   "write_id": "01M61QAZD1C85YBG2KRN638RMF",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 5328,
+   "row_tokens_longest_statement": 5401,
+   "state_tokens_card_tokenizer": 5328,
+   "sections": {
+    "conversation": 1318,
+    "proposed_action": 50,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 2250
+   },
+   "ledger_entries": 8,
+   "agent_sentences": 48
+  },
+  {
+   "write_id": "01M61QAZRCFF15XVF4MZQV9R18",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 5330,
+   "row_tokens_longest_statement": 5403,
+   "state_tokens_card_tokenizer": 5330,
+   "sections": {
+    "conversation": 1318,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 2250
+   },
+   "ledger_entries": 8,
+   "agent_sentences": 48
+  },
+  {
+   "write_id": "01M61QBD9PW1G7Y0B2Y885TT4F",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 7523,
+   "row_tokens_longest_statement": 7622,
+   "state_tokens_card_tokenizer": 7523,
+   "sections": {
+    "conversation": 1269,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 4492
+   },
+   "ledger_entries": 38,
+   "agent_sentences": 38
+  },
+  {
+   "write_id": "01M61QBHFETZPXR2PJW4V2J21K",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 2378,
+   "row_tokens_longest_statement": 2461,
+   "state_tokens_card_tokenizer": 2378,
+   "sections": {
+    "conversation": 337,
+    "proposed_action": 52,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 279
+   },
+   "ledger_entries": 1,
+   "agent_sentences": 10
+  },
+  {
+   "write_id": "01M61QBRDS09E99Z418H4DX56V",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 8824,
+   "row_tokens_longest_statement": 8923,
+   "state_tokens_card_tokenizer": 8824,
+   "sections": {
+    "conversation": 1808,
+    "proposed_action": 251,
+    "plan_calls": 185,
+    "policy": 1695,
+    "ledger": 4888
+   },
+   "ledger_entries": 40,
+   "agent_sentences": 52
+  },
+  {
+   "write_id": "01M61QBSPH8AFEAG9C0BD3NRFH",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 9087,
+   "row_tokens_longest_statement": 9186,
+   "state_tokens_card_tokenizer": 9087,
+   "sections": {
+    "conversation": 1822,
+    "proposed_action": 251,
+    "plan_calls": 88,
+    "policy": 1695,
+    "ledger": 5234
+   },
+   "ledger_entries": 41,
+   "agent_sentences": 52
+  },
+  {
+   "write_id": "01M61QBV3BCVRKNX4J3WDGKFH7",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 9352,
+   "row_tokens_longest_statement": 9451,
+   "state_tokens_card_tokenizer": 9352,
+   "sections": {
+    "conversation": 1836,
+    "proposed_action": 226,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 5580
+   },
+   "ledger_entries": 42,
+   "agent_sentences": 52
+  },
+  {
+   "write_id": "01M61QCGXQPGRQTHWAHV15T9Q7",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 12151,
+   "row_tokens_longest_statement": 12250,
+   "state_tokens_card_tokenizer": 12151,
+   "sections": {
+    "conversation": 3068,
+    "proposed_action": 253,
+    "plan_calls": 90,
+    "policy": 1695,
+    "ledger": 7048
+   },
+   "ledger_entries": 50,
+   "agent_sentences": 101
+  },
+  {
+   "write_id": "01M61QCJY1J0DDNGGA55AK1PJX",
+   "split": "train",
+   "domain": "airline",
+   "state_tokens": 12436,
+   "row_tokens_longest_statement": 12535,
+   "state_tokens_card_tokenizer": 12436,
+   "sections": {
+    "conversation": 3082,
+    "proposed_action": 228,
+    "plan_calls": 18,
+    "policy": 1695,
+    "ledger": 7416
+   },
+   "ledger_entries": 51,
+   "agent_sentences": 101
+  }
+ ]
+}

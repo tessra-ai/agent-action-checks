@@ -5,6 +5,11 @@
 over 8,192. As the plan says, this stops here with the options below. Nothing has been labelled
 or trained. Spend: **$0** (no model or API calls).
 
+**Accepted by Prithvi on 2026-11-18 with decisions** (see "Decisions after the gate" at the end).
+The packet is now v1: identical repeated lookups are pointers, and later calls in the same
+customer turn are context. Re-measured on train+dev: p95 **9,087**, max 12,436, **14 of 174**
+over 8,192, all airline. The sections above describe v0 as gated; they are kept as written.
+
 ## 1. Paths in "What already exists"
 
 Every path listed in the build plan exists. Counts match the plan.
@@ -190,23 +195,17 @@ lossless and generic. G keeps the model size the plan wants, and trains on the r
 distribution rather than relying on Kev's general-purpose validation. If G's dev results at
 lengths over 8k are worse, F is the fallback.
 
-## Other decisions this milestone needs
-
-- **Q2 in `label_definition.md`:** how plan-level totals are labelled when the packet holds one
-  call.
-- **The consent marker:** keep "last customer message" or move it to the last customer message
-  containing an approval. Moving it takes a reading rule, which is a kind of per-language code.
-- Confirm or change the **split deviation** (anchor tasks kept out of the unseen draw and put in
-  dev).
-
 ## Files
 
-- `packets.py`, `splits.py`, `sentences.py`, `tokens.py`, `trim_options.py`
+- `packets.py`, `splits.py`, `folds.py`, `sentences.py`, `tokens.py`, `trim_options.py`
 - `label_definition.md`
-- `splits/{train,dev,test_repeat,test_unseen}.json`, `splits/manifest.json`
-- `results/token_lengths.json`, `results/trim_options.json`, `results/sentence_audit.json`
-- `review/sentence_sample.json`, `review/sentence_sample_reading.json`
-- `runs/packets.jsonl` (git-ignored; train and dev only; sha256 above)
+- `splits/{train,dev,test_repeat,test_unseen}.json`, `splits/manifest.json`, `splits/folds.json`,
+  `splits/folds_manifest.json`
+- `results/token_lengths.json` (v0), `results/token_lengths_v1.json`, `results/trim_options.json`
+  (v0), `results/sentence_audit.json`
+- `review/sentence_sample.json`, `review/sentence_sample_reading.json`, `review/consent_13.json`
+- `runs/packets.jsonl` (git-ignored; train and dev only). v1 sha256
+  `1e0443d79df58982ad5bad031d543a18a96321efe95bafefffa92673e76b7023`; the v0 hash above is history
 
 **Disclosure on test data.** While checking the loader, before the splits existed, Claude
 printed per-capture truth totals (for example "airline 2: 40 should not run, 36 should run").
@@ -229,3 +228,93 @@ leaves out, as the existing experiment tests already do. Reviews were Codex's de
 
 All numbers are from one deterministic run. The sentence-mixing rate and the worked-case labels
 are one reader's judgement (Claude's), not a person's.
+
+## Decisions after the gate (Prithvi, 2026-11-18)
+
+1. **Packet length.** Remove repeated identical lookups (lossless only), and plan to fine-tune
+   Kev-4B on longer inputs. No trimming and no evidence selection. Kev-27B is a reference point
+   only. **From now on every result is reported separately for packets under and over 8,192
+   tokens**, and the M2 pilot includes the over-limit packets.
+2. **Totals over several calls.** The packet carries the other calls the customer agreed to in
+   the same plan, and a stated total is checked against all of them.
+3. **Consent marker.** Not kept as is. The 13 train actions whose marked message has no "yes" go
+   to Prithvi first (`review/consent_13.json`); the marker changes only after his answer.
+4. **Split deviations.** Both accepted (anchor tasks in dev; task 47 in test_unseen).
+5. **Thresholds.** Not set on dev alone: cross-validation over train + dev, grouped by task.
+   Test sets stay sealed.
+6. **M1 pre-fill.** The claims-check verdict only picks which statements to look at, never a
+   label. Pre-fill comes from Prithvi's rulings, his corrections and the graders' reasons.
+7. **Statement unit.** Sentences, with a list item's lead-in line carried as context.
+
+### What changed (packet v1)
+
+- `packets.py`: `dedup_ledger()` (decision 1) and `plan_calls()` with a new rendered section,
+  "Later calls in the same customer turn (agreement not verified)" (decision 2). A call is listed
+  when it is a later write proposal in the same conversation, its history contains this call, and
+  no customer message comes between them. This call may have run inside a batch with other
+  calls. Distinct calls other than this one (a retry of the same call is not another call), in
+  proposal order.
+
+**Decision 2 is implemented narrower than asked, pending Prithvi.** The decision says "the other
+calls the customer agreed to". "No customer message in between" does not show agreement: the
+Gaming Mouse return is itself such a later call (the agent returned the mouse right after the
+other items, with no customer message, against the customer's "keep the mouse"). Found by the
+Codex pre-commit review. Telling which later calls were agreed needs a reading, not code, so the
+section is titled "agreement not verified", and the review sheet asks the reviewer to judge
+agreement when checking a total. Options: keep it so (the model judges agreement too); or add a
+per-call "agreed?" question to the M1 sheet and keep only agreed calls in later packets.
+- `trim_options.py` is kept as the v0 record and is not used further.
+
+**One caveat on decision 2.** No captured action proposes more than one call at a time: every
+later call was proposed *after* this one ran. In the captures they are known; a live gate
+checking the first call would not have them, unless the agent states its plan or proposes the
+calls together. 21 of 174 train+dev packets carry later calls. Training on them teaches the
+model to use information a live first call lacks. The packet keeps the section separate, so a
+run without it can be measured. That comparison is worth having before M4.
+
+### Lengths, packet v1 (Kev encoder and tokenizer as above; train + dev)
+
+| State tokens | n | median | p95 | max | over 8,192 |
+|---|---|---|---|---|---|
+| all | 174 | 4,278 | **9,087** | 12,436 | **14** |
+| train | 133 | 4,455 | 8,377 | 12,436 | 8 |
+| dev | 41 | 3,932 | 11,042 | 11,043 | 6 |
+| airline | 101 | 4,694 | 9,352 | 12,436 | 14 |
+| retail | 73 | 3,900 | 6,964 | 7,443 | 0 |
+
+Sections (median / p95 / max): conversation 865 / 2,552 / 3,851; proposed action
+263 / 472 / 656; later calls 18 / 87 / 418; policy 1,695 (airline), 1,458 (retail); ledger
+1,632 / 4,853 / 7,416.
+
+The over-limit group is small: **4 good, 6 bad, 4 ungraded** actions (train + dev). Every
+over/under result will rest on those counts and will say so. The three anchors are all under
+(3,355 to 5,328 tokens).
+
+### Good and bad actions per split and fold
+
+Folds: `folds.py`, k = 5, seed 20261118, grouped by (domain, task) over train + dev, balanced on
+the larger share of good or bad. Hashes in `splits/folds_manifest.json`.
+
+| | actions | good | bad | ungraded | tasks |
+|---|---|---|---|---|---|
+| train | 133 | 45 | 65 | 23 | 31 |
+| dev | 41 | 11 | 26 | 4 | 11 |
+| fold 0 | 34 | 11 | 18 | 5 | 8 (6 airline, 2 retail) |
+| fold 1 | 31 | 12 | 18 | 1 | 6 (3, 3) |
+| fold 2 | 41 | 11 | 18 | 12 | 11 (9, 2) |
+| fold 3 | 36 | 11 | 18 | 7 | 9 (8, 1) |
+| fold 4 | 32 | 11 | 19 | 2 | 8 (5, 3) |
+
+Each fold's good-action rate moves in steps of about 9% (one action in 11). A threshold set
+across all five folds rests on 56 good actions.
+
+### Consent: the 13 cases (`review/consent_13.json`)
+
+Claude's read of each full conversation, for Prithvi's answer:
+
+| Read | Count | Write IDs |
+|---|---|---|
+| Agreed earlier; the marked message only chooses or changes the payment | 5 | `01M61PXM3NRZ465H5C04ZSK9HS`, `01M61PXMEYT40YTMG6Z2179RRR`, `01M61Q71WGYZWHH0AW1FCWVKP6`, `01M61Q95BW3S5HF0MZV7BCFSZS`, `01M61Q96DSP7Z14FDFD7DBCK08` |
+| Agreed in the marked message without a yes-word | 2 | `01M5JZ4HDTBD3TFZNSCV5SF34S` (asks for the return), `01M5JZ91W7FWACM25ZX0E5W1KG` ("Alright, fine. Return everything …") |
+| Refused this call in the marked message | 2 | `01M5JZ53BEFJZ298SGE8SY5R9V`, `01M61Q1KSECAJ17000CGCZRZ6J` |
+| Never agreed to this call (asked for something else, or never confirmed specifics) | 4 | `01M5JZ53HDAV2K8DP4RDA51Y1V`, `01M5JZ5BZQ37Z0YKPTD97HJA3A`, `01M5JZ4D5E6CMP314QYVP9GPAN`, `01M61QBD9PW1G7Y0B2Y885TT4F` |

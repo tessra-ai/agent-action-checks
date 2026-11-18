@@ -68,6 +68,11 @@ def cap(p: dict, tok, n: int) -> dict:
 
 def main() -> None:
     packets = load_train_dev(PACKETS)
+    if {p["packet_version"] for p in packets} != {"rely1-packet-v0"}:
+        raise SystemExit(
+            "trim_options.py is the v0 record (results/trim_options.json); it measures v0 packets "
+            "only and is not rerun on v1"
+        )
     tok = load_tokenizer(BASE, revision=BASE_REVISION)
 
     def state(p: dict) -> int:

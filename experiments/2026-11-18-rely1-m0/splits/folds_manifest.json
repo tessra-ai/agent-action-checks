@@ -1,0 +1,77 @@
+{
+ "sha256": "788c42c6ffc07c477a721f73442b54244c6c6ebe6ff822c85e68835bab2c8828",
+ "train": {
+  "actions": 133,
+  "good": 45,
+  "bad": 65,
+  "ungraded": 23
+ },
+ "dev": {
+  "actions": 41,
+  "good": 11,
+  "bad": 26,
+  "ungraded": 4
+ },
+ "folds": [
+  {
+   "fold": 0,
+   "actions": 34,
+   "good": 11,
+   "bad": 18,
+   "ungraded": 5,
+   "domains": {
+    "airline": 6,
+    "retail": 2
+   },
+   "tasks": 8
+  },
+  {
+   "fold": 1,
+   "actions": 31,
+   "good": 12,
+   "bad": 18,
+   "ungraded": 1,
+   "domains": {
+    "airline": 3,
+    "retail": 3
+   },
+   "tasks": 6
+  },
+  {
+   "fold": 2,
+   "actions": 41,
+   "good": 11,
+   "bad": 18,
+   "ungraded": 12,
+   "domains": {
+    "airline": 9,
+    "retail": 2
+   },
+   "tasks": 11
+  },
+  {
+   "fold": 3,
+   "actions": 36,
+   "good": 11,
+   "bad": 18,
+   "ungraded": 7,
+   "domains": {
+    "airline": 8,
+    "retail": 1
+   },
+   "tasks": 9
+  },
+  {
+   "fold": 4,
+   "actions": 32,
+   "good": 11,
+   "bad": 19,
+   "ungraded": 2,
+   "domains": {
+    "airline": 5,
+    "retail": 3
+   },
+   "tasks": 8
+  }
+ ]
+}

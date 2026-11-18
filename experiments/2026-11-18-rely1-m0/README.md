@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Status** | `diagnostic`: gate **not passed** (packets do not fit; see Report.md). Stopped at the gate |
+| **Status** | `diagnostic`: gate **not passed** (packets did not fit). **Accepted by Prithvi on 2026-11-18 with decisions**; packet v1 and CV folds added after the gate (Report.md, "Decisions after the gate") |
 | **Branch** | `rely/m0-spec` |
 | **Question** | Before anything is labelled or trained: is the input defined, are the splits clean, and does one action packet fit Kev-4B's validated context? |
 | **Data** | The 328 frozen write actions: 73 retail (`2026-10-25-docent-vs-oracle`), 133 airline (`2026-10-28-airline-veto`), 122 airline (`2026-11-05-airline-holdout`). Read only; no file in those folders is changed or rerun |
@@ -22,6 +22,10 @@ One packet per proposed write, in one generic format for every tool and domain:
   kind (`read` / `write` / `generic`, from τ²'s decorator), arguments, result and an error flag.
   The conversation shows only `(lookups L3, L4)` where a call happened, so no record appears
   twice.
+
+**Packet v1** (after the gate): identical repeated lookups become pointers to their last copy,
+and a "Later calls in the same customer turn (agreement not verified)" section lists the later
+write proposals in the same conversation with no customer message in between.
 
 `render()` turns a packet into the single text document a decision model reads (Kev's `state`).
 Truth and metadata (`meta`) travel next to the packet, never inside the rendered text.
@@ -77,6 +81,8 @@ environment with Kev installed **editable** from its checkout at the commit abov
 1. `python splits.py` → `splits/` (once; refuses to overwrite; reads IDs and task metadata only)
 2. `python packets.py` → `runs/packets.jsonl`, train and dev only (git-ignored; sha256 in
    Report.md). It filters by the frozen splits; `--all` builds all 328 for M5.
-3. `python sentences.py` → `results/sentence_audit.json`, `review/sentence_sample.json`
-4. `kev-venv/bin/python tokens.py` → `results/token_lengths.json`
-5. `kev-venv/bin/python trim_options.py` → `results/trim_options.json`
+3. `python folds.py` → `splits/folds.json`, `splits/folds_manifest.json` (once; added after the
+   gate, decision 5)
+4. `python sentences.py` → `results/sentence_audit.json`, `review/sentence_sample.json`
+5. `kev-venv/bin/python tokens.py` → `results/token_lengths_v1.json` (packet v1; v0's file is kept)
+6. `kev-venv/bin/python trim_options.py` → `results/trim_options.json` (v0 record; not rerun)

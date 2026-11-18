@@ -47,7 +47,9 @@ ANCHORS = {
     "01M5JZ4FQ7N37RJXVD6FW00S14": "Gaming Mouse (retail, task 12)",
 }
 
-PACKET_VERSION = "rely1-packet-v0"
+# v0: M0 as first measured. v1 (M0 decisions, 2026-11-18): identical repeated lookups become
+# pointers to their last copy, and later calls in the same customer turn are shown as context.
+PACKET_VERSION = "rely1-packet-v1"
 
 
 def jsonl(path: Path) -> list[dict]:
@@ -208,7 +210,61 @@ def compact(content: str) -> str:
         return content
 
 
-def build(capture: str, run: dict, specs: dict[str, dict], policy: str) -> dict:
+def dedup_ledger(ledger: list[dict]) -> None:
+    """A lookup repeated with the same tool, arguments, result and error flag keeps only its last
+    copy; earlier copies point to it, so order is kept. A repeat whose result changed (for
+    example after a write) is kept in full. Lossless and kind-agnostic."""
+
+    def key(e: dict) -> tuple:
+        return (e["tool"], json.dumps(e["arguments"], sort_keys=True), e["result"], e["error"])
+
+    last = {key(e): e["n"] for e in ledger}
+    for e in ledger:
+        k = key(e)
+        if last[k] != e["n"]:
+            e["result"], e["same_as"] = f"(same as L{last[k]})", last[k]
+
+
+def _sig(call: dict) -> tuple:
+    return (call["function"], json.dumps(call["arguments"], sort_keys=True))
+
+
+def plan_calls(run: dict, runs: list[dict]) -> list[dict]:
+    """Later calls in the same customer turn: later write proposals in the same conversation
+    (their history contains this call) with no customer message between this call and them.
+    Distinct calls other than this one (a retry of this call is not another call), in the order
+    proposed. They are what the agent did next, **not** calls the customer is known to have
+    agreed to: the Gaming Mouse return is one of them. Whether each was agreed is part of the
+    judgement (Report.md, decision 2). Read from the capture: the agent proposed them after this
+    call ran, so a live gate would not have them."""
+    msgs = run["messages"]
+    prefix, prop = msgs[:-1], msgs[-1]["tool_calls"][-1]
+    later = []
+    for b in runs:
+        mb = b["messages"]
+        if b is run or len(mb) <= len(msgs) or mb[: len(prefix)] != prefix:
+            continue
+        calls = mb[len(prefix)].get("tool_calls") or []
+        if not any(_sig(c) == _sig(prop) for c in calls):  # it ran, possibly in a batch
+            continue
+        if any(m["role"] == "user" for m in mb[len(msgs) : -1]):
+            continue
+        later.append((len(mb), mb[-1]["tool_calls"][-1]))
+    out, seen = [], {_sig(prop)}
+    for _, call in sorted(later, key=lambda x: x[0]):
+        if _sig(call) not in seen:
+            seen.add(_sig(call))
+            out.append({"tool": call["function"], "arguments": call["arguments"]})
+    return out
+
+
+def build(
+    capture: str,
+    run: dict,
+    specs: dict[str, dict],
+    policy: str,
+    runs: list[dict] | None = None,
+) -> dict:
     """One action packet. The conversation keeps every customer and agent message in order;
     each tool call becomes a numbered ledger entry, and the conversation shows only its number,
     so no record appears twice. The consent turn is the last customer message before the call."""
@@ -241,6 +297,7 @@ def build(capture: str, run: dict, specs: dict[str, dict], policy: str) -> dict:
                 refs.append(len(ledger))
             if m["content"] or refs:
                 turns.append({"role": "agent", "text": m["content"] or "", "ledger_refs": refs})
+    dedup_ledger(ledger)
     consent = max(i for i, t in enumerate(turns) if t["role"] == "customer")
     turns[consent]["consent"] = True
 
@@ -258,6 +315,7 @@ def build(capture: str, run: dict, specs: dict[str, dict], policy: str) -> dict:
             "description": spec["description"],
             "parameters": spec["parameters"],
         },
+        "plan_calls": plan_calls(run, runs or []),
         "policy": policy,
         "ledger": ledger,
     }
@@ -280,7 +338,20 @@ def render(p: dict) -> str:
     out.append(f"description: {a['description']}")
     for prm in a["parameters"]:
         out.append(f"- {prm['name']} ({prm['type']}): {prm['description']}")
+    if p.get("packet_version") == "rely1-packet-v0":  # v0 had no later-calls section
+        out += ["", "# Policy", p["policy"], "", "# Evidence ledger (every lookup, in order)"]
+        return _ledger_lines(out, p)
+    out += ["", "# Later calls in the same customer turn (agreement not verified)"]
+    for c in p.get("plan_calls") or []:
+        args = json.dumps(c["arguments"], ensure_ascii=False, sort_keys=True)
+        out.append(f"- {c['tool']} {args}")
+    if not p.get("plan_calls"):
+        out.append("none")
     out += ["", "# Policy", p["policy"], "", "# Evidence ledger (every lookup, in order)"]
+    return _ledger_lines(out, p)
+
+
+def _ledger_lines(out: list[str], p: dict) -> str:
     for e in p["ledger"]:
         args = json.dumps(e["arguments"], ensure_ascii=False, sort_keys=True)
         err = " ERROR" if e["error"] else ""
@@ -302,7 +373,7 @@ def load_all(keep: set[str] | None = None) -> list[dict]:
         truth = {w: t for w, t in TRUTH[capture]().items() if w in selected}
         for run in runs:
             w = run["write_id"]
-            p = build(capture, run, specs, policy)
+            p = build(capture, run, specs, policy, runs)  # same conversation = same split
             p["meta"] = {
                 **m[w],
                 "truth": truth.get(w),

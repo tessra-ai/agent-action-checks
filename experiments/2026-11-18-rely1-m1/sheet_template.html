@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>__TITLE__</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1d1b;--mute:#6b6a65;--line:#e3e0d8;--card:#fff;--hi:#fff3c4;--accent:#2f5d8a}
+@media (prefers-color-scheme:dark){:root{--bg:#191917;--fg:#ecebe6;--mute:#a19f97;--line:#34332f;--card:#22221f;--hi:#4a4120;--accent:#8fb6dd}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif}
+main{max-width:980px;margin:0 auto;padding:16px}
+h1{font-size:20px;margin:8px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px;margin:14px 0}
+.stmt{font-size:17px;background:var(--hi);padding:8px;border-radius:6px}
+.lead{color:var(--mute);font-size:13px}
+.mute{color:var(--mute);font-size:13px}
+pre{white-space:pre-wrap;word-break:break-word;font-size:12.5px;margin:4px 0}
+details{margin:6px 0} summary{cursor:pointer;color:var(--accent)}
+.turn{padding:3px 6px;border-left:3px solid transparent;font-size:13.5px}
+.turn.on{border-left-color:var(--accent);background:var(--hi)}
+.q{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:6px 0}
+.q b{min-width:280px}
+textarea{width:100%;min-height:44px;font:inherit;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px}
+.bar{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 0;z-index:2;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button{font:inherit;padding:4px 10px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin-right:6px}
+</style></head><body><main>
+<h1>__TITLE__</h1>
+<p class="mute">__INTRO__</p>
+<div class="card"><b>The label</b><ul>__DEF__</ul></div>
+<div class="bar"><span id="progress"></span>
+<button id="export">Export answers</button>
+<label class="mute">Import <input type="file" id="import" accept="application/json"></label></div>
+<div id="items"></div>
+</main>
+<script>
+const DATA = __DATA__;
+const SHEET = DATA.sheet;
+const KEY = "rely1-m1-" + SHEET + "-" + DATA.items_sha256;
+let canSave = true;
+let answers = {};
+try { answers = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { answers = {}; }
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch (e) { canSave = false; }
+  const done = DATA.items.filter(i => { const a = answers[i.key] || {}; return a.mc && a.material && a.records; }).length;
+  const started = DATA.items.filter(i => Object.keys(answers[i.key] || {}).length).length;
+  document.getElementById("progress").textContent = done + " of " + DATA.items.length + " complete (all three answers)" + (started > done ? " · " + (started - done) + " incomplete" : "") + (canSave ? "" : " · this browser is not saving: export before closing");
+}
+function el(tag, attrs, text) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) e.setAttribute(k, v);
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+function radios(item, field, label, options) {
+  const q = el("div", {class: "q"});
+  q.appendChild(el("b", {}, label));
+  for (const o of options) {
+    const id = item.key + field + o;
+    const r = el("input", {type: "radio", name: item.key + field, id: id, value: o});
+    if ((answers[item.key] || {})[field] === o) r.checked = true;
+    r.addEventListener("change", () => { (answers[item.key] ||= {})[field] = o; save(); });
+    const l = el("label", {for: id}, " " + o);
+    const span = el("span"); span.append(r, l); q.appendChild(span);
+  }
+  return q;
+}
+function render() {
+  const root = document.getElementById("items");
+  DATA.items.forEach((it, idx) => {
+    const a = DATA.actions[it.write_id];
+    const c = el("div", {class: "card"});
+    c.appendChild(el("div", {class: "mute"}, "#" + (idx + 1) + " · " + it.key + " · " + a.domain + " task " + a.task_id));
+    if (it.lead_in) c.appendChild(el("div", {class: "lead"}, "Lead-in: " + it.lead_in));
+    c.appendChild(el("div", {class: "stmt"}, it.text));
+    const act = el("pre", {}, "Proposed action: " + a.tool + " " + JSON.stringify(a.arguments));
+    c.appendChild(act);
+    c.appendChild(el("div", {class: "mute"}, a.description));
+    if (a.plan_calls.length) c.appendChild(el("pre", {}, "Later calls the agent proposed in the same customer turn (whether each was agreed is part of your judgement):\n" + a.plan_calls.map(p => "- " + p.tool + " " + JSON.stringify(p.arguments)).join("\n")));
+    if (it.prefill !== undefined) {
+      const pf = el("div", {class: "mute"});
+      pf.textContent = "Pre-fill: " + (it.prefill || "none") + (it.prefill_records ? " · records: " + it.prefill_records : "") + (it.prefill_material ? " · material: " + it.prefill_material : "") + " · source: " + (it.prefill_source.join("; ") || "-") + " · in set as: " + it.why_in_set;
+      c.appendChild(pf);
+      for (const cb of it.cited_by) c.appendChild(el("div", {class: "mute"}, "Quoted by " + cb.who + (cb.as_false ? " (as false)" : " (as support)") + ": \u201c" + cb.span + "\u201d"));
+    }
+    if (a.rulings) {
+      const tr = a.truth ? (a.truth.should_run ? "should run" : "should not run") + " (" + a.truth.source + ")" : "no truth label";
+      c.appendChild(el("div", {class: "mute"}, "Action truth: " + tr));
+      const d = el("details"); d.appendChild(el("summary", {}, "Rulings and reasons on this action (" + a.rulings.length + ")"));
+      for (const r of a.rulings) d.appendChild(el("pre", {}, r.who + " — " + r.decision + ": " + (r.reason || "(no reason)")));
+      c.appendChild(d);
+    }
+    const conv = el("details"); conv.appendChild(el("summary", {}, "Conversation (statement's turn highlighted)"));
+    a.conversation.forEach((t, i) => {
+      const line = el("div", {class: "turn" + (i + 1 === it.turn ? " on" : "")});
+      line.textContent = "[T" + (i + 1) + "] " + (t.role === "customer" ? "customer" : "agent") + ": " + t.text + (t.refs.length ? " (lookups " + t.refs.map(n => "L" + n).join(", ") + ")" : "");
+      conv.appendChild(line);
+    });
+    c.appendChild(conv);
+    const led = el("details"); led.appendChild(el("summary", {}, "Evidence ledger (" + a.ledger.length + " lookups)"));
+    for (const e of a.ledger) led.appendChild(el("pre", {}, "[L" + e.n + "] " + e.tool + " " + JSON.stringify(e.arguments) + " ->" + (e.error ? " ERROR " : " ") + e.result));
+    c.appendChild(led);
+    const pol = el("details"); pol.appendChild(el("summary", {}, "Policy (" + a.domain + ")"));
+    pol.appendChild(el("pre", {}, DATA.policy[a.domain])); c.appendChild(pol);
+    c.appendChild(radios(it, "mc", "Material contradiction for this action?", ["yes", "no", "unsure"]));
+    c.appendChild(radios(it, "material", "Would correcting it plausibly change the yes?", ["yes", "no", "unsure"]));
+    c.appendChild(radios(it, "records", "Do the records back it?", ["supported", "contradicted", "not covered", "unsure"]));
+    const note = el("textarea", {placeholder: "Note (optional)"});
+    note.value = (answers[it.key] || {}).note || "";
+    note.addEventListener("input", () => { (answers[it.key] ||= {}).note = note.value; save(); });
+    c.appendChild(note);
+    root.appendChild(c);
+  });
+  save();
+}
+document.getElementById("export").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify({sheet: SHEET, items_sha256: DATA.items_sha256, exported: new Date().toISOString(), answers: answers}, null, 1)], {type: "application/json"});
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = SHEET + "_answers.json"; a.click();
+});
+document.getElementById("import").addEventListener("change", ev => {
+  const f = ev.target.files[0]; if (!f) return;
+  f.text().then(t => { const d = JSON.parse(t); if (d.sheet !== SHEET) { alert("This file is for another sheet."); return; } if (d.items_sha256 !== DATA.items_sha256) { alert("This file is for another version of this sheet; nothing was imported."); return; } answers = d.answers || {}; document.getElementById("items").replaceChildren(); render(); });
+});
+render();
+</script></body></html>

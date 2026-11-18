@@ -155,3 +155,62 @@ def test_worked_cases_come_from_train():
     train = {r["write_id"] for r in json.loads((HERE / "splits/train.json").read_text())}
     cited = set(re.findall(r"`(01M[0-9A-Z]{23})`", (HERE / "label_definition.md").read_text()))
     assert cited and cited <= train, sorted(cited - train)
+
+
+def test_dedup_keeps_changed_results():
+    ledger = [
+        {"n": 1, "tool": "get", "arguments": {"id": "R"}, "result": "A", "error": False},
+        {"n": 2, "tool": "get", "arguments": {"id": "R"}, "result": "A", "error": False},
+        {"n": 3, "tool": "write", "arguments": {"id": "R"}, "result": "ok", "error": False},
+        {"n": 4, "tool": "get", "arguments": {"id": "R"}, "result": "B", "error": False},
+    ]
+    packets.dedup_ledger(ledger)
+    assert ledger[0]["result"] == "(same as L2)"
+    assert ledger[1]["result"] == "A"
+    assert ledger[3]["result"] == "B"  # changed after the write: kept in full
+
+
+def _later(run: dict, call: dict, extra: list[dict]) -> dict:
+    msgs = [
+        *run["messages"][:-1],
+        {
+            **run["messages"][-1],
+            "tool_calls": [{**run["messages"][-1]["tool_calls"][-1], "id": "c9"}],
+        },
+        {"role": "tool", "tool_call_id": "c9", "content": "done"},
+        *extra,
+        {"role": "assistant", "content": "", "tool_calls": [{**call, "id": "proposed"}]},
+    ]
+    return {"write_id": "W2", "messages": msgs}
+
+
+def test_plan_calls_stop_at_a_customer_message():
+    run = _run()
+    nxt = {"function": "cancel_reservation", "arguments": {"reservation_id": "XYZ"}}
+    same = _later(run, nxt, [{"role": "assistant", "content": "Now the second one."}])
+    other = _later(run, nxt, [{"role": "user", "content": "Also cancel XYZ."}])
+    assert packets.plan_calls(run, [run, same]) == [
+        {"tool": "cancel_reservation", "arguments": {"reservation_id": "XYZ"}}
+    ]
+    assert packets.plan_calls(run, [run, other]) == []
+    text = packets.render(packets.build("airline1", run, SPECS, "P", [run, same]))
+    assert (
+        "# Later calls in the same customer turn (agreement not verified)\n"
+        '- cancel_reservation {"reservation_id": "XYZ"}' in text
+    )
+
+
+def test_folds_partition_train_and_dev_by_task():
+    folds = json.loads((HERE / "splits/folds.json").read_text())["folds"]
+    ids = [w for f in folds for w in f["write_ids"]]
+    tasks = [t for f in folds for t in f["tasks"]]
+    train_dev = {
+        r["write_id"]
+        for n in ("train", "dev")
+        for r in json.loads((HERE / f"splits/{n}.json").read_text())
+    }
+    assert len(ids) == len(set(ids)) and set(ids) == train_dev
+    assert len(tasks) == len(set(tasks))  # a task sits in one fold
+    manifest = json.loads((HERE / "splits/folds_manifest.json").read_text())
+    body = (HERE / "splits/folds.json").read_bytes()
+    assert hashlib.sha256(body).hexdigest() == manifest["sha256"]

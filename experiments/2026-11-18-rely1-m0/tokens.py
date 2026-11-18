@@ -30,7 +30,8 @@ sys.path.insert(0, str(HERE))
 from sentences import agent_sentences  # noqa: E402
 
 PACKETS = HERE / "runs/packets.jsonl"
-OUT = HERE / "results/token_lengths.json"
+# results/token_lengths.json is the v0 measurement M0 was gated on; v1 writes its own file.
+OUT = HERE / "results/token_lengths_v1.json"
 BASE = "Qwen/Qwen3.5-4B-Base"
 BASE_REVISION = "1001bb4d826a52d1f399e183466143f4da7b741b"
 KEV_REPO, KEV_REVISION = "jaredpalmer/kev-4b", "v1.0"
@@ -65,6 +66,7 @@ def summary(xs: list[int]) -> dict:
 HEADERS = {
     "conversation": "# Conversation up to the proposed action\n",
     "proposed_action": "\n# Proposed action\n",
+    "plan_calls": "\n# Later calls in the same customer turn (agreement not verified)\n",
     "policy": "\n# Policy\n",
     "ledger": "\n# Evidence ledger (every lookup, in order)\n",
 }
@@ -105,6 +107,8 @@ def main() -> None:
         for name in ("train", "dev")
     }
     packets = load_train_dev(PACKETS)
+    if {p["packet_version"] for p in packets} != {"rely1-packet-v1"}:
+        raise SystemExit("tokens.py measures packet v1; rebuild runs/packets.jsonl with packets.py")
 
     tok = load_tokenizer(BASE, revision=BASE_REVISION)
     tok_card = load_tokenizer(KEV_REPO, revision=KEV_REVISION)
@@ -156,6 +160,12 @@ def main() -> None:
         },
         "packets_sha256": hashlib.sha256(PACKETS.read_bytes()).hexdigest(),
         "scope": "train and dev splits only; test splits not read",
+        "packet_version": packets[0]["packet_version"],
+        "by_split": {
+            sp: summary([r["state_tokens"] for r in rows if r["split"] == sp])
+            for sp in ("train", "dev")
+        },
+        "with_plan_calls": sum(1 for p in packets if p.get("plan_calls")),
         "state": summary(state),
         "state_by_domain": {
             d: summary([r["state_tokens"] for r in rows if r["domain"] == d])
@@ -164,10 +174,7 @@ def main() -> None:
         "row_with_longest_statement_question": summary(
             [r["row_tokens_longest_statement"] for r in rows]
         ),
-        "sections": {
-            k: summary([r["sections"][k] for r in rows])
-            for k in ("conversation", "proposed_action", "policy", "ledger")
-        },
+        "sections": {k: summary([r["sections"][k] for r in rows]) for k in HEADERS},
         "rows": rows,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
