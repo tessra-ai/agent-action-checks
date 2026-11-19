@@ -281,12 +281,14 @@ def test_ingest_refuses_bad_answers_and_accepts_paste(tmp_path):
         "invalid answer 'agreed'",
         "P001.S1: duplicate",
         "unknown ID 'P009.A'",
-        "21 words",
         "missing field(s) ['reason']",
         "P002.A: duplicate",
         "P001-S: missing ID(s) P001.S2",
     ):
         assert s in text, s
+    long = json.dumps([{"id": "P002.A", "answer": "agreed", "reason": " ".join(["w"] * 21)}])
+    problems, warnings, rows = ingest.check([("f", long)], man)
+    assert not problems and "21 words" in warnings[0] and rows[0]["reason_over_20_words"]
     rep = '[{"id": "P001.A", "answer": "agreed", "answer": "not_agreed", "reason": "r"}]'
     problems, *_ = ingest.check([("f", rep)], man)
     assert problems == ["f: an answer object has repeated field(s) ['answer']"]
@@ -340,3 +342,28 @@ def test_pack_key_covers_the_label_set_and_hides_labels():
         body = f.read_text()
         assert not re.search(r"01M[0-9A-Z]{23}", body)
         assert not re.search(r"pre-?fill|ruling|grader|should_run|truth", body, re.I)
+
+
+def test_gemini_batches_cover_the_pack_unchanged_and_never_mix_kinds():
+    pkg = HERE / "runs/gemini_package"
+    if not pkg.exists():  # git-ignored; built locally by labeller/build_gemini.py
+        return
+    spec = importlib.util.spec_from_file_location("gemini_ingest", pkg / "ingest.py")
+    g = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(g)
+    m = json.loads((pkg / "manifest.json").read_text())
+    batches = json.loads((pkg / "batches.json").read_text())["batches"]
+    calls = [c for b in batches for c in b["calls"]]
+    assert sorted(calls) == sorted(c["call"] for c in m["calls"]) and len(set(calls)) == len(calls)
+    assert len(batches[0]["calls"]) == 10 and batches[0]["test"]
+    for b in batches:
+        assert len({c[-1] for c in b["calls"]}) == 1  # agreement or statement, never both
+        text = (pkg / b["file"]).read_text()
+        for c in b["calls"]:
+            packet = (HERE / "runs/labeller_pack/packets" / f"{c}.txt").read_text()
+            assert g.section(c, packet) in text
+        halves = g.half_ids(b, m)
+        assert halves["a"] + halves["b"] == b["ids"]
+    assert (pkg / "prompt.txt").read_bytes() == (
+        HERE / "runs/labeller_pack/prompt.txt"
+    ).read_bytes()

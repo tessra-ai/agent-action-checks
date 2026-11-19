@@ -21,7 +21,11 @@ manifest.json (next to this file):
   ID of every call in the pack;
 - invalid answers: "yes" / "no" / "not_sure" for statements (IDs ending .S<n>), "agreed" /
   "not_agreed" / "not_sure" for the agreement question (.A);
-- a missing or empty reason, or one over 20 words; a missing or extra field; a non-object.
+- a missing or empty reason; a missing or extra field; a non-object.
+
+A reason over 20 words is not refused: the answer is kept, flagged `reason_over_20_words`, and
+a warning is printed (the prompt asks for 20 at most; a model that writes 21 would otherwise
+fail the same way on every fresh rerun and leave the question unanswered).
 
 If anything fails, the problems are listed, nothing is written and the exit code is 1. If all
 pass, the answers are written to --out (JSON lines, one per ID, sorted) when given, and a summary
@@ -193,9 +197,11 @@ def check(
                     problems.append(f"{tag}: reason missing or empty")
                 elif not _encodable(reason):
                     problems.append(f"{tag}: reason has characters that cannot be saved as UTF-8")
-                elif len(reason.split()) > MAX_WORDS:
-                    problems.append(
-                        f"{tag}: reason has {len(reason.split())} words (max {MAX_WORDS})"
+                long = isinstance(reason, str) and len(reason.split()) > MAX_WORDS
+                if long:  # kept and flagged: the answer stands; the reason ran long
+                    warnings.append(
+                        f"{tag}: reason has {len(reason.split())} words (asked for {MAX_WORDS} "
+                        "at most); kept and flagged"
                     )
                 rows.append(
                     {
@@ -205,6 +211,7 @@ def check(
                         "kind": kind,
                         "answer": ans,
                         "reason": reason,
+                        "reason_over_20_words": long,
                         "source": Path(name).name if name != "pasted text" else name,
                     }
                 )

@@ -1,0 +1,49 @@
+LABELLER B IN THE GEMINI APP: HOW TO RUN IT
+===========================================
+
+What is here: prompt.txt (the instructions), batch_01.txt ... batch_13.txt (the work),
+ingest.py (checks the replies), answers/ (put the replies here), model_log.txt (fill it in).
+
+BEFORE YOU START (once)
+1. Open the Gemini app (gemini.google.com) signed in to your Google AI Pro account.
+2. In Settings, turn OFF memory and personalisation: anything named memory, saved info,
+   personal context, "use past chats" or personalisation. The model must not see other chats.
+3. In the model picker, choose the Pro model. Use the same model for every batch.
+
+FOR EACH BATCH (start with batch_01; it is a small test of 10 actions)
+1. Start a NEW chat. One batch per chat, never two in the same chat.
+2. Check the model picker still shows the Pro model. Write its exact name, as shown in the
+   picker, and today's date in model_log.txt.
+3. Open prompt.txt, copy ALL of it, and paste it into the message box UNCHANGED. Do not add,
+   remove or reword anything, and do not type anything else.
+4. Attach the batch file (for example batch_01.txt) to the same message. Send.
+5. When the reply is complete, copy all of it (the copy button under the reply) and save it as a
+   plain text file named after the batch: answers/answers_01.txt, answers/answers_02.txt, ...
+   (On the Gemini app a reply cannot be downloaded as a file; copy and paste is fine.)
+6. If the reply refuses, stops part-way, or says it cannot read the file: do NOT ask it to
+   continue. Delete that chat's reply file if you saved one, start a new chat and redo the batch.
+
+CHECK AFTER EACH BATCH (Python 3.9 or later; no installs needed)
+   python ingest.py answers/
+Or paste a reply straight in:  python ingest.py -   (paste, then Ctrl-D; on Windows Ctrl-Z, Enter)
+It lists every batch as complete, INCOMPLETE (with the missing IDs), INVALID ANSWERS or not
+started, and then tells you exactly which batch to redo:
+- invalid answers or an unreadable reply: redo that batch in a new chat, replace its reply file;
+- incomplete: it writes the batch split in two, redo/batch_NNa.txt and redo/batch_NNb.txt.
+  Delete answers_NN.txt, run each half in its own new chat (same steps as above), and save the
+  replies as answers/answers_NNa.txt and answers/answers_NNb.txt.
+No Python? Paste the reply into our chat and I will run the check.
+
+AFTER BATCH 01
+Run the check. If batch 01 is complete, the app read the whole file: carry on with 02 to 13.
+If it is incomplete, stop and tell me before doing the rest.
+
+WHEN ALL 13 ARE DONE
+Run:  python ingest.py answers/ --require-all
+It must say ALL GOOD. Send me the answers/ folder (or checked_answers.jsonl) and model_log.txt.
+
+RULES
+- Same Pro model for all batches. If the picker changes model, stop and tell me.
+- If you hit a usage limit, stop and continue on a later day with the same model.
+- Batches 01-06 ask statement questions; batches 07-13 ask agreement questions. Keep them in
+  separate chats, as the files are.

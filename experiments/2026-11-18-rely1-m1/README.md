@@ -98,6 +98,38 @@ write ID, task ID, pre-fill, ruling, grader reason, truth label or agreement lab
 (`tests/test_rely1_m1.py`). `results/pack_key.json` maps pack IDs back to write IDs and unit
 keys; it stays outside the pack.
 
+**Labeller A** (`labeller/run_codex.py`): OpenAI's default Codex model on Prithvi's ChatGPT
+sign-in (checked with `codex login status` before every run; no API key: the environment is
+rebuilt with proxy and CA settings only). One `codex exec` per packet file, fresh each time:
+its own Codex home holding only a copy of the sign-in, `--ephemeral`, user config, rules,
+memories, apps, plugins and skills off; a private mount namespace in which every repo, /root,
+/tmp and /old_root are empty and the working directory holds only a copy of the pack;
+`--sandbox read-only`; the shell and exec tools off (the model can run no command and read no
+file, not even the CLI's own sign-in copy). A reply that fails `ingest.py --call` is rerun fresh (3 attempts); a
+usage limit pauses the run, and a rerun resumes it. Every attempt is logged with date, model,
+reasoning effort, CLI version and tokens (`runs/labeller_a/log.jsonl`). First run 2026-11-19:
+`gpt-6.2-sol`, reasoning effort `none` (Codex's defaults), codex-cli 0.170.0.
+
+The first attempt (2026-11-19, about 90 calls) had the shell tool on; no call used it, but it
+could have read the CLI's sign-in copy (Codex review), so it was stopped, kept in
+`runs/labeller_a_superseded_shell_on/`, and the run restarted from scratch with the shell off.
+A reason over 20 words is kept and flagged, not refused (changed during that first attempt):
+the model wrote 21 words on some calls, and fresh reruns repeated them word for word, which
+would have left those questions unanswered. The prompt and packets did not change.
+
+**Labeller B, manual** (Prithvi, 2026-11-19; agy offers no Gemini Pro model on this account,
+`labeller/build_gemini.py` → `runs/gemini_package/`): Prithvi runs it in the Gemini app on a Pro
+model. `prompt.txt` unchanged; 13 batch files of whole calls, unchanged, each under ~150k tokens
+(characters / 3.2, a conservative estimate) with a three-line header saying the file holds
+several packets and to return one JSON array (the only added text). Six batches would need the
+packets shortened (each repeats the policy), so the packets were kept identical to labeller A's
+instead. batch_01 is a 10-action test; 02–06 hold statement calls and 07–13 agreement calls,
+never mixed. `ingest.py` there (`labeller/gemini_ingest.py`) reads saved or pasted replies,
+reports each batch as complete, incomplete (missing IDs), invalid or not started, names the batch
+to redo, and writes an incomplete batch split in two under `redo/`. `HOWTO.txt` (one page): a
+new chat per batch, memory and personalisation off, the prompt pasted unchanged, the model name
+from the picker and the date written down for each batch.
+
 ## Review sheets
 
 `review/prithvi_sheet.html`: each statement with its lead-in, the proposed action and tool
