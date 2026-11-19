@@ -47,6 +47,8 @@ HERE = Path(__file__).resolve().parent
 M1 = HERE.parent
 PACK = M1 / "runs/labeller_pack"
 OUT = M1 / "runs/labeller_a"
+EXTRA: list[str] = []  # extra codex exec arguments (model pin, reasoning effort)
+WANT_EFFORT: str | None = None
 CODEX_HOME = Path("/root/.codex-labeller-a")
 ATTEMPTS = 3
 KEEP_ENV = (
@@ -85,7 +87,7 @@ cat "$WORK/labeller_pack/prompt.txt" "$WORK/labeller_pack/$PACKET" | \
     --disable memories --disable apps --disable plugins --disable remote_plugin \
     --disable plugin_sharing --disable skill_search --disable skill_mcp_dependency_install \
     --disable shell_tool --disable unified_exec --disable sleep_tool --disable tool_suggest \
-    -C "$WORK" -o /run/keep/out/last.txt - \
+    $CODEX_EXTRA -C "$WORK" -o /run/keep/out/last.txt - \
     > /run/keep/out/stdout.txt 2> /run/keep/out/stderr.txt
 """
 
@@ -156,6 +158,16 @@ class Run:
             }
             if len(models) > 1:
                 raise SystemExit(f"accepted answers come from more than one model: {models}")
+            accepted = [
+                r
+                for r in map(json.loads, self.log_path.read_text().splitlines())
+                if r.get("outcome") == "ok"
+            ]
+            if WANT_EFFORT and any(r.get("reasoning_effort") != WANT_EFFORT for r in accepted):
+                raise SystemExit(f"accepted answers here were not made at effort {WANT_EFFORT}")
+            pinned = EXTRA[EXTRA.index("-m") + 1] if "-m" in EXTRA else None
+            if pinned and any(r.get("model") != pinned for r in accepted):
+                raise SystemExit(f"accepted answers here were not made by {pinned}")
             self.model = models.pop() if models else None
 
     def done(self, call: str) -> bool:
@@ -178,6 +190,7 @@ class Run:
         env = {
             **clean_env(),
             "CODEX_HOME_SRC": str(CODEX_HOME),
+            "CODEX_EXTRA": " ".join(EXTRA),
             "PACK_SRC": str(PACK),
             "OUT_SRC": str(raw),
             "PACKET": call["file"],
@@ -218,7 +231,9 @@ class Run:
             else "invalid"
         )
         with self.lock:
-            if outcome == "ok" and not model:
+            if outcome == "ok" and WANT_EFFORT and effort != WANT_EFFORT:
+                outcome = "effort_mismatch"  # never accept a reply at another reasoning effort
+            elif outcome == "ok" and not model:
                 outcome = "model_unknown"  # never accept an answer whose model is unverified
             elif model and self.model and model != self.model:
                 outcome = "model_changed"
@@ -265,7 +280,7 @@ class Run:
             outcome = self.attempt(call, n)
             if outcome == "ok":
                 return "ok"
-            if outcome in ("usage_limit", "model_changed", "model_unknown"):
+            if outcome in ("usage_limit", "model_changed", "model_unknown", "effort_mismatch"):
                 self.paused.set()
                 return outcome
         return "failed"
@@ -289,7 +304,18 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=3)
     ap.add_argument("--only", nargs="*", help="run just these calls (e.g. a smoke test)")
+    ap.add_argument("--out", help="output folder under runs/ (default labeller_a)")
+    ap.add_argument("--model", help="pin the model (e.g. gpt-6.2-sol)")
+    ap.add_argument("--effort", help="reasoning effort (e.g. high)")
     a = ap.parse_args()
+    global OUT, WANT_EFFORT
+    if a.out:
+        OUT = M1 / "runs" / a.out
+    if a.model:
+        EXTRA.extend(["-m", a.model])
+    if a.effort:
+        EXTRA.extend(["-c", f"model_reasoning_effort={a.effort}"])
+        WANT_EFFORT = a.effort
     r = Run(a.workers)
     if a.only:
         calls = [

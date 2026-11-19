@@ -32,5 +32,5 @@
   "statement:yes": 31
  },
  "reasons_over_20_words": 18,
- "superseded_first_attempt": "runs/labeller_a_superseded_shell_on/ (shell on; unused)"
+ "run_folder": "runs/labeller_a"
 }

@@ -1,6 +1,9 @@
 """Consolidate labeller A once every call has an accepted answer. Run once, after run_codex.py.
 
-    python experiments/2026-11-18-rely1-m1/labeller/finish_a.py
+    python labeller/finish_a.py --run labeller_a_high --name labels_a   (from the M1 folder)
+
+Labeller A from 2026-11-19/20 is the reasoning run (runs/labeller_a_high, effort high) written as
+labels_a; the first, no-reasoning run (runs/labeller_a) is kept as labels_a_noreasoning.
 
 Checks all answers with the pack's ingest (--require-all) and writes, committed:
 - `results/labels_a.jsonl`: one row per question ID (answer, reason, flags);
@@ -19,12 +22,22 @@ from pathlib import Path
 
 M1 = Path(__file__).resolve().parents[1]
 PACK = M1 / "runs/labeller_pack"
-RUN = M1 / "runs/labeller_a"
+RUN = M1 / "runs/labeller_a_high"
 OUT = M1 / "results/labels_a.jsonl"
 SUMMARY = M1 / "results/labels_a_summary.json"
 
 
 def main() -> int:
+    import argparse
+
+    global RUN, OUT, SUMMARY
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--run", default="labeller_a_high")
+    ap.add_argument("--name", default="labels_a")
+    a = ap.parse_args()
+    RUN = M1 / "runs" / a.run
+    OUT = M1 / "results" / f"{a.name}.jsonl"
+    SUMMARY = M1 / "results" / f"{a.name}_summary.json"
     spec = importlib.util.spec_from_file_location("pack_ingest", PACK / "ingest.py")
     ingest = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(ingest)
@@ -73,7 +86,7 @@ def main() -> int:
             for (k, a), n in sorted(Counter((r["kind"], r["answer"]) for r in rows).items())
         },
         "reasons_over_20_words": sum(1 for r in rows if r.get("reason_over_20_words")),
-        "superseded_first_attempt": "runs/labeller_a_superseded_shell_on/ (shell on; unused)",
+        "run_folder": f"runs/{RUN.name}",
     }
     SUMMARY.write_text(json.dumps(summary, indent=1) + "\n")
     print(json.dumps(summary, indent=1))
