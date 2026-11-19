@@ -228,3 +228,115 @@ def test_card_finds_digit_leading_ids_and_resolves_repeats():
     }  # fmt: skip
     best = friend.relevant(packet, "Your fare for ABC123 is $104.", None, turn=3)
     assert best[0]["n"] == 1 and best[0]["result"] == '{"price": 104}'  # made before the sentence
+
+
+def _ingest():
+    spec = importlib.util.spec_from_file_location("ingest", HERE / "labeller/ingest.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def test_ingest_refuses_bad_answers_and_accepts_paste(tmp_path):
+    ingest = _ingest()
+    m = {
+        "allowed_answers": {
+            "statement": ["yes", "no", "not_sure"],
+            "agreement": ["agreed", "not_agreed", "not_sure"],
+        },
+        "calls": [
+            {"call": "P001-A", "questions": [{"id": "P001.A", "kind": "agreement"}]},
+            {
+                "call": "P001-S",
+                "questions": [
+                    {"id": "P001.S1", "kind": "statement"},
+                    {"id": "P001.S2", "kind": "statement"},
+                ],
+            },
+            {"call": "P002-A", "questions": [{"id": "P002.A", "kind": "agreement"}]},
+        ],
+    }
+    (tmp_path / "manifest.json").write_text(json.dumps(m))
+    man = ingest.load_manifest(tmp_path / "manifest.json")
+    good = (
+        'Sure:\n```json\n[{"id": "P001.S1", "answer": "yes", "reason": "r"},'
+        ' {"id": "P001.S2", "answer": "not_sure", "reason": "r"}]\n```'
+    )
+    problems, warnings, rows = ingest.check([("pasted text", good)], man)
+    assert not problems and warnings and len(rows) == 2 and rows[0]["call"] == "P001-S"
+    problems, *_ = ingest.check([("pasted text", good)], man, require_all=True)
+    assert problems == ["P001-A: missing ID(s) P001.A", "P002-A: missing ID(s) P002.A"]
+    bad = json.dumps(
+        [
+            {"id": "P001.S1", "answer": "agreed", "reason": "r"},  # wrong answer set
+            {"id": "P001.S1", "answer": "no", "reason": "r"},  # duplicate
+            {"id": "P009.A", "answer": "agreed", "reason": "r"},  # unknown
+            {"id": "P002.A", "answer": "agreed", "reason": " ".join(["w"] * 21)},  # too long
+            {"id": "P002.A", "answer": "agreed"},  # duplicate, no reason
+        ]
+    )
+    problems, *_ = ingest.check([("f", bad)], man)
+    text = "\n".join(problems)
+    for s in (
+        "invalid answer 'agreed'",
+        "P001.S1: duplicate",
+        "unknown ID 'P009.A'",
+        "21 words",
+        "missing field(s) ['reason']",
+        "P002.A: duplicate",
+        "P001-S: missing ID(s) P001.S2",
+    ):
+        assert s in text, s
+    rep = '[{"id": "P001.A", "answer": "agreed", "answer": "not_agreed", "reason": "r"}]'
+    problems, *_ = ingest.check([("f", rep)], man)
+    assert problems == ["f: an answer object has repeated field(s) ['answer']"]
+    sur = '[{"id": "P001.S1", "answer": "no", "reason": "a \\ud800"}]'
+    problems, *_ = ingest.check([("f", sur)], man)
+    assert any("cannot be saved as UTF-8" in x for x in problems)
+    tick = '[{"id": "P002.A", "answer": "agreed", "reason": "said ```json yes"}]'
+    problems, _, rows = ingest.check([("f", tick)], man)
+    assert not problems and rows[0]["reason"] == "said ```json yes"
+    problems, *_ = ingest.check([("f", "[]")], man)
+    assert problems == ["f: the JSON array(s) hold no answers"]
+    problems, *_ = ingest.check([("f", "I can't help with that.")], man)
+    assert problems == ["f: no JSON array of answers found (refused, cut off or empty?)"]
+    for broken in ('[{"id": "P001.A", "answer": "agr', "[ " + tick):  # cut off; stray "["
+        problems, *_ = ingest.check([("f", broken)], man)
+        assert problems and "broken JSON" in problems[0]
+    wrapped = '{"answers": [{"id": "P002.A", "answer": "agreed", "reason": "r"}]'  # cut off
+    problems, *_ = ingest.check([("f", wrapped)], man)
+    assert problems == ["f: JSON outside an answer array, from character 0"]
+    problems, *_ = ingest.check([("f", good)], man, call="P001-A")
+    assert any("belongs to P001-S, not P001-A" in p for p in problems)
+    assert set(ingest.calls_named(problems)) == {"P001-S", "P001-A"}
+    (tmp_path / "x.json").write_text(good)
+    out = tmp_path / "out.jsonl"
+    args = [str(tmp_path / "x.json"), "--manifest", str(tmp_path / "manifest.json")]
+    assert ingest.main([*args, "--out", str(out)]) == 0 and len(out.read_text().splitlines()) == 2
+
+
+def test_pack_key_covers_the_label_set_and_hides_labels():
+    key = json.loads((HERE / "results/pack_key.json").read_text())
+    rows = [json.loads(x) for x in (HERE / "results/label_set.jsonl").read_text().splitlines()]
+    stmt = {u for v in key.values() for q, u in v["questions"].items() if not q.endswith(".A")}
+    assert stmt == {r["unit_key"] for r in rows} and len(key) == 174
+    summary = json.loads((HERE / "results/pack_summary.json").read_text())
+    for ex in summary["worked_examples"].values():
+        assert ex["unit_key"] not in stmt
+    prompt = (HERE / "labeller/prompt.txt").read_text()
+    assert not re.search(r"01M[0-9A-Z]{23}", prompt)
+    assert not any(r["unit"]["text"] in prompt for r in rows if len(r["unit"]["text"]) > 25)
+    pack = HERE / "runs/labeller_pack"
+    if not pack.exists():  # git-ignored; built locally by build_pack.py
+        return
+    m = json.loads((pack / "manifest.json").read_text())
+    assert {c["call"].split("-")[0] for c in m["calls"]} == set(key)
+    stmt_calls = {c["call"] for c in m["calls"] if c["call"].endswith("-S")}
+    assert len(stmt_calls) == 125
+    for c in m["calls"]:  # an agreement call never lists statements, and vice versa
+        kinds = {q["kind"] for q in c["questions"]}
+        assert kinds == ({"agreement"} if c["call"].endswith("-A") else {"statement"})
+    for f in (pack / "packets").iterdir():
+        body = f.read_text()
+        assert not re.search(r"01M[0-9A-Z]{23}", body)
+        assert not re.search(r"pre-?fill|ruling|grader|should_run|truth", body, re.I)

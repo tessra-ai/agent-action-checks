@@ -50,6 +50,54 @@
      agreement pre-fills.
    - Second person (John): a random 30 of Prithvi's first two blocks, plus 5 of his over-limit 10.
 
+## Model labellers (Prithvi, 2026-11-19)
+
+To cut Prithvi's review time, two independent model labellers, neither of them Claude, label the
+whole label set: A is OpenAI's default model through the Codex CLI, B is Google's top Gemini Pro
+model through the Antigravity CLI, both on the subscriptions Prithvi already has (no API keys).
+
+**The labeller pack** (`build_pack.py` → `runs/labeller_pack/`, git-ignored; a clean checkout
+rebuilds it byte for byte and checks it against the committed key; hashes in
+`results/pack_summary.json`). Identical for both labellers:
+
+- `prompt.txt` (source `labeller/prompt.txt`): plain-language instructions; the material
+  contradiction definition and the M0 rules in plain words (R1–R7, R9, R10; R8, "only agent
+  statements are units", is built into the questions); the agreement question; the output
+  format; two worked examples, both statement questions, from statements **not** in the label
+  set:
+  - yes: retail task 14, T19.2, "I will proceed with returning the mechanical keyboard and the
+    mouse" (the call returns the Action Camera). That action has no agreement (the customer
+    asked for the keyboard and mouse and was never asked to confirm). No statement on an
+    agreed action outside the label set is a clean contradiction: the label set already holds
+    every one the claims check or a ruling flagged. The nearest, airline task 9 ("Booking made
+    on 2024-05-12 (within 24 hours)"), would answer one of the 14 pre-filled contradictions,
+    which is in the same task.
+  - no: retail task 19, T19.2, "The refund amount is $54.04." (the call returns that $54.04
+    item).
+
+  Flagged `example_exposed`: 31 of the 174 actions (34 of the 380 statements), those in the two
+  examples' tasks or whose records hold an order, item or payment ID the examples quote (the
+  keyboard customer's orders recur in retail tasks 11 to 14). A-vs-B is reported with and
+  without them.
+- `packets/`: the 174 train + dev actions as P001 … P174 (seeded shuffle, seed `20261118`); each
+  file is the M0 packet v2 main text, then "# Questions". Two kinds of call, one file each:
+  `P001-A.txt` asks only the agreement question (`P001.A`), for all 174 actions, including the
+  32 already ruled or pre-filled "no agreement"; `P001-S.txt` asks only the statement questions
+  (`P001.S1` …, turn order, with turn and lead-in), for the 125 actions with label-set
+  statements, 380 in all. Kept apart because the label set leaves out statements of actions
+  with no agreement: in one combined file, "no statement questions" would hint "not agreed"
+  (Codex review, 2026-11-19). 299 calls per labeller.
+- `manifest.json` (IDs per call, allowed answers, file hashes) and `ingest.py`.
+
+Answers are a JSON array, one object per ID: `id`, `answer` (`yes` / `no` / `not_sure` for
+statements; `agreed` / `not_agreed` / `not_sure` for agreement), `reason` (20 words at most).
+`ingest.py` reads answer files, directories or pasted text, reports missing, duplicate and
+unknown IDs, invalid answers, over-long reasons, repeated fields and broken JSON, and refuses
+(writes nothing, exit 1) if any fail, naming the calls to rerun. Nothing in the pack carries a
+write ID, task ID, pre-fill, ruling, grader reason, truth label or agreement label
+(`tests/test_rely1_m1.py`). `results/pack_key.json` maps pack IDs back to write IDs and unit
+keys; it stays outside the pack.
+
 ## Review sheets
 
 `review/prithvi_sheet.html`: each statement with its lead-in, the proposed action and tool
@@ -92,6 +140,8 @@ Both thresholds are proposals. If people cannot agree, fix the definition or the
 2. `python agreement.py` → `results/agreement.jsonl` (once; needs `review/agreement_prefill.json`).
 3. `python build.py` → `results/label_set.jsonl`, `results/summary.json` (once).
 4. `python sheet.py` → `review/prithvi_sheet.html`, `review/second_sheet.html`.
-5. People label; their answer files go to `review/prithvi_answers.json` and
+5. `python build_pack.py` → `runs/labeller_pack/`, `results/pack_key.json`,
+   `results/pack_summary.json` (once). Labellers A and B run on the pack.
+6. People label; their answer files go to `review/prithvi_answers.json` and
    `review/second_answers.json`.
-6. `python score.py` → `results/gate.json` (once) → Report.md.
+7. `python score.py` → `results/gate.json` (once) → Report.md.
