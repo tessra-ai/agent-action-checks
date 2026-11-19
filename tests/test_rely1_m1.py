@@ -202,3 +202,29 @@ def test_turn_citations_parse_strictly():
     assert score.parse_turns("") == []
     assert score.parse_turns("about 31") is None
     assert score.parse_turns("T34-T31") is None
+    assert score.parse_turns("T31-T34", customer={31, 33}, n_turns=40) == [31, 33]
+    assert score.parse_turns("T1-T999", customer={31}, n_turns=40) is None  # past the end
+    assert score.parse_turns("T5-T6", customer={31}, n_turns=40) is None  # no customer turn
+
+
+def test_card_finds_digit_leading_ids_and_resolves_repeats():
+    friend = _load("friend")
+    assert "59XX6W" in friend.norm_tokens("cancel reservation 59XX6W now")
+    assert "12345.67" in friend.norm_tokens("a refund of $12345.67")
+    packet = {
+        "conversation": [
+            {"role": "customer", "text": "Hi"},
+            {"role": "agent", "text": "", "ledger_refs": [1]},
+            {"role": "agent", "text": "Your fare for ABC123 is $104."},
+            {"role": "agent", "text": "", "ledger_refs": [2]},
+        ],
+        "ledger": [
+            {"n": 1, "tool": "get", "kind": "read", "arguments": {"id": "ABC123"},
+             "result": "(same as L2)", "error": False, "same_as": 2},
+            {"n": 2, "tool": "get", "kind": "read", "arguments": {"id": "ABC123"},
+             "result": '{"price": 104}', "error": False},
+        ],
+        "proposed_action": {"arguments": {"reservation_id": "ABC123"}},
+    }  # fmt: skip
+    best = friend.relevant(packet, "Your fare for ABC123 is $104.", None, turn=3)
+    assert best[0]["n"] == 1 and best[0]["result"] == '{"price": 104}'  # made before the sentence

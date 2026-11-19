@@ -14,7 +14,11 @@ from __future__ import annotations
 import json
 import re
 
-TOKEN = re.compile(r"\$?\d[\d,]*(?:\.\d+)?|#?[A-Z0-9]{5,}|[a-z]+_[a-z]+_\d+|[a-z]+_\d{5,}")
+# Identifiers first, so a reservation ID that starts with digits ("59XX6W") stays whole.
+# An identifier needs a letter, so amounts like 12345.67 stay whole numbers.
+TOKEN = re.compile(
+    r"[a-z]+_[a-z]+_\d+|[a-z]+_\d{5,}|#?(?=[A-Z0-9]*[A-Z])[A-Z0-9]{5,}|\$?\d[\d,]*(?:\.\d+)?"
+)
 
 
 def words(name: str) -> str:
@@ -135,9 +139,14 @@ def relevant(packet: dict, sentence: str, lead_in: str | None, turn: int, k: int
     said = norm_tokens(sentence) | norm_tokens(lead_in or "")
     acted = action_tokens(packet["proposed_action"]["arguments"])
     when = lookup_turns(packet)
+    by_n = {e["n"]: e for e in packet["ledger"]}
     scored = []
     for e in packet["ledger"]:
-        if e["result"] is None or str(e["result"]).startswith("(same as L"):
+        if e.get("same_as"):
+            # A repeated lookup: same result as its later copy, but made at its own turn, which
+            # is what counts for "what the agent knew when it spoke".
+            e = {**e, "result": by_n[e["same_as"]]["result"]}
+        if e["result"] is None:
             continue
         have = norm_tokens(str(e["result"])) | norm_tokens(json.dumps(e["arguments"]))
         s = 3 * len(said & have) + len(acted & have)
@@ -145,7 +154,13 @@ def relevant(packet: dict, sentence: str, lead_in: str | None, turn: int, k: int
             before = when.get(e["n"], 0) < turn
             scored.append((before, s, e["n"], e))
     scored.sort(key=lambda x: (not x[0], -x[1], -x[2]))
-    return [e for *_, e in scored[:k]]
+    out, seen = [], set()
+    for *_, e in scored:  # one slot per repeated lookup: its best-ranked occurrence
+        sig = (e["tool"], json.dumps(e["arguments"], sort_keys=True), e["result"], e["error"])
+        if sig not in seen:
+            seen.add(sig)
+            out.append(e)
+    return out[:k]
 
 
 def card(packet: dict, unit: dict, key: str) -> dict:
@@ -162,7 +177,7 @@ def card(packet: dict, unit: dict, key: str) -> dict:
             + "\n["
             + ("A change the agent made" if e["kind"] == "write" else "Looked up")
             + (" before" if when.get(e["n"], 0) < unit["turn"] else " after")
-            + f" the agent said this]\n{focused(e['result'], want)}"
+            + f" the sentence above]\n{focused(e['result'], want)}"
             for e in recs
         )
         if recs

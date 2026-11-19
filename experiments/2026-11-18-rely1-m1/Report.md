@@ -177,11 +177,10 @@ turns of that conversation, from the sheet itself; a changed "yes" must cite the
 ranges refused); records on the second sheet labelled as looked up or changed before / after the
 sentence, with their arguments, and preferring what the agent knew when it spoke; lookup IDs
 kept under "Show more"; unsure answers bounded in the missed-MC estimate; final agreement labels
-keep the pre-fill's reasoning apart from Prithvi's decision and note. **Left (P2/P3, not
-blocking):** a reservation ID starting with digits (`59XX6W`) is not matched to its record on
-one second-sheet card (it is under "Show more"); a repeated lookup's pointer is not resolved when
-ranking records, so one card shows an older lookup; a rejected turn citation is reported as a
-count, not by action.
+keep the pre-fill's reasoning apart from Prithvi's decision and note. Then, on Prithvi's "Fix": a reservation ID starting with digits (`59XX6W`) now matches its
+record; a repeated lookup is ranked with its own (earlier) turn and its later copy's result; a
+turn range means the customer turns in it, and a rejected citation names its actions. Every card
+on the second sheet now shows a matching record.
 
 ## Waiting on
 

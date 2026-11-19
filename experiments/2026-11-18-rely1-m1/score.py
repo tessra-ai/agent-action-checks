@@ -209,8 +209,11 @@ TURNS = re.compile(
 )
 
 
-def parse_turns(text: str | None) -> list[int] | None:
-    """'31, 34' or 'T31-T34' -> turn numbers; None when the text is not in that form."""
+def parse_turns(
+    text: str | None, customer: set[int] | None = None, n_turns: int | None = None
+) -> list[int] | None:
+    """'31, 34' or 'T31-T34' -> turn numbers; None when the text is not in that form. A range
+    means the customer turns within it (when `customer` is given), so it may span agent turns."""
     if not (text or "").strip():
         return []
     if not TURNS.match(text):
@@ -220,15 +223,30 @@ def parse_turns(text: str | None) -> list[int] | None:
         nums = [int(n) for n in re.findall(r"\d+", part)]
         if len(nums) == 2 and nums[1] < nums[0]:
             return None  # a reversed range
-        out += list(range(nums[0], nums[-1] + 1)) if len(nums) == 2 else nums
+        if n_turns is not None and any(n < 1 or n > n_turns for n in nums):
+            return None  # outside the conversation
+        if len(nums) == 2:
+            picked = [
+                t
+                for t in sorted(customer if customer is not None else range(nums[0], nums[1] + 1))
+                if nums[0] <= t <= nums[1]
+            ]
+            if not picked:
+                return None  # a range with no customer turn in it cites nothing
+            out += picked
+        else:
+            out += nums
     return out
 
 
-def customer_turns(sheet: dict) -> dict[str, set[int]]:
-    """{write_id: the T numbers of its customer messages}, from the conversations on the sheet
-    the reviewer used (already checked against its fingerprint)."""
+def customer_turns(sheet: dict) -> dict[str, tuple[set[int], int]]:
+    """{write_id: (the T numbers of its customer messages, its number of turns)}, from the
+    conversations on the sheet the reviewer used (already checked against its fingerprint)."""
     return {
-        w: {i for i, t in enumerate(a["conversation"], start=1) if t["role"] == "customer"}
+        w: (
+            {i for i, t in enumerate(a["conversation"], start=1) if t["role"] == "customer"},
+            len(a["conversation"]),
+        )
         for w, a in sheet["actions"].items()
     }
 
@@ -282,16 +300,18 @@ def check(rows: list[dict], agreement: list[dict], pa: dict, sa: dict) -> list[s
     bad_turns = []
     for a in agreement:
         ans = p.get("agree:" + a["write_id"]) or {}
-        turns = parse_turns(ans.get("turns"))
-        if turns is None or not set(turns) <= cust.get(a["write_id"], set()):
+        known, n = cust.get(a["write_id"], (set(), 0))
+        turns = parse_turns(ans.get("turns"), known, n)
+        if turns is None or not set(turns) <= known:
             bad_turns.append(a["write_id"])
         elif ans.get("agreed") == "yes" and a["agreed"] != "yes" and not turns:
             bad_turns.append(a["write_id"])  # a new yes needs the turns that carry it
     if bad_turns:
         problems.append(
-            f"{len(bad_turns)} agreement answers cite turns that are not customer messages of "
-            "that conversation, are not written as '31, 34' or 'T31-T34', or change an answer "
-            "to yes without citing the agreeing turns"
+            f"{len(bad_turns)} agreement answers need their turns fixed (each listed turn must "
+            "be a customer message of that conversation; write '31, 34' or 'T31-T34', where a "
+            "range means the customer turns in it; a changed 'yes' must cite them): "
+            + ", ".join(bad_turns)
         )
     for what, miss in (
         ("Prithvi statements (all three answers, valid choices)", miss_p),
@@ -315,11 +335,12 @@ def main() -> None:
     if problems:
         raise SystemExit("not scored: " + "; ".join(problems))
     result = score(rows, pa["answers"], sa["answers"], agreement)
+    cust = customer_turns(sheet_data("prithvi"))
     # The finalized agreement labels, with Prithvi's decision and turns where he gave them.
     final_rows = []
     for a in agreement:
         ans = pa["answers"].get("agree:" + a["write_id"]) or {}
-        given = parse_turns(ans.get("turns")) or []
+        given = parse_turns(ans.get("turns"), *cust[a["write_id"]]) or []
         decided = ans.get("agreed") or a["agreed"]
         # The pre-filled turns carry over only when the decision is unchanged: a changed answer
         # without its own turns has no cited evidence (empty), never the old decision's.
