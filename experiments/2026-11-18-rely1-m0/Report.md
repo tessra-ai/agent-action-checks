@@ -318,3 +318,31 @@ Claude's read of each full conversation, for Prithvi's answer:
 | Agreed in the marked message without a yes-word | 2 | `01M5JZ4HDTBD3TFZNSCV5SF34S` (asks for the return), `01M5JZ91W7FWACM25ZX0E5W1KG` ("Alright, fine. Return everything …") |
 | Refused this call in the marked message | 2 | `01M5JZ53BEFJZ298SGE8SY5R9V`, `01M61Q1KSECAJ17000CGCZRZ6J` |
 | Never agreed to this call (asked for something else, or never confirmed specifics) | 4 | `01M5JZ53HDAV2K8DP4RDA51Y1V`, `01M5JZ5BZQ37Z0YKPTD97HJA3A`, `01M5JZ4D5E6CMP314QYVP9GPAN`, `01M61QBD9PW1G7Y0B2Y885TT4F` |
+
+## Second decisions (Prithvi, 2026-11-18)
+
+1. **Consent.** The single consent-turn marker is dropped from the packet. Agreement is a
+   per-action label (yes / no and the messages that carry it), built in M1 (`agreement.py`). The
+   13 cases: the 7 that agreed run from the yes through the later change; the 6 that refused or
+   never agreed get "no agreement", are left out of the material-contradiction labels and are
+   reported as their own group. The rest of train and dev is labelled the same way (M1 Report).
+2. **Later calls.** Still "agreement not verified". The **main packet has no later calls** (a
+   live check would not have them); `text_with_later_calls` is kept as a comparison only.
+3. Both split deviations stay accepted; thresholds by grouped cross-validation (as before).
+
+**Packet v2** (`packets.py`): no consent marker, `text` without later calls, and
+`text_with_later_calls`. train + dev sha256
+`bd4114220c2c63a533051e9c3ffc9fc59452a5d6001819c6bb6140132d230521`.
+
+| State tokens, packet v2 (train + dev) | n | median | p95 | max | over 8,192 |
+|---|---|---|---|---|---|
+| main (no later calls) | 174 | 4,257 | **8,996** | 12,415 | **14** |
+| comparison (with later calls) | 174 | 4,274 | 9,083 | 12,432 | 14 |
+| main, train | 133 | 4,434 | 8,356 | 12,415 | 8 |
+| main, dev | 41 | 3,911 | 11,021 | 11,022 | 6 |
+| main, airline | 101 | 4,603 | 9,331 | 12,415 | 14 |
+| main, retail | 73 | 3,879 | 6,943 | 7,422 | 0 |
+
+`results/token_lengths_v2.json`; the v0 and v1 files are kept. Of the 14 over-limit actions, 13
+are agreed and 1 is not (M1 agreement labels). From here on "under / over 8,192" means the main
+text.

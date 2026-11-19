@@ -1,0 +1,1201 @@
+[
+ {
+  "write_id": "01M5JZ4F7FEZTY5Q95P9BX5SAS",
+  "agreed": "no",
+  "turns": [
+   10
+  ],
+  "reason": "Customer asked for 'a less bright one that uses USB power if possible', but the agent never showed the replacement lamp variant or its price before calling.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ4H7WB7XXHKW3XDBENJKE",
+  "agreed": "no",
+  "turns": [
+   12
+  ],
+  "reason": "Customer asked 'yes, please refund through PayPal'; the call refunds to a credit card, and the customer never replied after the agent switched to the original payment method.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ4QQZXWGB94PYTMMX7Y7Q",
+  "agreed": "yes",
+  "turns": [
+   19,
+   22
+  ],
+  "reason": "Customer named the water bottle, action camera and backpack, then said 'Yes, that's fine... refund to my credit card'.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ50JK3SXWYXBR2VA0RBZB",
+  "agreed": "no",
+  "turns": [
+   18
+  ],
+  "reason": "Customer wanted to return the keyboard and mouse; item 6117189161 is one of the water bottle/camera/backpack items (other blocks show this), not the keyboard, and the agent asked for no confirmation.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ54J1EZ7T1K608RWJ1E9S",
+  "agreed": "no",
+  "turns": [
+   18,
+   23
+  ],
+  "reason": "Customer asked for 'keyboard and mouse'; the call also returns 6117189161, which is not a mouse (this order has no mouse).",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ58T6TR5VJ7RC1QXZAZQX",
+  "agreed": "yes",
+  "turns": [
+   10
+  ],
+  "reason": "Customer confirmed returning the '10-inch, 128GB, gold tablet' with the refund to their credit card, and the agent identified it as 6948061616.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5EDFDZN54MQMB4MP6WV6",
+  "agreed": "no",
+  "turns": [
+   10
+  ],
+  "reason": "Customer said 'Instead of returning the less expensive tablet... return the more expensive one'; the call returns the same item (6065192424) as the earlier attempt they rejected.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5M5N873C11NGFQVTP05Z",
+  "agreed": "no",
+  "turns": [
+   19
+  ],
+  "reason": "Customer asked to update their phone number; the call changes their default address.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5NQTFNSBN9MCPTRZRAJH",
+  "agreed": "no",
+  "turns": [
+   19
+  ],
+  "reason": "Customer asked for a phone-number update; this repeats the address change, which the agent itself called a mistake.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5SP0C9E67EM74AS0YJY1",
+  "agreed": "no",
+  "turns": [
+   2,
+   14
+  ],
+  "reason": "Customer asked generally for a red luggage set, but the agent never showed the specific variant, price difference or payment card before calling.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5WR67W4T7NMNSAY64TY8",
+  "agreed": "no",
+  "turns": [
+   2,
+   14
+  ],
+  "reason": "Customer asked generally for a 34-inch custom skateboard, but the agent never showed the specific variant, price or payment card before calling.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ8R9HM6RSRFHY07002ZXS",
+  "agreed": "yes",
+  "turns": [
+   11
+  ],
+  "reason": "Customer said 'Yes, please go ahead and process the return for the Gaming Mouse' with the refund to the original method (PayPal).",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ8SCMD97WNC8EK3F49JYM",
+  "agreed": "yes",
+  "turns": [
+   9
+  ],
+  "reason": "Customer confirmed returning the Smart Watch (2554056026) with all refunds to PayPal.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JMJS4CB1V66T1XTFQMFFPD",
+  "agreed": "yes",
+  "turns": [
+   4,
+   14
+  ],
+  "reason": "Customer explicitly asked to return the water bottle, action camera and backpack, with PayPal preferred; the agent restated this and the customer did not object.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JMM4XXKQVYHKNDHSG0Y0H2",
+  "agreed": "yes",
+  "turns": [
+   13,
+   15
+  ],
+  "reason": "Customer said 'Please go ahead and process the refund to my Visa card ending in 7285' for the three listed items.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PSTQH5ENQFW5W2NA6QTYZ",
+  "agreed": "yes",
+  "turns": [
+   4,
+   11
+  ],
+  "reason": "Customer said 'Yes, proceed with the upgrade and then cancel both reservations', which includes 59XX6W.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PTMV0JAHQARJNFWV9YQHZ",
+  "agreed": "yes",
+  "turns": [
+   12,
+   16
+  ],
+  "reason": "Customer agreed to downgrade GV1N64 to basic economy on the same flights, with the $1444 refund to the original gift card.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PWTD0M8BWXEKGDZ509ZGR",
+  "agreed": "yes",
+  "turns": [
+   22,
+   26
+  ],
+  "reason": "Customer confirmed the booking and then the '$250 certificate and $55 credit card' breakdown.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PX8RE2M6RFADFQBXN6E57",
+  "agreed": "yes",
+  "turns": [
+   18,
+   20,
+   22
+  ],
+  "reason": "Customer approved adding 3 checked bags to FQ8APE, paid with gift_card_8190333.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PYBSHWN4KY7TYCEDZAHXH",
+  "agreed": "yes",
+  "turns": [
+   11,
+   14
+  ],
+  "reason": "Customer agreed to book HAT097/HAT251 for Ivan Smith using the certificate for $299, with no bags or insurance.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PYCWMZ96J0QS9ZMJ3X7NZ",
+  "agreed": "yes",
+  "turns": [
+   32,
+   34,
+   38
+  ],
+  "reason": "Customer agreed to Evelyn's booking at $250 certificate plus $870 MasterCard, then supplied her name and date of birth and said 'proceed'.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PYV1FP44RV654J2YAQ7AT",
+  "agreed": "yes",
+  "turns": [
+   44,
+   46
+  ],
+  "reason": "Customer confirmed Aarav's $1,120 booking on the Visa ending 2395, the only card besides the MasterCard (credit_card_2198526).",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PZPAN5WTT1AM300EV7K12",
+  "agreed": "yes",
+  "turns": [
+   13,
+   15
+  ],
+  "reason": "Customer confirmed changing OWZ4XL to nonstop economy HAT041 on May 21 with the $38 refund; the refund method was never discussed.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q0VWMJ14327FFS2S3KPJM",
+  "agreed": "yes",
+  "turns": [
+   17
+  ],
+  "reason": "Customer said 'go ahead and proceed with the compensation' after the agent offered a $50 certificate.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q3R6NT6HY6NMXWJA78AHT",
+  "agreed": "yes",
+  "turns": [
+   9
+  ],
+  "reason": "Customer said 'Yes, proceed with the upgrade and then cancel both reservations', which includes XEHM4B.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q4QYXR822DYYJRZFTS68K",
+  "agreed": "yes",
+  "turns": [
+   13
+  ],
+  "reason": "Customer said 'Yes, please proceed with adding 2 checked bags under my name using my Gold membership'.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q6WZDGT9C2SH60B4DKT0S",
+  "agreed": "yes",
+  "turns": [
+   11,
+   13,
+   18
+  ],
+  "reason": "Customer agreed to the next-fastest option HAT084/HAT266, keeping economy, 2 bags and the smallest gift card.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q7BFCZHHHT23JZ17JPQJ1",
+  "agreed": "yes",
+  "turns": [
+   11,
+   20
+  ],
+  "reason": "Customer agreed to book the quoted business itinerary using certificates, then gift cards, with the remaining $1286 on MasterCard 'as discussed'.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q8QAX7RGQ0BCV0C52DYFV",
+  "agreed": "yes",
+  "turns": [
+   15,
+   17
+  ],
+  "reason": "Customer said 'Yes, I confirm... change to flight HAT088 on May 17' in basic economy.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q9WS74N35PTYM20MW0HVE",
+  "agreed": "unsure",
+  "turns": [
+   26
+  ],
+  "reason": "Customer asked to book HAT023 'using my credit card ending in 7334', but nothing shows that credit_card_9074831 is that card, and the customer implied it may not be in their profile.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py",
+  "note": "Claude: this packet's profile shows credit_card_9074831 \"credit_card_9074831\":{\"source\":\"credit_card\",\"id\":\"credit_card_9074831\",\"brand\":\"mastercard\",\"last_four\":\"7334\"},\"certi"
+ },
+ {
+  "write_id": "01M61QAXR13HZH3KDDW3H4VE5Y",
+  "agreed": "yes",
+  "turns": [
+   14
+  ],
+  "reason": "Customer said 'Yes, that's correct. Please go ahead and cancel the DEN to BOS flight' (9HBUV8).",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61QAZRCFF15XVF4MZQV9R18",
+  "agreed": "yes",
+  "turns": [
+   10,
+   12
+  ],
+  "reason": "Customer explicitly confirmed cancelling FDZ0T5, PUNERT and HSR97W.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61QBV3BCVRKNX4J3WDGKFH7",
+  "agreed": "yes",
+  "turns": [
+   22
+  ],
+  "reason": "Customer said 'proceed with the upgrades to business class for the total amount of $1,282' on the credit card, and HAT268 was in the listed set.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ4FJNSY49D6GH62NHR3T5",
+  "agreed": "yes",
+  "turns": [
+   12
+  ],
+  "reason": "Customer: \"process the return for the Water Bottle, Action Camera, and Backpack... refund through PayPal\"; the call returns those 3 items from #W5490111 to PayPal.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ4HHCR7P9XNZ3N60M0KYH",
+  "agreed": "no",
+  "turns": [
+   12
+  ],
+  "reason": "The call returns the Gaming Mouse from #W7387996, but the customer said \"I want to keep the Mechanical Keyboard and the Gaming Mouse.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ4X932P1F842EVYZ09DTY",
+  "agreed": "no",
+  "turns": [
+   9
+  ],
+  "reason": "Customer agreed to return the watch, but item 1994478369 is not the watch (another run of the same task gives the Smart Watch as 2554056026). A gift-card refund was also never discussed.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ50S18W0JMGFM3T677JV3",
+  "agreed": "yes",
+  "turns": [
+   11
+  ],
+  "reason": "Customer: \"Yes, please proceed with the return for the water bottle\" from #W2890441 ($54.04). The refund method was never discussed, but the customer did not object.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ569MXMXMNKGFAQKD4C9Q",
+  "agreed": "yes",
+  "turns": [
+   10
+  ],
+  "reason": "Customer confirmed returning \"the 10-inch, 128GB, gold tablet\" with a refund to the credit card, which matches the item the agent named.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5AKVE2QZ5NS0KVZTB57S",
+  "agreed": "yes",
+  "turns": [
+   10
+  ],
+  "reason": "Retry of the same call, with the same tablet and credit card the customer confirmed at T10. There was no customer message in between.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5FVM4YXJHBMWCGHNQA7G",
+  "agreed": "yes",
+  "turns": [
+   11
+  ],
+  "reason": "Customer confirmed \"I want to return all those items\", which includes the hiking boots this call returns. The refund method was not discussed.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5MBFEG8RZ8JEKXZWXNXD",
+  "agreed": "no",
+  "turns": [
+   14
+  ],
+  "reason": "Customer asked to \"go ahead with those exchanges\", but the agent never showed the new variants, price difference or credit-card payment before calling.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5Q5CNJR8Y4KWEVMC0NMK",
+  "agreed": "no",
+  "turns": [
+   14
+  ],
+  "reason": "Retry of the luggage exchange: the replacement item, price and credit-card payment were never shown to or confirmed by the customer.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5SXX45K1CHY4NDVBWM3D",
+  "agreed": "no",
+  "turns": [
+   11,
+   14
+  ],
+  "reason": "The call exchanges item 5676696062, the hiking boots the customer wanted returned, not exchanged. The variant and payment were never confirmed either.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5ZBF168ZDD9V2D0TFSBV",
+  "agreed": "no",
+  "turns": [
+   14
+  ],
+  "reason": "Repeated luggage exchange whose new item, price and credit-card payment were never shown to the customer.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ8RRBK9GE6SNZ9K0AKR7V",
+  "agreed": "yes",
+  "turns": [
+   9
+  ],
+  "reason": "Customer: \"Yes, please go ahead and cancel both pending orders because I no longer need them\". #W5199551 is one of those two orders.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ9FMAWJ45HTBCVXEBKVH4",
+  "agreed": "yes",
+  "turns": [
+   11,
+   13
+  ],
+  "reason": "Customer asked to change the luggage to red and the skateboard to 34-inch custom design in #W3295833, paid with PayPal (\"Please go ahead\"). The exact variant IDs and price difference were never shown.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JMJVCJQM1EQ0B0NPQTKHV8",
+  "agreed": "yes",
+  "turns": [
+   14,
+   17
+  ],
+  "reason": "Customer: \"Yes... process the return for the Water Bottle, Action Camera, and Backpack, and issue the refund to my credit card.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PSRVRXMARGYBWJZ9YJE0Y",
+  "agreed": "yes",
+  "turns": [
+   9,
+   11
+  ],
+  "reason": "Customer confirmed upgrading XEHM4B to economy on the same flights HAT005/HAT178, paid with \"the default payment method on my profile\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PT2NG1AA7SCQ0PGK942A7",
+  "agreed": "yes",
+  "turns": [
+   4,
+   7
+  ],
+  "reason": "Customer named IFOYYZ for cancellation and said \"Yes, please proceed with canceling the two reservations\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PV3G52Z4KJP9G0YXEDF6S",
+  "agreed": "yes",
+  "turns": [
+   12,
+   14
+  ],
+  "reason": "Customer confirmed the economy upgrade and the return change to HAT102 ($63, \"payment method on file\"): \"Yes, please proceed... as summarized.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PX4FK7DA9Z1J1D9QEXRT2",
+  "agreed": "yes",
+  "turns": [
+   20,
+   22,
+   24
+  ],
+  "reason": "Customer asked to add one checked bag (total 2) paid with the smallest-balance gift card, then confirmed \"Yes, please proceed with these changes.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PXFATXSKNSSM2J0EQME5Z",
+  "agreed": "yes",
+  "turns": [
+   29,
+   31
+  ],
+  "reason": "Customer picked option 2 (HAT290 + HAT175) and confirmed \"Yes, that is correct. Please proceed\", with the $6 gift card as agreed at T22.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PYC3M0Y8M9VYYM8SWTHPZ",
+  "agreed": "yes",
+  "turns": [
+   32,
+   38
+  ],
+  "reason": "Matches the agreed booking for Mohamed: $500 certificate + $198 and $129 gift cards + $293 MasterCard, and the customer said \"proceed with the bookings\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PYGRX51BXSSZ4R86R0CQH",
+  "agreed": "yes",
+  "turns": [
+   17
+  ],
+  "reason": "After being told the price is $375, the customer said \"I'm fine with proceeding using the certificate... finalize the booking for Ivan Smith\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PYVD9NX93H5VMR1XBYZNQ",
+  "agreed": "yes",
+  "turns": [
+   44,
+   46
+  ],
+  "reason": "Customer asked for Evelyn's $1,120 booking on the Visa ending 2395 (the MasterCard is credit_card_2198526, so credit_card_5843230 is presumably the Visa) and confirmed at T46.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q0BB70786F192TBG3KVV1",
+  "agreed": "yes",
+  "turns": [
+   19,
+   21
+  ],
+  "reason": "Customer: \"keep both flights in economy and add 2 checked bags\" at $0 on the original gift card, confirmed at T21.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q346P36J830S236T7GDY6",
+  "agreed": "yes",
+  "turns": [
+   14,
+   16
+  ],
+  "reason": "Customer: \"Yes, please go ahead and cancel the reservation\" for the PHL-LGA trip the agent found.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q3RXQGMXJ4EH3VB7AR7B2",
+  "agreed": "yes",
+  "turns": [
+   7,
+   9
+  ],
+  "reason": "Customer: \"Yes, proceed with the upgrade and then cancel both reservations\", which includes 59XX6W.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q5CMVPSBC1WFMYJCFYE7Y",
+  "agreed": "yes",
+  "turns": [
+   13
+  ],
+  "reason": "Customer confirmed the change of M05KNL to economy HAT110/HAT172 on May 24 with a refund to the original payment method. That gift_card_8887175 is the original method can't be checked from the text.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q6YJPFHCG1WPHME955S0F",
+  "agreed": "yes",
+  "turns": [
+   11,
+   13,
+   18
+  ],
+  "reason": "Customer agreed to add one bag (total 2) using gift_card_7480005 ($6), which the agent named, and said \"keep everything else the same\" at T18.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q7E08FRX3S6AGKP0Q2ZSB",
+  "agreed": "yes",
+  "turns": [
+   14,
+   16,
+   19
+  ],
+  "reason": "Customer: \"Yes, I approve using $39 from the smaller gift card and $78 from the larger\" for the JFK-SEA basic economy booking.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q8R9JT4JFVC77GVN9N11Q",
+  "agreed": "yes",
+  "turns": [
+   10
+  ],
+  "reason": "Customer: \"Yes, please go ahead and update my reservation to those flights\" (HAT072/HAT278, economy). The payment method was not discussed.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61QABN0FBHG37FYXGS7XWT1",
+  "agreed": "yes",
+  "turns": [
+   7
+  ],
+  "reason": "Customer confirmed changing only Mei's last name to Garcia, with the same date of birth: \"Please go ahead with the change.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61QAYDHB0GRMZX185D8ANBW",
+  "agreed": "yes",
+  "turns": [
+   10,
+   12
+  ],
+  "reason": "Customer: \"Yes, I confirm that I want to proceed with canceling all three reservations FDZ0T5, PUNERT, and HSR97W\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61QBRDS09E99Z418H4DX56V",
+  "agreed": "yes",
+  "turns": [
+   22
+  ],
+  "reason": "Customer: \"Please proceed with the upgrades to business class for the total amount of $1,282. Use the credit card on file\". HAT300/HAT208 were in the list shown.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61QCGXQPGRQTHWAHV15T9Q7",
+  "agreed": "yes",
+  "turns": [
+   35
+  ],
+  "reason": "Customer: \"Yes, please revert the upgrades for NM1VX1 and H8Q05L\"; the call reverts NM1VX1 to basic economy.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ4FQ7N37RJXVD6FW00S14",
+  "agreed": "no",
+  "turns": [
+   12
+  ],
+  "reason": "Returns the only item in #W7387996 (the Gaming Mouse), which the customer said to keep: \"I want to keep the Mechanical Keyboard and the Gaming Mouse.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ4MRXHTNKQG9R1Z09V388",
+  "agreed": "yes",
+  "turns": [
+   19
+  ],
+  "reason": "Customer explicitly asked to return the Water Bottle, Action Camera and Backpack from #W5490111 with a PayPal refund; the agent restated this and the customer did not object.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ50CY9AWVGK70D1V5XXDF",
+  "agreed": "no",
+  "turns": [
+   18
+  ],
+  "reason": "Customer asked to return \"just those two items\" (keyboard and mouse), but the call returns a single item from #W5490111, and the mouse is not in that order.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ514HKPYVPHEY1BW7SGTK",
+  "agreed": "yes",
+  "turns": [
+   10
+  ],
+  "reason": "\"That's the one I want to return — the 8-inch, 128GB gold tablet for $989.70 ... refund to my credit card.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ57HHF4560N7GD2S6BT3G",
+  "agreed": "no",
+  "turns": [
+   18
+  ],
+  "reason": "Customer only asked for the water bottle return (\"Just get the return done\"); cancelling order #W2890441 was never requested or discussed.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5BGDG74M5VTD6YN9FR3T",
+  "agreed": "no",
+  "turns": [],
+  "reason": "The conversation ends right after identity details; which tablet would be returned and its price were never shown or confirmed.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5G910Y7ARY1GVCW4J58N",
+  "agreed": "no",
+  "turns": [
+   11
+  ],
+  "reason": "The customer's \"Yes\" was to a vague plan; the order, the item and the PayPal refund in this call were never shown, and luggage/skateboard were meant as exchanges, not returns.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5MGPBWTXZYQ135Q4TA74",
+  "agreed": "no",
+  "turns": [
+   14
+  ],
+  "reason": "Customer asked to \"go ahead with those exchanges\", but the new variants, the price difference and the payment card were never shown before the call (same as the pet-bed calibration case).",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5QACWH55WR7A51QRC0WY",
+  "agreed": "no",
+  "turns": [
+   14
+  ],
+  "reason": "A retry of the same exchange; the agent still never presented the specific new items, price or payment method for confirmation.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ5WJ9VN9DFMWCPYHWADA8",
+  "agreed": "no",
+  "turns": [
+   14
+  ],
+  "reason": "A retry of the same skateboard/luggage exchange; the replacement items, price difference and payment card were never confirmed by the customer.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ8EWDBX97WB0MFX4GWA4M",
+  "agreed": "yes",
+  "turns": [
+   13,
+   16
+  ],
+  "reason": "Customer confirmed the three-item return and then agreed to switch the refund: \"Yes, please proceed with the return and refund to my Visa credit card ending in 7285.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ8RY1RS4PQ45QV29TFP9J",
+  "agreed": "yes",
+  "turns": [
+   9
+  ],
+  "reason": "\"Yes, please go ahead and cancel both pending orders because I no longer need them\", after the agent listed #W8665881 and its PayPal refund.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ9GNMV4JYQDYWY9WSHF03",
+  "agreed": "yes",
+  "turns": [
+   11,
+   13
+  ],
+  "reason": "Customer confirmed returning the hiking boots from #W8488728 and chose \"my PayPal account for both the refund and the payment\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JMKJZ89YMCJ0N6FJ94V46Q",
+  "agreed": "yes",
+  "turns": [
+   22,
+   25
+  ],
+  "reason": "Customer confirmed the Water Bottle, Action Camera and Backpack return, then accepted the credit-card refund: \"Yes, that's fine. Please go ahead...\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PSTDDZHYXW0HEVTJTFXGX",
+  "agreed": "yes",
+  "turns": [
+   11
+  ],
+  "reason": "\"Yes, proceed with the upgrade and then cancel both reservations\", which covers cancelling XEHM4B.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PT30XT83HZBJSJ0RDWB5D",
+  "agreed": "yes",
+  "turns": [
+   7
+  ],
+  "reason": "\"Yes, please proceed with canceling the two reservations I mentioned\", which include NQNU5R, after the agent summarized it.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PVG98QWC7JVAEJEJQZ0PS",
+  "agreed": "yes",
+  "turns": [
+   15,
+   17
+  ],
+  "reason": "Customer chose the $207 HAT110/HAT172 economy flights on May 24 with the original payment method and said \"Yes, all the details are correct\"; the payment ID shown as \"original\" (a gift card) could not be checked from the text.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PX78BTBS6N3D4MQKMRGKH",
+  "agreed": "yes",
+  "turns": [
+   18,
+   20,
+   22
+  ],
+  "reason": "Customer approved the economy upgrade on FQ8APE paid with gift_card_8190333: \"Yes, I approve these changes.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PXKTBR97TZS7D9PJA407T",
+  "agreed": "yes",
+  "turns": [
+   30,
+   32
+  ],
+  "reason": "Customer asked to keep basic economy with 3 checked bags on gift_card_8190333 and confirmed: \"Yes, that is correct. Please proceed.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PYCFVXDJPD3D590KB1Y09",
+  "agreed": "yes",
+  "turns": [
+   32,
+   34,
+   38
+  ],
+  "reason": "Customer agreed to Aarav's separate booking ($250 certificate 9984806 + $870 MasterCard), corrected the name and gave DOB 2010-07-15: \"Please proceed with the bookings.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PYTPEQPTZ9JM5DKK0NBWZ",
+  "agreed": "yes",
+  "turns": [
+   44,
+   46
+  ],
+  "reason": "After the certificates were found unavailable, the customer agreed to $1,120 on the MasterCard for his own reservation: \"Yes, please proceed ... using the specified payment methods.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61PZFB0SZE1PW67FTD45XH6",
+  "agreed": "yes",
+  "turns": [
+   14,
+   16
+  ],
+  "reason": "Customer confirmed changing DF89BM to nonstop HAT033 on May 17 with the return unchanged (\"Yes, that is correct\"); the refund method (a gift card) was never discussed, but nothing contradicts it.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q0H1DR9TFDTDHB9VAJNFY",
+  "agreed": "no",
+  "turns": [
+   9
+  ],
+  "reason": "Customer only asked for delay compensation and noted there are 3 passengers; they never asked to change passenger details on 4OG6T3.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q3PXQRD3JHD5TP2CH5AQ7",
+  "agreed": "yes",
+  "turns": [
+   7,
+   9
+  ],
+  "reason": "\"Yes, proceed with the upgrade and then cancel both reservations\", after the agent described upgrading XEHM4B to economy and paying the fare difference (the specific card was not named).",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q484XRHT74GJNDVYMZYTS",
+  "agreed": "yes",
+  "turns": [
+   11
+  ],
+  "reason": "\"Yes, please proceed with cancelling reservation IFOYYZ only.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q6DF6SSM47DQM51WGY436",
+  "agreed": "yes",
+  "turns": [
+   14,
+   16
+  ],
+  "reason": "Customer chose the 19:00 HAT136+HAT039 flights and said to use the $250 certificate and the rest on the 7447 card if only one certificate is allowed: \"Please proceed accordingly.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q7997MGKADFWPNJYNNEDS",
+  "agreed": "yes",
+  "turns": [
+   18,
+   20
+  ],
+  "reason": "\"Yes, please proceed with canceling my current reservation and then book the new business class ticket.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q898SANXVYSR8JB95ZAN5",
+  "agreed": "yes",
+  "turns": [
+   13,
+   15
+  ],
+  "reason": "Customer asked to add one checked bag, the agent summarized it with the existing payment method, and the customer said \"Yes, please go ahead and make those changes.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61Q9CDKWQD2B2BNACSJPFQF",
+  "agreed": "yes",
+  "turns": [
+   15
+  ],
+  "reason": "Customer explicitly asked: \"Please check the reservation ID M20IZO for the JFK to MCO flight on May 22 and cancel it\"; the agent did not restate it before the call, but the target is unambiguous.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61QAQHD89C11D1ZMTG5RH67",
+  "agreed": "yes",
+  "turns": [
+   10
+  ],
+  "reason": "\"Yes, please go ahead and cancel reservation 4XGCCM.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61QAZD1C85YBG2KRN638RMF",
+  "agreed": "yes",
+  "turns": [
+   10,
+   12
+  ],
+  "reason": "\"Yes, I confirm that I want to proceed with canceling all three reservations FDZ0T5, PUNERT, and HSR97W.\"",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61QBSPH8AFEAG9C0BD3NRFH",
+  "agreed": "no",
+  "turns": [
+   22
+  ],
+  "reason": "The $1,282 the customer approved covered a different set of flights; this call also upgrades HAT300 on 2024-05-21 in KC18K6, which was never quoted (the quote had HAT300 on 05-25 and HAT157 instead).",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M61QCJY1J0DDNGGA55AK1PJX",
+  "agreed": "yes",
+  "turns": [
+   32,
+   35
+  ],
+  "reason": "\"Yes, please revert the upgrades for NM1VX1 and H8Q05L\", which covers moving H8Q05L back to basic economy.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py"
+ },
+ {
+  "write_id": "01M5JZ59MHE9X7XFMC6ABKYK7Q",
+  "agreed": "yes",
+  "turns": [
+   18,
+   21
+  ],
+  "reason": "Customer confirmed the water bottle return from #W2890441 to the original card: \"Yes, please initiate the return request for the water bottle\". The same return had already run at L5, so this call repeats it.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M5JZ6ATBEEKTG3TJWW7DGJ1P",
+  "agreed": "yes",
+  "turns": [
+   11,
+   13
+  ],
+  "reason": "Customer confirmed returning the water bottle, action camera and backpack from #W5490111 with the refund to PayPal: \"Yes, that's correct. Please go ahead\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M5JZ6GX6MMASE0YGDF0T90CV",
+  "agreed": "yes",
+  "turns": [
+   18,
+   20
+  ],
+  "reason": "Customer moved the refund to the credit card ending 7285 and confirmed returning the same three items: \"Yes, please proceed with the return and refund to my credit card\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M5JZ6XV19WNQPTEYGY67CH3S",
+  "agreed": "yes",
+  "turns": [
+   15,
+   17
+  ],
+  "reason": "Customer confirmed returning the mechanical keyboard from #W5490111 with the refund to the original payment method (the credit card).",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M5JZ6Y0PCJGTZBGV2ES6XMZA",
+  "agreed": "yes",
+  "turns": [
+   15,
+   17
+  ],
+  "reason": "Customer confirmed returning the gaming mouse from #W7387996 with the refund to the original payment method (PayPal).",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M5JZ75JB70RW5WZ3HTHRFT8J",
+  "agreed": "yes",
+  "turns": [
+   18,
+   20
+  ],
+  "reason": "Customer chose only the water bottle return with the refund to the credit card and replied \"Yes, please go ahead with the return\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M5JZ7WC7B4BXKPHYMFS19WER",
+  "agreed": "yes",
+  "turns": [
+   18,
+   20
+  ],
+  "reason": "Customer picked the 4-piece hardshell red luggage set and the bamboo 34-inch custom skateboard, paid by PayPal, and confirmed the agent's summary with item IDs: \"Yes, that's all correct\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M5JZ7WRDCJJDGS5WK70MRR9A",
+  "agreed": "yes",
+  "turns": [
+   18,
+   20
+  ],
+  "reason": "Customer confirmed returning the hiking boots from #W8488728 with the refund to PayPal.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M5JZ8B8THC9A0XF2HZD3GHB6",
+  "agreed": "yes",
+  "turns": [
+   11,
+   13
+  ],
+  "reason": "Customer confirmed returning the water bottle, action camera and backpack with the refund to PayPal: \"Yes, that's correct. Please go ahead\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M5JZ8BVJWCCS1EFW5CNMNFXT",
+  "agreed": "yes",
+  "turns": [
+   11,
+   13
+  ],
+  "reason": "Customer agreed to return all items from both orders with refunds to the original methods (credit card for #W5490111): \"Yes. Do it.\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M5JZ8C0A464AYBE5H45RF9GP",
+  "agreed": "yes",
+  "turns": [
+   11,
+   13
+  ],
+  "reason": "Customer agreed to return everything with refunds to the original methods; this call returns the gaming mouse with the refund to PayPal.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M5JZ8C543144DT73B6PKHASY",
+  "agreed": "yes",
+  "turns": [
+   11,
+   13
+  ],
+  "reason": "Customer named the water bottle, action camera and backpack with the refund to PayPal, and confirmed the agent's summary.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M5JZ8ZGFJFEAWXENFATGBCJB",
+  "agreed": "yes",
+  "turns": [
+   13,
+   15
+  ],
+  "reason": "Customer chose the water bottle return and confirmed the refund to the original Mastercard: \"Yes, please proceed with the return\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M5JZ9P9G1E6T3N8PV9HGQHKV",
+  "agreed": "yes",
+  "turns": [
+   24,
+   26
+  ],
+  "reason": "Customer switched to the gold tablet from #W9571698 refunded to a gift card and confirmed: \"Yes, that's right ... refund it to my gift card\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M5JMKGBFP684SJXBM82Z05F5",
+  "agreed": "yes",
+  "turns": [
+   20,
+   22
+  ],
+  "reason": "Customer confirmed returning the water bottle, action camera and backpack from #W5490111 with the refund to PayPal.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M61PTMHC2NJEBQ2NR80XNJHA",
+  "agreed": "yes",
+  "turns": [
+   4,
+   7
+  ],
+  "reason": "Customer asked to upgrade all passengers on YAX4DR to business and confirmed \"Yes, I confirm all of that\" with the card on file. The upgrade cost was never quoted.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M61PX4644DWNDVHGC7EKSWPT",
+  "agreed": "yes",
+  "turns": [
+   18,
+   20,
+   22,
+   24
+  ],
+  "reason": "Customer agreed to return on HAT229 and HAT266 on May 27 in economy, keeping the outbound, paid with the $6 gift card. Another run on the same account shows that card is gift_card_7480005.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M61PXJFG0ZP04V1QEJD869TJ",
+  "agreed": "yes",
+  "turns": [
+   30,
+   32
+  ],
+  "reason": "Customer asked to remove the cabin upgrade and keep basic economy on the same flights, paid with gift_card_8190333, and confirmed.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M61Q0JQ0P7BCN5VP6010AY2T",
+  "agreed": "yes",
+  "turns": [
+   6,
+   9
+  ],
+  "reason": "Customer confirmed upgrading the entire M20IZO reservation to business. Payment and price were never discussed, so the card in the call was not contradicted.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M61Q4MQ74VY10ANVQ3TJ72TB",
+  "agreed": "yes",
+  "turns": [
+   11
+  ],
+  "reason": "Customer explicitly agreed to downgrade all passengers on GV1N64 to basic economy with the $5,244 refund to the original payment method.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M61Q6Q9RX39XQ12JWMAK0RN1",
+  "agreed": "yes",
+  "turns": [
+   11,
+   13
+  ],
+  "reason": "Customer confirmed the return on HAT229 and HAT266 on May 27 in economy, paid with gift_card_7480005, which the agent stated was the $6 card.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M61Q97RQ2PHBHM7S9KVFPCEJ",
+  "agreed": "no",
+  "turns": [
+   18,
+   21
+  ],
+  "reason": "Customer agreed to upgrade only the outbound flight for $152 and keep the return in economy, but the call puts both flights in business.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M61Q9W8Y3BJF5PJP2EJCZJ49",
+  "agreed": "yes",
+  "turns": [
+   6,
+   9
+  ],
+  "reason": "Customer confirmed upgrading all of M20IZO to business paid with the credit card ending 7334. The call's payment ID \"credit_card_7334\" matches that intent, though it is not a real ID.",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M61QA4VVG9YRFK36ECZQ97YG",
+  "agreed": "yes",
+  "turns": [
+   6,
+   9,
+   15
+  ],
+  "reason": "Customer re-confirmed the full M20IZO business upgrade using the card ending 7334, which the agent said is credit_card_9074831: \"Yes, I confirm\".",
+  "read_by": "Claude subagent, one read, rubric in agreement.py (second batch, after the rule was made stricter)"
+ },
+ {
+  "write_id": "01M61PXKGCSJZJETM64WV2AHM4",
+  "agreed": "unsure",
+  "turns": [
+   21,
+   23
+  ],
+  "reason": "The customer approved the summary 'Return flights: HAT082 and HAT085 on May 28, 2024' and said yes; the call books HAT085 on 2024-05-29. That may be the overnight connection the summary got wrong, or a different booking.",
+  "read_by": "Claude, one read (moved out of the code rule when dates were added to it)"
+ }
+]

@@ -49,7 +49,10 @@ ANCHORS = {
 
 # v0: M0 as first measured. v1 (M0 decisions, 2026-11-18): identical repeated lookups become
 # pointers to their last copy, and later calls in the same customer turn are shown as context.
-PACKET_VERSION = "rely1-packet-v1"
+# v2 (Prithvi, 2026-11-18): no consent-turn marker (agreement is a separate per-action label,
+# M1 `agreement.py`), and the main text has no later calls; `text_with_later_calls` is kept
+# only as a comparison, since a live check would not have them.
+PACKET_VERSION = "rely1-packet-v2"
 
 
 def jsonl(path: Path) -> list[dict]:
@@ -267,7 +270,8 @@ def build(
 ) -> dict:
     """One action packet. The conversation keeps every customer and agent message in order;
     each tool call becomes a numbered ledger entry, and the conversation shows only its number,
-    so no record appears twice. The consent turn is the last customer message before the call."""
+    so no record appears twice. No turn is marked as the consent: whether and where the customer
+    agreed is a per-action label, not part of the input."""
     msgs = run["messages"]
     proposed = msgs[-1]["tool_calls"][-1]
     assert proposed["id"] == "proposed", run["write_id"]
@@ -298,8 +302,6 @@ def build(
             if m["content"] or refs:
                 turns.append({"role": "agent", "text": m["content"] or "", "ledger_refs": refs})
     dedup_ledger(ledger)
-    consent = max(i for i, t in enumerate(turns) if t["role"] == "customer")
-    turns[consent]["consent"] = True
 
     spec = specs[proposed["function"]]
     return {
@@ -308,7 +310,6 @@ def build(
         "capture": capture,
         "domain": CAPTURES[capture][0],
         "conversation": turns,
-        "consent_turn": consent,
         "proposed_action": {
             "tool": proposed["function"],
             "arguments": proposed["arguments"],
@@ -321,12 +322,14 @@ def build(
     }
 
 
-def render(p: dict) -> str:
-    """The packet as the one text document a decision model reads (Kev's `state`)."""
+def render(p: dict, later_calls: bool = False) -> str:
+    """The packet as the one text document a decision model reads (Kev's `state`). The main
+    version has no later calls; `later_calls=True` renders the comparison version. v0 and v1
+    packets render as they were measured."""
     out = ["# Conversation up to the proposed action", ""]
     for i, t in enumerate(p["conversation"], start=1):
         tag = "customer" if t["role"] == "customer" else "agent"
-        if t.get("consent"):
+        if t.get("consent"):  # v0 / v1 packets only
             tag += " [CONSENT TURN]"
         line = f"[T{i}] {tag}: {t['text']}".rstrip()
         if t.get("ledger_refs"):
@@ -341,12 +344,13 @@ def render(p: dict) -> str:
     if p.get("packet_version") == "rely1-packet-v0":  # v0 had no later-calls section
         out += ["", "# Policy", p["policy"], "", "# Evidence ledger (every lookup, in order)"]
         return _ledger_lines(out, p)
-    out += ["", "# Later calls in the same customer turn (agreement not verified)"]
-    for c in p.get("plan_calls") or []:
-        args = json.dumps(c["arguments"], ensure_ascii=False, sort_keys=True)
-        out.append(f"- {c['tool']} {args}")
-    if not p.get("plan_calls"):
-        out.append("none")
+    if later_calls or p.get("packet_version") == "rely1-packet-v1":
+        out += ["", "# Later calls in the same customer turn (agreement not verified)"]
+        for c in p.get("plan_calls") or []:
+            args = json.dumps(c["arguments"], ensure_ascii=False, sort_keys=True)
+            out.append(f"- {c['tool']} {args}")
+        if not p.get("plan_calls"):
+            out.append("none")
     out += ["", "# Policy", p["policy"], "", "# Evidence ledger (every lookup, in order)"]
     return _ledger_lines(out, p)
 
@@ -400,6 +404,7 @@ def main() -> None:
     with OUT.open("w") as f:
         for p in packets:
             p["text"] = render(p)
+            p["text_with_later_calls"] = render(p, later_calls=True)
             f.write(json.dumps(p, ensure_ascii=False, sort_keys=True) + "\n")
     digest = hashlib.sha256(OUT.read_bytes()).hexdigest()
     print(f"{len(packets)} packets -> {OUT.relative_to(ROOT)} sha256 {digest}")

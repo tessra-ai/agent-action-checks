@@ -30,8 +30,9 @@ sys.path.insert(0, str(HERE))
 from sentences import agent_sentences  # noqa: E402
 
 PACKETS = HERE / "runs/packets.jsonl"
-# results/token_lengths.json is the v0 measurement M0 was gated on; v1 writes its own file.
-OUT = HERE / "results/token_lengths_v1.json"
+# results/token_lengths.json is the v0 measurement M0 was gated on, token_lengths_v1.json the
+# v1 one; v2 (main text without later calls, plus the with-later-calls comparison) writes its own.
+OUT = HERE / "results/token_lengths_v2.json"
 BASE = "Qwen/Qwen3.5-4B-Base"
 BASE_REVISION = "1001bb4d826a52d1f399e183466143f4da7b741b"
 KEV_REPO, KEV_REVISION = "jaredpalmer/kev-4b", "v1.0"
@@ -74,10 +75,12 @@ HEADERS = {
 
 def sections(text: str) -> dict[str, str]:
     """The four sections, cut at packets.render's own headers (the policy has `#` headings too)."""
-    cuts = [text.index(h) for h in HEADERS.values()]
+    present = {name: text.index(h) for name, h in HEADERS.items() if h in text}
+    cuts = list(present.values())
     assert cuts == sorted(cuts), "headers out of order"
     ends = [*cuts[1:], len(text)]
-    return {name: text[a:b] for name, a, b in zip(HEADERS, cuts, ends, strict=True)}
+    out = {name: text[a:b] for name, a, b in zip(present, cuts, ends, strict=True)}
+    return {name: out.get(name, "") for name in HEADERS}
 
 
 def frozen_train_dev() -> set[str]:
@@ -107,8 +110,8 @@ def main() -> None:
         for name in ("train", "dev")
     }
     packets = load_train_dev(PACKETS)
-    if {p["packet_version"] for p in packets} != {"rely1-packet-v1"}:
-        raise SystemExit("tokens.py measures packet v1; rebuild runs/packets.jsonl with packets.py")
+    if {p["packet_version"] for p in packets} != {"rely1-packet-v2"}:
+        raise SystemExit("tokens.py measures packet v2; rebuild runs/packets.jsonl with packets.py")
 
     tok = load_tokenizer(BASE, revision=BASE_REVISION)
     tok_card = load_tokenizer(KEV_REPO, revision=KEV_REVISION)
@@ -125,6 +128,7 @@ def main() -> None:
         }
         enc = encode(tok, rec, max_state=SERVE_MAX_STATE, max_branch=SERVE_MAX_BRANCH, strict=True)
         card_state = len(user_tokens(tok_card, p["text"])) + 1
+        with_later = len(user_tokens(tok, p["text_with_later_calls"])) + 1
         rows.append(
             {
                 "write_id": p["write_id"],
@@ -133,7 +137,11 @@ def main() -> None:
                 "state_tokens": enc["state_tokens"],
                 "row_tokens_longest_statement": len(enc["ids"]),
                 "state_tokens_card_tokenizer": card_state,
-                "sections": {k: len(user_tokens(tok, v)) for k, v in sections(p["text"]).items()},
+                "state_tokens_with_later_calls": with_later,
+                "sections": {
+                    k: len(user_tokens(tok, v))
+                    for k, v in sections(p["text_with_later_calls"]).items()
+                },
                 "ledger_entries": len(p["ledger"]),
                 "agent_sentences": len(sents),
             }
@@ -167,6 +175,10 @@ def main() -> None:
         },
         "with_plan_calls": sum(1 for p in packets if p.get("plan_calls")),
         "state": summary(state),
+        "main_text": "no later calls (the version a live check would see)",
+        "state_with_later_calls": summary([r["state_tokens_with_later_calls"] for r in rows]),
+        "sections_note": "sections are counted on the with-later-calls text; the main text is "
+        "the same without the plan_calls section",
         "state_by_domain": {
             d: summary([r["state_tokens"] for r in rows if r["domain"] == d])
             for d in ("airline", "retail")

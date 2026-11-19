@@ -82,10 +82,11 @@ def test_packet_moves_lookups_to_the_ledger_once():
     assert "cancel_reservation {" not in text.split("# Evidence ledger")[1]
 
 
-def test_consent_turn_is_the_last_customer_message():
+def test_packet_v2_marks_no_consent_turn():
     p = packets.build("airline1", _run(), SPECS, "POLICY")
-    assert p["conversation"][p["consent_turn"]]["text"] == "Yes."
-    assert "[T5] customer [CONSENT TURN]: Yes." in packets.render(p)
+    assert "consent_turn" not in p
+    assert "CONSENT" not in packets.render(p)
+    assert "[T5] customer: Yes." in packets.render(p)
 
 
 def test_render_sections_in_order():
@@ -193,10 +194,11 @@ def test_plan_calls_stop_at_a_customer_message():
         {"tool": "cancel_reservation", "arguments": {"reservation_id": "XYZ"}}
     ]
     assert packets.plan_calls(run, [run, other]) == []
-    text = packets.render(packets.build("airline1", run, SPECS, "P", [run, same]))
-    assert (
-        "# Later calls in the same customer turn (agreement not verified)\n"
-        '- cancel_reservation {"reservation_id": "XYZ"}' in text
+    p = packets.build("airline1", run, SPECS, "P", [run, same])
+    head = "# Later calls in the same customer turn (agreement not verified)"
+    assert head not in packets.render(p)  # main version: a live check would not have them
+    assert head + '\n- cancel_reservation {"reservation_id": "XYZ"}' in packets.render(
+        p, later_calls=True
     )
 
 

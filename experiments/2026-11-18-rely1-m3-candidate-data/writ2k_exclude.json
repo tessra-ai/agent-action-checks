@@ -1,0 +1,247 @@
+{
+ "dataset": "Henryoung/WRIT-2K",
+ "revision": "ea52f2f",
+ "file": "WRIT-2K.json",
+ "file_sha256": "5b1c4790d1ed647d6322b36300e17416e3d40a58cd27007992a1a4f4d33ed65b",
+ "rule": "drop every airline trajectory whose tool calls name a user_id that appears in a τ² airline task in our unseen-task set (tasks 5, 6, 8, 18, 19, 26, 27, 28, 30, 39, 47); users found in tasks.json at c5b2d228",
+ "row_index": "0-based position in the WRIT-2K.json list (all 2,000 rows)",
+ "dropped": [
+  {
+   "row": 202,
+   "tasks": [
+    "19"
+   ],
+   "users": [
+    "olivia_gonzalez_2305"
+   ]
+  },
+  {
+   "row": 266,
+   "tasks": [
+    "30"
+   ],
+   "users": [
+    "james_taylor_7043"
+   ]
+  },
+  {
+   "row": 322,
+   "tasks": [
+    "28"
+   ],
+   "users": [
+    "amelia_rossi_1297"
+   ]
+  },
+  {
+   "row": 375,
+   "tasks": [
+    "5"
+   ],
+   "users": [
+    "mei_brown_7075"
+   ]
+  },
+  {
+   "row": 437,
+   "tasks": [
+    "5"
+   ],
+   "users": [
+    "mei_brown_7075"
+   ]
+  },
+  {
+   "row": 545,
+   "tasks": [
+    "5"
+   ],
+   "users": [
+    "mei_brown_7075"
+   ]
+  },
+  {
+   "row": 600,
+   "tasks": [
+    "5"
+   ],
+   "users": [
+    "mei_brown_7075"
+   ]
+  },
+  {
+   "row": 806,
+   "tasks": [
+    "28"
+   ],
+   "users": [
+    "amelia_rossi_1297"
+   ]
+  },
+  {
+   "row": 819,
+   "tasks": [
+    "19"
+   ],
+   "users": [
+    "olivia_gonzalez_2305"
+   ]
+  },
+  {
+   "row": 864,
+   "tasks": [
+    "5"
+   ],
+   "users": [
+    "mei_brown_7075"
+   ]
+  },
+  {
+   "row": 1056,
+   "tasks": [
+    "6",
+    "45"
+   ],
+   "users": [
+    "sophia_taylor_9065"
+   ]
+  },
+  {
+   "row": 1265,
+   "tasks": [
+    "6",
+    "45"
+   ],
+   "users": [
+    "sophia_taylor_9065"
+   ]
+  },
+  {
+   "row": 1267,
+   "tasks": [
+    "5"
+   ],
+   "users": [
+    "mei_brown_7075"
+   ]
+  },
+  {
+   "row": 1275,
+   "tasks": [
+    "39",
+    "41"
+   ],
+   "users": [
+    "amelia_davis_8890"
+   ]
+  },
+  {
+   "row": 1402,
+   "tasks": [
+    "5"
+   ],
+   "users": [
+    "mei_brown_7075"
+   ]
+  },
+  {
+   "row": 1404,
+   "tasks": [
+    "5"
+   ],
+   "users": [
+    "mei_brown_7075"
+   ]
+  },
+  {
+   "row": 1418,
+   "tasks": [
+    "26"
+   ],
+   "users": [
+    "amelia_sanchez_4739"
+   ]
+  },
+  {
+   "row": 1623,
+   "tasks": [
+    "19"
+   ],
+   "users": [
+    "olivia_gonzalez_2305"
+   ]
+  },
+  {
+   "row": 1644,
+   "tasks": [
+    "30"
+   ],
+   "users": [
+    "james_taylor_7043"
+   ]
+  },
+  {
+   "row": 1731,
+   "tasks": [
+    "5"
+   ],
+   "users": [
+    "mei_brown_7075"
+   ]
+  },
+  {
+   "row": 1784,
+   "tasks": [
+    "18"
+   ],
+   "users": [
+    "omar_davis_3817"
+   ]
+  },
+  {
+   "row": 1806,
+   "tasks": [
+    "5"
+   ],
+   "users": [
+    "mei_brown_7075"
+   ]
+  },
+  {
+   "row": 1863,
+   "tasks": [
+    "5"
+   ],
+   "users": [
+    "mei_brown_7075"
+   ]
+  },
+  {
+   "row": 1870,
+   "tasks": [
+    "5"
+   ],
+   "users": [
+    "mei_brown_7075"
+   ]
+  },
+  {
+   "row": 1905,
+   "tasks": [
+    "5"
+   ],
+   "users": [
+    "mei_brown_7075"
+   ]
+  },
+  {
+   "row": 1979,
+   "tasks": [
+    "5"
+   ],
+   "users": [
+    "mei_brown_7075"
+   ]
+  }
+ ]
+}

@@ -19,11 +19,11 @@ is MIT (Sierra Research). Test task IDs from M0: unseen set 5, 6, 8, 18, 19, 26,
 | Licence | Apache-2.0 (API tag, card front matter and card text agree; no LICENSE file) | MIT (API tag and card front matter; no LICENSE file, no licence text in the card) |
 | Training / redistribution | Both allowed; keep the notice, state changes | Both allowed; keep the notice |
 | What it is | The 50 τ² airline tasks themselves, 5 agent models × 2 agent styles: 500 conversations | 1,000 new synthetic airline scenarios (and 1,000 retail) on the same `c5b2d228` database and policy |
-| Conversations from **unseen-set** tasks | **110 of 500** (all 11 tasks, 10 each). Exact | **0 of 1,000** match a τ² task; but 26 reuse a *user* from an unseen-set task. Rough |
-| Conversations from **repeat-set** tasks | 260 of 500. Exact | 0 by task; 48 reuse a repeat-set task's user. Rough |
+| Conversations from **unseen-set** tasks | **110 of 500** (all 11 tasks, 10 each). Exact | **0 of 1,000** match a τ² task; but 26 reuse a *user* from an unseen-set task (re-checked; now excluded) |
+| Conversations from **repeat-set** tasks | 260 of 500. Exact | 0 by task; 44 to 49 reuse a repeat-set task's user, by definition |
 | Write actions | 258 discrete write calls (tool-calling half only; the code-agent half edits the database in Python, so it has no separate actions) | 936 airline write calls in 660 of 1,000 airline trajectories |
 | Correctness signal | Task-level reward only (COMMUNICATE + DB) | None in the data |
-| Actions that look correct (rough) | 98 of 258 writes are in reward-1 conversations: an upper bound, not per-action truth | All 936 replay without error on `c5b2d228`. 832 (≈89%) follow a customer "yes / proceed / confirm". A rule check on cancellations found 2 with no policy basis. No real verdict |
+| Actions that look correct (rough) | 98 of 258 writes are in reward-1 conversations: an upper bound, not per-action truth | All 936 replay without error on `c5b2d228`. 746 to 849 (80–91%) follow a customer confirmation word, by word list. A rule check on cancellations found 2 with no policy basis (re-checked). No real verdict |
 
 ## Notes per dataset
 
@@ -48,10 +48,11 @@ is MIT (Sierra Research). Test task IDs from M0: unseen set 5, 6, 8, 18, 19, 26,
   The generating models are undisclosed, so their providers' terms cannot be checked.
 - It was mapped to τ² tasks by content: users and reservations against `db.json`, write calls
   against τ² reference actions, and distinctive 5-word phrases from task instructions. No
-  trajectory matches a task. 90 of 1,000 airline trajectories use a user that also appears in a τ²
-  task: 26 from unseen-set tasks, 48 from the repeat set, 16 other. 25 also touch that task's
-  reservation (5 unseen). Spot-reads show different requests. **If used, the 26 unseen-set-user
-  trajectories should still be dropped**, since they handle the same customer records.
+  trajectory matches a task. 84 to 91 of 1,000 airline trajectories (by definition; see "Checked
+  by Claude") use a user that also appears in a τ² task: 26 from unseen-set tasks, 44 to 49 from
+  the repeat set, 14 to 16 other. The helper's spot-reads show different requests. **The 26
+  unseen-set-user trajectories are dropped** (`writ2k_exclude.json`), since they handle the same
+  customer records.
 - Its system prompt is `c5b2d228`'s `policy.md` word for word. All 6,657 airline tool calls
   replay identically, and no tool errors exist at all, so the data was probably filtered to
   clean runs.
@@ -65,8 +66,8 @@ is MIT (Sierra Research). Test task IDs from M0: unseen set 5, 6, 8, 18, 19, 26,
   writes), carries no per-action truth, and contains our unseen tasks: usable only after dropping
   110 rows, and only as a weakly labelled source.
 - **WRIT-2K** is larger (936 airline writes) on the same database and policy, with no labels at
-  all. It could feed M3's teacher labelling and planted errors, after dropping the 26
-  unseen-set-user trajectories.
+  all. It could feed M3's teacher labelling and planted errors, with the 26
+  unseen-set-user trajectories dropped.
 - **Exact:** the Snorkel mapping, licence tags, row and write counts. **Rough:** the WRIT entity
   overlap and rule checks, and every "looks correct" figure.
 
@@ -76,5 +77,29 @@ is MIT (Sierra Research). Test task IDs from M0: unseen set 5, 6, 8, 18, 19, 26,
   `license:apache-2.0`; neither is gated.
 - Snorkel: 500 rows; instructions identical to `tasks.json` for the same ID in 500 of 500;
   unseen 110, repeat 260, other 130.
-- Not re-checked: the WRIT figures and the write and replay counts, which come from the
-  subagent's read only.
+- **WRIT-2K, re-checked by Claude with its own scripts** (`writ_check.py`,
+  `writ_check_definitions.py`; file sha256 in `writ2k_exclude.json`). User IDs are those in each
+  τ² airline task (`tasks.json` at `c5b2d228`), kept if they exist in `db.json`.
+
+  | Figure | Helper | Claude | Note |
+  |---|---|---|---|
+  | Rows (airline / retail) | 1,000 / 1,000 | 1,000 / 1,000 | exact |
+  | Airline write calls | 936 | 936 | exact; same split by tool (cancel 290, book 209, flights 193, passengers 101, baggages 99, certificate 44) |
+  | Airline trajectories with a write | 660 | 660 | exact |
+  | Trajectories using a τ² task's user | 90 | 84 (from tool-call arguments) to 91 (any mention) | depends on the definition |
+  | … of which unseen-set users | 26 | **26** | the same 26 rows under both definitions |
+  | … repeat / other | 48 / 16 | 44 / 14 to 49 / 16 | depends on the definition |
+  | … also touching that task's reservation (unseen) | 25 (5) | 23 (5) | tool-call definition |
+  | Writes right after a "yes / proceed / confirm" turn | 832 | 746 to 849 | depends on the word list; a rough proxy only |
+  | Cancellations with no policy basis | 2 (rows "698, 785") | 2: file rows **1374 and 1569** | the helper's row numbers were positions among airline rows. Reservation 3I818F: economy, no insurance, booked 2024-05-02, flight delayed (not cancelled). **Both** rows also send a $150 certificate, not one |
+
+  Not re-checked: the full replay of 6,657 tool calls and the remaining cancellation-rule
+  counts.
+
+## WRIT-2K exclusion (Prithvi, 2026-11-18)
+
+The 26 airline trajectories whose tool calls name a customer from an unseen-set task are dropped:
+`writ2k_exclude.json` lists their file rows, the tasks and the 8 customers involved
+(`amelia_davis_8890`, `amelia_rossi_1297`, `amelia_sanchez_4739`, `james_taylor_7043`,
+`mei_brown_7075`, `olivia_gonzalez_2305`, `omar_davis_3817`, `sophia_taylor_9065`). That leaves
+974 airline trajectories. **Neither dataset is used until Prithvi says so.**

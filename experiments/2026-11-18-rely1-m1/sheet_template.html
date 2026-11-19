@@ -29,6 +29,7 @@ button{font:inherit;padding:4px 10px;border-radius:6px;border:1px solid var(--li
 <button id="export">Export answers</button>
 <label class="mute">Import <input type="file" id="import" accept="application/json"></label></div>
 <div id="items"></div>
+<div id="agreement"></div>
 </main>
 <script>
 const DATA = __DATA__;
@@ -41,7 +42,8 @@ function save() {
   try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch (e) { canSave = false; }
   const done = DATA.items.filter(i => { const a = answers[i.key] || {}; return a.mc && a.material && a.records; }).length;
   const started = DATA.items.filter(i => Object.keys(answers[i.key] || {}).length).length;
-  document.getElementById("progress").textContent = done + " of " + DATA.items.length + " complete (all three answers)" + (started > done ? " · " + (started - done) + " incomplete" : "") + (canSave ? "" : " · this browser is not saving: export before closing");
+  const agreed = (DATA.agreement || []).filter(g => (answers["agree:" + g.write_id] || {}).agreed).length;
+  document.getElementById("progress").textContent = done + " of " + DATA.items.length + " statements complete (all three answers)" + (started > done ? " · " + (started - done) + " incomplete" : "") + ((DATA.agreement || []).length ? " · agreement: " + agreed + " of " + DATA.agreement.length : "") + (canSave ? "" : " · this browser is not saving: export before closing");
 }
 function el(tag, attrs, text) {
   const e = document.createElement(tag);
@@ -64,8 +66,13 @@ function radios(item, field, label, options) {
 }
 function render() {
   const root = document.getElementById("items");
+  let block = null;
   DATA.items.forEach((it, idx) => {
     const a = DATA.actions[it.write_id];
+    if (it.block && it.block !== block) {
+      block = it.block;
+      root.appendChild(el("h2", {}, DATA.blocks[block] || block));
+    }
     const c = el("div", {class: "card"});
     c.appendChild(el("div", {class: "mute"}, "#" + (idx + 1) + " · " + it.key + " · " + a.domain + " task " + a.task_id));
     if (it.lead_in) c.appendChild(el("div", {class: "lead"}, "Lead-in: " + it.lead_in));
@@ -73,7 +80,7 @@ function render() {
     const act = el("pre", {}, "Proposed action: " + a.tool + " " + JSON.stringify(a.arguments));
     c.appendChild(act);
     c.appendChild(el("div", {class: "mute"}, a.description));
-    if (a.plan_calls.length) c.appendChild(el("pre", {}, "Later calls the agent proposed in the same customer turn (whether each was agreed is part of your judgement):\n" + a.plan_calls.map(p => "- " + p.tool + " " + JSON.stringify(p.arguments)).join("\n")));
+    if (a.plan_calls.length) c.appendChild(el("pre", {}, "Not in the main packet (comparison version only): later calls the agent proposed in the same customer turn; agreement not verified:\n" + a.plan_calls.map(p => "- " + p.tool + " " + JSON.stringify(p.arguments)).join("\n")));
     if (it.prefill !== undefined) {
       const pf = el("div", {class: "mute"});
       pf.textContent = "Pre-fill: " + (it.prefill || "none") + (it.prefill_records ? " · records: " + it.prefill_records : "") + (it.prefill_material ? " · material: " + it.prefill_material : "") + " · source: " + (it.prefill_source.join("; ") || "-") + " · in set as: " + it.why_in_set;
@@ -108,7 +115,65 @@ function render() {
     c.appendChild(note);
     root.appendChild(c);
   });
+  renderAgreement();
   save();
+}
+function renderAgreement() {
+  const root = document.getElementById("agreement");
+  if (!(DATA.agreement || []).length) return;
+  root.appendChild(el("h2", {}, "Agreement: did the customer agree to this exact action? (" + DATA.agreement.length + " actions, pre-filled where not obvious)"));
+  if ((DATA.agreement_fixed || []).length) {
+    const d = el("details"); d.appendChild(el("summary", {}, "Optional: override one of your 13 earlier agreement rulings (" + DATA.agreement_fixed.length + " actions)"));
+    for (const g of DATA.agreement_fixed) {
+      const key = "agree:" + g.write_id;
+      const row = el("div", {class: "card"});
+      row.appendChild(el("div", {class: "mute"}, g.write_id + " · " + g.source + ": " + g.agreed + (g.turns.length ? " (T" + g.turns.join(", T") + ")" : "")));
+      const fa = DATA.actions[g.write_id];
+      row.appendChild(el("pre", {}, "Proposed action: " + fa.tool + " " + JSON.stringify(fa.arguments)));
+      const fc = el("details"); fc.appendChild(el("summary", {}, "Conversation (cited turns highlighted)"));
+      fa.conversation.forEach((t, i) => { const line = el("div", {class: "turn" + (g.turns.includes(i + 1) ? " on" : "")}); line.textContent = "[T" + (i + 1) + "] " + (t.role === "customer" ? "customer" : "agent") + ": " + t.text + (t.refs.length ? " (lookups " + t.refs.map(n => "L" + n).join(", ") + ")" : ""); fc.appendChild(line); });
+      row.appendChild(fc);
+      const ft = el("input", {type: "text", placeholder: "Turns for your override, e.g. 12, 14"});
+      ft.style.width = "100%";
+      ft.value = (answers[key] || {}).turns || "";
+      ft.addEventListener("input", () => { (answers[key] ||= {}).turns = ft.value; save(); });
+      row.appendChild(ft);
+      row.appendChild(radios({key: key}, "agreed", "Override (leave empty to keep it)", ["yes", "no", "unsure"]));
+      d.appendChild(row);
+    }
+    root.appendChild(d);
+  }
+  root.appendChild(el("p", {class: "mute"}, "Each pre-fill is one read by a Claude subagent against the written rubric. 'yes' means the customer agreed to this exact call (same target, items and payment as discussed); the agreement runs from the yes through later messages that only adjust a detail. Give the T numbers of the messages that carry the agreement (or show the refusal)."));
+  DATA.agreement.forEach((g, idx) => {
+    const a = DATA.actions[g.write_id];
+    const key = "agree:" + g.write_id;
+    const c = el("div", {class: "card"});
+    c.appendChild(el("div", {class: "mute"}, "A" + (idx + 1) + " · " + g.write_id + " · " + a.domain + " task " + a.task_id));
+    c.appendChild(el("pre", {}, "Proposed action: " + a.tool + " " + JSON.stringify(a.arguments)));
+    c.appendChild(el("div", {class: "stmt"}, "Pre-fill: " + g.agreed + (g.turns.length ? " · turns T" + g.turns.join(", T") : "") + " · " + g.reason));
+    if (g.note) c.appendChild(el("div", {class: "mute"}, g.note));
+    const conv = el("details"); conv.appendChild(el("summary", {}, "Conversation (pre-filled turns highlighted)"));
+    a.conversation.forEach((t, i) => {
+      const line = el("div", {class: "turn" + (g.turns.includes(i + 1) ? " on" : "")});
+      line.textContent = "[T" + (i + 1) + "] " + (t.role === "customer" ? "customer" : "agent") + ": " + t.text + (t.refs.length ? " (lookups " + t.refs.map(n => "L" + n).join(", ") + ")" : "");
+      conv.appendChild(line);
+    });
+    c.appendChild(conv);
+    const led = el("details"); led.appendChild(el("summary", {}, "Evidence ledger (" + a.ledger.length + " lookups)"));
+    for (const e of a.ledger) led.appendChild(el("pre", {}, "[L" + e.n + "] " + e.tool + " " + JSON.stringify(e.arguments) + " ->" + (e.error ? " ERROR " : " ") + e.result));
+    c.appendChild(led);
+    c.appendChild(radios({key: key}, "agreed", "Did the customer agree to this exact action?", ["yes", "no", "unsure"]));
+    const turns = el("input", {type: "text", placeholder: "Turns, e.g. 31, 34 (empty keeps the pre-filled turns only if you keep the pre-filled answer)"});
+    turns.style.width = "100%";
+    turns.value = (answers[key] || {}).turns || "";
+    turns.addEventListener("input", () => { (answers[key] ||= {}).turns = turns.value; save(); });
+    c.appendChild(turns);
+    const note = el("textarea", {placeholder: "Note (optional)"});
+    note.value = (answers[key] || {}).note || "";
+    note.addEventListener("input", () => { (answers[key] ||= {}).note = note.value; save(); });
+    c.appendChild(note);
+    root.appendChild(c);
+  });
 }
 document.getElementById("export").addEventListener("click", () => {
   const blob = new Blob([JSON.stringify({sheet: SHEET, items_sha256: DATA.items_sha256, exported: new Date().toISOString(), answers: answers}, null, 1)], {type: "application/json"});
@@ -116,7 +181,7 @@ document.getElementById("export").addEventListener("click", () => {
 });
 document.getElementById("import").addEventListener("change", ev => {
   const f = ev.target.files[0]; if (!f) return;
-  f.text().then(t => { const d = JSON.parse(t); if (d.sheet !== SHEET) { alert("This file is for another sheet."); return; } if (d.items_sha256 !== DATA.items_sha256) { alert("This file is for another version of this sheet; nothing was imported."); return; } answers = d.answers || {}; document.getElementById("items").replaceChildren(); render(); });
+  f.text().then(t => { const d = JSON.parse(t); if (d.sheet !== SHEET) { alert("This file is for another sheet."); return; } if (d.items_sha256 !== DATA.items_sha256) { alert("This file is for another version of this sheet; nothing was imported."); return; } answers = d.answers || {}; document.getElementById("items").replaceChildren(); document.getElementById("agreement").replaceChildren(); render(); });
 });
 render();
 </script></body></html>

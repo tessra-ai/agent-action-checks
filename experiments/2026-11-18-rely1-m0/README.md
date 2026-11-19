@@ -23,6 +23,9 @@ One packet per proposed write, in one generic format for every tool and domain:
   The conversation shows only `(lookups L3, L4)` where a call happened, so no record appears
   twice.
 
+**Packet v2** (second decisions): no consent-turn marker (agreement is an M1 label), and the main
+text has no later calls; `text_with_later_calls` is kept for comparison.
+
 **Packet v1** (after the gate): identical repeated lookups become pointers to their last copy,
 and a "Later calls in the same customer turn (agreement not verified)" section lists the later
 write proposals in the same conversation with no customer message in between.
@@ -84,5 +87,5 @@ environment with Kev installed **editable** from its checkout at the commit abov
 3. `python folds.py` → `splits/folds.json`, `splits/folds_manifest.json` (once; added after the
    gate, decision 5)
 4. `python sentences.py` → `results/sentence_audit.json`, `review/sentence_sample.json`
-5. `kev-venv/bin/python tokens.py` → `results/token_lengths_v1.json` (packet v1; v0's file is kept)
+5. `kev-venv/bin/python tokens.py` → `results/token_lengths_v2.json` (packet v2; the v0 and v1 files are kept)
 6. `kev-venv/bin/python trim_options.py` → `results/trim_options.json` (v0 record; not rerun)

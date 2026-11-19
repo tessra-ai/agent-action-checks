@@ -49,7 +49,10 @@ CLAIMS = [
     EXP / "2026-11-05-airline-holdout/results/claims_airline1_verified.jsonl",
     EXP / "2026-11-05-airline-holdout/results/claims_retail_verified.jsonl",
 ]
-TOKENS = M0 / "results/token_lengths_v1.json"
+TOKENS = M0 / "results/token_lengths_v2.json"
+AGREEMENT = HERE / "results/agreement.jsonl"
+OVER_LIMIT_PRITHVI = 10
+OVER_LIMIT_SECOND = 5
 
 
 def jsonl(path: Path) -> list[dict]:
@@ -201,8 +204,11 @@ def main() -> None:
     packets = {p["write_id"]: p for p in map(json.loads, PACKETS.read_text().splitlines())}
     if set(packets) != train | dev:
         raise SystemExit("M0 packets must be exactly train + dev (rebuild with M0 packets.py)")
-    if {p["packet_version"] for p in packets.values()} != {"rely1-packet-v1"}:
-        raise SystemExit("packet v1 required")
+    if {p["packet_version"] for p in packets.values()} != {"rely1-packet-v2"}:
+        raise SystemExit("packet v2 required")
+    agreement = {r["write_id"]: r for r in map(json.loads, AGREEMENT.read_text().splitlines())}
+    if set(agreement) != set(packets):
+        raise SystemExit("agreement labels must cover every train + dev action (agreement.py)")
     tok = json.loads(TOKENS.read_text())
     if tok["packets_sha256"] != hashlib.sha256(PACKETS.read_bytes()).hexdigest():
         raise SystemExit("token counts are for another packet file; rerun M0 tokens.py")
@@ -284,6 +290,14 @@ def main() -> None:
                 }
             )
 
+    # Actions the customer did not agree to are not labelled for material contradiction
+    # (Prithvi, 2026-11-18); they are counted as their own group. "unsure" stays in, flagged.
+    for r in rows:
+        a = agreement[r["write_id"]]
+        r["agreement"] = {"agreed": a["agreed"], "source": a["source"]}
+    no_agreement = [r for r in rows if r["agreement"]["agreed"] == "no"]
+    rows = [r for r in rows if r["agreement"]["agreed"] != "no"]
+
     rng = random.Random(SEED)
     # Every mismatch unit, and every unit a ruling or grader quotes, whatever its stratum.
     chosen = [r for r in rows if r["stratum"] == "mismatch" or r["cited_by"]]
@@ -301,15 +315,32 @@ def main() -> None:
     # The gate compares pre-fill with Prithvi on the random 40, so they are drawn from units that
     # have a pre-fill; units with none (ungraded actions) stay in the label set.
     rest = [r for r in chosen if r["prefill"] == "not MC"]
-    prithvi = mc + rng.sample(rest, min(PRITHVI_RANDOM, len(rest)))
-    second = rng.sample(prithvi, min(SECOND, len(prithvi)))
+    random40 = rng.sample(rest, min(PRITHVI_RANDOM, len(rest)))
+    main_set = mc + random40
+    second = rng.sample(main_set, min(SECOND, len(main_set)))
+    # A separate block of statements from packets over 8,192 tokens, outside the random 40
+    # (Prithvi, 2026-11-18), so agreement on long packets can be measured; 5 go to the second
+    # labeller as well.
+    over_pool = [r for r in chosen if r["length"] == "over_8192" and r not in main_set]
+    over = rng.sample(over_pool, min(OVER_LIMIT_PRITHVI, len(over_pool)))
+    second_over = rng.sample(over, min(OVER_LIMIT_SECOND, len(over)))
+    prithvi = main_set + over
     for r in chosen:
         r["review"] = {
             "prithvi": r in prithvi,
             "prithvi_reason": "pre-filled MC"
             if r in mc
-            else ("random 40" if r in prithvi else None),
-            "second": r in second,
+            else "random 40"
+            if r in random40
+            else "over-limit block"
+            if r in over
+            else None,
+            "second": r in second or r in second_over,
+            "second_reason": "main"
+            if r in second
+            else "over-limit block"
+            if r in second_over
+            else None,
         }
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -334,6 +365,7 @@ def main() -> None:
         "seed": SEED,
         "label_set_sha256": hashlib.sha256(out_path.read_bytes()).hexdigest(),
         "packets_sha256": tok["packets_sha256"],
+        "agreement_sha256": hashlib.sha256(AGREEMENT.read_bytes()).hexdigest(),
         "units_in_train_dev": len(rows),
         "units_by_stratum": dict(Counter(r["stratum"] for r in rows)),
         "claims_located": {f"{h} | {v}": n for (h, v), n in sorted(located.items())},
@@ -343,7 +375,27 @@ def main() -> None:
         "chosen_by_prefill": dict(Counter(r["prefill"] or "none" for r in chosen)),
         "prithvi_set": len(prithvi),
         "prithvi_prefilled_mc": len(mc),
-        "second_set": len(second),
+        "prithvi_over_limit_block": len(over),
+        "second_set": len(second) + len(second_over),
+        "second_over_limit_block": len(second_over),
+        "agreement": dict(Counter(a["agreed"] for a in agreement.values())),
+        "no_agreement_group": {
+            "actions": len({r["write_id"] for r in no_agreement}),
+            "units": len(no_agreement),
+            "mismatch_units": sum(r["stratum"] == "mismatch" for r in no_agreement),
+            "actions_by_truth": dict(
+                Counter(
+                    a
+                    for w, a in {
+                        r["write_id"]: r["action_truth"] or "ungraded" for r in no_agreement
+                    }.items()
+                )
+            ),
+            "actions_by_source": dict(
+                Counter(agreement[w]["source"] for w in {r["write_id"] for r in no_agreement})
+            ),
+            "write_ids": sorted({r["write_id"] for r in no_agreement}),
+        },
         "combinations": combo(chosen),
         "combination_key": "stratum | prefill | action truth | length | split",
     }
