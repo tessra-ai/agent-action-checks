@@ -1,0 +1,18 @@
+batch | model name exactly as shown in the picker | date | notes
+01 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | test batch; complete 29/29
+02 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | whole batch incomplete (last packets missing); kept, missing packets go to fill F1 (Prithvi, 2026-11-19)
+03 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | whole batch incomplete (last packets missing); kept, missing packets go to fill F1 (Prithvi, 2026-11-19)
+04 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | whole batch incomplete (last packets missing); kept, missing packets go to fill F1 (Prithvi, 2026-11-19)
+05 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | whole batch
+06 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | whole batch incomplete (last packet missing); kept, missing packet goes to fill F1 (Prithvi, 2026-11-19)
+07 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | whole batch
+08 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | whole batch
+09 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | whole batch
+10 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | whole batch
+11 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | whole batch
+12 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | whole batch
+13 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | whole batch
+F1 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | complete 19/19; fill: P045 P046 (02), P079 P080 P081 (03), P109 P111 (04), P172 (06)
+F2 | Deeper analysis – 4 Neon, Thinking level High (confirm) | 2026-11-19 | fill: P137 P139 P140; complete 5/5 (third attempt; two invalid replies set aside)
+F3 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | fill: P024 P025 P050-P052 P077 P078 P100 P101 P125 P147; complete 11/11
+F4 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | fill: P148 P149 P172-P174; complete 5/5

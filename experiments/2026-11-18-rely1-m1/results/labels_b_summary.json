@@ -1,0 +1,83 @@
+{
+ "labeller": "B",
+ "route": "Gemini app, manual (Prithvi); one chat per batch or fill file",
+ "model_per_log_row": {
+  "01": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "02": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "03": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "04": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "05": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "06": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "07": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "08": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "09": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "10": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "11": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "12": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "13": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "F1": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "F2": "Deeper analysis \u2013 4 Neon, Thinking level High (confirm)",
+  "F3": "Deeper analysis \u2013 4 Neon, Thinking level High",
+  "F4": "Deeper analysis \u2013 4 Neon, Thinking level High"
+ },
+ "dates": [
+  "2026-11-19"
+ ],
+ "answers": 554,
+ "answer_counts": {
+  "agreement:agreed": 124,
+  "agreement:not_agreed": 50,
+  "statement:no": 352,
+  "statement:not_sure": 2,
+  "statement:yes": 26
+ },
+ "reasons_over_20_words": 22,
+ "batches": 13,
+ "fills": {
+  "F1": [
+   "P045-S",
+   "P046-S",
+   "P079-S",
+   "P080-S",
+   "P081-S",
+   "P109-S",
+   "P111-S",
+   "P172-S"
+  ],
+  "F2": [
+   "P137-S",
+   "P139-S",
+   "P140-S"
+  ],
+  "F3": [
+   "P024-A",
+   "P025-A",
+   "P050-A",
+   "P051-A",
+   "P052-A",
+   "P077-A",
+   "P078-A",
+   "P100-A",
+   "P101-A",
+   "P125-A",
+   "P147-A"
+  ],
+  "F4": [
+   "P148-A",
+   "P149-A",
+   "P172-A",
+   "P173-A",
+   "P174-A"
+  ]
+ },
+ "answers_from_fills": 40,
+ "app_cut_off": "The app skipped the last 1-3 packets of every batch over ~120k tokens; those packets were re-asked, whole and unchanged, in fill files (Prithvi, 2026-11-19).",
+ "set_aside": [
+  "answers_02-04: whole-batch replies from the Gemini app, each missing its last 2 packets (app read only part of a ~135k-token file); discarded per the split rule, 2026-11-19",
+  "answers_06: whole-batch reply missing its last packet (P172); discarded per the split rule, 2026-11-19",
+  "answers_02/03/04/06 restored to answers/ on 2026-11-19: Prithvi chose to keep them and fill only the missing packets (fill F1)",
+  "answers_F2_invalid_1: F2 reply with answers outside the allowed set (contradict/not_contradict) and policy-violation reasoning; refused by ingest, F2 to be redone, 2026-11-19"
+ ],
+ "prompt_sha256": "735179b4a7ae33f5ee2c062ac7aef7882124f2aebad124add8514cf13786b9fa",
+ "manifest_sha256": "74bb58d2068d92bd959d458eed465b182a19d0829d88ca3e0251e208f3cbae82"
+}
