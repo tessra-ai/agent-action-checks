@@ -182,6 +182,14 @@ record; a repeated lookup is ranked with its own (earlier) turn and its later co
 turn range means the customer turns in it, and a rejected citation names its actions. Every card
 on the second sheet now shows a matching record.
 
+**Published for John** (2026-11-19): `review/second_sheet_artifact.html` is the same sheet as a
+claude.ai artifact (https://claude.ai/artifact/NVnExLwPqApARAfMnPTTwP, private until Prithvi
+shares it). "Download my answers" asks John to confirm the save there; "Show my answers as text"
+is always offered, and updates as he answers, for a browser that blocks the download. The
+second sheet's fingerprint now covers only what John answers (cards, examples, policy, the
+question), so later layout fixes keep his saved answers; the change was made before anyone
+answered, so no earlier answers exist to carry over (a Codex P2 on that point does not apply).
+
 ## Waiting on
 
 1. Prithvi's answers on `review/prithvi_sheet.html`: 64 statements and 161 agreement pre-fills.

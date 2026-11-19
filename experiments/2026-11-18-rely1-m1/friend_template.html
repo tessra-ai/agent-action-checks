@@ -1,12 +1,16 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Checking what a customer service agent said</title>
+<title>Agent Statement Check</title>
 <style>
 :root{--bg:#faf8f4;--fg:#1f1e1c;--mute:#66645e;--line:#e2ded5;--card:#fff;--say:#fff1c2;--rec:#eef4fb;--act:#eef8ef;--accent:#2d5b88;--yes:#2e7d4f;--no:#a63a32;--unsure:#7a6a2f}
-@media (prefers-color-scheme:dark){:root{--bg:#181816;--fg:#ecebe6;--mute:#a3a198;--line:#34332e;--card:#23221f;--say:#4a4020;--rec:#1e2b38;--act:#1f3123;--accent:#8db7e0;--yes:#7cc79a;--no:#e38c84;--unsure:#d8c27a}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#181816;--fg:#ecebe6;--mute:#a3a198;--line:#34332e;--card:#23221f;--say:#4a4020;--rec:#1e2b38;--act:#1f3123;--accent:#8db7e0;--yes:#7cc79a;--no:#e38c84;--unsure:#d8c27a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#181816;--fg:#ecebe6;--mute:#a3a198;--line:#34332e;--card:#23221f;--say:#4a4020;--rec:#1e2b38;--act:#1f3123;--accent:#8db7e0;--yes:#7cc79a;--no:#e38c84;--unsure:#d8c27a;color-scheme:dark}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
-main{max-width:820px;margin:0 auto;padding:16px}
+main{max-width:820px;margin:0 auto;padding-block:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+textarea.out{width:100%;min-height:120px;font:13px/1.4 ui-monospace,Menlo,monospace;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:8px}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 h1{font-size:24px;margin:12px 0 4px}
 h2{font-size:19px;margin:28px 0 8px}
 p{margin:8px 0}
@@ -29,7 +33,7 @@ details{margin-top:12px}
 summary{cursor:pointer;color:var(--accent);font-weight:600;min-height:32px}
 .turn{padding:6px 0;border-bottom:1px solid var(--line);font-size:15px;white-space:pre-wrap}
 .turn b{color:var(--mute)}
-.bar{position:sticky;top:0;z-index:2;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;font-weight:600}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;font-weight:600}
 .example{border-style:dashed}
 .answer{font-weight:600}
 .big{display:block;width:100%;min-height:56px;font:inherit;font-weight:700;border-radius:12px;border:none;background:var(--accent);color:#fff;cursor:pointer;margin-top:8px}
@@ -56,7 +60,14 @@ summary{cursor:pointer;color:var(--accent);font-weight:600;min-height:32px}
 <div class="card">
 <p class="answer" id="done-note"></p>
 <button class="big" id="download">Download my answers</button>
+<p class="small"><button type="button" id="show-text">Or show my answers as text to copy</button></p>
 <p class="small">This saves one small file (<span id="fname"></span>). Please email it back. If nothing seems to happen on a tablet, open this page in Safari or Chrome rather than a file preview.</p>
+<p class="answer" id="saved-note" hidden></p>
+<div id="fallback" hidden>
+<p class="small">Copy the text below and paste it into an email. It updates as you answer.</p>
+<textarea class="out" id="out" readonly aria-label="Your answers as text"></textarea>
+<button class="big" id="copy" type="button">Copy my answers</button>
+</div>
 <p class="warn" id="nosave" hidden>This browser is not keeping your answers between visits. Please download your answers before closing the page.</p>
 </div>
 </main>
@@ -69,6 +80,11 @@ try { answers = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { can
 function save() {
   try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch (e) { canSave = false; }
   document.getElementById("nosave").hidden = canSave;
+  const fb = document.getElementById("fallback");
+  if (fb && !fb.hidden) {
+    document.getElementById("out").value = answersText();
+    document.getElementById("copy").textContent = "Copy my answers";
+  }
   const n = DATA.items.filter(i => answers[i.key]).length;
   document.getElementById("progress").textContent = n + " of " + DATA.items.length + " answered";
   document.getElementById("done-note").textContent = n === DATA.items.length ? "All done, thank you!" : (DATA.items.length - n) + " still to answer (you can download now and finish later).";
@@ -116,11 +132,45 @@ DATA.examples.forEach((ex, i) => document.getElementById("examples").appendChild
 DATA.items.forEach((it, i) => document.getElementById("items").appendChild(card(it, "Question " + (i + 1) + " of " + DATA.items.length, null)));
 const fname = "my-answers-" + DATA.sheet + ".json";
 document.getElementById("fname").textContent = fname;
-document.getElementById("download").addEventListener("click", () => {
-  const out = {sheet: DATA.sheet, fingerprint: DATA.fingerprint, saved: new Date().toISOString(), answers: answers};
-  const blob = new Blob([JSON.stringify(out, null, 1)], {type: "application/json"});
-  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = fname;
-  document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+function answersText() {
+  return JSON.stringify({sheet: DATA.sheet, fingerprint: DATA.fingerprint, saved: new Date().toISOString(), answers: answers}, null, 1);
+}
+function showFallback() {
+  document.getElementById("out").value = answersText();
+  document.getElementById("fallback").hidden = false;
+}
+// Inside claude.ai the page asks the viewer to confirm the save (downloads capability); opened
+// as a local file it downloads directly; if neither works, the answers are shown as text to copy.
+const downloads = window.claude && window.claude.use ? window.claude.use("downloads").catch(() => null) : Promise.resolve(undefined);
+document.getElementById("download").addEventListener("click", async () => {
+  const text = answersText();
+  const note = document.getElementById("saved-note");
+  note.hidden = true;
+  const d = await downloads;
+  if (d) {
+    try {
+      await d.save({filename: fname, data: text});
+      note.textContent = "Saved. Please email the file back."; note.hidden = false;
+    } catch (e) {
+      if (e && e.code === "declined") { note.textContent = "Not saved. Press the button again when you are ready."; note.hidden = false; }
+      else showFallback();
+    }
+    return;
+  }
+  if (d === null) { showFallback(); return; }
+  try {
+    const blob = new Blob([text], {type: "application/json"});
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = fname;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  } catch (e) { showFallback(); }
+});
+document.getElementById("show-text").addEventListener("click", () => showFallback());
+document.getElementById("copy").addEventListener("click", () => {
+  const box = document.getElementById("out");
+  const done = () => { document.getElementById("copy").textContent = "Copied"; };
+  try {
+    navigator.clipboard.writeText(box.value).then(done, () => { box.focus(); box.select(); });
+  } catch (e) { box.focus(); box.select(); }
 });
 save();
 </script></body></html>

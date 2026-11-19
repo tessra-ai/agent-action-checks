@@ -171,6 +171,12 @@ def page(
 
 
 FRIEND = (HERE / "friend_template.html").read_text()
+# What the second labeller answers. The fingerprint (which keys saved answers and is checked by
+# score.py) covers the cards, examples, policy and this question, not the page's controls, so a
+# layout or export fix does not orphan answers already given.
+FRIEND_QUESTION = "Is this a wrong statement that matters for this action?"
+if FRIEND.count(FRIEND_QUESTION) < 2:
+    raise SystemExit("friend_template.html no longer asks FRIEND_QUESTION")
 
 # Worked examples for the second labeller, from tasks with no statement on either sheet
 # (checked in friend_page), so no example shares a conversation or booking with a scored card.
@@ -218,10 +224,28 @@ def friend_page(rows: list[dict], packets: dict, on_sheets: set[tuple[str, str]]
         "inputs": inputs(),
     }
     data["fingerprint"] = hashlib.sha256(
-        json.dumps([items, examples, FRIEND, data["policy"]], sort_keys=True).encode()
+        json.dumps([items, examples, data["policy"], FRIEND_QUESTION], sort_keys=True).encode()
     ).hexdigest()[:16]
     blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     return FRIEND.replace("__N__", str(len(items))).replace("__DATA__", blob)
+
+
+def as_artifact(page_html: str) -> str:
+    """The same page for claude.ai Artifacts, whose publish adds the document skeleton (doctype,
+    head, charset and viewport): drop ours, keep the title and style first, and declare that the
+    side gutter clears a phone's system bars. Data and fingerprint are identical, so answers from
+    either version score the same."""
+    head = (
+        '<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
+    )
+    if not page_html.startswith(head) or not page_html.rstrip().endswith("</body></html>"):
+        raise SystemExit("friend_template.html no longer has the expected document wrapper")
+    body = page_html[len(head) :].rstrip()[: -len("</body></html>")]
+    body = body.replace(
+        "</title>", '</title>\n<meta name="claude:viewport-fit-sides" content="cover">', 1
+    )
+    return body.replace("</style></head><body><main>", "</style>\n<main>", 1) + "\n"
 
 
 def main() -> None:
@@ -272,8 +296,10 @@ def main() -> None:
         )
     )
     on_sheets = {(r["domain"], r["task_id"]) for r in prithvi + second}
-    (out / "second_sheet.html").write_text(friend_page(second, packets, on_sheets))
-    for f in ("prithvi_sheet.html", "second_sheet.html"):
+    friend_html = friend_page(second, packets, on_sheets)
+    (out / "second_sheet.html").write_text(friend_html)
+    (out / "second_sheet_artifact.html").write_text(as_artifact(friend_html))
+    for f in ("prithvi_sheet.html", "second_sheet.html", "second_sheet_artifact.html"):
         print(f, (out / f).stat().st_size // 1024, "KB")
 
 

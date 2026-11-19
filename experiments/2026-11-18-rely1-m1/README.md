@@ -61,7 +61,7 @@ pre-fill (yes / no, turns, reason), conversation with the pre-filled turns highl
 evidence ledger; answer yes / no / unsure, the turns, a note. A collapsed list lets Prithvi
 override one of his own 13 earlier rulings; `score.py` applies every answer and override.
 
-`review/second_sheet.html` (Prithvi, 2026-11-18) is for a non-technical labeller: one file that
+`review/second_sheet.html` (Prithvi, 2026-11-18; `review/second_sheet_artifact.html` is the same page as published to claude.ai, where "Download my answers" asks the viewer to confirm the save, and shows the answers as text to copy if a save is not possible) is for a non-technical labeller: one file that
 opens by double-click on a laptop or tablet, with no install and no network. A plain-language
 intro with the one question and a two-to-three sentence definition; two worked examples from
 statements on neither sheet (one yes, one no, each with a one-line reason); then for each
