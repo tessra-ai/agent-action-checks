@@ -144,8 +144,13 @@ def main(argv: list[str] | None = None) -> int:
     # Each batch is answered by one reply, or by exactly one reply per half: never pieced
     # together from several incomplete chats.
     sources_of: dict[str, set[str]] = defaultdict(set)
+    batches_in: dict[str, set[str]] = defaultdict(set)  # reply -> batches it answers
     for r in rows:
         sources_of[batch_of[r["id"]]].add(r["source"])
+        batches_in[r["source"]].add(batch_of[r["id"]])
+    for f, bs in sorted(batches_in.items()):
+        if len(bs) > 1:  # one chat answers one batch, named or pasted
+            misnamed[f] |= bs
 
     print()
     redo: list[str] = []
@@ -246,6 +251,13 @@ def main(argv: list[str] | None = None) -> int:
         )
 
     for f, holds in sorted(misnamed.items()):
+        if len(holds) > 1:
+            print(f"PROBLEM: {f} holds answers for several batches: {', '.join(sorted(holds))}")
+            redo.append(
+                f"{f} answers more than one batch ({', '.join(sorted(holds))}); each batch "
+                "must come from its own chat. Delete it and redo those batches, one per chat."
+            )
+            continue
         print(f"PROBLEM: {f} holds answers for batch {', '.join(sorted(holds))}, not its name")
         redo.append(
             f"{f} is saved under the wrong batch name: it holds answers for batch "
