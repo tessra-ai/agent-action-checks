@@ -83,6 +83,111 @@ def split(batch: dict, total: int, manifest: dict, here: Path) -> list[str]:
 
 
 NAME = re.compile(r"answers_(\d{2})([ab]?)\b")
+FILL_NAME = re.compile(r"answers_(F\d+)\b")
+FILL_CHARS = 200_000  # ~60k tokens per fill file, the size the app reads in full
+
+
+def load_fills() -> list[dict]:
+    f = HERE / "fills.json"
+    return json.loads(f.read_text())["fills"] if f.exists() else []
+
+
+def apply_fills(core, sources: list[tuple[str, str]], fills: list[dict], notes: list[str]):
+    """A fill reply answers whole packets that a batch reply missed or only half answered.
+
+    For every packet in a fill whose reply is present, answers to that packet from any other
+    reply are dropped, so each packet's answers come from exactly one chat.
+    """
+    by_name = {f["fill"]: f for f in fills}
+    present = {m.group(1) for name, _ in sources if (m := FILL_NAME.search(Path(name).name))}
+    covered = {c for n in present if n in by_name for c in by_name[n]["calls"]}
+    if not covered:
+        return sources
+    out = []
+    for name, text in sources:
+        if FILL_NAME.search(Path(name).name):
+            out.append((name, text))
+            continue
+        try:
+            found, _ = core.arrays(text)
+        except ValueError:
+            out.append((name, text))
+            continue
+        kept, dropped = [], []
+        for arr in found:
+            for obj in arr:
+                qid = obj.get("id") if isinstance(obj, dict) else None
+                pid = qid.split(".")[0] if isinstance(qid, str) else None
+                kind = "A" if isinstance(qid, str) and qid.endswith(".A") else "S"
+                if pid and f"{pid}-{kind}" in covered:
+                    dropped.append(qid)
+                else:
+                    kept.append(obj)
+        if dropped:
+            notes.append(
+                f"{Path(name).name}: {len(dropped)} answer(s) replaced by the fill reply "
+                f"({', '.join(dropped[:6])}{' ...' if len(dropped) > 6 else ''})"
+            )
+            if not kept:  # every answer in it was replaced: nothing left to check
+                continue
+            text = json.dumps(kept)
+        out.append((name, text))
+    return out
+
+
+def make_fills(missing_calls: list[str], manifest: dict, total: int) -> list[str]:
+    """Write the packets of the given calls into new fill files (one kind per file)."""
+    fills = load_fills()
+    done = {c for f in fills for c in f["calls"]}
+    todo = [c for c in missing_calls if c not in done]
+    if not todo:
+        return []
+    by_call = {c["call"]: c for c in manifest["calls"]}
+    k = len(fills)
+    written = []
+    (HERE / "redo").mkdir(exist_ok=True)
+    for kind in ("S", "A"):
+        calls = [by_call[c] for c in todo if c.endswith("-" + kind)]
+        texts = {c["call"]: _packet(c["call"]) for c in calls}
+        group: list[dict] = []
+        size = 0
+        groups = []
+        for c in calls:
+            n = len(texts[c["call"]])
+            if group and size + n > FILL_CHARS:
+                groups.append(group)
+                group, size = [], 0
+            group.append(c)
+            size += n
+        if group:
+            groups.append(group)
+        for g in groups:
+            k += 1
+            name = f"F{k}"
+            f = HERE / "redo" / f"batch_{name}.txt"
+            f.write_text(batch_text(name, total, g, texts), encoding="utf-8")
+            fills.append(
+                {
+                    "fill": name,
+                    "file": f"redo/{f.name}",
+                    "calls": [c["call"] for c in g],
+                    "ids": [q["id"] for c in g for q in c["questions"]],
+                }
+            )
+            written.append(f"redo/{f.name}")
+    (HERE / "fills.json").write_text(json.dumps({"fills": fills}, indent=1) + "\n")
+    return written
+
+
+def _packet(call: str) -> str:
+    """A packet's text, read unchanged from the batch file that holds it."""
+    for b in json.loads((HERE / "batches.json").read_text())["batches"]:
+        if call in b["calls"]:
+            text = (HERE / b["file"]).read_text(encoding="utf-8")
+            for m in SECTION.finditer(text):
+                if m.group(1) == call:
+                    return m.group(0).split("\n", 1)[1].rsplit("\n===== END OF PACKET", 1)[0]
+    raise SystemExit(f"packet {call} not found in any batch file")
 
 
 def half_ids(batch: dict, manifest: dict) -> dict[str, list[str]]:
@@ -99,6 +204,11 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("sources", nargs="+", help='saved replies (files or folders), or "-" to paste')
     ap.add_argument("--require-all", action="store_true", help="every batch must be answered")
     ap.add_argument("--out", default=str(HERE / "checked_answers.jsonl"))
+    ap.add_argument(
+        "--make-fill",
+        action="store_true",
+        help="put every packet missing from incomplete batch replies into fill file(s)",
+    )
     a = ap.parse_args(argv)
     core = _core()
     manifest = core.load_manifest(HERE / "manifest.json")
@@ -107,8 +217,34 @@ def main(argv: list[str] | None = None) -> int:
     batch_of = {i: b["batch"] for b in batches for i in b["ids"]}
     by_batch = {b["batch"]: b for b in batches}
 
-    sources = core.read_sources(a.sources)
+    fills = load_fills()
+    fill_ids = {f["fill"]: set(f["ids"]) for f in fills}
+    notes: list[str] = []
+    sources = apply_fills(core, core.read_sources(a.sources), fills, notes)
     problems, warnings, rows = core.check(sources, manifest)
+    for r in rows:  # a fill reply may hold only its own packets
+        fm = FILL_NAME.search(r["source"])
+        if fm and r["id"] not in fill_ids.get(fm.group(1), set()):
+            problems.append(f"{r['source']}: {r['id']} is not in fill {fm.group(1)}")
+    from_fill = {r["id"] for r in rows if FILL_NAME.search(r["source"])}
+    in_run_fill = {  # calls held by a fill whose reply was given
+        c
+        for f in fills
+        for name, _ in sources
+        if (fm := FILL_NAME.search(Path(name).name)) and fm.group(1) == f["fill"]
+        for c in f["calls"]
+    }
+    for name, _ in sources:  # a fill reply must answer every one of its own IDs
+        fm = FILL_NAME.search(Path(name).name)
+        if fm and fm.group(1) in fill_ids:
+            gap = sorted(fill_ids[fm.group(1)] - from_fill)
+            if gap:
+                problems.append(
+                    f"{Path(name).name}: fill {fm.group(1)} is missing {len(gap)} ID(s): "
+                    f"{', '.join(gap[:8])}{' ...' if len(gap) > 8 else ''}; redo "
+                    f"redo/batch_{fm.group(1)}.txt in a new chat and replace this reply"
+                )
+    warnings = notes + warnings
     answered = defaultdict(set)
     part_of: dict[str, tuple[str, str]] = {}  # id -> (batch, half) of the file it came from
     halves_used: dict[str, set[str]] = defaultdict(set)
@@ -116,6 +252,8 @@ def main(argv: list[str] | None = None) -> int:
     for r in rows:
         answered[batch_of[r["id"]]].add(r["id"])
         m = NAME.search(r["source"])
+        if r["id"] in from_fill:
+            continue
         if not m:
             continue
         n, h = m.group(1), m.group(2)
@@ -129,6 +267,9 @@ def main(argv: list[str] | None = None) -> int:
     loose: list[str] = []
     for p in problems:
         ids = [i for i in re.findall(r"\bP\d{3}\.(?:S\d+|A)\b", p) if i in batch_of]
+        if FILL_NAME.search(p):  # problems in a fill reply are fixed by redoing the fill
+            loose.append(p)
+            continue
         if ids:
             bad_batches[batch_of[ids[0]]].append(p)
         elif "missing ID(s)" not in p:  # missing IDs are recomputed per batch below
@@ -146,6 +287,8 @@ def main(argv: list[str] | None = None) -> int:
     sources_of: dict[str, set[str]] = defaultdict(set)
     batches_in: dict[str, set[str]] = defaultdict(set)  # reply -> batches it answers
     for r in rows:
+        if r["id"] in from_fill:  # a fill legitimately spans batches
+            continue
         sources_of[batch_of[r["id"]]].add(r["source"])
         batches_in[r["source"]].add(batch_of[r["id"]])
     for f, bs in sorted(batches_in.items()):
@@ -154,6 +297,7 @@ def main(argv: list[str] | None = None) -> int:
 
     print()
     redo: list[str] = []
+    missing_calls: list[str] = []
     for b in batches:
         n, ids = b["batch"], b["ids"]
         got = answered.get(n, set())
@@ -206,6 +350,16 @@ def main(argv: list[str] | None = None) -> int:
         if missing:
             shown = ", ".join(missing[:12]) + (" ..." if len(missing) > 12 else "")
             print(f"batch {n}: INCOMPLETE, {len(missing)} of {len(ids)} IDs missing: {shown}")
+            gone = set(missing)  # whole packets with any unanswered question
+            missing_calls += [
+                c["call"]
+                for c in manifest[0]["calls"]
+                if c["call"] in b["calls"] and any(q["id"] in gone for q in c["questions"])
+            ]
+            if a.make_fill:
+                continue
+            if all(c in in_run_fill for c in missing_calls if c in b["calls"]):
+                continue  # its fill reply is the one to redo (reported below)
             halves = split(by_batch[n], total, manifest[0], HERE)
             if halves:
                 redo.append(
@@ -223,6 +377,14 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(f"batch {n}: complete ({len(ids)} IDs)")
     for p in loose:
+        fm = FILL_NAME.search(p)
+        if fm:
+            print("PROBLEM:", p)
+            redo.append(
+                f"Redo redo/batch_{fm.group(1)}.txt in a new chat and replace "
+                f"answers_{fm.group(1)}.txt."
+            )
+            continue
         name = re.match(r"(.*?):", p)
         hint = re.search(r"answers_(\d{2})([ab]?)", p)
         print("PROBLEM:", p)
@@ -248,6 +410,23 @@ def main(argv: list[str] | None = None) -> int:
             if hint
             else f"Could not read {name.group(1) if name else 'a reply'}; redo the batch it was "
             "for in a new chat."
+        )
+
+    if a.make_fill and missing_calls:
+        made = make_fills(missing_calls, manifest[0], total)
+        if made:
+            redo.append(
+                "Run " + " and ".join(made) + " (one new chat each, same steps as a batch), and "
+                "save the replies as "
+                + ", ".join(f"answers_{Path(m).stem.split('_')[1]}.txt" for m in made)
+                + ". Keep your batch replies as they are."
+            )
+        else:
+            redo.append("The missing packets are already in a fill file: run it (see redo/).")
+    elif any(c not in in_run_fill for c in missing_calls):
+        redo.append(
+            "Or, instead of halves: run  python ingest.py answers/ --make-fill  to put every "
+            "missing packet into one small fill file and keep the batch replies."
         )
 
     for f, holds in sorted(misnamed.items()):
