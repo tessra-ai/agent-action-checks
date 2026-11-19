@@ -190,6 +190,14 @@ second sheet's fingerprint now covers only what John answers (cards, examples, p
 question), so later layout fixes keep his saved answers; the change was made before anyone
 answered, so no earlier answers exist to carry over (a Codex P2 on that point does not apply).
 
+**Prithvi's sheet published too** (2026-11-19): `review/prithvi_sheet_artifact.html` at
+https://claude.ai/artifact/2wLGHozrXA4xTWPKwm7GrJ (private). Export asks to confirm the save; "Show
+answers as text" is always offered and updates as he answers; import problems show on the page;
+its fingerprint covers the content and the questions, not the controls. Left (P2, not blocking): the
+agreement-review instructions written into the page template are not in the fingerprint, so a
+later change to that wording alone would not invalidate saved answers; change it only before
+answers exist, or add it to `QUESTIONS`.
+
 ## Waiting on
 
 1. Prithvi's answers on `review/prithvi_sheet.html`: 64 statements and 161 agreement pre-fills.

@@ -118,6 +118,20 @@ def inputs() -> dict:
     }
 
 
+# What Prithvi answers. The fingerprint covers the content and these questions, not the page's
+# controls, so a layout or export fix does not orphan answers already given.
+QUESTIONS = [
+    ("mc", "Material contradiction for this action?", ["yes", "no", "unsure"]),
+    ("material", "Would correcting it plausibly change the yes?", ["yes", "no", "unsure"]),
+    ("records", "Do the records back it?", ["supported", "contradicted", "not covered", "unsure"]),
+    ("agreed", "Did the customer agree to this exact action?", ["yes", "no", "unsure"]),
+    ("agreed", "Override (leave empty to keep it)", ["yes", "no", "unsure"]),
+]
+for _f, _q, _opts in QUESTIONS:  # each must be rendered exactly so: field, wording, choices
+    if f'"{_f}", "{_q}", [{", ".join(json.dumps(o) for o in _opts)}]' not in PAGE:
+        raise SystemExit(f"sheet_template.html does not render {_f!r} as QUESTIONS defines it")
+
+
 BLOCKS = {
     "pre-filled MC": "Block 1: every statement pre-filled as a material contradiction",
     "random 40": "Block 2: a random 40 of the statements pre-filled not MC (the 36-of-40 gate)",
@@ -154,7 +168,7 @@ def page(
         # version of the sheet are not reused.
         "items_sha256": hashlib.sha256(
             json.dumps(
-                [items, acts, policy, DEFINITION, PAGE, agreement, fixed], sort_keys=True
+                [items, acts, policy, DEFINITION, QUESTIONS, agreement, fixed], sort_keys=True
             ).encode()
         ).hexdigest(),
         "actions": acts,
@@ -299,7 +313,15 @@ def main() -> None:
     friend_html = friend_page(second, packets, on_sheets)
     (out / "second_sheet.html").write_text(friend_html)
     (out / "second_sheet_artifact.html").write_text(as_artifact(friend_html))
-    for f in ("prithvi_sheet.html", "second_sheet.html", "second_sheet_artifact.html"):
+    (out / "prithvi_sheet_artifact.html").write_text(
+        as_artifact((out / "prithvi_sheet.html").read_text())
+    )
+    for f in (
+        "prithvi_sheet.html",
+        "prithvi_sheet_artifact.html",
+        "second_sheet.html",
+        "second_sheet_artifact.html",
+    ):
         print(f, (out / f).stat().st_size // 1024, "KB")
 
 

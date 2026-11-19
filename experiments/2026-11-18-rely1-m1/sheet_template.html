@@ -1,11 +1,15 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>__TITLE__</title>
+<title>Rely-1 Label Review</title>
 <style>
 :root{--bg:#fbfaf7;--fg:#1d1d1b;--mute:#6b6a65;--line:#e3e0d8;--card:#fff;--hi:#fff3c4;--accent:#2f5d8a}
-@media (prefers-color-scheme:dark){:root{--bg:#191917;--fg:#ecebe6;--mute:#a19f97;--line:#34332f;--card:#22221f;--hi:#4a4120;--accent:#8fb6dd}}
-body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif}
-main{max-width:980px;margin:0 auto;padding:16px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#191917;--fg:#ecebe6;--mute:#a19f97;--line:#34332f;--card:#22221f;--hi:#4a4120;--accent:#8fb6dd;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#191917;--fg:#ecebe6;--mute:#a19f97;--line:#34332f;--card:#22221f;--hi:#4a4120;--accent:#8fb6dd;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif;overflow-wrap:anywhere}
+main{max-width:980px;margin:0 auto;padding-block:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.msg{font-size:13px;color:var(--accent)}
 h1{font-size:20px;margin:8px 0}
 .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px;margin:14px 0}
 .stmt{font-size:17px;background:var(--hi);padding:8px;border-radius:6px}
@@ -16,9 +20,9 @@ details{margin:6px 0} summary{cursor:pointer;color:var(--accent)}
 .turn{padding:3px 6px;border-left:3px solid transparent;font-size:13.5px}
 .turn.on{border-left-color:var(--accent);background:var(--hi)}
 .q{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:6px 0}
-.q b{min-width:280px}
+.q b{min-width:min(280px,100%)}
 textarea{width:100%;min-height:44px;font:inherit;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px}
-.bar{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 0;z-index:2;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--line);padding:8px 0;z-index:2;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 button{font:inherit;padding:4px 10px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
 .tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin-right:6px}
 </style></head><body><main>
@@ -27,7 +31,12 @@ button{font:inherit;padding:4px 10px;border-radius:6px;border:1px solid var(--li
 <div class="card"><b>The label</b><ul>__DEF__</ul></div>
 <div class="bar"><span id="progress"></span>
 <button id="export">Export answers</button>
-<label class="mute">Import <input type="file" id="import" accept="application/json"></label></div>
+<button id="show-text" type="button">Show answers as text</button>
+<label class="mute">Import <input type="file" id="import" accept="application/json"></label>
+<span class="msg" id="msg" role="status"></span></div>
+<div class="card" id="fallback" hidden><p class="mute">Your answers as text. Save them as <code>prithvi_answers.json</code>, or paste them to Claude. This box updates as you answer.</p>
+<textarea id="out" readonly aria-label="Your answers as text" style="min-height:140px;font:12px/1.4 ui-monospace,Menlo,monospace"></textarea>
+<button id="copy" type="button">Copy</button></div>
 <div id="items"></div>
 <div id="agreement"></div>
 </main>
@@ -40,6 +49,8 @@ let answers = {};
 try { answers = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { answers = {}; }
 function save() {
   try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch (e) { canSave = false; }
+  const fb = document.getElementById("fallback");
+  if (fb && !fb.hidden) { document.getElementById("out").value = answersText(); document.getElementById("copy").textContent = "Copy"; }
   const done = DATA.items.filter(i => { const a = answers[i.key] || {}; return a.mc && a.material && a.records; }).length;
   const started = DATA.items.filter(i => Object.keys(answers[i.key] || {}).length).length;
   const agreed = (DATA.agreement || []).filter(g => (answers["agree:" + g.write_id] || {}).agreed).length;
@@ -175,13 +186,47 @@ function renderAgreement() {
     root.appendChild(c);
   });
 }
-document.getElementById("export").addEventListener("click", () => {
-  const blob = new Blob([JSON.stringify({sheet: SHEET, items_sha256: DATA.items_sha256, exported: new Date().toISOString(), answers: answers}, null, 1)], {type: "application/json"});
-  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = SHEET + "_answers.json"; a.click();
+function answersText() {
+  return JSON.stringify({sheet: SHEET, items_sha256: DATA.items_sha256, exported: new Date().toISOString(), answers: answers}, null, 1);
+}
+function say(text) { document.getElementById("msg").textContent = text; }
+function showFallback() {
+  document.getElementById("out").value = answersText();
+  document.getElementById("copy").textContent = "Copy";
+  const fb = document.getElementById("fallback");
+  fb.hidden = false;
+  fb.style.scrollMarginTop = (document.querySelector(".bar").offsetHeight + 8) + "px";
+  fb.scrollIntoView({block: "start"});
+  document.getElementById("out").focus({preventScroll: true});
+}
+// In claude.ai the viewer confirms the save (downloads capability); as a local file it downloads
+// directly; otherwise, and always on request, the answers are shown as text to copy.
+const downloads = window.claude && window.claude.use ? window.claude.use("downloads").catch(() => null) : Promise.resolve(undefined);
+document.getElementById("export").addEventListener("click", async () => {
+  const text = answersText(); const name = SHEET + "_answers.json";
+  say("");
+  const d = await downloads;
+  if (d) {
+    try { await d.save({filename: name, data: text}); say("Saved " + name + "."); }
+    catch (e) { if (e && e.code === "declined") say("Not saved."); else showFallback(); }
+    return;
+  }
+  if (d === null) { showFallback(); return; }
+  try {
+    const blob = new Blob([text], {type: "application/json"});
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  } catch (e) { showFallback(); }
+});
+document.getElementById("show-text").addEventListener("click", () => showFallback());
+document.getElementById("copy").addEventListener("click", () => {
+  const box = document.getElementById("out");
+  try { navigator.clipboard.writeText(box.value).then(() => { document.getElementById("copy").textContent = "Copied"; }, () => { box.focus(); box.select(); }); }
+  catch (e) { box.focus(); box.select(); }
 });
 document.getElementById("import").addEventListener("change", ev => {
   const f = ev.target.files[0]; if (!f) return;
-  f.text().then(t => { const d = JSON.parse(t); if (d.sheet !== SHEET) { alert("This file is for another sheet."); return; } if (d.items_sha256 !== DATA.items_sha256) { alert("This file is for another version of this sheet; nothing was imported."); return; } answers = d.answers || {}; document.getElementById("items").replaceChildren(); document.getElementById("agreement").replaceChildren(); render(); });
+  f.text().then(t => { let d; try { d = JSON.parse(t); } catch (e) { d = null; } if (!d || typeof d !== "object") { say("That file is not an answers file; nothing was imported."); return; } if (d.sheet !== SHEET) { say("That file is for another sheet; nothing was imported."); return; } if (d.items_sha256 !== DATA.items_sha256) { say("That file is for another version of this sheet; nothing was imported."); return; } say("Imported."); answers = d.answers || {}; document.getElementById("items").replaceChildren(); document.getElementById("agreement").replaceChildren(); render(); }, () => say("That file could not be read; nothing was imported."));
 });
 render();
 </script></body></html>
