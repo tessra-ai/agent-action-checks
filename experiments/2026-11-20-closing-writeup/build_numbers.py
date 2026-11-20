@@ -496,6 +496,9 @@ def main() -> None:
         "nano_share": frac(by_model.get("gpt-4.1-nano-2025-04-14", 0), len(na_bad)),
         "nano_actions_domains": dict(Counter(acts[p]["domain"] for p in nano_all)),
         "never_agreed_by_domain": dict(Counter(acts[p]["domain"] for p in na_bad)),
+        "never_agreed_backend_rejected": frac(
+            sum(acts[p]["backend"] == "REJECTED" for p in na_bad), len(na_bad)
+        ),
         "note": "gpt-4.1-nano ran only in the retail capture, so agent model and domain are confounded",
     }
     check(

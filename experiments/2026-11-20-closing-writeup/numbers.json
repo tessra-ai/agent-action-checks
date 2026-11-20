@@ -1286,6 +1286,11 @@
    "airline": 8,
    "retail": 31
   },
+  "never_agreed_backend_rejected": {
+   "count": 24,
+   "of": 39,
+   "rate": 0.6154
+  },
   "note": "gpt-4.1-nano ran only in the retail capture, so agent model and domain are confounded"
  },
  "cut_b_backend_rejected": {
