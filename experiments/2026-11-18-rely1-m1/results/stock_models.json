@@ -10,6 +10,11 @@
    "questions_scored": 380,
    "input_tokens": 900874,
    "median_seconds_per_call": 0.21,
+   "provenance": {
+    "model": "jev-1.14.0",
+    "where": "TypeSafe System One API, run 2026-11-20",
+    "cost_usd_note": "billed on input tokens only"
+   },
    "cost_usd": 0.0378,
    "all": {
     "both_yes_n": 21,
@@ -74,6 +79,7 @@
      "both_no_flagged": 0
     }
    },
+   "auc_both_yes_vs_both_no": 0.926,
    "p_yes_both_yes": {
     "P012.S2": 0.59,
     "P013.S1": 0.29,
@@ -96,6 +102,112 @@
     "P159.S4": 0.3,
     "P165.S2": 0.3,
     "P165.S3": 0.37
+   }
+  },
+  "kev4b": {
+   "model_ids": [
+    "kev-latest"
+   ],
+   "questions_scored": 380,
+   "input_tokens": 868745,
+   "median_seconds_per_call": 0.47,
+   "provenance": {
+    "served": "Kev pointer head on Qwen/Qwen3.5-4B-Base, serving jaredpalmer/kev-4b@v1.0 at temperature 2.41",
+    "run": "jaredpalmer/kev-4b@v1.0",
+    "base": "Qwen/Qwen3.5-4B-Base",
+    "lora": 16,
+    "dtype": "bfloat16",
+    "temperature": 2.406050072164233,
+    "device": "cuda",
+    "where": "Prithvi's Modal workspace (L40S per kev_serve.py), run 2026-11-20, called from the cloud session",
+    "deployment_file": "labeller/kev_serve_triton.patch applied to the Kev repo's skills/kev-deploy/scripts/kev_serve.py (KEV_REF fc4a17e194bca35a48c57211392ec49ea54a94ac) with triton pinned to 3.8.0; triton 3.9.0 broke the fla 0.5.2 kernels at start-up"
+   },
+   "all": {
+    "both_yes_n": 21,
+    "both_no_n": 345,
+    "missing": 0,
+    "cut_0.3": {
+     "both_yes_caught": 2,
+     "both_no_flagged": 68
+    },
+    "cut_0.5": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 16
+    },
+    "cut_0.7": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 2
+    },
+    "cut_0.9": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 0
+    }
+   },
+   "under_8192": {
+    "both_yes_n": 20,
+    "both_no_n": 283,
+    "missing": 0,
+    "cut_0.3": {
+     "both_yes_caught": 1,
+     "both_no_flagged": 41
+    },
+    "cut_0.5": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 11
+    },
+    "cut_0.7": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 2
+    },
+    "cut_0.9": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 0
+    }
+   },
+   "over_8192": {
+    "both_yes_n": 1,
+    "both_no_n": 62,
+    "missing": 0,
+    "cut_0.3": {
+     "both_yes_caught": 1,
+     "both_no_flagged": 27
+    },
+    "cut_0.5": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 5
+    },
+    "cut_0.7": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 0
+    },
+    "cut_0.9": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 0
+    }
+   },
+   "auc_both_yes_vs_both_no": 0.428,
+   "p_yes_both_yes": {
+    "P012.S2": 0.0863,
+    "P013.S1": 0.3672,
+    "P021.S3": 0.2111,
+    "P027.S3": 0.2242,
+    "P029.S2": 0.2743,
+    "P030.S1": 0.1265,
+    "P033.S1": 0.2666,
+    "P052.S2": 0.2483,
+    "P058.S2": 0.1693,
+    "P060.S1": 0.112,
+    "P066.S3": 0.1513,
+    "P070.S4": 0.2001,
+    "P072.S2": 0.154,
+    "P078.S2": 0.1751,
+    "P106.S4": 0.1235,
+    "P120.S1": 0.3261,
+    "P152.S2": 0.2897,
+    "P157.S2": 0.2717,
+    "P159.S4": 0.2213,
+    "P165.S2": 0.1136,
+    "P165.S3": 0.1819
    }
   }
  }

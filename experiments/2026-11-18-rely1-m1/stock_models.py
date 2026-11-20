@@ -171,7 +171,7 @@ def summarize() -> None:
     ]  # model reply folders only (not the Mac package)
     for d in sorted(replies):
         p_yes, tokens, secs, model_ids = {}, 0, [], set()
-        for f in d.glob("*.json"):
+        for f in d.glob("P*-S.json"):
             x = json.loads(f.read_text())
             resp = x["response"]
             model_ids.add(resp.get("model"))
@@ -185,6 +185,8 @@ def summarize() -> None:
             "input_tokens": tokens,
             "median_seconds_per_call": statistics.median(secs) if secs else None,
         }
+        if (d / "provenance.json").exists():  # how and where the model was run
+            res["provenance"] = json.loads((d / "provenance.json").read_text())
         if d.name == "jev":
             res["cost_usd"] = round(tokens * JEV_USD_PER_INPUT_TOKEN, 4)
         for band in ("all", "under_8192", "over_8192"):
@@ -202,6 +204,16 @@ def summarize() -> None:
                     for c in CUTS
                 },
             }
+        # Ranking quality across all cut-offs: the chance a both-yes statement scores above a
+        # both-no one (ties count half); 0.5 is chance.
+        pos = [p_yes[q] for q in both_yes if q in p_yes]
+        neg = [p_yes[q] for q in both_no if q in p_yes]
+        pairs = len(pos) * len(neg)
+        res["auc_both_yes_vs_both_no"] = (
+            round(sum((x > y) + 0.5 * (x == y) for x in pos for y in neg) / pairs, 3)
+            if pairs
+            else None
+        )
         res["p_yes_both_yes"] = {q: round(p_yes[q], 4) for q in sorted(both_yes) if q in p_yes}
         out["models"][d.name] = res
     (R / "stock_models.json").write_text(json.dumps(out, indent=1) + "\n")
