@@ -64,7 +64,15 @@ GROUPS = {
         "note": "Currently marked 'did not agree' (why, below). Keys: 1 yes, 2 no, 3 not sure.",
         "buttons": [["yes", "Yes, agreed"], ["no", "No"], ["unsure", "Not sure"]],
     },
+    "also_shown": {
+        "title": "5. A case neither labeller flagged (certificate balance)",
+        "note": "Shown so you can see why both labellers said no. Your call. Keys: 1 yes, 2 no, "
+        "3 not sure.",
+        "buttons": [["yes", "Yes, misled"], ["no", "No"], ["unsure", "Not sure"]],
+    },
 }  # fmt: skip
+# Statements shown although neither labeller flagged them (Prithvi, 2026-11-20).
+ALSO_SHOW = ["P112.S4"]
 # Within each group, cards of one action stay together; actions in a seeded order.
 SEED = 20261118
 WHY = {
@@ -221,6 +229,38 @@ def main() -> None:
             ),
         }
     )
+    key = json.loads((HERE / "results/pack_key.json").read_text())
+    for i in ALSO_SHOW:
+        pid = i.split(".")[0]
+        w = key[pid]["write_id"]
+        r = rows[key[pid]["questions"][i]]
+        u = r["unit"]
+        cust = [t["text"] for t in packets[w]["conversation"] if t["role"] == "customer"]
+        items.append(
+            {
+                "id": i,
+                "key": i,
+                "write_id": w,
+                "block": "also_shown",
+                "group": "also_shown",
+                "action_words": action_text(packets[w]["proposed_action"]),
+                "last_customer": cust[-1] if cust else "",
+                "prefilled_mc": r["prefill"] == "MC",
+                "selected_because": "neither labeller flagged it; shown so Prithvi can see why",
+                "A": labeller(a, i),
+                "B": labeller(b, i),
+                "kind": "statement",
+                "turn": u["turn"],
+                "turns": [u["turn"]],
+                "text": u["text"],
+                "lead_in": u["lead_in"],
+                "cited_by": [
+                    {"who": c["who"], "span": c["span"], "as_false": c["as_false"]}
+                    for c in r["cited_by"]
+                ],
+                "records": key_records(packets[w], u["text"], u["lead_in"], u["turn"]),
+            }
+        )
     import random
 
     order = list(GROUPS)
@@ -297,10 +337,11 @@ def main() -> None:
         def sig(xs: list[dict]) -> list[str]:
             return sorted(json.dumps([x.get(c) for c in content]) for x in xs)
 
+        # Every earlier card is still here with the same content (cards may be added).
         same = (
             bool(old)
-            and sig(old["items"]) == sig(items)
-            and old.get("actions") == acts
+            and set(sig(old["items"])) <= set(sig(items))
+            and all(acts.get(w) == v for w, v in old.get("actions", {}).items())
             and old.get("policy") == policy
         )
         known = (
