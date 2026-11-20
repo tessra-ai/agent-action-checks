@@ -125,6 +125,21 @@
   "contradiction_agreement_split": 3,
   "n": 91
  },
+ "coverage_bad_by_backend": {
+  "ACCEPTED": {
+   "no_agreement_only": 14,
+   "neither": 18,
+   "contradiction_in_agreed": 11,
+   "both": 1,
+   "n": 44
+  },
+  "REJECTED": {
+   "neither": 20,
+   "no_agreement_only": 24,
+   "contradiction_agreement_split": 3,
+   "n": 47
+  }
+ },
  "coverage_good": {
   "neither": 55,
   "contradiction_in_agreed": 1,

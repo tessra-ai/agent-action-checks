@@ -218,6 +218,11 @@ def main() -> None:
     cov = {r: Counter(cat(acts[p]) for p in (bad if r == "bad" else good)) for r in ("bad", "good")}
     prov = load(M1 / "results/provisional_checks.json")["coverage"]["bad"]["train+dev"]
     N["coverage_bad"] = dict(cov["bad"]) | {"n": len(bad)}
+    N["coverage_bad_by_backend"] = {
+        be: dict(Counter(cat(acts[p]) for p in bad if acts[p]["backend"] == be))
+        | {"n": sum(acts[p]["backend"] == be for p in bad)}
+        for be in ("ACCEPTED", "REJECTED")
+    }
     N["coverage_good"] = dict(cov["good"]) | {"n": len(good)}
     check(
         "coverage of bad: no agreement / contradiction in agreed / both or split / neither",
