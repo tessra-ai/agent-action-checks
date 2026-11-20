@@ -27,6 +27,8 @@ EXP = HERE.parent
 REPO = EXP.parent
 M0 = EXP / "2026-11-18-rely1-m0"
 M1 = EXP / "2026-11-18-rely1-m1"
+# the stock_agreement.json configuration behind the same-data 51 / 5
+SAME_DATA_KEY = "stmt>=0.5, P(agreed)<0.5"
 UNCAUGHT_COMMIT = "1453956"  # rely/uncaught-38: where results/uncaught_38_*.json were copied from
 
 
@@ -268,12 +270,8 @@ def main() -> None:
         "jev_agreement_auc": round(sa["agreement_vs_consensus"]["auc_not_agreed"], 3),
         "kev4b_statement_auc": round(sm["kev4b"]["auc_both_yes_vs_both_no"], 3),
         "jev_cutoffs_tuned_on_same_data": {
-            "bad_caught": sa["both_questions_per_action"]["jev"]["stmt>=0.5, P(agreed)<0.5"][
-                "bad_caught"
-            ],
-            "good_stopped": sa["both_questions_per_action"]["jev"]["stmt>=0.5, P(agreed)<0.5"][
-                "good_stopped"
-            ],
+            "bad_caught": sa["both_questions_per_action"]["jev"][SAME_DATA_KEY]["bad_caught"],
+            "good_stopped": sa["both_questions_per_action"]["jev"][SAME_DATA_KEY]["good_stopped"],
         },
     }
     check(
@@ -304,6 +302,8 @@ def main() -> None:
         "training_records_per_fold": [f["data"]["train"][0] for f in folds],
         "gpu_wall_seconds_final_runs": sum(f["wall_seconds"] for f in folds),
         "planted_checks": kp["planted"],
+        "planted_contradictions_kept": kp["planted"]["value swap"]["kept"]
+        + kp["planted"]["flip"]["kept"],
         "cost_note": "no committed file records the Modal bill; the brief's $30 to $35 is an estimate from run times",
     }
     check(
@@ -430,6 +430,21 @@ def main() -> None:
     N["designs"]["rules alone"] = {
         "bad_caught": caught(rb, len(bad)),
         "good_stopped": frac(rg, len(good), True),
+    }
+    # the broad judge's effect: design C (A's stages, then the judge) minus design A, at width 0.2
+    a_ = N["designs"]["A: rules -> cascade (width 0.2)"]
+    N["judge_added_to_A"] = {
+        f"run {r}": {
+            "more_bad_caught": N["designs"][f"C: rules -> cascade (width 0.2) -> judge run {r}"][
+                "bad_caught"
+            ]["count"]
+            - a_["bad_caught"]["count"],
+            "more_good_stopped": N["designs"][f"C: rules -> cascade (width 0.2) -> judge run {r}"][
+                "good_stopped"
+            ]["count"]
+            - a_["good_stopped"]["count"],
+        }
+        for r in (1, 2)
     }
     dA = N["designs"]["A: rules -> cascade (width 0.2)"]
     check("rules alone", [rb, rg], [33, 1])
@@ -719,6 +734,34 @@ def main() -> None:
         by_len[name] = entry
     N["by_packet_length"] = by_len
     check("packets over 8,192 tokens (from per-action rows)", len(over), tl["state"]["over_8192"])
+    # figures about other papers, read from prior_work.md's verified quotations (check_prior_work.py
+    # checks each quotation against the paper's text), so the post takes them from this file too
+    pw = (HERE / "prior_work.md").read_text()
+    sec = lambda n: pw.split(f"\n## {n}. ", 1)[1].split("\n## ", 1)[0]  # noqa: E731
+    ak = re.search(r'"before (\d+)% of (\d+) policy-violating writes"', sec(2))
+    fs_judge = re.search(r'"exceeds AUROC ([\d.]+)"', sec(7))
+    fs_det = re.search(r'"task-disjoint AUROC ([\d.]+)"', sec(7))
+    N["papers"] = {
+        "read_in_full": len(re.findall(r"^## \d+\. ", pw, re.M)),
+        "agent_knew_false_statement_before_violating_writes": {
+            "percent": int(ak.group(1)),
+            "of_writes": int(ak.group(2)),
+        },
+        "false_success_broad_judges_max_auroc": float(fs_judge.group(1)),
+        "false_success_tfidf_detector_auroc": float(fs_det.group(1)),
+        "source": "prior_work.md (quotations verified by check_prior_work.py)",
+    }
+    # Jev's spend this week, from the run summaries
+    sa_cost = sa["cost"]["agreement_usd"]
+    N["jev_cost_usd"] = {
+        "statements": sm["jev"]["cost_usd"],
+        "agreement": sa_cost,
+        "total": round(sm["jev"]["cost_usd"] + sa_cost, 2),
+    }
+    # the cut-offs behind the same-data 51 / 5, from the key that records them
+    N["stock"]["jev_cutoffs_tuned_on_same_data"]["cutoffs"] = (
+        SAME_DATA_KEY  # the result file's own key
+    )
     N["sources"] = {
         "actions": "experiments/2026-11-20-closing-writeup/results/actions.json (actions.py)",
         "labels": "experiments/2026-11-18-rely1-m1/results/labels_a.jsonl, labels_b.jsonl, labeller_comparison.json",

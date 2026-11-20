@@ -170,7 +170,8 @@
   "kev4b_statement_auc": 0.428,
   "jev_cutoffs_tuned_on_same_data": {
    "bad_caught": 51,
-   "good_stopped": 5
+   "good_stopped": 5,
+   "cutoffs": "stmt>=0.5, P(agreed)<0.5"
   }
  },
  "kev_pilot": {
@@ -225,6 +226,7 @@
     "kept": 118
    }
   },
+  "planted_contradictions_kept": 157,
   "cost_note": "no committed file records the Modal bill; the brief's $30 to $35 is an estimate from run times"
  },
  "jev_tradeoff": {
@@ -1282,6 +1284,16 @@
    }
   }
  },
+ "judge_added_to_A": {
+  "run 1": {
+   "more_bad_caught": 13,
+   "more_good_stopped": 8
+  },
+  "run 2": {
+   "more_bad_caught": 12,
+   "more_good_stopped": 8
+  }
+ },
  "cut_a_never_agreed_by_agent_model": {
   "bad_never_agreed": 39,
   "by_agent_model": {
@@ -1815,6 +1827,21 @@
     }
    }
   }
+ },
+ "papers": {
+  "read_in_full": 8,
+  "agent_knew_false_statement_before_violating_writes": {
+   "percent": 26,
+   "of_writes": 227
+  },
+  "false_success_broad_judges_max_auroc": 0.65,
+  "false_success_tfidf_detector_auroc": 0.83,
+  "source": "prior_work.md (quotations verified by check_prior_work.py)"
+ },
+ "jev_cost_usd": {
+  "statements": 0.0378,
+  "agreement": 0.0398,
+  "total": 0.08
  },
  "sources": {
   "actions": "experiments/2026-11-20-closing-writeup/results/actions.json (actions.py)",
