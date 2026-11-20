@@ -151,6 +151,47 @@ long ones are longer than anything Kev trained on.
   not the planned third. Codex also checked all of them, and it is labeller A. Planted results are
   reported apart from natural ones.
 
+- **Folds 0–2 ran at batch 1, accumulation 8.** Their first runs at batch 2 ran out of GPU memory
+  partway through training (steps 160, 280 and 80 of about 305), when two long packets landed in
+  one batch. They were re-run as `rely1-kev-f{0,1,2}-b1`. Folds 3 and 4 finished at batch 2,
+  accumulation 4. Both settings put 8 records into each optimizer step.
+- **Planted results apart from natural ones:** every test number is on natural statements and
+  agreement questions only. The planted edits are training data, and no planted example was held
+  out, so there is no separate planted test score. What is reported for the planted set is how
+  many edits were made and kept (`planted` in `results/kev_pilot.json`).
+
+## Result (2026-11-20)
+
+`results/kev_pilot.json`; the five fold exports are in `results/kev_pilot_folds/`. Under the
+fixed rules the verdict is **RETRY ONCE**: statement AUC 0.813 (stock Kev 0.43), above the 0.70
+retry line, but short of the bar and clearly worse than Jev on (a), (b) and (c).
+
+To replay the score from the committed exports: the scorer also needs git-ignored inputs that
+are rebuilt, not committed. These are the M0 packets (`../2026-11-18-rely1-m0/runs/packets.jsonl`,
+from M0's `packets.py`), the labeller pack (`build_pack.py`), Jev's raw replies (`stock_models.py
+run`, `jev` and `jev_agreement`, about $0.08), and this pilot's data build (`kev_pilot.py jobs`,
+both Codex steps, `checks`, `build`). With those in place, put the committed exports where the
+scorer reads them:
+
+    mkdir -p runs/kev_pilot/results && cp results/kev_pilot_folds/fold*.json runs/kev_pilot/results/
+    python kev_pilot.py score
+
+### Retry cost estimate (awaiting Prithvi's decision; nothing started)
+
+A retry means one more five-fold run with about three times the planted data.
+
+- **Data:** 6 value swaps and about 3 Codex flips, rephrasings and consent edits per train action.
+  - At the first run's keep rates (17% of swaps, 94% of flips), that is about 470 planted
+    contradictions instead of 157, about three quarters of them Codex-written again.
+  - Codex generation and checks run on the subscription, at no money cost and about 2–3 hours of
+    wall time. Usage limits may pause them.
+- **GPU:** about 900–1,000 of our records per fold instead of about 470, at batch 1 on A100-80GB.
+  - About 2.5 hours of training plus 20 minutes of scoring per fold, at about $3.15/h, so about $9
+    per fold and about $45 for five.
+  - With 3.5-hour timeouts the ceiling is about $55.
+- **Total:** about $45 expected, $55 worst case, on top of about $35 spent on this run. That is
+  beyond the original $40 cap, so it needs a new budget.
+
 ## What I deliver
 
 `results/kev_pilot.json`:
