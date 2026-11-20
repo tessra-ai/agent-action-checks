@@ -61,7 +61,7 @@ def sheet_data(path: Path) -> dict:
     return json.loads(blob.replace("<\\/", "</"))
 
 
-def check(sheet: dict, second: dict, cmp_: dict, pa: dict, sa: dict) -> list[str]:
+def check(sheet: dict, second: dict, cmp_: dict, pa: dict, sa: dict | None) -> list[str]:
     """Problems that stop scoring: stale inputs, a file from another sheet, missing answers."""
     problems = []
     for f, h in cmp_["inputs_sha256"].items():
@@ -72,7 +72,9 @@ def check(sheet: dict, second: dict, cmp_: dict, pa: dict, sa: dict) -> list[str
             problems.append(f"the reduced sheet was built from another results/{f}")
     if pa.get("sheet") != sheet["sheet"] or pa.get("items_sha256") != sheet["items_sha256"]:
         problems.append("prithvi_reduced_answers.json is not from the current reduced sheet")
-    if sa.get("sheet") != "second" or sa.get("fingerprint") != second["fingerprint"]:
+    if sa is not None and (
+        sa.get("sheet") != "second" or sa.get("fingerprint") != second["fingerprint"]
+    ):
         problems.append("second_answers.json is not from the current second sheet")
     p = pa.get("answers", {})
     miss, bad_turns = [], []
@@ -102,7 +104,11 @@ def check(sheet: dict, second: dict, cmp_: dict, pa: dict, sa: dict) -> list[str
             "agreement turns must be customer messages, as '31, 34' or 'T31-T34': "
             + ", ".join(bad_turns)
         )
-    s_miss = [i["key"] for i in second["items"] if sa.get("answers", {}).get(i["key"]) not in THREE]
+    s_miss = [
+        i["key"]
+        for i in second["items"]
+        if sa is not None and sa.get("answers", {}).get(i["key"]) not in THREE
+    ]
     if s_miss:
         problems.append(f"{len(s_miss)} second-sheet statements unanswered")
     return problems
@@ -124,7 +130,9 @@ def tally(pairs: list[tuple[str, str, str]]) -> dict:
     return {"n": len(pairs), **dict(sorted(out.items()))}
 
 
-def score(cmp_: dict, sheet: dict, second: dict, pa: dict, sa: dict) -> tuple[dict, list[dict]]:
+def score(
+    cmp_: dict, sheet: dict, second: dict, pa: dict, sa: dict | None
+) -> tuple[dict, list[dict]]:
     a = {r["id"]: r for r in jsonl("labels_a.jsonl")}
     b = {r["id"]: r for r in jsonl("labels_b.jsonl")}
     key = json.loads((R / "pack_key.json").read_text())
@@ -248,25 +256,29 @@ def score(cmp_: dict, sheet: dict, second: dict, pa: dict, sa: dict) -> tuple[di
     }
 
     john = []
-    for it in second["items"]:
+    for it in second["items"] if sa is not None else []:
         q = by_unit[it["key"]]
         j = TO_MODEL[sa["answers"][it["key"]]]
         john.append(
             (q, j, a[q]["answer"], b[q]["answer"], ruling(q, False) if q in items else None)
         )
-    out["john"] = {
-        "n": len(john),
-        "agrees_with_A": sum(j == x for _, j, x, _, _ in john),
-        "agrees_with_B": sum(j == y for _, j, _, y, _ in john),
-        "on_prithvi_sheet": sum(1 for *_, r in john if r is not None),
-        "agrees_with_prithvi": sum(j == r for _, j, _, _, r in john if r is not None),
-        "table_john_by_A": {
-            x: dict(Counter(a_ for _, j, a_, _, _ in john if j == x)) for x in TO_MODEL.values()
-        },
-        "table_john_by_B": {
-            x: dict(Counter(b_ for _, j, _, b_, _ in john if j == x)) for x in TO_MODEL.values()
-        },
-    }
+    out["john"] = (
+        "not collected (optional; Prithvi, 2026-11-20)"
+        if sa is None
+        else {
+            "n": len(john),
+            "agrees_with_A": sum(j == x for _, j, x, _, _ in john),
+            "agrees_with_B": sum(j == y for _, j, _, y, _ in john),
+            "on_prithvi_sheet": sum(1 for *_, r in john if r is not None),
+            "agrees_with_prithvi": sum(j == r for _, j, _, _, r in john if r is not None),
+            "table_john_by_A": {
+                x: dict(Counter(a_ for _, j, a_, _, _ in john if j == x)) for x in TO_MODEL.values()
+            },
+            "table_john_by_B": {
+                x: dict(Counter(b_ for _, j, _, b_, _ in john if j == x)) for x in TO_MODEL.values()
+            },
+        }
+    )
 
     finals = []
     for i in s_ids + a_ids:
@@ -336,17 +348,38 @@ def score(cmp_: dict, sheet: dict, second: dict, pa: dict, sa: dict) -> tuple[di
 
 
 def main() -> None:
+    """John's answers are optional (Prithvi, 2026-11-20): without review/second_answers.json the
+    gate is scored on Prithvi's answers alone and says "John: not collected". When John's file
+    arrives later, running this again writes his section to results/gate_john.json and checks
+    that everything else equals the stored gate; gate.json itself is scored once."""
     gate = R / "gate.json"
-    if gate.exists():
-        raise SystemExit("gate results exist; scored once")
+    john_path = HERE / "review/second_answers.json"
     cmp_ = json.loads((R / "labeller_comparison.json").read_text())
     sheet = sheet_data(HERE / "review/prithvi_reduced.html")
     second = sheet_data(HERE / "review/second_sheet.html")
     pa = json.loads((HERE / "review/prithvi_reduced_answers.json").read_text())
-    sa = json.loads((HERE / "review/second_answers.json").read_text())
+    sa = json.loads(john_path.read_text()) if john_path.exists() else None
+    if john_path.exists() and not isinstance(sa, dict):
+        raise SystemExit("review/second_answers.json is not an answers file")
     problems = check(sheet, second, cmp_, pa, sa)
     if problems:
         raise SystemExit("not scored: " + "; ".join(problems))
+    if gate.exists():
+        stored = json.loads(gate.read_text())
+        if sa is None or stored.get("john") != "not collected (optional; Prithvi, 2026-11-20)":
+            raise SystemExit("gate results exist; scored once")
+        out_john = R / "gate_john.json"
+        if out_john.exists():
+            raise SystemExit("John's section exists; scored once")
+        result, finals = score(cmp_, sheet, second, pa, sa)
+        stored_finals = (R / "labels_final.jsonl").read_text()
+        if {k: v for k, v in result.items() if k != "john"} != {
+            k: v for k, v in stored.items() if k != "john"
+        } or stored_finals != "".join(json.dumps(f) + "\n" for f in finals):
+            raise SystemExit("inputs changed since the gate was scored; not adding John's section")
+        out_john.write_text(json.dumps(result["john"], indent=1) + "\n")
+        print(json.dumps(result["john"], indent=1))
+        return
     result, finals = score(cmp_, sheet, second, pa, sa)
     (R / "labels_final.jsonl").write_text("".join(json.dumps(f) + "\n" for f in finals))
     gate.write_text(json.dumps(result, indent=1) + "\n")
