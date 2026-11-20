@@ -57,7 +57,7 @@ def jsonl(name: str) -> list[dict]:
 
 def sheet_data(path: Path) -> dict:
     html = path.read_text()
-    blob = re.search(r"const DATA = (.*?);\nconst (SHEET|KEY)", html, re.S).group(1)
+    blob = re.search(r"const DATA = (.*?);\nconst (SHEET|KEY|PRIOR)", html, re.S).group(1)
     return json.loads(blob.replace("<\\/", "</"))
 
 
@@ -79,7 +79,13 @@ def check(sheet: dict, second: dict, cmp_: dict, pa: dict, sa: dict) -> list[str
     for it in sheet["items"]:
         a = p.get(it["key"]) or {}
         if it["kind"] == "statement":
-            ok = a.get("mc") in THREE and a.get("material") in THREE and a.get("records") in RECORDS
+            # Only the first question is required; the other two are optional but, if given,
+            # must be valid (Prithvi, 2026-11-20).
+            ok = (
+                a.get("mc") in THREE
+                and a.get("material") in (None, *THREE)
+                and a.get("records") in (None, *RECORDS)
+            )
         else:
             ok = a.get("agreed") in THREE
             conv = sheet["actions"][it["write_id"]]["conversation"]
@@ -174,7 +180,11 @@ def score(cmp_: dict, sheet: dict, second: dict, pa: dict, sa: dict) -> tuple[di
             for k, it in items.items()
             if it["kind"] == "statement" and a[k]["answer"] != b[k]["answer"]
         ],
-        "agreement_disagreement": [k for k, it in items.items() if it["block"] == "agreement"],
+        "agreement_disagreement": [
+            k
+            for k, it in items.items()
+            if it["kind"] == "agreement" and it["block"] != "gaming_mouse"
+        ],
     }
     rulings = {}
     for when in ("blind", "final"):

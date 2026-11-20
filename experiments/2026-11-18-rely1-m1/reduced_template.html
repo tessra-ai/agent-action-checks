@@ -29,6 +29,11 @@ button[disabled]{opacity:.5;cursor:default}
 .tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin-right:6px}
 .tag.flag{border-color:var(--flag);color:var(--flag)}
 .reveal{border-top:1px dashed var(--line);margin-top:10px;padding-top:8px}
+.card.cur{outline:2px solid var(--accent);outline-offset:2px}
+.ctx{border:1px solid var(--line);border-radius:6px;padding:4px 6px;margin:6px 0}
+.rec{border-left:3px solid var(--line);padding-left:8px;margin:6px 0}
+h3{font-size:15px;margin:22px 0 0;color:var(--mute)}
+.opt{color:var(--mute);font-size:12px;font-weight:normal}
 </style></head><body><main>
 <h1>__TITLE__</h1>
 <p class="mute">__INTRO__</p>
@@ -46,22 +51,29 @@ button[disabled]{opacity:.5;cursor:default}
 </main>
 <script>
 const DATA = __DATA__;
+const PRIOR = __PRIOR__;  // fingerprints of earlier versions of this sheet (same items)
 const SHEET = DATA.sheet;
 const KEY = "rely1-m1-" + SHEET + "-" + DATA.items_sha256;
 let canSave = true;
 let answers = {};
+let carried = 0;
 try { answers = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { answers = {}; }
+// Answers kept in this browser for an earlier version carry over (only for items still here).
+try {
+  for (const sha of PRIOR) {
+    const old = JSON.parse(localStorage.getItem("rely1-m1-" + SHEET + "-" + sha) || "{}");
+    for (const it of DATA.items) if (old[it.key] && !answers[it.key]) { answers[it.key] = old[it.key]; carried++; }
+  }
+} catch (e) {}
 const FIRST = {statement: "mc", agreement: "agreed"};
-function complete(it) {
-  const a = answers[it.key] || {};
-  return it.kind === "statement" ? !!(a.mc && a.material && a.records) : !!a.agreed;
-}
+// Only the first question is required; the others are optional, to explain hard cases.
+function complete(it) { return !!(answers[it.key] || {})[FIRST[it.kind]]; }
 function save() {
   try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch (e) { canSave = false; }
   const fb = document.getElementById("fallback");
   if (fb && !fb.hidden) { document.getElementById("out").value = answersText(); document.getElementById("copy").textContent = "Copy"; }
   const done = DATA.items.filter(complete).length;
-  document.getElementById("progress").textContent = done + " of " + DATA.items.length + " complete" + (canSave ? "" : " · this browser is not saving: export before closing");
+  document.getElementById("progress").textContent = done + " of " + DATA.items.length + " answered" + (carried ? " · " + carried + " carried over from the earlier version" : "") + (canSave ? "" : " · this browser is not saving: export before closing");
 }
 function el(tag, attrs, text) {
   const e = document.createElement(tag);
@@ -90,6 +102,33 @@ function conversation(a, turns, label) {
     conv.appendChild(line);
   });
   return conv;
+}
+function context(a, turn, label) {
+  // The sentence's turn with the two before it and the next customer reply, inline.
+  const box = el("div", {class: "ctx"});
+  box.appendChild(el("div", {class: "mute"}, label));
+  const n = a.conversation.length;
+  let end = Math.min(n, turn);
+  for (let i = turn; i < n; i++) { if (a.conversation[i].role === "customer") { end = i + 1; break; } }
+  for (let i = Math.max(1, turn - 2); i <= end; i++) {
+    const t = a.conversation[i - 1];
+    const line = el("div", {class: "turn" + (i === turn ? " on" : "")});
+    line.textContent = "[T" + i + "] " + (t.role === "customer" ? "customer" : "agent") + ": " + t.text + (t.refs.length ? " (lookups " + t.refs.map(k => "L" + k).join(", ") + ")" : "");
+    box.appendChild(line);
+  }
+  return box;
+}
+function keyRecords(it) {
+  const box = el("div");
+  if (!(it.records || []).length) return box;
+  box.appendChild(el("div", {class: "mute"}, "Matching records (trimmed to the matching fields; the full ledger is below)"));
+  for (const r of it.records) {
+    const d = el("div", {class: "rec"});
+    d.appendChild(el("div", {class: "mute"}, "[L" + r.n + "] " + r.tool + " " + JSON.stringify(r.arguments) + " — " + r.made + (it.kind === "statement" ? ", " + r.when + " the sentence" : "") + (r.error ? " (ERROR)" : "")));
+    d.appendChild(el("pre", {}, r.focus));
+    box.appendChild(d);
+  }
+  return box;
 }
 function records(c, a) {
   const led = el("details"); led.appendChild(el("summary", {}, "Evidence ledger (" + a.ledger.length + " lookups)"));
@@ -146,10 +185,12 @@ function revealer(c, it, a) {
 function render() {
   refreshers.length = 0;
   const root = document.getElementById("items");
-  let block = null;
+  let block = null, lastAction = null, actionNo = 0;
+  const nActions = new Set(DATA.items.filter(x => x.block === "actions").map(x => x.write_id)).size;
   DATA.items.forEach((it, idx) => {
     const a = DATA.actions[it.write_id];
-    if (it.block !== block) { block = it.block; root.appendChild(el("h2", {}, DATA.blocks[block])); if (DATA.block_notes[block]) root.appendChild(el("p", {class: "mute"}, DATA.block_notes[block])); }
+    if (it.block !== block) { block = it.block; lastAction = null; root.appendChild(el("h2", {}, DATA.blocks[block])); if (DATA.block_notes[block]) root.appendChild(el("p", {class: "mute"}, DATA.block_notes[block])); }
+    if (it.block === "actions" && it.write_id !== lastAction) { lastAction = it.write_id; actionNo++; const nCards = DATA.items.filter(x => x.write_id === it.write_id).length; root.appendChild(el("h3", {}, "Action " + actionNo + " of " + nActions + " · " + a.domain + " task " + a.task_id + " · " + nCards + " card" + (nCards > 1 ? "s" : ""))); }
     const c = el("div", {class: "card"});
     const head = el("div", {class: "mute"}, "#" + (idx + 1) + " · " + it.id + " · " + a.domain + " task " + a.task_id + " · " + it.write_id + " ");
     c.appendChild(head);
@@ -161,11 +202,15 @@ function render() {
     }
     c.appendChild(el("pre", {}, "Proposed action: " + a.tool + " " + JSON.stringify(a.arguments)));
     c.appendChild(el("div", {class: "mute"}, a.description));
-    c.appendChild(conversation(a, it.turns || [], it.kind === "statement" ? "Conversation (statement's turn highlighted)" : "Conversation" + ((it.turns || []).length ? " (turns highlighted)" : "")));
+    if (it.kind === "statement") c.appendChild(context(a, it.turn, "Around the sentence"));
+    else c.appendChild(context(a, a.conversation.length, "The last messages before the action"));
+    c.appendChild(keyRecords(it));
+    c.appendChild(conversation(a, it.turns || [], it.kind === "statement" ? "Whole conversation (statement's turn highlighted)" : "Whole conversation" + ((it.turns || []).length ? " (turns highlighted)" : "")));
     records(c, a);
     const pick = () => refreshers.forEach(f => f());
     if (it.kind === "statement") {
       c.appendChild(radios(it, "mc", "Material contradiction for this action?", ["yes", "no", "unsure"], pick));
+      c.appendChild(el("div", {class: "opt"}, "Optional, to explain a hard case:"));
       c.appendChild(radios(it, "material", "Would correcting it plausibly change the yes?", ["yes", "no", "unsure"], pick));
       c.appendChild(radios(it, "records", "Do the records back it?", ["supported", "contradicted", "not covered", "unsure"], pick));
     } else {
@@ -180,10 +225,43 @@ function render() {
     note.addEventListener("input", () => { (answers[it.key] ||= {}).note = note.value; save(); });
     c.appendChild(note);
     revealer(c, it, a);
+    c.dataset.idx = idx;
+    c.addEventListener("click", () => setCurrent(idx, false));
+    c.addEventListener("focusin", () => setCurrent(idx, false));
     root.appendChild(c);
+    cardEls[idx] = c;
   });
   save();
 }
+// Keyboard: Y / N / U answer the current card's first question; Enter reveals when allowed;
+// J / K move between cards. On load the first unanswered card is current.
+const cardEls = [];
+let current = 0;
+function setCurrent(i, scroll) {
+  if (i < 0 || i >= cardEls.length) return;
+  cardEls[current] && cardEls[current].classList.remove("cur");
+  current = i; cardEls[i].classList.add("cur");
+  if (scroll) { cardEls[i].style.scrollMarginTop = (document.querySelector(".bar").offsetHeight + 8) + "px"; cardEls[i].scrollIntoView({block: "start"}); }
+}
+document.addEventListener("keydown", ev => {
+  if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
+  const tag = (ev.target.tagName || "").toLowerCase();
+  if (tag === "textarea" || (tag === "input" && ev.target.type === "text")) return;
+  // Enter on a focused button, link, option or summary keeps its own action.
+  if (ev.key === "Enter" && ["button", "a", "input", "summary", "select"].includes(tag)) return;
+  const k = ev.key.toLowerCase();
+  const it = DATA.items[current], c = cardEls[current];
+  if (k === "j") { setCurrent(current + 1, true); ev.preventDefault(); }
+  else if (k === "k") { setCurrent(current - 1, true); ev.preventDefault(); }
+  else if ((k === "y" || k === "n" || k === "u") && it) {
+    const v = {y: "yes", n: "no", u: "unsure"}[k];
+    const r = c.querySelector('input[name="' + CSS.escape(it.key + FIRST[it.kind]) + '"][value="' + v + '"]');
+    if (r) { r.checked = true; r.dispatchEvent(new Event("change")); ev.preventDefault(); }
+  } else if (k === "enter" && c) {
+    const b = [...c.querySelectorAll("button")].find(x => x.textContent.startsWith("Show the labellers"));
+    if (b && !b.disabled) { b.click(); ev.preventDefault(); }
+  }
+});
 function answersText() {
   return JSON.stringify({sheet: SHEET, items_sha256: DATA.items_sha256, exported: new Date().toISOString(), answers: answers}, null, 1);
 }
@@ -224,7 +302,8 @@ document.getElementById("copy").addEventListener("click", () => {
 });
 document.getElementById("import").addEventListener("change", ev => {
   const f = ev.target.files[0]; if (!f) return;
-  f.text().then(t => { let d; try { d = JSON.parse(t); } catch (e) { d = null; } if (!d || typeof d !== "object") { say("That file is not an answers file; nothing was imported."); return; } if (d.sheet !== SHEET) { say("That file is for another sheet; nothing was imported."); return; } if (d.items_sha256 !== DATA.items_sha256) { say("That file is for another version of this sheet; nothing was imported."); return; } say("Imported."); answers = d.answers || {}; document.getElementById("items").replaceChildren(); render(); }, () => say("That file could not be read; nothing was imported."));
+  f.text().then(t => { let d; try { d = JSON.parse(t); } catch (e) { d = null; } if (!d || typeof d !== "object") { say("That file is not an answers file; nothing was imported."); return; } if (d.sheet !== SHEET) { say("That file is for another sheet; nothing was imported."); return; } if (d.items_sha256 !== DATA.items_sha256 && !PRIOR.includes(d.items_sha256)) { say("That file is for another version of this sheet; nothing was imported."); return; } say("Imported."); answers = d.answers || {}; document.getElementById("items").replaceChildren(); cardEls.length = 0; render(); setCurrent(Math.max(0, DATA.items.findIndex(x => !complete(x))), true); }, () => say("That file could not be read; nothing was imported."));
 });
 render();
+setCurrent(Math.max(0, DATA.items.findIndex(x => !complete(x))), true);
 </script></body></html>

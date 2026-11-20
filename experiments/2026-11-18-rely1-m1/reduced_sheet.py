@@ -27,6 +27,7 @@ HERE = Path(__file__).parent
 M0 = HERE.parent / "2026-11-18-rely1-m0"
 sys.path.insert(0, str(HERE))
 from build import rulings as load_rulings  # noqa: E402
+from friend import action_tokens, focused, lookup_turns, norm_tokens, relevant  # noqa: E402
 from sheet import DEFINITION, action, as_artifact  # noqa: E402
 
 SHEET = "prithvi_reduced"
@@ -35,9 +36,10 @@ PAGE = (HERE / "reduced_template.html").read_text()
 # says which group an item came from (both yes, disagreement); that shows only after the blind
 # answer (Codex review, 2026-11-20).
 SEED = 20261118
+# Cards are grouped by action (one conversation and ledger read once), actions in a seeded
+# shuffle, statements before the action's agreement question (Prithvi, 2026-11-20).
 BLOCKS = {
-    "statement": "Statements",
-    "agreement": "Agreement questions",
+    "actions": "Actions",
     "gaming_mouse": "Shown separately: the Gaming Mouse case",
 }
 WHY = {
@@ -47,6 +49,9 @@ WHY = {
     "agreement, and the action holds a statement either labeller flagged",
 }
 BLOCK_NOTES = {
+    "actions": "Each action's cards are together: read its conversation once. Keys: Y / N / U "
+    "answer the current card's first question, Enter shows the labellers' answers when allowed, "
+    "J / K move to the next / previous card.",
     "gaming_mouse": "An anchor case. It has no statement questions because its action is labelled "
     "'no agreement' (reason below) and such actions are left out of the statement labels. Confirm "
     "or change that label.",
@@ -68,6 +73,26 @@ QUESTIONS = {
 for _q in QUESTIONS["statement"]:  # the template must render each question exactly so
     if f'"{_q[0]}", "{_q[1]}", [{", ".join(json.dumps(o) for o in _q[2])}]' not in PAGE:
         raise SystemExit(f"reduced_template.html does not render {_q[0]!r} as QUESTIONS says")
+
+
+def key_records(packet: dict, text: str, lead_in: str | None, turn: int) -> list[dict]:
+    """The 3 lookups that best match the sentence (or the call), trimmed to matching fields;
+    review tooling only, the full ledger stays on the card (friend.py's matching)."""
+    want = norm_tokens(text) | norm_tokens(lead_in or "")
+    want |= action_tokens(packet["proposed_action"]["arguments"])
+    when = lookup_turns(packet)
+    return [
+        {
+            "n": e["n"],
+            "tool": e["tool"],
+            "arguments": e["arguments"],
+            "made": "a change the agent made" if e["kind"] == "write" else "a lookup",
+            "when": "before" if when.get(e["n"], 0) < turn else "after",
+            "focus": focused(e["result"], want),
+            "error": e["error"],
+        }
+        for e in relevant(packet, text, lead_in, turn, k=3)
+    ]
 
 
 def load(name: str) -> dict[str, dict]:
@@ -101,7 +126,7 @@ def main() -> None:
     items = []
     for x in sheet["items"]:
         i, w = x["id"], x["write_id"]
-        block = "statement" if ".S" in i else "agreement"
+        block = "actions"
         it = {
             "id": i,
             "key": i,
@@ -125,13 +150,21 @@ def main() -> None:
                     {"who": c["who"], "span": c["span"], "as_false": c["as_false"]}
                     for c in r["cited_by"]
                 ],
+                "records": key_records(packets[w], u["text"], u["lead_in"], u["turn"]),
             }
         else:
             g = current[w]
+            pa = packets[w]["proposed_action"]
             it |= {
                 "kind": "agreement",
                 "question": QUESTIONS["agreement"][0][1],
                 "current": f"{g['agreed']} ({g['source']}): {g['reason']}",
+                "records": key_records(
+                    packets[w],
+                    json.dumps(pa["arguments"]),
+                    None,
+                    len(packets[w]["conversation"]) + 1,
+                ),
             }
         items.append(it)
     gm = sheet["gaming_mouse"]
@@ -151,14 +184,26 @@ def main() -> None:
             "current": f"{g['agreed']} ({g['source']})",
             "A": labeller(a, gid),
             "B": labeller(b, gid),
+            "records": key_records(
+                packets[gm["write_id"]],
+                json.dumps(packets[gm["write_id"]]["proposed_action"]["arguments"]),
+                None,
+                len(packets[gm["write_id"]]["conversation"]) + 1,
+            ),
         }
     )
     import random
 
     order = list(BLOCKS)
-    items.sort(key=lambda x: x["id"])
-    random.Random(SEED).shuffle(items)
-    items.sort(key=lambda x: order.index(x["block"]))  # stable: shuffled within each block
+    actions = sorted({x["write_id"] for x in items if x["block"] == "actions"})
+    random.Random(SEED).shuffle(actions)
+    rank = {w: n for n, w in enumerate(actions)}
+
+    def qnum(i: str) -> int:
+        tail = i.split(".")[1]
+        return int(tail[1:]) if tail.startswith("S") else 10_000
+
+    items.sort(key=lambda x: (order.index(x["block"]), rank.get(x["write_id"], 0), qnum(x["id"])))
     acts = {
         w: action(packets[w], rulings.get(w, [])) for w in sorted({x["write_id"] for x in items})
     }
@@ -185,7 +230,10 @@ def main() -> None:
             )
         },
     }
-    counts = {k: sum(1 for x in items if x["block"] == k) for k in BLOCKS}
+    counts = {
+        "statement": sum(1 for x in items if x["kind"] == "statement"),
+        "agreement": sum(1 for x in items if x["block"] == "actions" and x["kind"] == "agreement"),
+    }
     intro = (
         f"{len(items)} items: {counts['statement']} statements, {counts['agreement']} agreement "
         "questions and the Gaming Mouse case, picked from where two model labellers flagged a "
@@ -202,6 +250,46 @@ def main() -> None:
         .replace("__DATA__", blob)
     )
     out = HERE / "review"
+    # Answers given on an earlier version of this sheet (same items, other layout) carry over:
+    # the page imports them from browser storage or an exported file under these fingerprints.
+    prev = out / f"{SHEET}.html"
+    if prev.exists():
+        import re as _re
+
+        old_html = prev.read_text()
+        m = _re.search(r'"items_sha256": "([0-9a-f]{64})"', old_html)
+        blob = _re.search(r"const DATA = (.*?);\nconst (SHEET|PRIOR)", old_html, _re.S)
+        old = json.loads(blob.group(1).replace("<\\/", "</")) if blob else {}
+        # Layout-only change: the same items with the same content, actions and policy; only
+        # presentation fields (block, records shown, headings, order) may differ.
+        content = (
+            "key", "kind", "write_id", "text", "lead_in", "turn", "A", "B", "current",
+            "prefilled_mc", "cited_by",
+        )  # fmt: skip
+
+        def sig(xs: list[dict]) -> list[str]:
+            return sorted(json.dumps([x.get(c) for c in content]) for x in xs)
+
+        same = (
+            bool(old)
+            and sig(old["items"]) == sig(items)
+            and old.get("actions") == acts
+            and old.get("policy") == policy
+        )
+        known = (
+            set(json.loads((out / f"{SHEET}_versions.json").read_text()))
+            if (out / f"{SHEET}_versions.json").exists()
+            else set()
+        )
+        if m and m.group(1) != fingerprint and same:  # carry over only after layout changes
+            known.add(m.group(1))
+        (out / f"{SHEET}_versions.json").write_text(json.dumps(sorted(known)) + "\n")
+    prior = (
+        json.loads((out / f"{SHEET}_versions.json").read_text())
+        if (out / f"{SHEET}_versions.json").exists()
+        else []
+    )
+    page = page.replace("__PRIOR__", json.dumps(prior))
     (out / f"{SHEET}.html").write_text(page)
     (out / f"{SHEET}_artifact.html").write_text(as_artifact(page))
     print(intro)
