@@ -45,27 +45,24 @@ SHEET = "prithvi_reduced"
 PAGE = (HERE / "adjudicate_template.html").read_text()
 GROUPS = {
     "both_yes": {
-        "title": "1. Both labellers say: contradiction",
-        "note": "Confirm or reject. Keys: 1 confirm, 2 reject, 3 unsure; J / K next / previous.",
-        "buttons": [["yes", "Confirm: contradiction"], ["no", "Reject: not a contradiction"],
-                    ["unsure", "Unsure"]],
+        "title": "1. Both labellers say the agent misled the customer",
+        "note": "Do you agree? Keys: 1 yes, 2 no, 3 not sure; J / K next / previous card.",
+        "buttons": [["yes", "Yes, misled"], ["no", "No"], ["unsure", "Not sure"]],
     },
     "statement_disagreement": {
-        "title": "2. The labellers disagree on the statement",
-        "note": "Pick the right verdict. Keys: 1 contradiction, 2 not a contradiction, 3 unsure.",
-        "buttons": [["yes", "Contradiction"], ["no", "Not a contradiction"],
-                    ["unsure", "Unsure"]],
+        "title": "2. The labellers disagree: did the agent mislead the customer?",
+        "note": "Your call. Keys: 1 yes, 2 no, 3 not sure.",
+        "buttons": [["yes", "Yes, misled"], ["no", "No"], ["unsure", "Not sure"]],
     },
     "agreement_disagreement": {
-        "title": "3. The labellers disagree on whether the customer agreed",
-        "note": "Did the customer agree to this exact call? Keys: 1 agreed, 2 not, 3 unsure.",
-        "buttons": [["yes", "Agreed"], ["no", "Not agreed"], ["unsure", "Unsure"]],
+        "title": "3. The labellers disagree: did the customer say yes to exactly this?",
+        "note": "Same order or reservation, items, dates and payment? Keys: 1 yes, 2 no, 3 unsure.",
+        "buttons": [["yes", "Yes, agreed"], ["no", "No"], ["unsure", "Not sure"]],
     },
     "gaming_mouse": {
-        "title": "4. The Gaming Mouse case (shown separately)",
-        "note": "An anchor case, currently 'no agreement' (why, below), so it has no statement "
-        "questions. Confirm or change. Keys: 1 agreed, 2 not agreed, 3 unsure.",
-        "buttons": [["yes", "Agreed"], ["no", "Not agreed"], ["unsure", "Unsure"]],
+        "title": "4. One example case: did the customer say yes to exactly this?",
+        "note": "Currently marked 'did not agree' (why, below). Keys: 1 yes, 2 no, 3 not sure.",
+        "buttons": [["yes", "Yes, agreed"], ["no", "No"], ["unsure", "Not sure"]],
     },
 }  # fmt: skip
 # Within each group, cards of one action stay together; actions in a seeded order.
