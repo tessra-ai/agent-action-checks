@@ -1,0 +1,5919 @@
+{
+ "P001": {
+  "write_id": "01M5JZ8R9HM6RSRFHY07002ZXS",
+  "domain": "retail",
+  "task": "retail:14",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {}
+ },
+ "P002": {
+  "write_id": "01M61Q7997MGKADFWPNJYNNEDS",
+  "domain": "airline",
+  "task": "airline:23",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P002.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "- The cheapest business class combination is:"
+   },
+   "P002.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "- SFO to SEA (HAT204) on 2024-05-28: $248"
+   },
+   "P002.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 13,
+    "text": "Here’s the payment breakdown for your reservation change:"
+   },
+   "P002.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 13,
+    "text": "- Certificates: $1000 (fully used)"
+   },
+   "P002.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 13,
+    "text": "- Gift cards: $327 (fully used)"
+   },
+   "P002.S6": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 13,
+    "text": "- Remaining amount to be charged to your MasterCard: $1286"
+   },
+   "P002.S7": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "- Change of plan"
+   }
+  }
+ },
+ "P003": {
+  "write_id": "01M5JZ4WSHQW3E5RAK48C9JBJQ",
+  "domain": "retail",
+  "task": "retail:16",
+  "split": "train",
+  "fold": 4,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "cancel_pending_order",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P003.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "The total amount for your pending orders is:"
+   },
+   "P003.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "The total amount for the delivered order is $918.95, which you can return if you wish."
+   }
+  }
+ },
+ "P004": {
+  "write_id": "01M61PX78BTBS6N3D4MQKMRGKH",
+  "domain": "airline",
+  "task": "airline:22",
+  "split": "train",
+  "fold": 0,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P004.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 19,
+    "text": "- gift_card_8190333 with $280.0"
+   },
+   "P004.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 21,
+    "text": "To summarize the changes for reservation FQ8APE:"
+   },
+   "P004.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 21,
+    "text": "- Upgrade cabin class from basic economy to economy"
+   },
+   "P004.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 21,
+    "text": "- Add 3 checked bags"
+   }
+  }
+ },
+ "P005": {
+  "write_id": "01M61PYC3M0Y8M9VYYM8SWTHPZ",
+  "domain": "airline",
+  "task": "airline:23",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P005.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "Your certificates total $1,000 ($500 + $250 + $250)."
+   },
+   "P005.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 33,
+    "text": "- Payment: $500 certificate + $327 gift cards + $293 MasterCard"
+   }
+  }
+ },
+ "P006": {
+  "write_id": "01M61Q0JQ0P7BCN5VP6010AY2T",
+  "domain": "airline",
+  "task": "airline:37",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {
+   "P006.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 3,
+    "text": "To assist you with canceling two reservations and upgrading a third one to business class, I will need your user ID and the reservation IDs for the three reservations."
+   },
+   "P006.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 5,
+    "text": "2. For the reservation you want to upgrade to business class (M20IZO), please confirm that you want to upgrade the entire reservation to business class."
+   },
+   "P006.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "3. Upgrade reservation M20IZO (one way, economy class, 2 passengers) to business class."
+   },
+   "P006.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "For the upgrade of reservation M20IZO to business class, I will proceed with the cabin change."
+   }
+  }
+ },
+ "P007": {
+  "write_id": "01M61Q5JBSA6S6T3TS6A8J6AKK",
+  "domain": "airline",
+  "task": "airline:15",
+  "split": "train",
+  "fold": 3,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P007.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "You would like to use your original payment method (gift card) for any price difference or refund."
+   }
+  }
+ },
+ "P008": {
+  "write_id": "01M5JZ54J1EZ7T1K608RWJ1E9S",
+  "domain": "retail",
+  "task": "retail:14",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P009": {
+  "write_id": "01M61PSRVRXMARGYBWJZ9YJE0Y",
+  "domain": "airline",
+  "task": "airline:7",
+  "split": "train",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_sure",
+   "B": "not_agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P009.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "To upgrade reservation XEHM4B from basic economy to economy, I need to confirm the new flights and payment method for the upgrade."
+   }
+  }
+ },
+ "P010": {
+  "write_id": "01M5JZ5FVM4YXJHBMWCGHNQA7G",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {
+   "P010.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "I will handle the return of the hiking boots from the delivered order, and for the pending order, I will assume it includes the luggage set and skateboard based on your description."
+   }
+  }
+ },
+ "P011": {
+  "write_id": "01M61PXK44D3ZYYVPY8R6M2RKX",
+  "domain": "airline",
+  "task": "airline:23",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "good",
+  "ruling_source": "person's review",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P011.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 18,
+    "text": "(Options: change of plan, airline cancelled flight, or other reasons)"
+   },
+   "P011.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 20,
+    "text": "If you cancel the current reservation and book the new business class reservation for $3,360, you will pay $3,360 minus your certificates and gift cards ($1,327), which leaves $2,033 to be charged to your MasterCard."
+   },
+   "P011.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 22,
+    "text": "- Cancel your current reservation K1NW8N due to change of plan."
+   },
+   "P011.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 22,
+    "text": "- Outbound flight: HAT023 on May 26, 2024, JFK to SFO."
+   },
+   "P011.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 22,
+    "text": "- Payment: Use certificates totaling $1,000 first, gift cards totaling $327 next, and charge the remaining $2,033 to your MasterCard (credit_card_2198526)."
+   }
+  }
+ },
+ "P012": {
+  "write_id": "01M61Q484XRHT74GJNDVYMZYTS",
+  "domain": "airline",
+  "task": "airline:9",
+  "split": "train",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P012.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 6,
+    "text": "3. For each cancellation, please provide the reason (change of plan, airline cancelled flight, or other reasons)."
+   },
+   "P012.S2": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 10,
+    "text": "- Reservation IFOYYZ is eligible for cancellation due to your change of plan."
+   }
+  }
+ },
+ "P013": {
+  "write_id": "01M61PYV1FP44RV654J2YAQ7AT",
+  "domain": "airline",
+  "task": "airline:23",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "person's review",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P013.S1": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 15,
+    "text": "For the return flight on May 28, 2024, from SFO to JFK with one stop, the cheapest business class option is:"
+   },
+   "P013.S10": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 45,
+    "text": "- MasterCard ending in 9363: $1,120"
+   },
+   "P013.S11": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 45,
+    "text": "- Visa ending in 2395: $2,240 ($1,120 x 2)"
+   },
+   "P013.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "There are 3 passengers, so the total cost for all passengers is $3,360."
+   },
+   "P013.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 16,
+    "text": "After applying your certificates totaling $1,000 and gift cards totaling $327, the remaining amount to be charged to your MasterCard will be $2,033."
+   },
+   "P013.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 20,
+    "text": "If you cancel the current reservation and book the new business class reservation for $3,360, you will pay $3,360 minus your certificates and gift cards ($1,327), which leaves $2,033 to be charged to your MasterCard."
+   },
+   "P013.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 25,
+    "text": "A new reservation has been booked for you in business class for the round trip flights:"
+   },
+   "P013.S6": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 31,
+    "text": "For your reservation, after using the $500 certificate and all gift cards totaling $327, the remaining amount to be charged to your MasterCard will be $293."
+   },
+   "P013.S7": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 31,
+    "text": "For Aarav's reservation, after using the $250 certificate, the remaining amount to be charged to your MasterCard will be $870."
+   },
+   "P013.S8": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 31,
+    "text": "For Evelyn's reservation, after using the $250 certificate, the remaining amount to be charged to your MasterCard will also be $870."
+   },
+   "P013.S9": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 45,
+    "text": "- Aarav's reservation: pay $1,120 with Visa ending in 2395"
+   }
+  }
+ },
+ "P014": {
+  "write_id": "01M5JZ8RY1RS4PQ45QV29TFP9J",
+  "domain": "retail",
+  "task": "retail:16",
+  "split": "train",
+  "fold": 4,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "cancel_pending_order",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P014.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "- For cancellation: Both pending orders will be cancelled, and your total refund will be $3,131.10 + $4,777.75 = $7,908.85."
+   }
+  }
+ },
+ "P015": {
+  "write_id": "01M61QAZRCFF15XVF4MZQV9R18",
+  "domain": "airline",
+  "task": "airline:42",
+  "split": "train",
+  "fold": 0,
+  "ruling": "good",
+  "ruling_source": "person's review",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P015.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "- You will be in Boston on May 22."
+   },
+   "P015.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "- You should keep reservation 5BGGWZ (DFW → EWR on May 17)."
+   },
+   "P015.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "Also, please provide the reason for cancellation for each reservation (change of plan, airline cancelled flight, or other reasons)."
+   },
+   "P015.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "- Since the reason for cancellation is a change of plan, I will check if these bookings are eligible for cancellation according to the policy:"
+   },
+   "P015.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "All three reservations are eligible for cancellation."
+   },
+   "P015.S6": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "Do you confirm you want to proceed with canceling all three reservations (FDZ0T5, PUNERT, HSR97W) for the reason “change of plan”?"
+   }
+  }
+ },
+ "P016": {
+  "write_id": "01M5JZ5EDFDZN54MQMB4MP6WV6",
+  "domain": "retail",
+  "task": "retail:84",
+  "split": "dev",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "person's review",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P017": {
+  "write_id": "01M5JZ4HDTBD3TFZNSCV5SF34S",
+  "domain": "retail",
+  "task": "retail:5",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P018": {
+  "write_id": "01M61PTMV0JAHQARJNFWV9YQHZ",
+  "domain": "airline",
+  "task": "airline:11",
+  "split": "train",
+  "fold": 1,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P018.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "To proceed with downgrading all passengers on reservation GV1N64 to basic economy, I will need to confirm the following details with you:"
+   },
+   "P018.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "I will calculate the refund amount based on the price difference between business and basic economy cabins for these flights."
+   },
+   "P018.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "The total refund amount for downgrading all three passengers from business to basic economy on your flights (HAT003 on May 19 and HAT290 on May 20) would be $1444."
+   }
+  }
+ },
+ "P019": {
+  "write_id": "01M5JZ6ATBEEKTG3TJWW7DGJ1P",
+  "domain": "retail",
+  "task": "retail:12",
+  "split": "dev",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P019.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 6,
+    "text": "I have identified your account."
+   },
+   "P019.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "4. You prefer to receive the refund through your PayPal payment method."
+   }
+  }
+ },
+ "P020": {
+  "write_id": "01M5JZ4F7FEZTY5Q95P9BX5SAS",
+  "domain": "retail",
+  "task": "retail:5",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "exchange_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P021": {
+  "write_id": "01M61Q3PXQRD3JHD5TP2CH5AQ7",
+  "domain": "airline",
+  "task": "airline:7",
+  "split": "train",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {
+   "P021.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "1. Upgrade reservation XEHM4B from basic economy to economy for both passengers."
+   },
+   "P021.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "2. After the upgrade, cancel both XEHM4B and 59XX6W."
+   },
+   "P021.S3": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 8,
+    "text": "XEHM4B will then be eligible for cancellation and refund."
+   },
+   "P021.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "- Pay any fare difference for the upgrade to economy on XEHM4B."
+   }
+  }
+ },
+ "P022": {
+  "write_id": "01M61PZPAN5WTT1AM300EV7K12",
+  "domain": "airline",
+  "task": "airline:32",
+  "split": "train",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {
+   "P022.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "There is a nonstop flight HAT041 from EWR to LAX on May 21 available in economy class."
+   },
+   "P022.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "Your current reservation price is $174 (sum of $94 and $80)."
+   },
+   "P022.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "Upgrading to this nonstop economy flight would cost $136."
+   },
+   "P022.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "The price difference for the change and upgrade would be $136 - $174 = -$38, meaning you would be refunded $38 if you switch to this nonstop economy flight."
+   }
+  }
+ },
+ "P023": {
+  "write_id": "01M5JZ5Q5CNJR8Y4KWEVMC0NMK",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "exchange_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P024": {
+  "write_id": "01M61PWTD0M8BWXEKGDZ509ZGR",
+  "domain": "airline",
+  "task": "airline:20",
+  "split": "train",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P024.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 25,
+    "text": "The total price for the flights and 3 checked bags is $305, not $255."
+   },
+   "P024.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 25,
+    "text": "You want to use the larger certificate ($250) and pay the rest with your credit card ending in 7447."
+   }
+  }
+ },
+ "P025": {
+  "write_id": "01M61PZW9CFSERA79KP94VW7HC",
+  "domain": "airline",
+  "task": "airline:33",
+  "split": "train",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {
+   "P025.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "- Outgoing flight: Change to nonstop flight HAT072 departing IAH at 9:00am on 2024-05-19."
+   },
+   "P025.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "- You have travel insurance, so change fees should be waived."
+   }
+  }
+ },
+ "P026": {
+  "write_id": "01M5JZ5SXX45K1CHY4NDVBWM3D",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "exchange_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P027": {
+  "write_id": "01M61PXJFG0ZP04V1QEJD869TJ",
+  "domain": "airline",
+  "task": "airline:22",
+  "split": "train",
+  "fold": 0,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P027.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "Would you like me to check the details of your other reservations to find the one for New York to Chicago?"
+   },
+   "P027.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 21,
+    "text": "- Use gift_card_8190333 for payment"
+   },
+   "P027.S3": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 29,
+    "text": "The upgrade to economy class alone costs $340 (sum of $155 and $185 for the two flights), which already exceeds the $280 balance on your gift card."
+   },
+   "P027.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 31,
+    "text": "- Keep the cabin class as basic economy (remove the upgrade to economy)"
+   },
+   "P027.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 31,
+    "text": "- Use gift_card_8190333 for payment"
+   },
+   "P027.S6": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 31,
+    "text": "- Keep the cabin class as basic economy (remove the upgrade to economy)"
+   },
+   "P027.S7": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 31,
+    "text": "- Use gift_card_8190333 for payment"
+   }
+  }
+ },
+ "P028": {
+  "write_id": "01M61Q8R9JT4JFVC77GVN9N11Q",
+  "domain": "airline",
+  "task": "airline:33",
+  "split": "train",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P029": {
+  "write_id": "01M5JZ5AKVE2QZ5NS0KVZTB57S",
+  "domain": "retail",
+  "task": "retail:83",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P029.S1": {
+    "A": "no",
+    "B": "yes",
+    "consensus": null,
+    "turn": 9,
+    "text": "Since you want to return the pricier one, which is the 10-inch, 128GB, gold tablet, I will proceed with the return process for that item."
+   },
+   "P029.S2": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 13,
+    "text": "The item ID for the 10-inch, 128GB, gold tablet is \"6948061616\" and it is available for return."
+   },
+   "P029.S3": {
+    "A": "yes",
+    "B": "no",
+    "consensus": null,
+    "turn": 15,
+    "text": "I will now proceed with the return process for this item and refund to your credit card."
+   }
+  }
+ },
+ "P030": {
+  "write_id": "01M61QBHFETZPXR2PJW4V2J21K",
+  "domain": "airline",
+  "task": "airline:48",
+  "split": "train",
+  "fold": 2,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P030.S1": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 6,
+    "text": "You booked a one-way basic economy flight from MCO to SFO for two passengers about 10 hours ago, and your reservation ID is 3RK2T9."
+   },
+   "P030.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 6,
+    "text": "To confirm, you would like to cancel this reservation and receive a full refund to your original payment method (gift card)."
+   }
+  }
+ },
+ "P031": {
+  "write_id": "01M61Q173G5J372Y6S90AC6FVS",
+  "domain": "airline",
+  "task": "airline:41",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P031.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 7,
+    "text": "2. Reservation ID: 4XGCCM, Flight from IAH to DTW and back, cabin: business, with insurance."
+   }
+  }
+ },
+ "P032": {
+  "write_id": "01M61QA4VVG9YRFK36ECZQ97YG",
+  "domain": "airline",
+  "task": "airline:37",
+  "split": "train",
+  "fold": 3,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P032.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "3. Upgrade reservation M20IZO (JFK → MCO, economy, 2 passengers, no insurance, booked on 2024-05-12) to business class for all flights, with any additional charges to be paid using your credit card ending in 7334."
+   },
+   "P032.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "Do you confirm you want to proceed with the upgrade using your credit card ending in 7334?"
+   }
+  }
+ },
+ "P033": {
+  "write_id": "01M61Q0HD0F0DNRS5WWVBVESGP",
+  "domain": "airline",
+  "task": "airline:35",
+  "split": "dev",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "person's review",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P033.S1": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 22,
+    "text": "Since this is the only direct flight available, it is also the second cheapest by default."
+   },
+   "P033.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 24,
+    "text": "- Passengers: 1 (Aarav Ahmed, DOB: 1985-01-15)"
+   },
+   "P033.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 24,
+    "text": "- Payment method: Credit card ending in 7334"
+   }
+  }
+ },
+ "P034": {
+  "write_id": "01M61Q6Q9RX39XQ12JWMAK0RN1",
+  "domain": "airline",
+  "task": "airline:21",
+  "split": "train",
+  "fold": 3,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P034.S1": {
+    "A": "yes",
+    "B": "no",
+    "consensus": null,
+    "turn": 12,
+    "text": "- Change your return flight to: DEN-LAS (HAT229, 11:00–13:00) and LAS-IAH (HAT266, 13:00–16:00) on May 27, in economy class."
+   },
+   "P034.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- Use your gift card with the smallest balance (gift_card_7480005, $6) for any fare difference or baggage fee."
+   }
+  }
+ },
+ "P035": {
+  "write_id": "01M61Q75TVRXBGTGBEX6HVMHMY",
+  "domain": "airline",
+  "task": "airline:25",
+  "split": "dev",
+  "fold": 4,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P035.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 1,
+    "text": "Hi!"
+   },
+   "P035.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "You have a certificate with a $500 balance."
+   }
+  }
+ },
+ "P036": {
+  "write_id": "01M61QAXR13HZH3KDDW3H4VE5Y",
+  "domain": "airline",
+  "task": "airline:43",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "person's review",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P036.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 7,
+    "text": "- Change of plan"
+   },
+   "P036.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "- Reason for cancellation: Change of plan"
+   },
+   "P036.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "If you have any other requests or need help with a different reservation, please let me know."
+   },
+   "P036.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 13,
+    "text": "You have another reservation on May 17 from DEN to BOS (Reservation ID: 9HBUV8), which includes travel insurance."
+   },
+   "P036.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 13,
+    "text": "- The reason for cancellation is a change of plan."
+   }
+  }
+ },
+ "P037": {
+  "write_id": "01M5JZ6XV19WNQPTEYGY67CH3S",
+  "domain": "retail",
+  "task": "retail:14",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P037.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 16,
+    "text": "To confirm, you want to return the mechanical keyboard from order #W5490111 and the gaming mouse from order #W7387996, with refunds processed to the original payment methods for each order."
+   }
+  }
+ },
+ "P038": {
+  "write_id": "01M5JZ5SP0C9E67EM74AS0YJY1",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "exchange_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P039": {
+  "write_id": "01M61PYCFVXDJPD3D590KB1Y09",
+  "domain": "airline",
+  "task": "airline:23",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P039.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 6,
+    "text": "To proceed with changing your reservation to the cheapest business round trip without changing the dates, I need to check the details of your current reservation first."
+   },
+   "P039.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 31,
+    "text": "For Aarav's reservation, after using the $250 certificate, the remaining amount to be charged to your MasterCard will be $870."
+   },
+   "P039.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 33,
+    "text": "- Flights: Business round trip JFK-SFO (HAT023) on May 26, 2024, and SFO-IAH-JFK (HAT082, HAT085) on May 28-29, 2024"
+   }
+  }
+ },
+ "P040": {
+  "write_id": "01M61Q0H1DR9TFDTDHB9VAJNFY",
+  "domain": "airline",
+  "task": "airline:38",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_passengers",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P041": {
+  "write_id": "01M5JZ4H7WB7XXHKW3XDBENJKE",
+  "domain": "retail",
+  "task": "retail:12",
+  "split": "dev",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P042": {
+  "write_id": "01M61Q898SANXVYSR8JB95ZAN5",
+  "domain": "airline",
+  "task": "airline:29",
+  "split": "train",
+  "fold": 2,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_baggages",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P042.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "3. Add one checked bag to your reservation."
+   },
+   "P042.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "4. Since you have travel insurance, any change fees will be waived."
+   }
+  }
+ },
+ "P043": {
+  "write_id": "01M61PT2NG1AA7SCQ0PGK942A7",
+  "domain": "airline",
+  "task": "airline:9",
+  "split": "train",
+  "fold": 4,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P043.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 6,
+    "text": "3. Change reservation M20IZO to a nonstop flight:"
+   }
+  }
+ },
+ "P044": {
+  "write_id": "01M5JZ5BGDG74M5VTD6YN9FR3T",
+  "domain": "retail",
+  "task": "retail:84",
+  "split": "dev",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P045": {
+  "write_id": "01M61Q7E08FRX3S6AGKP0Q2ZSB",
+  "domain": "airline",
+  "task": "airline:24",
+  "split": "train",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P045.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 13,
+    "text": "The lowest fare is to Seattle (SEA) for $51 each way in basic economy."
+   },
+   "P045.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "- Round-trip basic economy flight: JFK–SEA (Seattle)"
+   },
+   "P045.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "No extra baggage will be added unless you request it."
+   },
+   "P045.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 18,
+    "text": "To proceed, I will use $39 from your smaller gift card and $78 from your larger gift card, totaling $117."
+   }
+  }
+ },
+ "P046": {
+  "write_id": "01M5JZ8RRBK9GE6SNZ9K0AKR7V",
+  "domain": "retail",
+  "task": "retail:16",
+  "split": "train",
+  "fold": 4,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "cancel_pending_order",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P046.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "- For cancellation: Both pending orders will be cancelled, and your total refund will be $3,131.10 + $4,777.75 = $7,908.85."
+   },
+   "P046.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "The refund will be processed to your original payment method (PayPal) within 5–7 business days."
+   }
+  }
+ },
+ "P047": {
+  "write_id": "01M61PTMHC2NJEBQ2NR80XNJHA",
+  "domain": "airline",
+  "task": "airline:12",
+  "split": "train",
+  "fold": 2,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P047.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 6,
+    "text": "- Adding 2 checked bags (non-free) to the reservation."
+   }
+  }
+ },
+ "P048": {
+  "write_id": "01M61PSTDDZHYXW0HEVTJTFXGX",
+  "domain": "airline",
+  "task": "airline:7",
+  "split": "train",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P048.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "To upgrade reservation XEHM4B from basic economy to economy, I need to confirm the new flights and payment method for the upgrade."
+   },
+   "P048.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "- Outbound: Flight HAT005 on 2024-05-20 from LAS to ATL"
+   },
+   "P048.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "2. Cancel both reservations XEHM4B and 59XX6W with the reason \"change of plan.\""
+   }
+  }
+ },
+ "P049": {
+  "write_id": "01M61Q9CDKWQD2B2BNACSJPFQF",
+  "domain": "airline",
+  "task": "airline:35",
+  "split": "dev",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P049.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "To confirm, you would like to cancel reservation N6F783 (JFK to MCO on May 22) due to a change of plan."
+   }
+  }
+ },
+ "P050": {
+  "write_id": "01M5JZ5NQTFNSBN9MCPTRZRAJH",
+  "domain": "retail",
+  "task": "retail:84",
+  "split": "dev",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "modify_user_address",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P051": {
+  "write_id": "01M61Q6DF6SSM47DQM51WGY436",
+  "domain": "airline",
+  "task": "airline:20",
+  "split": "train",
+  "fold": 1,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P051.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "- Checked Bags: 3 (all free for gold members)"
+   },
+   "P051.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "- If possible, both certificates ($250 + $100) will be used to cover the $255 total."
+   }
+  }
+ },
+ "P052": {
+  "write_id": "01M5JZ58T6TR5VJ7RC1QXZAZQX",
+  "domain": "retail",
+  "task": "retail:83",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P052.S1": {
+    "A": "no",
+    "B": "yes",
+    "consensus": null,
+    "turn": 9,
+    "text": "The other tablet with 10-inch, 128GB, gold is available for $950.96."
+   },
+   "P052.S2": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 9,
+    "text": "Since you want to return the pricier one, which is the 10-inch, 128GB, gold tablet, I will proceed with the return process for that item."
+   },
+   "P052.S3": {
+    "A": "yes",
+    "B": "no",
+    "consensus": null,
+    "turn": 13,
+    "text": "I will now proceed with the return process for this item and refund to your credit card."
+   }
+  }
+ },
+ "P053": {
+  "write_id": "01M5JZ7WRDCJJDGS5WK70MRR9A",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {}
+ },
+ "P054": {
+  "write_id": "01M5JZ8WV4TTNVS440ZZKMNF5K",
+  "domain": "retail",
+  "task": "retail:82",
+  "split": "train",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {}
+ },
+ "P055": {
+  "write_id": "01M61PX8RE2M6RFADFQBXN6E57",
+  "domain": "airline",
+  "task": "airline:22",
+  "split": "train",
+  "fold": 0,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_baggages",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P055.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 21,
+    "text": "- Add 3 checked bags"
+   }
+  }
+ },
+ "P056": {
+  "write_id": "01M5JZ50CY9AWVGK70D1V5XXDF",
+  "domain": "retail",
+  "task": "retail:14",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "person's review",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P057": {
+  "write_id": "01M61Q9WS74N35PTYM20MW0HVE",
+  "domain": "airline",
+  "task": "airline:35",
+  "split": "dev",
+  "fold": 0,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P057.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 6,
+    "text": "To proceed, I need to confirm which reservation you would like to cancel."
+   },
+   "P057.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 25,
+    "text": "- Flight: HAT023 (JFK to SFO) on May 24"
+   },
+   "P057.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 25,
+    "text": "- No baggage or insurance requested"
+   },
+   "P057.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 25,
+    "text": "- Payment will be made using a payment method already in your profile"
+   }
+  }
+ },
+ "P058": {
+  "write_id": "01M61Q17VRW160JR4P3C1CXCVP",
+  "domain": "airline",
+  "task": "airline:41",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P058.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 3,
+    "text": "To assist you with canceling your upcoming flights that have only one passenger on the reservation, I need to know your user ID."
+   },
+   "P058.S2": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 7,
+    "text": "2. Reservation ID: 4XGCCM, Flight from IAH to DTW and back, cabin: business, with insurance."
+   },
+   "P058.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "2. Reservation ID: 4XGCCM (IAH to DTW round trip, business, with insurance)"
+   }
+  }
+ },
+ "P059": {
+  "write_id": "01M61Q0Y57NCHP0DMZEFKEZNDP",
+  "domain": "airline",
+  "task": "airline:40",
+  "split": "dev",
+  "fold": 3,
+  "ruling": "good",
+  "ruling_source": "person's review",
+  "action_tool": "update_reservation_passengers",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P059.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "You want to change the passenger name from Mei Lee to Mei Garcia on your reservation 3RK2T9."
+   }
+  }
+ },
+ "P060": {
+  "write_id": "01M61Q0JBGTDSPSADB8QD40CH4",
+  "domain": "airline",
+  "task": "airline:37",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P060.S1": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 10,
+    "text": "For the cancellations of reservations IFOYYZ and NQNU5R, since both reservations have not been flown yet and the booking was made within the last 24 hours for IFOYYZ, and NQNU5R is a business class flight, both are eligible for cancellation."
+   }
+  }
+ },
+ "P061": {
+  "write_id": "01M61Q87YYRMY7FZ7NBZ3SNCDC",
+  "domain": "airline",
+  "task": "airline:29",
+  "split": "train",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P061.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "1. Update your reservation (VA5SGQ) to:"
+   },
+   "P061.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "3. Add one checked bag to your reservation."
+   },
+   "P061.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "4. Since you have travel insurance, any change fees will be waived."
+   }
+  }
+ },
+ "P062": {
+  "write_id": "01M61PWPDBDVTYVXJ7P2DGXJGF",
+  "domain": "airline",
+  "task": "airline:20",
+  "split": "train",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {
+   "P062.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 1,
+    "text": "Hi!"
+   },
+   "P062.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "- Trip type: One-way"
+   },
+   "P062.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 21,
+    "text": "- Total price: $255"
+   },
+   "P062.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 21,
+    "text": "- Payment: Use the larger certificate if only one certificate can be used, and pay the rest with credit card ending in 7447"
+   }
+  }
+ },
+ "P063": {
+  "write_id": "01M5JZ6GX6MMASE0YGDF0T90CV",
+  "domain": "retail",
+  "task": "retail:13",
+  "split": "train",
+  "fold": 1,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P063.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "- Water Bottle (item id 4579334072), Action Camera (item id 6117189161), Backpack (item id 4947717507) from order #W5490111"
+   }
+  }
+ },
+ "P064": {
+  "write_id": "01M61QAQHD89C11D1ZMTG5RH67",
+  "domain": "airline",
+  "task": "airline:41",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {}
+ },
+ "P065": {
+  "write_id": "01M5JZ8ZGFJFEAWXENFATGBCJB",
+  "domain": "retail",
+  "task": "retail:19",
+  "split": "train",
+  "fold": 1,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P065.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "To confirm, you would like to return the water bottle (item price: $54.04) from your delivered order #W2890441."
+   }
+  }
+ },
+ "P066": {
+  "write_id": "01M61Q3RXQGMXJ4EH3VB7AR7B2",
+  "domain": "airline",
+  "task": "airline:7",
+  "split": "train",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P066.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 3,
+    "text": "Additionally, may I know the reason for your cancellation (change of plan, airline cancelled flight, or other reasons)?"
+   },
+   "P066.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 6,
+    "text": "- XEHM4B (basic economy, no insurance, booked over 24 hours ago) cannot be canceled for a refund due to a change of plan."
+   },
+   "P066.S3": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 6,
+    "text": "- 59XX6W (economy, with insurance, booked within 24 hours) can be canceled for a refund."
+   },
+   "P066.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "1. Upgrade reservation XEHM4B from basic economy to economy for both passengers."
+   },
+   "P066.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "XEHM4B will then be eligible for cancellation and refund."
+   },
+   "P066.S6": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "- Pay any fare difference for the upgrade to economy on XEHM4B."
+   }
+  }
+ },
+ "P067": {
+  "write_id": "01M5JZ53HDAV2K8DP4RDA51Y1V",
+  "domain": "retail",
+  "task": "retail:82",
+  "split": "train",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P068": {
+  "write_id": "01M61PYTPEQPTZ9JM5DKK0NBWZ",
+  "domain": "airline",
+  "task": "airline:23",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P068.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 20,
+    "text": "This means you are eligible to cancel the reservation with a refund."
+   },
+   "P068.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 45,
+    "text": "- Your reservation: pay $1,120 with MasterCard ending in 9363"
+   }
+  }
+ },
+ "P069": {
+  "write_id": "01M5JZ514HKPYVPHEY1BW7SGTK",
+  "domain": "retail",
+  "task": "retail:82",
+  "split": "train",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {}
+ },
+ "P070": {
+  "write_id": "01M61Q3R6NT6HY6NMXWJA78AHT",
+  "domain": "airline",
+  "task": "airline:7",
+  "split": "train",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P070.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 3,
+    "text": "Additionally, may I know the reason for your cancellation (change of plan, airline cancelled flight, or other reasons)?"
+   },
+   "P070.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 6,
+    "text": "- XEHM4B (basic economy, no insurance, booked over 24 hours ago) cannot be canceled for a refund due to a change of plan."
+   },
+   "P070.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "To proceed, here’s what will happen:"
+   },
+   "P070.S4": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 8,
+    "text": "XEHM4B will then be eligible for cancellation and refund."
+   },
+   "P070.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "- Pay any fare difference for the upgrade to economy on XEHM4B."
+   }
+  }
+ },
+ "P071": {
+  "write_id": "01M5JZ8EWDBX97WB0MFX4GWA4M",
+  "domain": "retail",
+  "task": "retail:13",
+  "split": "train",
+  "fold": 1,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P071.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "To confirm, you would like to return the following items from order #W5490111:"
+   },
+   "P071.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "The refund will be processed to your PayPal account (paypal_9497703)."
+   },
+   "P071.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "After confirmation, the order status will change to \"return requested,\" and you will receive an email with instructions on how to return the items."
+   }
+  }
+ },
+ "P072": {
+  "write_id": "01M61Q2296XPPCWSA5259X6BSB",
+  "domain": "airline",
+  "task": "airline:48",
+  "split": "train",
+  "fold": 2,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P072.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 6,
+    "text": "You booked a one-way flight from MCO to SFO with two passengers in basic economy cabin."
+   },
+   "P072.S2": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 6,
+    "text": "Since the booking was made within the last 24 hours, you are eligible for cancellation with a full refund."
+   },
+   "P072.S3": {
+    "A": "no",
+    "B": "yes",
+    "consensus": null,
+    "turn": 6,
+    "text": "Please confirm if you want me to proceed with canceling this reservation (ID: 3RK2T9) and processing the refund to your original payment method."
+   }
+  }
+ },
+ "P073": {
+  "write_id": "01M61Q96DSP7Z14FDFD7DBCK08",
+  "domain": "airline",
+  "task": "airline:32",
+  "split": "train",
+  "fold": 2,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P073.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 23,
+    "text": "- Passengers: Ivan Rossi, Olivia Santos, Lei Johansson"
+   },
+   "P073.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 23,
+    "text": "- No checked bags"
+   },
+   "P073.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 23,
+    "text": "- No travel insurance"
+   },
+   "P073.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 23,
+    "text": "- Gift Card (ending in 7344518, $183 balance)"
+   }
+  }
+ },
+ "P074": {
+  "write_id": "01M5JMKGBFP684SJXBM82Z05F5",
+  "domain": "retail",
+  "task": "retail:13",
+  "split": "train",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {}
+ },
+ "P075": {
+  "write_id": "01M5JZ53BEFJZ298SGE8SY5R9V",
+  "domain": "retail",
+  "task": "retail:82",
+  "split": "train",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "person's review",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P076": {
+  "write_id": "01M61QCJY1J0DDNGGA55AK1PJX",
+  "domain": "airline",
+  "task": "airline:44",
+  "split": "train",
+  "fold": 3,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "not_agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P076.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "Once you specify which flights to cancel and which to upgrade, I can provide the total cost for the upgrades and proceed with your requests after your confirmation."
+   },
+   "P076.S10": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 31,
+    "text": "This means:"
+   },
+   "P076.S11": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 34,
+    "text": "Would you like me to revert the upgrades for NM1VX1 and H8Q05L, so that only your reservation (KC18K6) remains upgraded?"
+   },
+   "P076.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "Your upgrades to business class for all eligible flights are being processed using your credit card on file."
+   },
+   "P076.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "The total additional cost is $1,282."
+   },
+   "P076.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "Here’s what’s being upgraded:"
+   },
+   "P076.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "- MSP–EWR (HAT300, 2024-05-25)"
+   },
+   "P076.S6": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "- EWR–MSP (HAT208, 2024-05-27)"
+   },
+   "P076.S7": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "- MSP–EWR–CLT (HAT300 & HAT215, 2024-05-21)"
+   },
+   "P076.S8": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "- JFK–ATL (HAT268, 2024-05-24)"
+   },
+   "P076.S9": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 29,
+    "text": "- Payment: Credit card ($104 + $163)"
+   }
+  }
+ },
+ "P077": {
+  "write_id": "01M5JZ4MRXHTNKQG9R1Z09V388",
+  "domain": "retail",
+  "task": "retail:13",
+  "split": "train",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {}
+ },
+ "P078": {
+  "write_id": "01M61Q047KWADHFTNDWEEGTE2W",
+  "domain": "airline",
+  "task": "airline:35",
+  "split": "dev",
+  "fold": 0,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P078.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "I found the reservation matching your description: Reservation ID M20IZO for a one-way flight on May 22 from JFK to MCO with two passengers in economy class."
+   },
+   "P078.S2": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 12,
+    "text": "Since you are a silver member, you are eligible for cancellation with a full refund under the policy."
+   }
+  }
+ },
+ "P079": {
+  "write_id": "01M5JZ6T1H438VPDDHPPA4461M",
+  "domain": "retail",
+  "task": "retail:16",
+  "split": "train",
+  "fold": 4,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "cancel_pending_order",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P079.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "- Cancel pending order #W5199551 for the reason \"no longer needed.\""
+   },
+   "P079.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "- Cancel pending order #W8665881 for the reason \"no longer needed.\""
+   }
+  }
+ },
+ "P080": {
+  "write_id": "01M61Q8QAX7RGQ0BCV0C52DYFV",
+  "domain": "airline",
+  "task": "airline:31",
+  "split": "train",
+  "fold": 2,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {
+   "P080.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- HAT033: $88"
+   },
+   "P080.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 16,
+    "text": "The new basic economy fare is $73, which is less than your original booking, so you will be refunded the difference."
+   },
+   "P080.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 16,
+    "text": "To confirm, you will be switched to:"
+   }
+  }
+ },
+ "P081": {
+  "write_id": "01M5JZ97CPQVXC3EJT7WMP11ZH",
+  "domain": "retail",
+  "task": "retail:83",
+  "split": "train",
+  "fold": 3,
+  "ruling": "good",
+  "ruling_source": "person's review",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P081.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "You are requesting to return the 128GB gold tablet (item ID: 6065192424) from order #W9571698, and receive the refund to your credit card ending in 2732."
+   }
+  }
+ },
+ "P082": {
+  "write_id": "01M61PV3G52Z4KJP9G0YXEDF6S",
+  "domain": "airline",
+  "task": "airline:13",
+  "split": "dev",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {
+   "P082.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "The price for economy nonstop flights starts at $117 per passenger."
+   },
+   "P082.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 13,
+    "text": "- Upgrade cabin from basic economy to economy for the entire reservation"
+   },
+   "P082.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 13,
+    "text": "- Change return flight on May 21 to nonstop flight HAT102 from ATL to Las Vegas, departing at 21:00"
+   },
+   "P082.S4": {
+    "A": "no",
+    "B": "yes",
+    "consensus": null,
+    "turn": 13,
+    "text": "- Price difference to be paid: $63"
+   }
+  }
+ },
+ "P083": {
+  "write_id": "01M5JZ5G910Y7ARY1GVCW4J58N",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P084": {
+  "write_id": "01M61PYVD9NX93H5VMR1XBYZNQ",
+  "domain": "airline",
+  "task": "airline:23",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "person's review",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P084.S1": {
+    "A": "yes",
+    "B": "no",
+    "consensus": null,
+    "turn": 15,
+    "text": "- Flight HAT082 from SFO to IAH at $404 per passenger"
+   },
+   "P084.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 20,
+    "text": "Since it was paid by gift card, no charge was made to your MasterCard for the current reservation."
+   },
+   "P084.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 20,
+    "text": "If you cancel the current reservation and book the new business class reservation for $3,360, you will pay $3,360 minus your certificates and gift cards ($1,327), which leaves $2,033 to be charged to your MasterCard."
+   },
+   "P084.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 45,
+    "text": "- MasterCard ending in 9363: $1,120"
+   },
+   "P084.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 45,
+    "text": "- Visa ending in 2395: $2,240 ($1,120 x 2)"
+   }
+  }
+ },
+ "P085": {
+  "write_id": "01M61Q9W8Y3BJF5PJP2EJCZJ49",
+  "domain": "airline",
+  "task": "airline:37",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P085.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 3,
+    "text": "If not, I can help you locate them once I have your user ID."
+   },
+   "P085.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "3. Upgrade reservation M20IZO (JFK → MCO, economy, 2 passengers, no insurance, booked on 2024-05-12) to business class for all flights, with any additional charges to be paid using your credit card ending in 7334."
+   }
+  }
+ },
+ "P086": {
+  "write_id": "01M5JZ4D5E6CMP314QYVP9GPAN",
+  "domain": "retail",
+  "task": "retail:5",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "exchange_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P087": {
+  "write_id": "01M5JZ5ZBF168ZDD9V2D0TFSBV",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "exchange_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P088": {
+  "write_id": "01M5JZ4FJNSY49D6GH62NHR3T5",
+  "domain": "retail",
+  "task": "retail:12",
+  "split": "dev",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P088.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 5,
+    "text": "Please provide your email address or your name and zip code so I can locate your account."
+   },
+   "P088.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "Since you want to return most items except for a couple, I will proceed with returning all items from both orders except the ones you wish to keep."
+   },
+   "P088.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "Also, I will use your PayPal account for refunds."
+   }
+  }
+ },
+ "P089": {
+  "write_id": "01M61Q8YRFJ3NHA466H4005NNE",
+  "domain": "airline",
+  "task": "airline:32",
+  "split": "train",
+  "fold": 2,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {}
+ },
+ "P090": {
+  "write_id": "01M61Q61W18MDCTTT245C04ZZP",
+  "domain": "airline",
+  "task": "airline:17",
+  "split": "train",
+  "fold": 4,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P090.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "Please confirm which flight combination you would like to book, and let me know which gift card you want to use for payment (you have gift_card_8190333 with $280 and gift_card_6490722 with $127)."
+   },
+   "P090.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "You have selected the following itinerary for May 25, 2024:"
+   },
+   "P090.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "- Passenger: Omar Rossi"
+   },
+   "P090.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "- 3 checked bags (all free as a gold member)"
+   },
+   "P090.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "- No travel insurance"
+   },
+   "P090.S6": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "- Payment: gift card gift_card_8190333 ($266)"
+   }
+  }
+ },
+ "P091": {
+  "write_id": "01M61QBRDS09E99Z418H4DX56V",
+  "domain": "airline",
+  "task": "airline:44",
+  "split": "train",
+  "fold": 3,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P091.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 21,
+    "text": "The total additional cost to upgrade all eligible flights to business class is $1,282."
+   }
+  }
+ },
+ "P092": {
+  "write_id": "01M61Q1DSVFZ0VKAKKBQCS3ZR7",
+  "domain": "airline",
+  "task": "airline:43",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P092.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "To confirm, you want to cancel your reservation with ID D1EW9B for the flight from ATL to JFK on May 17 due to a change of plan."
+   }
+  }
+ },
+ "P093": {
+  "write_id": "01M61Q71WGYZWHH0AW1FCWVKP6",
+  "domain": "airline",
+  "task": "airline:21",
+  "split": "train",
+  "fold": 3,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_baggages",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P093.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 1,
+    "text": "Hi!"
+   },
+   "P093.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- Use your gift card with the smallest balance (gift_card_7480005, $6) for any fare difference or baggage fee."
+   }
+  }
+ },
+ "P094": {
+  "write_id": "01M5JMKJZ89YMCJ0N6FJ94V46Q",
+  "domain": "retail",
+  "task": "retail:13",
+  "split": "train",
+  "fold": 1,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P094.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 24,
+    "text": "The refund for the return must be processed through the original payment method used for the order."
+   }
+  }
+ },
+ "P095": {
+  "write_id": "01M5JZ91W7FWACM25ZX0E5W1KG",
+  "domain": "retail",
+  "task": "retail:82",
+  "split": "train",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "person's review",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P095.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- You will return the gold 128GB tablet from order #W9571698 (item ID: 6065192424)."
+   },
+   "P095.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "If you would like to return all items from order #W9571698 (including the gold 128GB tablet and the other items: digital camera, coffee maker, and pet bed), I can process the return and the refund will be issued to your gift card."
+   }
+  }
+ },
+ "P096": {
+  "write_id": "01M61QCGXQPGRQTHWAHV15T9Q7",
+  "domain": "airline",
+  "task": "airline:44",
+  "split": "train",
+  "fold": 3,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P096.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "Your upgrades to business class for all eligible flights are being processed using your credit card on file."
+   },
+   "P096.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "The total additional cost is $1,282."
+   },
+   "P096.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "Here’s what’s being upgraded:"
+   },
+   "P096.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "- MSP–EWR (HAT300, 2024-05-25)"
+   },
+   "P096.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "- EWR–MSP (HAT208, 2024-05-27)"
+   },
+   "P096.S6": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "- MSP–EWR–CLT (HAT300 & HAT215, 2024-05-21)"
+   },
+   "P096.S7": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "- JFK–ATL (HAT268, 2024-05-24)"
+   },
+   "P096.S8": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 31,
+    "text": "Thank you for your attention to detail."
+   },
+   "P096.S9": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 34,
+    "text": "Would you like me to revert the upgrades for NM1VX1 and H8Q05L, so that only your reservation (KC18K6) remains upgraded?"
+   }
+  }
+ },
+ "P097": {
+  "write_id": "01M61Q79VR8ABNANRCE8DF12JV",
+  "domain": "airline",
+  "task": "airline:24",
+  "split": "train",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P097.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "- Since your reason is a change of plan and you do not have travel insurance, I can only cancel the reservation if it was booked within the last 24 hours, or if it meets other specific criteria."
+   },
+   "P097.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "Once I have this information, I’ll search for the cheapest direct round-trip flight in basic economy for you."
+   },
+   "P097.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "- Payment: Use gift_card_7359776 ($39) first, then gift_card_7773485 ($203) for the remainder"
+   },
+   "P097.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "- Membership: Silver"
+   }
+  }
+ },
+ "P098": {
+  "write_id": "01M5JZ6STVV5NYVNFS98N5XMED",
+  "domain": "retail",
+  "task": "retail:16",
+  "split": "train",
+  "fold": 4,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "cancel_pending_order",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P098.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "- Cancel pending order #W5199551 for the reason \"no longer needed.\""
+   },
+   "P098.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "- Cancel pending order #W8665881 for the reason \"no longer needed.\""
+   }
+  }
+ },
+ "P099": {
+  "write_id": "01M5JZ5BZQ37Z0YKPTD97HJA3A",
+  "domain": "retail",
+  "task": "retail:19",
+  "split": "train",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "exchange_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P100": {
+  "write_id": "01M61PT30XT83HZBJSJ0RDWB5D",
+  "domain": "airline",
+  "task": "airline:9",
+  "split": "train",
+  "fold": 4,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P100.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 6,
+    "text": "1. Cancel reservation IFOYYZ:"
+   }
+  }
+ },
+ "P101": {
+  "write_id": "01M61Q0BB70786F192TBG3KVV1",
+  "domain": "airline",
+  "task": "airline:33",
+  "split": "train",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_baggages",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P101.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 18,
+    "text": "The cost for 2 additional checked bags for the outgoing flight in economy for a gold member is 0 (3 free checked bags per economy passenger)."
+   },
+   "P101.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 20,
+    "text": "The cost for the additional bags is $0 as per your gold membership allowance."
+   },
+   "P101.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 20,
+    "text": "The cost for the additional bags is $0 as per your gold membership allowance."
+   }
+  }
+ },
+ "P102": {
+  "write_id": "01M5JZ4FQ7N37RJXVD6FW00S14",
+  "domain": "retail",
+  "task": "retail:12",
+  "split": "dev",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "person's review",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P103": {
+  "write_id": "01M61Q1KSECAJ17000CGCZRZ6J",
+  "domain": "airline",
+  "task": "airline:45",
+  "split": "train",
+  "fold": 0,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P104": {
+  "write_id": "01M5JZ9GNMV4JYQDYWY9WSHF03",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P104.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "- Hiking Boots: Delivered in order #W8488728."
+   },
+   "P104.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "The hiking boots are eligible for return."
+   },
+   "P104.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "However, the skateboard and luggage set are in a pending order, so you can only modify or cancel that order, not return/exchange."
+   }
+  }
+ },
+ "P105": {
+  "write_id": "01M5JZ50JK3SXWYXBR2VA0RBZB",
+  "domain": "retail",
+  "task": "retail:14",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P106": {
+  "write_id": "01M61Q0HPA7XMW5YRTABGE2VKE",
+  "domain": "airline",
+  "task": "airline:37",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P106.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 5,
+    "text": "1. For the two reservations you want to cancel (IFOYYZ and NQNU5R), please provide the reason for cancellation for each (change of plan, airline cancelled flight, or other reasons)."
+   },
+   "P106.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "1. Cancel reservation IFOYYZ (round trip, basic economy, 1 passenger) for reason: change of plan."
+   },
+   "P106.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "2. Cancel reservation NQNU5R (one way, business class, 2 passengers) for reason: change of plan."
+   },
+   "P106.S4": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 10,
+    "text": "For the cancellations of reservations IFOYYZ and NQNU5R, since both reservations have not been flown yet and the booking was made within the last 24 hours for IFOYYZ, and NQNU5R is a business class flight, both are eligible for cancellation."
+   }
+  }
+ },
+ "P107": {
+  "write_id": "01M5JZ8C543144DT73B6PKHASY",
+  "domain": "retail",
+  "task": "retail:13",
+  "split": "train",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P107.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "To confirm, you would like to return the following items from order #W5490111:"
+   },
+   "P107.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- Water Bottle (750ml, glass, black)"
+   },
+   "P107.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- Action Camera (4K, waterproof, silver)"
+   },
+   "P107.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- Backpack (green, medium, leather, camera compartment)"
+   },
+   "P107.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "After confirmation, the order status will change to \"return requested,\" and you will receive an email with instructions on how to return the items."
+   }
+  }
+ },
+ "P108": {
+  "write_id": "01M61Q6YJPFHCG1WPHME955S0F",
+  "domain": "airline",
+  "task": "airline:21",
+  "split": "train",
+  "fold": 3,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_baggages",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P108.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- Add one more checked bag to your reservation (total: 2 checked bags)."
+   },
+   "P108.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "The next fastest available economy class option is:"
+   },
+   "P108.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "- DEN to LAS: Flight HAT084, departs 04:00, arrives 06:00"
+   }
+  }
+ },
+ "P109": {
+  "write_id": "01M61PZ9FJYVBHXG708TEDGVX3",
+  "domain": "airline",
+  "task": "airline:29",
+  "split": "train",
+  "fold": 2,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P109.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "- Return: Flight HAT033 on 2024-05-19 from JFK to DTW"
+   },
+   "P109.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "- Payment method for any additional charges will be the existing credit card on file (credit_card_8003957)"
+   }
+  }
+ },
+ "P110": {
+  "write_id": "01M5JZ5MBFEG8RZ8JEKXZWXNXD",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "exchange_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P111": {
+  "write_id": "01M5JZ9P9G1E6T3N8PV9HGQHKV",
+  "domain": "retail",
+  "task": "retail:84",
+  "split": "dev",
+  "fold": 1,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P111.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 23,
+    "text": "- Order #W9571698: Tablet (8-inch, 128GB, gold) — $989.70"
+   },
+   "P111.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 25,
+    "text": "To confirm, you would like to return the Tablet (8-inch, 128GB, gold) from order #W9571698 and receive the refund as a gift card."
+   },
+   "P111.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 25,
+    "text": "- You’ll receive an email with instructions on how to return the tablet."
+   }
+  }
+ },
+ "P112": {
+  "write_id": "01M61PYGRX51BXSSZ4R86R0CQH",
+  "domain": "airline",
+  "task": "airline:25",
+  "split": "dev",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "person's review",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P112.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "The flights prices are $158 and $141, totaling $299."
+   },
+   "P112.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 13,
+    "text": "After deducting the flight price of $299, the certificate balance would be $201, which means less than $100 of the certificate value would be wasted."
+   },
+   "P112.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 16,
+    "text": "The total price for the flights is actually $375, not $299 as initially calculated."
+   },
+   "P112.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 16,
+    "text": "The certificate balance after deducting $375 would be $125, which is still more than $100 left."
+   }
+  }
+ },
+ "P113": {
+  "write_id": "01M5JZ57HHF4560N7GD2S6BT3G",
+  "domain": "retail",
+  "task": "retail:19",
+  "split": "train",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "cancel_pending_order",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P114": {
+  "write_id": "01M61Q9V0PEBBX39TDBN9FE1G3",
+  "domain": "airline",
+  "task": "airline:37",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P114.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 5,
+    "text": "(Options: change of plan, airline cancelled flight, or other reasons)"
+   },
+   "P114.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "1. Cancel reservation IFOYYZ (CLT ↔ EWR, basic economy, 1 passenger, no insurance, booked on 2024-05-12) due to change of plan."
+   },
+   "P114.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "2. Cancel reservation NQNU5R (MCO → SEA, business, 2 passengers, no insurance, booked on 2024-05-13) due to change of plan."
+   }
+  }
+ },
+ "P115": {
+  "write_id": "01M61Q4MQ74VY10ANVQ3TJ72TB",
+  "domain": "airline",
+  "task": "airline:11",
+  "split": "train",
+  "fold": 1,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P115.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "- New total in basic economy: $456 (for 3 passengers: $53 + $99 per person, per direction)"
+   },
+   "P115.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "Would you like to proceed with downgrading all passengers to basic economy and receive a $5,244 refund to your original payment method?"
+   }
+  }
+ },
+ "P116": {
+  "write_id": "01M61PXXC9QDEK1ANHTGK2D9MM",
+  "domain": "airline",
+  "task": "airline:24",
+  "split": "train",
+  "fold": 4,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P116.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 7,
+    "text": "- Your user ID: mia_kim_4397"
+   },
+   "P116.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "I found the cheapest direct flights for your round-trip from New York to the West Coast on the requested dates:"
+   },
+   "P116.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "Departure on May 20:"
+   },
+   "P116.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "- From JFK to SEA, flight HAT069, basic economy at $51 (cheapest option)"
+   },
+   "P116.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "Return on May 25:"
+   },
+   "P116.S6": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "- From SEA to JFK, flight HAT276, basic economy at $55 (cheapest option)"
+   },
+   "P116.S7": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 19,
+    "text": "- Flights: JFK to SEA on May 20 (HAT069), SEA to JFK on May 25 (HAT276)"
+   },
+   "P116.S8": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 19,
+    "text": "- Passenger: Mia Kim (dob 1965-06-09)"
+   },
+   "P116.S9": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 19,
+    "text": "- Payment: Use gift_card_7359776 first ($39), then gift_card_7773485 for the remaining amount"
+   }
+  }
+ },
+ "P117": {
+  "write_id": "01M61QAZD1C85YBG2KRN638RMF",
+  "domain": "airline",
+  "task": "airline:42",
+  "split": "train",
+  "fold": 0,
+  "ruling": "good",
+  "ruling_source": "person's review",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P117.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "- You will be in Boston on May 22."
+   },
+   "P117.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "Also, please provide the reason for cancellation for each reservation (change of plan, airline cancelled flight, or other reasons)."
+   },
+   "P117.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "- Since the reason for cancellation is a change of plan, I will check if these bookings are eligible for cancellation according to the policy:"
+   },
+   "P117.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "Do you confirm you want to proceed with canceling all three reservations (FDZ0T5, PUNERT, HSR97W) for the reason “change of plan”?"
+   },
+   "P117.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "Refunds will be processed to your original payment method within 5 to 7 business days."
+   }
+  }
+ },
+ "P118": {
+  "write_id": "01M61Q5CMVPSBC1WFMYJCFYE7Y",
+  "domain": "airline",
+  "task": "airline:16",
+  "split": "train",
+  "fold": 0,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P118.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- ATL to LGA: Flight HAT110, departs 14:00, arrives 16:30 (economy: $105)"
+   },
+   "P118.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "You will be changing from business class to economy, and your original payment was $2,787 (business class)."
+   }
+  }
+ },
+ "P119": {
+  "write_id": "01M5JZ5WR67W4T7NMNSAY64TY8",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "exchange_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P120": {
+  "write_id": "01M61PX8F17N6XTENDJ525WV9B",
+  "domain": "airline",
+  "task": "airline:24",
+  "split": "train",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P120.S1": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 10,
+    "text": "Your reservation H9ZU1C was created on 2024-05-01, which is within the last 24 hours, so it is eligible for cancellation."
+   }
+  }
+ },
+ "P121": {
+  "write_id": "01M61PX4FK7DA9Z1J1D9QEXRT2",
+  "domain": "airline",
+  "task": "airline:21",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_baggages",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P121.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 21,
+    "text": "- Add one more checked bag to your reservation (currently 1 checked bag, will be 2 checked bags)"
+   },
+   "P121.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 21,
+    "text": "Please confirm if you agree with these changes so I can proceed."
+   },
+   "P121.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 23,
+    "text": "- Add one more checked bag to your reservation (total 2 checked bags)."
+   },
+   "P121.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 25,
+    "text": "The changes involve updating the flights and adding one more checked bag with payment by gift card."
+   }
+  }
+ },
+ "P122": {
+  "write_id": "01M5JZ5M5N873C11NGFQVTP05Z",
+  "domain": "retail",
+  "task": "retail:84",
+  "split": "dev",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "modify_user_address",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P123": {
+  "write_id": "01M61PXKTBR97TZS7D9PJA407T",
+  "domain": "airline",
+  "task": "airline:22",
+  "split": "train",
+  "fold": 0,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_baggages",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P123.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "Please confirm if this is correct, and I will proceed with the changes."
+   },
+   "P123.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 31,
+    "text": "To confirm, you want to modify reservation FQ8APE as follows:"
+   }
+  }
+ },
+ "P124": {
+  "write_id": "01M5JZ6THJ5CT7VG53CC1MN2C7",
+  "domain": "retail",
+  "task": "retail:16",
+  "split": "train",
+  "fold": 4,
+  "ruling": "good",
+  "ruling_source": "person's review",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P124.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "The delivered order #W9389413 includes a watch (Smart Watch, item id 2554056026) that you want to return."
+   }
+  }
+ },
+ "P125": {
+  "write_id": "01M61QBSPH8AFEAG9C0BD3NRFH",
+  "domain": "airline",
+  "task": "airline:44",
+  "split": "train",
+  "fold": 3,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P126": {
+  "write_id": "01M61PX4644DWNDVHGC7EKSWPT",
+  "domain": "airline",
+  "task": "airline:21",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P126.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 5,
+    "text": "I will retrieve the details of your reservations now."
+   },
+   "P126.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 19,
+    "text": "To confirm, you want to change the return flight of your reservation ID OBUT9V for your round trip from Houston (IAH) to Denver (DEN) to the following flights on May 27 in economy class:"
+   },
+   "P126.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 19,
+    "text": "- Flight HAT266 from Las Vegas (LAS) to Houston (IAH), departing at 01:00 PM and arriving at 04:00 PM"
+   },
+   "P126.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 21,
+    "text": "- Add one more checked bag to your reservation (currently 1 checked bag, will be 2 checked bags)"
+   },
+   "P126.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 23,
+    "text": "You have three gift cards with balances: $6.00, $113.00, and $157.00."
+   },
+   "P126.S6": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 23,
+    "text": "I will use the gift card with the smallest balance, which is $6.00, for any additional charges."
+   }
+  }
+ },
+ "P127": {
+  "write_id": "01M61PVG98QWC7JVAEJEJQZ0PS",
+  "domain": "airline",
+  "task": "airline:15",
+  "split": "train",
+  "fold": 3,
+  "ruling": "good",
+  "ruling_source": "person's review",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P127.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "Please confirm if you want to change your reservation to the Philadelphia flights for $207 economy or the Newark flights for $243 economy."
+   },
+   "P127.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "Also, confirm that you want to keep the same passenger and use the original payment method for any price difference."
+   },
+   "P127.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 16,
+    "text": "- Flight HAT110 from ATL to LGA, departure at 14:00, arrival at 16:30"
+   },
+   "P127.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 16,
+    "text": "- Flight HAT172 from LGA to PHL, departure at 23:00, arrival at 00:00+1"
+   }
+  }
+ },
+ "P128": {
+  "write_id": "01M61Q5AJ8TM48KBSJDD1BBY3S",
+  "domain": "airline",
+  "task": "airline:14",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P128.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 13,
+    "text": "It is a round-trip booking in basic economy class from JFK to SFO, with additional segments to SEA and back to JFK."
+   },
+   "P128.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "2. Book a new business class round-trip from JFK to SFO (same dates: outbound 2024-05-26, return 2024-05-28), using the cheapest available flights (direct or one-stop)."
+   },
+   "P128.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "4. Payment order: certificates first, then gift cards, then MasterCard (ending 9363)."
+   }
+  }
+ },
+ "P129": {
+  "write_id": "01M61QBV3BCVRKNX4J3WDGKFH7",
+  "domain": "airline",
+  "task": "airline:44",
+  "split": "train",
+  "fold": 3,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P129.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 7,
+    "text": "Could you please provide the durations of the flights in your reservations, or let me know if you have specific flights you want to focus on?"
+   },
+   "P129.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 18,
+    "text": "- HAT268 (JFK–ATL, 2024-05-24): Current price paid for basic economy is $74; business class is $237."
+   },
+   "P129.S3": {
+    "A": "yes",
+    "B": "no",
+    "consensus": null,
+    "turn": 21,
+    "text": "The total additional cost to upgrade all eligible flights to business class is $1,282."
+   }
+  }
+ },
+ "P130": {
+  "write_id": "01M61PSTQH5ENQFW5W2NA6QTYZ",
+  "domain": "airline",
+  "task": "airline:7",
+  "split": "train",
+  "fold": 2,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P130.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "To upgrade reservation XEHM4B from basic economy to economy, I need to confirm the new flights and payment method for the upgrade."
+   },
+   "P130.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "The original flights are:"
+   },
+   "P130.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "1. Upgrade reservation XEHM4B from basic economy to economy with the same flights (HAT005 on 2024-05-20 and HAT178 on 2024-05-30) using the default payment method on your profile."
+   }
+  }
+ },
+ "P131": {
+  "write_id": "01M5JZ4X932P1F842EVYZ09DTY",
+  "domain": "retail",
+  "task": "retail:16",
+  "split": "train",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P132": {
+  "write_id": "01M5JZ4WKXD7GXV289WCA5J6XF",
+  "domain": "retail",
+  "task": "retail:16",
+  "split": "train",
+  "fold": 4,
+  "ruling": "good",
+  "ruling_source": "person's review",
+  "action_tool": "cancel_pending_order",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P132.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "The total amount for your pending orders is:"
+   }
+  }
+ },
+ "P133": {
+  "write_id": "01M61Q95BW3S5HF0MZV7BCFSZS",
+  "domain": "airline",
+  "task": "airline:34",
+  "split": "train",
+  "fold": 3,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P133.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "Here are the available nonstop flight options that match your requested times:"
+   },
+   "P133.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "- HAT278: Departs 16:00, Arrives 20:00, Business class available."
+   },
+   "P133.S3": {
+    "A": "yes",
+    "B": "no",
+    "consensus": null,
+    "turn": 11,
+    "text": "To confirm, you will be upgraded to business class for both flights and have two checked bags added."
+   },
+   "P133.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "Your original payment was $533, so you would only need to pay the fare difference of $192."
+   },
+   "P133.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "No change fees will be applied due to your travel insurance."
+   }
+  }
+ },
+ "P134": {
+  "write_id": "01M61PXM3NRZ465H5C04ZSK9HS",
+  "domain": "airline",
+  "task": "airline:21",
+  "split": "train",
+  "fold": 3,
+  "ruling": "good",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P134.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 30,
+    "text": "To confirm, you want to change the return flight of your reservation ID OBUT9V for your round trip from Houston (IAH) to Denver (DEN) to the following flights on May 27 in economy class:"
+   },
+   "P134.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 30,
+    "text": "- Flight HAT290 from Denver (DEN) to Las Vegas (LAS), departing at 02:00 PM and arriving at 04:00 PM"
+   },
+   "P134.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 30,
+    "text": "- Flight HAT175 from Las Vegas (LAS) to Houston (IAH), departing at 05:00 PM and arriving at 08:00 PM"
+   }
+  }
+ },
+ "P135": {
+  "write_id": "01M61PYCWMZ96J0QS9ZMJ3X7NZ",
+  "domain": "airline",
+  "task": "airline:23",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P135.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 18,
+    "text": "The alternative is to cancel your current reservation and book a new one with the business class flights."
+   },
+   "P135.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 22,
+    "text": "- Book a new round trip reservation for 3 passengers in business class."
+   },
+   "P135.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 25,
+    "text": "A new reservation has been booked for you in business class for the round trip flights:"
+   },
+   "P135.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 25,
+    "text": "The payment was made using your certificates first, then gift cards, and the remaining $2,033 was charged to your MasterCard."
+   },
+   "P135.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 31,
+    "text": "For your reservation, after using the $500 certificate and all gift cards totaling $327, the remaining amount to be charged to your MasterCard will be $293."
+   },
+   "P135.S6": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 33,
+    "text": "- Passenger: Liam Wilson"
+   }
+  }
+ },
+ "P136": {
+  "write_id": "01M5JZ5QACWH55WR7A51QRC0WY",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "exchange_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P137": {
+  "write_id": "01M5JZ8SCMD97WNC8EK3F49JYM",
+  "domain": "retail",
+  "task": "retail:16",
+  "split": "train",
+  "fold": 4,
+  "ruling": "good",
+  "ruling_source": "person's review",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P137.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "- For cancellation: Both pending orders will be cancelled, and your total refund will be $3,131.10 + $4,777.75 = $7,908.85."
+   },
+   "P137.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "- For the return: Please confirm if you want to return the “Smart Watch” (item ID: 2554056026, gold, metal band, AMOLED display) from your delivered order #W9389413."
+   }
+  }
+ },
+ "P138": {
+  "write_id": "01M5JZ6CKEDNMW1K2GTKGCK8B1",
+  "domain": "retail",
+  "task": "retail:13",
+  "split": "train",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {}
+ },
+ "P139": {
+  "write_id": "01M61Q0VWMJ14327FFS2S3KPJM",
+  "domain": "airline",
+  "task": "airline:38",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "send_certificate",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P139.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "To proceed with compensation for the delayed flight in the reservation with 1 passenger, since you are a gold member and have travel insurance, I can offer a certificate of $50 for the delay."
+   }
+  }
+ },
+ "P140": {
+  "write_id": "01M61Q9VWQ06EQKHM3FTKVMMMV",
+  "domain": "airline",
+  "task": "airline:37",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P140.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "3. Upgrade reservation M20IZO (JFK → MCO, economy, 2 passengers, no insurance, booked on 2024-05-12) to business class for all flights, with any additional charges to be paid using your credit card ending in 7334."
+   },
+   "P140.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 8,
+    "text": "- Please confirm that none of the flights in these reservations have already been flown."
+   }
+  }
+ },
+ "P141": {
+  "write_id": "01M61QABN0FBHG37FYXGS7XWT1",
+  "domain": "airline",
+  "task": "airline:40",
+  "split": "dev",
+  "fold": 3,
+  "ruling": "good",
+  "ruling_source": "person's review",
+  "action_tool": "update_reservation_passengers",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P141.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 6,
+    "text": "You want to change the passenger name from Mei Lee to Mei Garcia."
+   },
+   "P141.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 6,
+    "text": "- Only the last name for Mei is changing, from \"Lee\" to \"Garcia.\""
+   }
+  }
+ },
+ "P142": {
+  "write_id": "01M61PZFB0SZE1PW67FTD45XH6",
+  "domain": "airline",
+  "task": "airline:31",
+  "split": "train",
+  "fold": 2,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {
+   "P142.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 13,
+    "text": "The current reservation DF89BM has two flights on May 17 with prices $63 and $78, totaling $141."
+   },
+   "P142.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 13,
+    "text": "The price difference for changing to this nonstop flight would be -$53, meaning it would cost $53 less than your current flights."
+   }
+  }
+ },
+ "P143": {
+  "write_id": "01M61QAYDHB0GRMZX185D8ANBW",
+  "domain": "airline",
+  "task": "airline:42",
+  "split": "train",
+  "fold": 0,
+  "ruling": "good",
+  "ruling_source": "person's review",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P143.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "Also, please provide the reason for cancellation for each reservation (change of plan, airline cancelled flight, or other reasons)."
+   },
+   "P143.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "- Since the reason for cancellation is a change of plan, I will check if these bookings are eligible for cancellation according to the policy:"
+   },
+   "P143.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "All three reservations are eligible for cancellation."
+   },
+   "P143.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "Do you confirm you want to proceed with canceling all three reservations (FDZ0T5, PUNERT, HSR97W) for the reason “change of plan”?"
+   }
+  }
+ },
+ "P144": {
+  "write_id": "01M5JZ59MHE9X7XFMC6ABKYK7Q",
+  "domain": "retail",
+  "task": "retail:19",
+  "split": "train",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P144.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "Since the water bottle costs $54.04, returning it would refund that amount."
+   }
+  }
+ },
+ "P145": {
+  "write_id": "01M5JZ8C0A464AYBE5H45RF9GP",
+  "domain": "retail",
+  "task": "retail:11",
+  "split": "train",
+  "fold": 2,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {}
+ },
+ "P146": {
+  "write_id": "01M5JZ7CN2010PXYFJQ798QER9",
+  "domain": "retail",
+  "task": "retail:83",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P146.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "- Item to return: Gold tablet (item ID 6065192424), price $989.70"
+   },
+   "P146.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "- Refund method: Credit card ending in 2732"
+   }
+  }
+ },
+ "P147": {
+  "write_id": "01M5JZ5MGPBWTXZYQ135Q4TA74",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "exchange_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P148": {
+  "write_id": "01M61PYBSHWN4KY7TYCEDZAHXH",
+  "domain": "airline",
+  "task": "airline:25",
+  "split": "dev",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P148.S1": {
+    "A": "no",
+    "B": "not_sure",
+    "consensus": null,
+    "turn": 12,
+    "text": "The flights prices are $158 and $141, totaling $299."
+   },
+   "P148.S2": {
+    "A": "yes",
+    "B": "not_sure",
+    "consensus": null,
+    "turn": 13,
+    "text": "After deducting the flight price of $299, the certificate balance would be $201, which means less than $100 of the certificate value would be wasted."
+   }
+  }
+ },
+ "P149": {
+  "write_id": "01M61Q97RQ2PHBHM7S9KVFPCEJ",
+  "domain": "airline",
+  "task": "airline:33",
+  "split": "train",
+  "fold": 1,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P150": {
+  "write_id": "01M61Q4QYXR822DYYJRZFTS68K",
+  "domain": "airline",
+  "task": "airline:12",
+  "split": "train",
+  "fold": 2,
+  "ruling": "good",
+  "ruling_source": "person's review",
+  "action_tool": "update_reservation_baggages",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "not_agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P150.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 6,
+    "text": "To proceed, I will:"
+   },
+   "P150.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "- For two passengers, the total business class fare would be $1,698."
+   },
+   "P150.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "- You have already paid $498 for economy class, so the upgrade difference is $1,200."
+   },
+   "P150.S4": {
+    "A": "yes",
+    "B": "no",
+    "consensus": null,
+    "turn": 12,
+    "text": "However, I can help you add 2 checked bags under your name using your Gold membership."
+   },
+   "P150.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "Would you like to proceed with adding 2 checked bags for your reservation?"
+   }
+  }
+ },
+ "P151": {
+  "write_id": "01M61Q7BFCZHHHT23JZ17JPQJ1",
+  "domain": "airline",
+  "task": "airline:23",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P151.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "- SEA to JFK (HAT100) on 2024-05-28: $259"
+   },
+   "P151.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 10,
+    "text": "Total business fare per passenger: $364 + $248 + $259 = $871"
+   },
+   "P151.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "According to policy, basic economy reservations cannot be modified."
+   }
+  }
+ },
+ "P152": {
+  "write_id": "01M5JZ569MXMXMNKGFAQKD4C9Q",
+  "domain": "retail",
+  "task": "retail:83",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "agreed",
+   "consensus": null
+  },
+  "statements": {
+   "P152.S1": {
+    "A": "no",
+    "B": "yes",
+    "consensus": null,
+    "turn": 9,
+    "text": "The other tablet with 10-inch, 128GB, gold is available for $950.96."
+   },
+   "P152.S2": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 9,
+    "text": "Since you want to return the pricier one, which is the 10-inch, 128GB, gold tablet, I will proceed with the return process for that item."
+   }
+  }
+ },
+ "P153": {
+  "write_id": "01M61PXFATXSKNSSM2J0EQME5Z",
+  "domain": "airline",
+  "task": "airline:21",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P153.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 26,
+    "text": "There is an issue with the requested changes: the flight HAT229 does not have enough seats available, and the gift card with the smallest balance ($6.00) is not sufficient to cover the additional charges for the extra checked bag."
+   },
+   "P153.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 30,
+    "text": "To confirm, you want to change the return flight of your reservation ID OBUT9V for your round trip from Houston (IAH) to Denver (DEN) to the following flights on May 27 in economy class:"
+   },
+   "P153.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 30,
+    "text": "- Flight HAT290 from Denver (DEN) to Las Vegas (LAS), departing at 02:00 PM and arriving at 04:00 PM"
+   },
+   "P153.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 30,
+    "text": "- Flight HAT175 from Las Vegas (LAS) to Houston (IAH), departing at 05:00 PM and arriving at 08:00 PM"
+   },
+   "P153.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 30,
+    "text": "You also want to add one more checked bag to your reservation (total 2 checked bags) and use the gift card with the smallest balance ($6.00) for any additional charges."
+   }
+  }
+ },
+ "P154": {
+  "write_id": "01M5JZ9FMAWJ45HTBCVXEBKVH4",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "good",
+  "ruling_source": "person's review",
+  "action_tool": "modify_pending_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "not_agreed",
+   "consensus": null
+  },
+  "statements": {}
+ },
+ "P155": {
+  "write_id": "01M5JZ75JB70RW5WZ3HTHRFT8J",
+  "domain": "retail",
+  "task": "retail:19",
+  "split": "train",
+  "fold": 1,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P155.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "Refunds to credit cards typically take 5 to 7 business days."
+   }
+  }
+ },
+ "P156": {
+  "write_id": "01M5JMJVCJQM1EQ0B0NPQTKHV8",
+  "domain": "retail",
+  "task": "retail:13",
+  "split": "train",
+  "fold": 1,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P156.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "I will proceed with returning the Water Bottle, Action Camera, and Backpack, and keep the Mechanical Keyboard."
+   }
+  }
+ },
+ "P157": {
+  "write_id": "01M61PXKGCSJZJETM64WV2AHM4",
+  "domain": "airline",
+  "task": "airline:23",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "book_reservation",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {
+   "P157.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 22,
+    "text": "- Outbound flight: HAT023 on May 26, 2024, JFK to SFO."
+   },
+   "P157.S2": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 22,
+    "text": "- Return flights: HAT082 and HAT085 on May 28, 2024, SFO to JFK."
+   },
+   "P157.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 22,
+    "text": "- Payment: Use certificates totaling $1,000 first, gift cards totaling $327 next, and charge the remaining $2,033 to your MasterCard (credit_card_2198526)."
+   }
+  }
+ },
+ "P158": {
+  "write_id": "01M5JZ4QQZXWGB94PYTMMX7Y7Q",
+  "domain": "retail",
+  "task": "retail:13",
+  "split": "train",
+  "fold": 1,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P158.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 21,
+    "text": "Since your order was paid with a credit card, I will proceed to process the refund to your credit card instead of PayPal."
+   }
+  }
+ },
+ "P159": {
+  "write_id": "01M61Q6WZDGT9C2SH60B4DKT0S",
+  "domain": "airline",
+  "task": "airline:21",
+  "split": "train",
+  "fold": 3,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_flights",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P159.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- Change your return flight to: DEN-LAS (HAT229, 11:00–13:00) and LAS-IAH (HAT266, 13:00–16:00) on May 27, in economy class."
+   },
+   "P159.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- Add one more checked bag to your reservation (total: 2 checked bags)."
+   },
+   "P159.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- Use your gift card with the smallest balance (gift_card_7480005, $6) for any fare difference or baggage fee."
+   },
+   "P159.S4": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 17,
+    "text": "The next fastest available economy class option is:"
+   },
+   "P159.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "- DEN to LAS: Flight HAT084, departs 04:00, arrives 06:00"
+   },
+   "P159.S6": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "- LAS to IAH: Flight HAT266, departs 13:00, arrives 16:00"
+   }
+  }
+ },
+ "P160": {
+  "write_id": "01M5JZ8BVJWCCS1EFW5CNMNFXT",
+  "domain": "retail",
+  "task": "retail:11",
+  "split": "train",
+  "fold": 2,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P160.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- All items from both orders (#W5490111 and #W7387996) will be returned."
+   }
+  }
+ },
+ "P161": {
+  "write_id": "01M5JMJS4CB1V66T1XTFQMFFPD",
+  "domain": "retail",
+  "task": "retail:13",
+  "split": "train",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {
+   "P161.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "I will proceed with returning the Water Bottle, Action Camera, and Backpack, and keep the Mechanical Keyboard."
+   },
+   "P161.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "I will also confirm the availability of your PayPal payment method for the refund."
+   }
+  }
+ },
+ "P162": {
+  "write_id": "01M5JZ7WC7B4BXKPHYMFS19WER",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "modify_pending_order_items",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {}
+ },
+ "P163": {
+  "write_id": "01M5JZ5WJ9VN9DFMWCPYHWADA8",
+  "domain": "retail",
+  "task": "retail:100",
+  "split": "train",
+  "fold": 0,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "exchange_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P164": {
+  "write_id": "01M61PZ9SGJDMA94SS6PQSEGNG",
+  "domain": "airline",
+  "task": "airline:29",
+  "split": "train",
+  "fold": 2,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "update_reservation_baggages",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P164.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 9,
+    "text": "- Flight HAT169, arriving at 06:00, price $171"
+   },
+   "P164.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "- Change reservation VA5SGQ for user raj_brown_5782 to nonstop economy flights:"
+   },
+   "P164.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "- Return: Flight HAT033 on 2024-05-19 from JFK to DTW"
+   },
+   "P164.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "- Add one checked bag to the reservation (total baggages will be 1, nonfree baggages will be 1)"
+   },
+   "P164.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 11,
+    "text": "- Payment method for any additional charges will be the existing credit card on file (credit_card_8003957)"
+   }
+  }
+ },
+ "P165": {
+  "write_id": "01M61Q346P36J830S236T7GDY6",
+  "domain": "airline",
+  "task": "airline:1",
+  "split": "dev",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "graders",
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P165.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 13,
+    "text": "To confirm, you would like to cancel this reservation due to a change of plans."
+   },
+   "P165.S2": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 13,
+    "text": "- Since your booking was made on May 14th and today is May 15th, you are eligible for a cancellation and refund."
+   },
+   "P165.S3": {
+    "A": "yes",
+    "B": "yes",
+    "consensus": "yes",
+    "turn": 15,
+    "text": "Yes, you are eligible for a refund because your reservation was made within the last 24 hours."
+   }
+  }
+ },
+ "P166": {
+  "write_id": "01M61PTR8ESVDBEQCPRHQB7042",
+  "domain": "airline",
+  "task": "airline:12",
+  "split": "train",
+  "fold": 2,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_baggages",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {}
+ },
+ "P167": {
+  "write_id": "01M61PXMEYT40YTMG6Z2179RRR",
+  "domain": "airline",
+  "task": "airline:21",
+  "split": "train",
+  "fold": 3,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "update_reservation_baggages",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P167.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 15,
+    "text": "If yes, I will summarize the change details for your confirmation."
+   },
+   "P167.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "Total travel time: 15 hours (including layover)"
+   },
+   "P167.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 30,
+    "text": "- Flight HAT290 from Denver (DEN) to Las Vegas (LAS), departing at 02:00 PM and arriving at 04:00 PM"
+   },
+   "P167.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 30,
+    "text": "You also want to add one more checked bag to your reservation (total 2 checked bags) and use the gift card with the smallest balance ($6.00) for any additional charges."
+   }
+  }
+ },
+ "P168": {
+  "write_id": "01M5JZ8B8THC9A0XF2HZD3GHB6",
+  "domain": "retail",
+  "task": "retail:12",
+  "split": "dev",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P168.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "To confirm, you would like to return the following items:"
+   },
+   "P168.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- Water Bottle (750ml, glass, black) from order #W5490111"
+   },
+   "P168.S3": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- Action Camera (4K, waterproof, silver) from order #W5490111"
+   },
+   "P168.S4": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- Backpack (green, medium, leather, camera compartment) from order #W5490111"
+   },
+   "P168.S5": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "You will keep:"
+   },
+   "P168.S6": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- Mechanical Keyboard from order #W5490111"
+   },
+   "P168.S7": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "- Gaming Mouse from order #W7387996"
+   },
+   "P168.S8": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 12,
+    "text": "The refund for the returned items will be processed through your PayPal account."
+   }
+  }
+ },
+ "P169": {
+  "write_id": "01M5JMM4XXKQVYHKNDHSG0Y0H2",
+  "domain": "retail",
+  "task": "retail:13",
+  "split": "train",
+  "fold": 1,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P169.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "Refunds to PayPal are not available for this order since it was paid by credit card."
+   },
+   "P169.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 14,
+    "text": "Please confirm your choice and that you want to proceed with the return of these three items."
+   }
+  }
+ },
+ "P170": {
+  "write_id": "01M5JZ4HHCR7P9XNZ3N60M0KYH",
+  "domain": "retail",
+  "task": "retail:12",
+  "split": "dev",
+  "fold": 4,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "REJECTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P171": {
+  "write_id": "01M5JZ50S18W0JMGFM3T677JV3",
+  "domain": "retail",
+  "task": "retail:19",
+  "split": "train",
+  "fold": 1,
+  "ruling": "bad",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-nano-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ },
+ "P172": {
+  "write_id": "01M61PX5E4JBZB1FQ1ZVYT6W4E",
+  "domain": "airline",
+  "task": "airline:22",
+  "split": "train",
+  "fold": 0,
+  "ruling": "good",
+  "ruling_source": "person's review",
+  "action_tool": "update_reservation_passengers",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {
+   "P172.S1": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 17,
+    "text": "- Change the passenger name to Omar Rossi (DOB: 1970-06-06)"
+   },
+   "P172.S2": {
+    "A": "no",
+    "B": "no",
+    "consensus": "no",
+    "turn": 21,
+    "text": "- Change passenger to Omar Rossi (DOB: 1970-06-06)"
+   }
+  }
+ },
+ "P173": {
+  "write_id": "01M5JZ6Y0PCJGTZBGV2ES6XMZA",
+  "domain": "retail",
+  "task": "retail:14",
+  "split": "dev",
+  "fold": 2,
+  "ruling": "good",
+  "ruling_source": "oracle",
+  "action_tool": "return_delivered_order_items",
+  "agent_model": "gpt-4.1-mini-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "agreed",
+   "B": "agreed",
+   "consensus": "agreed"
+  },
+  "statements": {}
+ },
+ "P174": {
+  "write_id": "01M61QBD9PW1G7Y0B2Y885TT4F",
+  "domain": "airline",
+  "task": "airline:44",
+  "split": "train",
+  "fold": 3,
+  "ruling": "ungraded",
+  "ruling_source": null,
+  "action_tool": "cancel_reservation",
+  "agent_model": "gpt-4.1-2025-04-14",
+  "backend": "ACCEPTED",
+  "agreement": {
+   "A": "not_agreed",
+   "B": "not_agreed",
+   "consensus": "not_agreed"
+  },
+  "statements": {}
+ }
+}
