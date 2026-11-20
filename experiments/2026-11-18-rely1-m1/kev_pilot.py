@@ -31,6 +31,7 @@ import random
 import re
 import sys
 import zipfile
+from fractions import Fraction
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -674,7 +675,7 @@ def cmd_build(scale: int = 1) -> None:
     max_state 7552, and a record over the packed limit is split into several records."""
     sys.path.insert(0, str(M0))
     from kev.data import materialize
-    from kev.model import fits, training_context
+    from kev.model import fits, training_context, user_tokens
     from tokens import BASE, BASE_REVISION, load_tokenizer
 
     tok = load_tokenizer(BASE, BASE_REVISION)
@@ -693,8 +694,7 @@ def cmd_build(scale: int = 1) -> None:
     summary = {"scale": scale, "planted_checks": counts, "folds": {}}
     # state tokens per action, <state> token included, as Kev's encoder counts them
     summary["state_tokens"] = {
-        pid: len(tok(state_of(x["packet"]), add_special_tokens=False).input_ids) + 1
-        for pid, x in sorted(act.items())
+        pid: len(user_tokens(tok, state_of(x["packet"]))) + 1 for pid, x in sorted(act.items())
     }
     state_fits: dict[str, bool] = {}
     for fold in range(5):
@@ -702,9 +702,8 @@ def cmd_build(scale: int = 1) -> None:
         kept, dropped_long, split, dropped_question = [], 0, 0, 0
         for rec in parts["train"]:
             st = rec["state"]
-            if st not in state_fits:
-                one = {"state": st, "questions": dict(list(rec["questions"].items())[:1])}
-                state_fits[st] = fit(one)
+            if st not in state_fits:  # the state's own length only; questions are checked below
+                state_fits[st] = len(user_tokens(tok, st)) + 1 <= MAX_STATE
             if not state_fits[st]:
                 dropped_long += 1
                 continue
@@ -776,12 +775,10 @@ def choose(acts: list[dict], score) -> tuple:
     good = [x for x in acts if x["ruling"] == "good"]
     best = None
     for s in S_GRID:
-        for g in G_GRID:
-            if s is None and g is None:
-                continue
+        for g in G_GRID:  # both off (stop nothing) is a choice too
             nb = sum(score(x, s, g) for x in bad)
             ng = sum(score(x, s, g) for x in good)
-            j = nb / max(len(bad), 1) - ng / max(len(good), 1)
+            j = Fraction(nb, max(len(bad), 1)) - Fraction(ng, max(len(good), 1))  # exact ties
             key = (j, -ng, nb, 2 if s is None else s, 1 if g is None else -g)
             if best is None or key > best[0]:
                 best = (key, s, g)
@@ -961,7 +958,7 @@ def split_rows(rows: list) -> tuple[dict, dict]:
     return ps, pa
 
 
-def load_kev(root: Path, which: str = "") -> tuple[dict, dict, dict, dict]:
+def load_kev(root: Path, which: str = "", scale: int = 1) -> tuple[dict, dict, dict, dict]:
     """Kev scores from the pasted fold results (runs/kev_pilot/results/fold{k}.json), already at
     each checkpoint's fitted temperature: out-of-fold statement ID -> P(yes) and action ->
     P(agreed) on the held-out folds; per fold, that fold model's scores on its own calibration
@@ -973,6 +970,18 @@ def load_kev(root: Path, which: str = "") -> tuple[dict, dict, dict, dict]:
         if not f.exists():
             raise SystemExit(f"missing {f}")
         d = json.loads(f.read_text())
+        # provenance from the training inputs: the run's own count of the records it trained,
+        # calibrated and scored on must match this scale's build of fold k
+        built = json.loads((OUT / f"data_s{scale}/summary.json").read_text())["folds"][str(k)]
+        got = {
+            part: (d.get("data") or {}).get(part, [None])[0]
+            for part in ("train", "calibration", "development")
+        }
+        want = {part: built[part]["records"] for part in got}
+        if got != want:
+            raise SystemExit(
+                f"{f}: trained on {got}, but the scale-{scale} build of fold {k} has {want}"
+            )
         runs[k] = {kk: v for kk, v in d.items() if not kk.endswith("rows")}
         dps, dpa = split_rows(d[f"{which}rows"])
         ps.update(dps)
@@ -985,14 +994,14 @@ def cmd_score(scale: int = 1) -> None:
     act = load()
     jps, jpa = jev_scores()
     root = OUT / "results"
-    kps, kpa, kcal, runs = load_kev(root)
+    kps, kpa, kcal, runs = load_kev(root, "", scale)
     # stock Kev was scored in the same runs only when they ran with a baseline (the approved fold
     # runs used --no-baseline to save cost; no outcome rule reads it)
     has_base = all(
         "baseline_rows" in json.loads((root / f"fold{k}.json").read_text()) for k in range(5)
     )
     if has_base:
-        bps, bpa, bcal, _ = load_kev(root, "baseline_")
+        bps, bpa, bcal, _ = load_kev(root, "baseline_", scale)
     missing = [q for x in act.values() for q in x["stmts"] if q not in kps] + [
         p for p in act if p not in kpa
     ]
