@@ -1,372 +1,338 @@
-"""Score the M1 gate from the people's answers (README.md, "Gate"). Written and committed before
-any answer exists; run once when both answer files are in review/.
+"""Score the M1 gate under the model-labeller plan (Prithvi, 2026-11-19/20). Written and committed
+before any of Prithvi's or John's answers exist; run once when both answer files are in review/.
 
     python experiments/2026-11-18-rely1-m1/score.py
 
-Inputs: results/label_set.jsonl, review/prithvi_answers.json (exported from his sheet),
-review/second_answers.json (the second labeller's download), results/agreement.jsonl.
+The labels are model-labelled and human-checked: two model labellers answered every question
+(labeller A: Codex CLI, gpt-6.2-sol, reasoning effort high; labeller B: the Gemini app, 4 Neon,
+thinking High), and Prithvi rules on what his reduced sheet shows (reduced_sheet.py). The
+first, no-reasoning run of A is reported as a comparison only.
 
-Reports, every number with its denominator and split under / over 8,192 tokens:
-1. Pre-fill vs Prithvi on the random 40: matches (gate: at least 36). "unsure" is not a match.
-2. (a) Of the 14 MC pre-fills, how many Prithvi confirms as MC.
-3. (b) MCs Prithvi finds in the random 40, and what that implies for the statements pre-filled
-   not MC that nobody reviewed: rate with a 95% Wilson interval, times their count.
-4. Prithvi vs the second labeller on the 30 main statements (gate: at least 26), and on the 5
-   over-limit ones separately. "Not sure" from either side is not agreement.
-5. Agreement labels: how many pre-fills Prithvi confirms or changes.
+Inputs: results/labeller_comparison.json (compare_labellers.py; its input hashes are checked),
+the label files and their summaries, review/prithvi_reduced_answers.json (exported from
+review/prithvi_reduced.html) and review/second_answers.json (John's download from the second
+sheet, unchanged). Each answer file must match its sheet's fingerprint and be complete;
+otherwise nothing is written.
 
-Before counting, Prithvi's agreement answers are applied: statements on an action he marks "no
-agreement" leave every count; an action he moves from "no" to "yes" was never sampled, so it is
-listed as needing a follow-up review and the result is marked provisional. Answer files must
-match the current sheets (Prithvi's `items_sha256`, the second sheet's `fingerprint`) and be
-complete; otherwise nothing is written.
+Writes results/gate.json and results/labels_final.jsonl. Every number has its denominator.
+1. A vs B, statements and the agreement question apart: the full table, raw agreement, kappa,
+   agreement on "yes" alone; without the example-exposed actions; under / over 8,192 tokens.
+   The same for A(no reasoning) vs B and A vs A(no reasoning).
+2. Prithvi on his sheet, blind (before he saw the labellers) and final: the statements both
+   labellers marked yes (how many he confirms); the disagreements (whom he sides with); the
+   agreement disagreements; the Gaming Mouse case.
+3. The 14 pre-filled contradictions: how many each labeller marks yes, and how many Prithvi
+   confirms (those not on his sheet were marked yes by neither labeller).
+4. John vs the labellers on his 35 (and vs Prithvi where his sheet has the same statement).
+5. "No agreement": the current 32, A, B, both, and the final count.
+6. The anchor cases; flagged statements in actions both labellers call agreed; the agreement
+   disagreements left off Prithvi's sheet (unresolved: both answers kept).
+
+Final labels (labels_final.jsonl): where A and B agree, their answer, except a statement both
+mark yes, which takes Prithvi's ruling; where they disagree and Prithvi ruled, his ruling;
+otherwise "unresolved" with both answers.
 """
 
 from __future__ import annotations
 
 import hashlib
 import json
-import math
 import re
+from collections import Counter
 from pathlib import Path
 
+from score_first_sheet import parse_turns, wilson
+
 HERE = Path(__file__).parent
+R = HERE / "results"
+THREE = {"yes", "no", "unsure"}
+RECORDS = {"supported", "contradicted", "not covered", "unsure"}
+TO_MODEL = {"yes": "yes", "no": "no", "unsure": "not_sure"}  # a person's answer, model scale
+AGREE_TO_MODEL = {"yes": "agreed", "no": "not_agreed", "unsure": "not_sure"}
 
 
-def wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
-    if n == 0:
-        return (0.0, 1.0)
-    p = k / n
-    d = 1 + z * z / n
-    c = (p + z * z / (2 * n)) / d
-    h = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d
-    return (max(0.0, c - h), min(1.0, c + h))
+def jsonl(name: str) -> list[dict]:
+    return [json.loads(x) for x in (R / name).read_text().splitlines() if x.strip()]
 
 
-def mc_of(answer: object) -> str | None:
-    """'yes' / 'no' / 'unsure' from either sheet's answer format."""
-    if isinstance(answer, dict):
-        return answer.get("mc")
-    return answer if isinstance(answer, str) else None
-
-
-def split(rows: list[dict], f) -> dict:
-    out = {}
-    out["all"] = f(rows)
-    for length in ("under_8192", "over_8192"):
-        out[length] = f([r for r in rows if r["length"] == length])
-    return out
-
-
-def final_agreement(agreement: list[dict], prithvi: dict) -> dict[str, str]:
-    """Prithvi's answer where he gave one (on a pre-fill, or an optional override of a rule or
-    earlier-ruling label), otherwise the label as built."""
-    out = {}
-    for a in agreement:
-        given = (prithvi.get("agree:" + a["write_id"]) or {}).get("agreed")
-        out[a["write_id"]] = given or a["agreed"]
-    return out
-
-
-def score(rows: list[dict], prithvi: dict, second: dict, agreement: list[dict]) -> dict:
-    final = final_agreement(agreement, prithvi)
-    built = {a["write_id"]: a["agreed"] for a in agreement}
-    dropped = [r for r in rows if final.get(r["write_id"], "yes") == "no"]
-    rows = [r for r in rows if final.get(r["write_id"], "yes") != "no"]
-    newly_agreed = sorted(w for w in final if built[w] == "no" and final[w] != "no")
-    by_block = lambda b: [r for r in rows if r["review"]["prithvi_reason"] == b]  # noqa: E731
-    p = lambda r: mc_of(prithvi.get(r["unit_key"]))  # noqa: E731
-    s = lambda r: mc_of(second.get(r["unit_key"]))  # noqa: E731
-
-    def prefill_match(rs: list[dict]) -> dict:
-        want = {"MC": "yes", "not MC": "no"}
-        answered = [r for r in rs if p(r)]
-        return {
-            "n": len(rs),
-            "answered": len(answered),
-            "match": sum(p(r) == want[r["prefill"]] for r in answered),
-            "unsure": sum(p(r) == "unsure" for r in answered),
-        }
-
-    def confirmed(rs: list[dict]) -> dict:
-        return {
-            "n": len(rs),
-            "confirmed_mc": sum(p(r) == "yes" for r in rs),
-            "rejected": sum(p(r) == "no" for r in rs),
-            "unsure": sum(p(r) == "unsure" for r in rs),
-            "unanswered": sum(p(r) is None for r in rs),
-        }
-
-    random40 = by_block("random 40")
-    found = sum(p(r) == "yes" for r in random40)
-    reviewed = {r["unit_key"] for r in rows if r["review"]["prithvi"]}
-    unreviewed_not_mc = [
-        r for r in rows if r["prefill"] == "not MC" and r["unit_key"] not in reviewed
-    ]
-    lo, hi = wilson(found, len(random40))
-
-    def by_length(length: str) -> dict:
-        """The random-40 rate for one length group, applied to that group's unreviewed pool: the
-        over-limit block was drawn from long packets only, so the pools differ in their mix."""
-        sample = [r for r in random40 if r["length"] == length]
-        pool = [r for r in unreviewed_not_mc if r["length"] == length]
-        k = sum(p(r) == "yes" for r in sample)
-        u = sum(p(r) == "unsure" for r in sample)
-        a, b = wilson(k, len(sample))
-        b_if_unsure_yes = wilson(k + u, len(sample))[1]
-        return {
-            "found": k,
-            "unsure": u,
-            "of": len(sample),
-            "rate_95ci": [round(a, 3), round(b, 3)],
-            "rate_high_if_unsure_were_mc": round(b_if_unsure_yes, 3),
-            "implied_mc_high_if_unsure_were_mc": round(b_if_unsure_yes * len(pool)),
-            "unreviewed_not_mc_statements": len(pool),
-            "implied_mc_low_point_high": [
-                round(a * len(pool)),
-                round(k / max(1, len(sample)) * len(pool)),
-                round(b * len(pool)),
-            ],
-        }
-
-    def pair(rs: list[dict]) -> dict:
-        both = [r for r in rs if p(r) and s(r)]
-        return {
-            "n": len(rs),
-            "both_answered": len(both),
-            "agree": sum(p(r) == s(r) and p(r) != "unsure" for r in both),
-            "either_unsure": sum("unsure" in (p(r), s(r)) for r in both),
-        }
-
-    main = [r for r in rows if r["review"]["second_reason"] == "main"]
-    over = [r for r in rows if r["review"]["second_reason"] == "over-limit block"]
-
-    pre = [a for a in agreement if a["source"] == "prefill"]
-    ans = {a["write_id"]: prithvi.get("agree:" + a["write_id"]) or {} for a in pre}
-    given = {w: v.get("agreed") for w, v in ans.items()}
-    shrunk = {
-        "random 40": sum(r["review"]["prithvi_reason"] == "random 40" for r in dropped),
-        "second main 30": sum(r["review"]["second_reason"] == "main" for r in dropped),
-    }
-    return {
-        "provisional": bool(newly_agreed) or any(shrunk.values()),
-        # The thresholds (36 of 40, 26 of 30) assume full samples: if Prithvi's agreement answers
-        # remove statements from them, the fixed-size gate cannot be evaluated as written.
-        "fixed_size_gate_evaluable": not any(shrunk.values()),
-        "samples_shrunk_by_agreement": shrunk,
-        "agreement_applied": {
-            "statements_dropped_as_no_agreement": len(dropped),
-            "dropped_by_block": {
-                b: sum(r["review"]["prithvi_reason"] == b for r in dropped)
-                for b in ("pre-filled MC", "random 40", "over-limit block")
-            },
-            "actions_moved_to_agreed_need_follow_up": newly_agreed,
-        },
-        "gate_prefill_vs_prithvi_random40": split(random40, prefill_match),
-        "gate_threshold_prefill": "at least 36 of 40 match",
-        "a_mc_prefills_confirmed": split(by_block("pre-filled MC"), confirmed),
-        "b_mc_found_in_random40": {
-            "found": found,
-            "unsure": sum(p(r) == "unsure" for r in random40),
-            "of": len(random40),
-            "rate_95ci": [round(lo, 3), round(hi, 3)],
-            "unreviewed_not_mc_statements": len(unreviewed_not_mc),
-            "implied_mc_among_them_low_point_high": [
-                round(lo * len(unreviewed_not_mc)),
-                round(found / max(1, len(random40)) * len(unreviewed_not_mc)),
-                round(hi * len(unreviewed_not_mc)),
-            ],
-            "by_length": {g: by_length(g) for g in ("under_8192", "over_8192")},
-            "note": "confirmed MCs only: 'unsure' counts as not MC in the rate; the "
-            "'high if unsure were MC' figures bound that. A rough extrapolation from one random "
-            "sample of 40; prefer the by-length "
-            "figures, since the pools differ in length mix; the label set's not-MC statements are "
-            "not a random sample of all statements",
-        },
-        "over_limit_block_prithvi": split(by_block("over-limit block"), confirmed),
-        "gate_prithvi_vs_second_main30": split(main, pair),
-        "gate_threshold_people": "at least 26 of 30 agree",
-        "prithvi_vs_second_over_limit5": pair(over),
-        "agreement_prefills": {
-            "n": len(pre),
-            "answered": sum(bool(v) for v in given.values()),
-            "confirmed": sum(given[a["write_id"]] == a["agreed"] for a in pre),
-            "changed": sum(
-                bool(given[a["write_id"]]) and given[a["write_id"]] != a["agreed"] for a in pre
-            ),
-        },
-    }
-
-
-def sheet_data(name: str) -> dict:
-    html = (HERE / f"review/{name}_sheet.html").read_text()
+def sheet_data(path: Path) -> dict:
+    html = path.read_text()
     blob = re.search(r"const DATA = (.*?);\nconst (SHEET|KEY)", html, re.S).group(1)
     return json.loads(blob.replace("<\\/", "</"))
 
 
-TURNS = re.compile(
-    "^\\s*T?\\d+(\\s*[-\u2013]\\s*T?\\d+)?(\\s*,\\s*T?\\d+(\\s*[-\u2013]\\s*T?\\d+)?)*\\s*$"
-)
-
-
-def parse_turns(
-    text: str | None, customer: set[int] | None = None, n_turns: int | None = None
-) -> list[int] | None:
-    """'31, 34' or 'T31-T34' -> turn numbers; None when the text is not in that form. A range
-    means the customer turns within it (when `customer` is given), so it may span agent turns."""
-    if not (text or "").strip():
-        return []
-    if not TURNS.match(text):
-        return None
-    out: list[int] = []
-    for part in text.split(","):
-        nums = [int(n) for n in re.findall(r"\d+", part)]
-        if len(nums) == 2 and nums[1] < nums[0]:
-            return None  # a reversed range
-        if n_turns is not None and any(n < 1 or n > n_turns for n in nums):
-            return None  # outside the conversation
-        if len(nums) == 2:
-            picked = [
-                t
-                for t in sorted(customer if customer is not None else range(nums[0], nums[1] + 1))
-                if nums[0] <= t <= nums[1]
-            ]
-            if not picked:
-                return None  # a range with no customer turn in it cites nothing
-            out += picked
-        else:
-            out += nums
-    return out
-
-
-def customer_turns(sheet: dict) -> dict[str, tuple[set[int], int]]:
-    """{write_id: (the T numbers of its customer messages, its number of turns)}, from the
-    conversations on the sheet the reviewer used (already checked against its fingerprint)."""
-    return {
-        w: (
-            {i for i, t in enumerate(a["conversation"], start=1) if t["role"] == "customer"},
-            len(a["conversation"]),
-        )
-        for w, a in sheet["actions"].items()
-    }
-
-
-def check(rows: list[dict], agreement: list[dict], pa: dict, sa: dict) -> list[str]:
-    """Problems that stop scoring: a file from another sheet or version, or missing answers."""
+def check(sheet: dict, second: dict, cmp_: dict, pa: dict, sa: dict) -> list[str]:
+    """Problems that stop scoring: stale inputs, a file from another sheet, missing answers."""
     problems = []
-    pd, sd = sheet_data("prithvi"), sheet_data("second")
-    if pa.get("sheet") != "prithvi" or pa.get("items_sha256") != pd["items_sha256"]:
-        problems.append("prithvi_answers.json is not from the current Prithvi sheet")
-    if sa.get("sheet") != "second" or sa.get("fingerprint") != sd["fingerprint"]:
+    for f, h in cmp_["inputs_sha256"].items():
+        if hashlib.sha256((R / f).read_bytes()).hexdigest() != h:
+            problems.append(f"results/{f} changed since compare_labellers.py ran")
+    for f, h in sheet["inputs"].items():
+        if hashlib.sha256((R / f).read_bytes()).hexdigest() != h:
+            problems.append(f"the reduced sheet was built from another results/{f}")
+    if pa.get("sheet") != sheet["sheet"] or pa.get("items_sha256") != sheet["items_sha256"]:
+        problems.append("prithvi_reduced_answers.json is not from the current reduced sheet")
+    if sa.get("sheet") != "second" or sa.get("fingerprint") != second["fingerprint"]:
         problems.append("second_answers.json is not from the current second sheet")
-    for name, d in (("Prithvi", pd), ("second", sd)):
-        for f, digest in d.get("inputs", {}).items():
-            if hashlib.sha256((HERE / "results" / f).read_bytes()).hexdigest() != digest:
-                problems.append(f"the {name} sheet was built from another {f}; rebuild it")
-        if not d.get("inputs"):
-            problems.append(f"the {name} sheet does not record its inputs; rebuild it")
-    p, s = pa.get("answers", {}), sa.get("answers", {})
-    three = {"yes", "no", "unsure"}
-    choices = {
-        "mc": three,
-        "material": three,
-        "records": {"supported", "contradicted", "not covered", "unsure"},
-    }
-    miss_p = [
-        r["unit_key"]
-        for r in rows
-        if r["review"]["prithvi"]
-        and not all((p.get(r["unit_key"]) or {}).get(f) in ok for f, ok in choices.items())
-    ]
-    miss_s = [
-        r["unit_key"] for r in rows if r["review"]["second"] and s.get(r["unit_key"]) not in three
-    ]
-    given = {
-        a["write_id"]: (p.get("agree:" + a["write_id"]) or {}).get("agreed") for a in agreement
-    }
-    miss_a = [
-        a["write_id"]
-        for a in agreement
-        if a["source"] == "prefill" and given[a["write_id"]] not in three
-    ]
-    bad = [
-        a["write_id"]
-        for a in agreement
-        if a["source"] != "prefill" and given[a["write_id"]] not in (None, *three)
-    ]
-    if bad:
-        problems.append(f"{len(bad)} agreement overrides have an invalid value")
-    cust = customer_turns(pd)
-    bad_turns = []
-    for a in agreement:
-        ans = p.get("agree:" + a["write_id"]) or {}
-        known, n = cust.get(a["write_id"], (set(), 0))
-        turns = parse_turns(ans.get("turns"), known, n)
-        if turns is None or not set(turns) <= known:
-            bad_turns.append(a["write_id"])
-        elif ans.get("agreed") == "yes" and a["agreed"] != "yes" and not turns:
-            bad_turns.append(a["write_id"])  # a new yes needs the turns that carry it
+    p = pa.get("answers", {})
+    miss, bad_turns = [], []
+    for it in sheet["items"]:
+        a = p.get(it["key"]) or {}
+        if it["kind"] == "statement":
+            ok = a.get("mc") in THREE and a.get("material") in THREE and a.get("records") in RECORDS
+        else:
+            ok = a.get("agreed") in THREE
+            conv = sheet["actions"][it["write_id"]]["conversation"]
+            cust = {i for i, t in enumerate(conv, 1) if t["role"] == "customer"}
+            turns = parse_turns(a.get("turns"), cust, len(conv))
+            if turns is None or not set(turns) <= cust:
+                bad_turns.append(it["key"])
+        if not ok:
+            miss.append(it["key"])
+    if miss:
+        problems.append(f"{len(miss)} items on the reduced sheet unanswered: {', '.join(miss)}")
     if bad_turns:
         problems.append(
-            f"{len(bad_turns)} agreement answers need their turns fixed (each listed turn must "
-            "be a customer message of that conversation; write '31, 34' or 'T31-T34', where a "
-            "range means the customer turns in it; a changed 'yes' must cite them): "
+            "agreement turns must be customer messages, as '31, 34' or 'T31-T34': "
             + ", ".join(bad_turns)
         )
-    for what, miss in (
-        ("Prithvi statements (all three answers, valid choices)", miss_p),
-        ("second-sheet statements (Yes / No / Not sure)", miss_s),
-        ("agreement pre-fills", miss_a),
-    ):
-        if miss:
-            problems.append(f"{len(miss)} {what} unanswered")
+    s_miss = [i["key"] for i in second["items"] if sa.get("answers", {}).get(i["key"]) not in THREE]
+    if s_miss:
+        problems.append(f"{len(s_miss)} second-sheet statements unanswered")
     return problems
 
 
-def main() -> None:
-    out = HERE / "results/gate.json"
-    if out.exists():
-        raise SystemExit("gate results exist; scored once")
-    rows = [json.loads(x) for x in (HERE / "results/label_set.jsonl").read_text().splitlines()]
-    agreement = [json.loads(x) for x in (HERE / "results/agreement.jsonl").read_text().splitlines()]
-    pa = json.loads((HERE / "review/prithvi_answers.json").read_text())
-    sa = json.loads((HERE / "review/second_answers.json").read_text())
-    problems = check(rows, agreement, pa, sa)
-    if problems:
-        raise SystemExit("not scored: " + "; ".join(problems))
-    result = score(rows, pa["answers"], sa["answers"], agreement)
-    cust = customer_turns(sheet_data("prithvi"))
-    # The finalized agreement labels, with Prithvi's decision and turns where he gave them.
-    final_rows = []
-    for a in agreement:
-        ans = pa["answers"].get("agree:" + a["write_id"]) or {}
-        given = parse_turns(ans.get("turns"), *cust[a["write_id"]]) or []
-        decided = ans.get("agreed") or a["agreed"]
-        # The pre-filled turns carry over only when the decision is unchanged: a changed answer
-        # without its own turns has no cited evidence (empty), never the old decision's.
-        turns = given or (a["turns"] if decided == a["agreed"] else [])
-        final_rows.append(
+def tally(pairs: list[tuple[str, str, str]]) -> dict:
+    """Whom a ruling sides with: (ruling, A, B) on the model scale."""
+    out = Counter()
+    for r, a, b in pairs:
+        out[
+            "with A only"
+            if r == a != b
+            else "with B only"
+            if r == b != a
+            else "with both"
+            if r == a == b
+            else "with neither"
+        ] += 1
+    return {"n": len(pairs), **dict(sorted(out.items()))}
+
+
+def score(cmp_: dict, sheet: dict, second: dict, pa: dict, sa: dict) -> tuple[dict, list[dict]]:
+    a = {r["id"]: r for r in jsonl("labels_a.jsonl")}
+    b = {r["id"]: r for r in jsonl("labels_b.jsonl")}
+    key = json.loads((R / "pack_key.json").read_text())
+    unit = {q: u for v in key.values() for q, u in v["questions"].items()}
+    by_unit = {u: q for q, u in unit.items()}
+    rows = {r["unit_key"]: r for r in jsonl("label_set.jsonl")}
+    current = {r["write_id"]: r for r in jsonl("agreement.jsonl")}
+    write_of = {p: v["write_id"] for p, v in key.items()}
+    p = pa["answers"]
+    items = {it["key"]: it for it in sheet["items"]}
+    s_ids = sorted(i for i in a if ".S" in i)
+    a_ids = sorted(i for i in a if i.endswith(".A"))
+
+    def ruling(i: str, blind: bool) -> str | None:
+        ans = p.get(i) or {}
+        # Blind answers are frozen for every card of an action when any of its cards is revealed;
+        # a card with none was answered before anything on its action was shown.
+        src = (ans.get("blind") or ans) if blind else ans
+        if ".S" in i:
+            return TO_MODEL.get(src.get("mc"))
+        return AGREE_TO_MODEL.get(src.get("agreed"))
+
+    out: dict = {
+        "labels": "Model-labelled and human-checked: labeller A and labeller B answered every "
+        "question; Prithvi ruled on the items of his reduced sheet.",
+        "labellers": {
+            n: json.loads((R / f"{n}_summary.json").read_text())
+            for n in ("labels_a", "labels_a_noreasoning", "labels_b")
+        },
+        "A_vs_B": cmp_["A_vs_B"],
+        "A_noreasoning_vs_B": cmp_["A_noreasoning_vs_B"],
+        "A_vs_A_noreasoning": cmp_["A_vs_A_noreasoning"],
+    }
+    for length in ("under_8192", "over_8192"):
+        ids = [q for q in s_ids if rows[unit[q]]["length"] == length]
+        out.setdefault("A_vs_B_statements_by_length", {})[length] = {
+            "n": len(ids),
+            "agree": sum(a[q]["answer"] == b[q]["answer"] for q in ids),
+            "both_yes": sum(a[q]["answer"] == b[q]["answer"] == "yes" for q in ids),
+            "either_yes": sum("yes" in (a[q]["answer"], b[q]["answer"]) for q in ids),
+            "table_A_by_B": {
+                x: dict(Counter(b[q]["answer"] for q in ids if a[q]["answer"] == x))
+                for x in ("yes", "no", "not_sure")
+            },
+        }
+
+    groups = {
+        "both_yes": [
+            k for k, it in items.items() if it.get("selected_because", "").startswith("both")
+        ],
+        "statement_disagreement": [
+            k
+            for k, it in items.items()
+            if it["kind"] == "statement" and a[k]["answer"] != b[k]["answer"]
+        ],
+        "agreement_disagreement": [k for k, it in items.items() if it["block"] == "agreement"],
+    }
+    rulings = {}
+    for when in ("blind", "final"):
+        blind = when == "blind"
+        bt = [ruling(k, blind) for k in groups["both_yes"]]
+        k_yes = sum(r == "yes" for r in bt)
+        rulings[when] = {
+            "both_yes_confirmed": {
+                "yes": k_yes,
+                "n": len(bt),
+                "no": bt.count("no"),
+                "not_sure": bt.count("not_sure"),
+                "wilson_95": [round(x, 3) for x in wilson(k_yes, len(bt))],
+            },
+            "statement_disagreements": tally(
+                [
+                    (ruling(k, blind), a[k]["answer"], b[k]["answer"])
+                    for k in groups["statement_disagreement"]
+                ]
+            ),
+            "agreement_disagreements": tally(
+                [
+                    (ruling(k, blind), a[k]["answer"], b[k]["answer"])
+                    for k in groups["agreement_disagreement"]
+                ]
+            ),
+        }
+    gm = cmp_["sheet"]["gaming_mouse"]
+    gid = f"{gm['packet']}.A"
+    rulings["gaming_mouse"] = {
+        "A": a[gid]["answer"],
+        "B": b[gid]["answer"],
+        "current": current[gm["write_id"]]["agreed"],
+        "prithvi_initial_not_blind": ruling(gid, True),
+        "prithvi_final": ruling(gid, False),
+    }
+    rulings["changed_after_reveal"] = sum(
+        1 for k in items if (p.get(k) or {}).get("blind") and ruling(k, True) != ruling(k, False)
+    )
+    out["prithvi"] = rulings
+
+    prefill = [q for q in s_ids if rows[unit[q]]["prefill"] == "MC"]
+    on_sheet = [q for q in prefill if q in items]
+    out["prefilled_mc_14"] = {
+        **cmp_["prefilled_mc_14"],
+        "on_prithvi_sheet": len(on_sheet),
+        "prithvi_confirms_yes": sum(ruling(q, False) == "yes" for q in on_sheet),
+        "not_on_sheet_marked_yes_by_neither": len(prefill) - len(on_sheet),
+    }
+
+    john = []
+    for it in second["items"]:
+        q = by_unit[it["key"]]
+        j = TO_MODEL[sa["answers"][it["key"]]]
+        john.append(
+            (q, j, a[q]["answer"], b[q]["answer"], ruling(q, False) if q in items else None)
+        )
+    out["john"] = {
+        "n": len(john),
+        "agrees_with_A": sum(j == x for _, j, x, _, _ in john),
+        "agrees_with_B": sum(j == y for _, j, _, y, _ in john),
+        "on_prithvi_sheet": sum(1 for *_, r in john if r is not None),
+        "agrees_with_prithvi": sum(j == r for _, j, _, _, r in john if r is not None),
+        "table_john_by_A": {
+            x: dict(Counter(a_ for _, j, a_, _, _ in john if j == x)) for x in TO_MODEL.values()
+        },
+        "table_john_by_B": {
+            x: dict(Counter(b_ for _, j, _, b_, _ in john if j == x)) for x in TO_MODEL.values()
+        },
+    }
+
+    finals = []
+    for i in s_ids + a_ids:
+        x, y = a[i]["answer"], b[i]["answer"]
+        r = ruling(i, False) if i in items else None
+        if r is not None:
+            label, by = r, "Prithvi"
+        elif x == y:
+            label, by = x, "A and B"
+        else:
+            label, by = "unresolved", None
+        finals.append(
             {
-                "write_id": a["write_id"],
-                "domain": a["domain"],
-                "task_id": a["task_id"],
-                "agreed": decided,
-                "turns": turns,
-                "decided_by": "Prithvi"
-                if ans.get("agreed") or a["source"] == "prithvi"
-                else "pre-fill",
-                "reviewer_note": ans.get("note") or None,
-                # what was shown to the reviewer, kept apart from the decision
-                "prefill": {
-                    k: a.get(k) for k in ("agreed", "turns", "reason", "note", "source", "basis")
-                },
+                "id": i,
+                "unit_key": unit.get(i),
+                "write_id": write_of[i.split(".")[0]],
+                "kind": "statement" if ".S" in i else "agreement",
+                "label": label,
+                "decided_by": by,
+                "A": x,
+                "B": y,
             }
         )
-    (HERE / "results/agreement_final.jsonl").write_text(
-        "".join(json.dumps(r, sort_keys=True) + "\n" for r in final_rows)
+    if gid in items:  # the Gaming Mouse ruling also settles its agreement label
+        for f in finals:
+            if f["id"] == gid:
+                f["label"], f["decided_by"] = ruling(gid, False), "Prithvi"
+    # Statements are labelled only on actions the customer agreed to (as in the label set): on an
+    # action whose final agreement label is "not agreed" they leave the contradiction labels; on
+    # one whose agreement is unresolved or unsure they are kept but flagged.
+    agree_final = {f["write_id"]: f["label"] for f in finals if f["kind"] == "agreement"}
+    for f in finals:
+        if f["kind"] != "statement":
+            continue
+        g = agree_final[f["write_id"]]
+        if g == "not_agreed":
+            f["contradiction_label"], f["label"] = f["label"], "excluded: no agreement"
+        elif g != "agreed":
+            f["agreement_open"] = g
+    final_no = {
+        f["write_id"] for f in finals if f["kind"] == "agreement" and f["label"] == "not_agreed"
+    }
+    out["no_agreement"] = {
+        **cmp_["no_agreement"],
+        "final_not_agreed": len(final_no),
+        "final_unresolved": sum(
+            1 for f in finals if f["kind"] == "agreement" and f["label"] == "unresolved"
+        ),
+    }
+    out["final_statement_labels"] = dict(
+        Counter(f["label"] for f in finals if f["kind"] == "statement")
     )
-    out.write_text(json.dumps(result, indent=1) + "\n")
-    print(json.dumps(result, indent=1))
+    # Actions that were "no agreement" when the label set was built have no statement labels; if
+    # the final label says agreed, their statements still need labelling (a follow-up).
+    out["newly_agreed_without_statement_labels"] = sorted(
+        w for w, g in agree_final.items() if g == "agreed" and current[w]["agreed"] == "no"
+    )
+    out["statements_on_actions_with_open_agreement"] = sum(
+        1 for f in finals if f.get("agreement_open")
+    )
+    out["anchors"] = cmp_["anchors"]
+    out["flagged_statements"] = cmp_["flagged_statements"]
+    out["agreement_disagreements_left_off_sheet"] = cmp_["sheet"][
+        "agreement_disagreements_left_off"
+    ]
+    return out, finals
+
+
+def main() -> None:
+    gate = R / "gate.json"
+    if gate.exists():
+        raise SystemExit("gate results exist; scored once")
+    cmp_ = json.loads((R / "labeller_comparison.json").read_text())
+    sheet = sheet_data(HERE / "review/prithvi_reduced.html")
+    second = sheet_data(HERE / "review/second_sheet.html")
+    pa = json.loads((HERE / "review/prithvi_reduced_answers.json").read_text())
+    sa = json.loads((HERE / "review/second_answers.json").read_text())
+    problems = check(sheet, second, cmp_, pa, sa)
+    if problems:
+        raise SystemExit("not scored: " + "; ".join(problems))
+    result, finals = score(cmp_, sheet, second, pa, sa)
+    (R / "labels_final.jsonl").write_text("".join(json.dumps(f) + "\n" for f in finals))
+    gate.write_text(json.dumps(result, indent=1) + "\n")
+    print(
+        json.dumps(
+            {k: result[k] for k in ("prithvi", "prefilled_mc_14", "john", "no_agreement")}, indent=1
+        )
+    )
 
 
 if __name__ == "__main__":

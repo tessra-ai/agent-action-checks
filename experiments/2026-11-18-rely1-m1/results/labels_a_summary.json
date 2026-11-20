@@ -1,0 +1,35 @@
+{
+ "labeller": "A",
+ "tool": [
+  "codex-cli 0.170.0"
+ ],
+ "model": "gpt-6.2-sol",
+ "reasoning_effort": [
+  "high"
+ ],
+ "sign_in": "ChatGPT (codex login status); no API key in the environment",
+ "dates": [
+  "2026-11-19"
+ ],
+ "calls_accepted_per_day": {
+  "2026-11-19": 299
+ },
+ "attempts_per_day": {
+  "2026-11-19": 299
+ },
+ "outcomes": {
+  "ok": 299
+ },
+ "calls": 299,
+ "tokens_used_total": 3086229,
+ "answers": 554,
+ "answer_counts": {
+  "agreement:agreed": 115,
+  "agreement:not_agreed": 58,
+  "agreement:not_sure": 1,
+  "statement:no": 351,
+  "statement:yes": 29
+ },
+ "reasons_over_20_words": 16,
+ "run_folder": "runs/labeller_a_high"
+}

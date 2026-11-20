@@ -109,7 +109,7 @@ def test_no_agreement_actions_are_not_labelled():
 
 
 def test_score_counts_on_toy_answers():
-    score = _load("score")
+    score = _load("score_first_sheet")
 
     def row(key, w, length, prefill, block, second):
         return {
@@ -196,7 +196,7 @@ def test_indented_continuation_keeps_the_lead_in():
 
 
 def test_turn_citations_parse_strictly():
-    score = _load("score")
+    score = _load("score_first_sheet")
     assert score.parse_turns("31, 34") == [31, 34]
     assert score.parse_turns("T31-T34") == [31, 32, 33, 34]
     assert score.parse_turns("") == []

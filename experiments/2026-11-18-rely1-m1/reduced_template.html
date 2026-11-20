@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rely-1 Model Label Review</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1d1b;--mute:#6b6a65;--line:#e3e0d8;--card:#fff;--hi:#fff3c4;--accent:#2f5d8a;--flag:#a3412f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#191917;--fg:#ecebe6;--mute:#a19f97;--line:#34332f;--card:#22221f;--hi:#4a4120;--accent:#8fb6dd;--flag:#e39a88;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#191917;--fg:#ecebe6;--mute:#a19f97;--line:#34332f;--card:#22221f;--hi:#4a4120;--accent:#8fb6dd;--flag:#e39a88;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif;overflow-wrap:anywhere}
+main{max-width:980px;margin:0 auto;padding-block:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.msg{font-size:13px;color:var(--accent)}
+h1{font-size:20px;margin:8px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px;margin:14px 0}
+.stmt{font-size:17px;background:var(--hi);padding:8px;border-radius:6px}
+.lead{color:var(--mute);font-size:13px}
+.mute{color:var(--mute);font-size:13px}
+pre{white-space:pre-wrap;word-break:break-word;font-size:12.5px;margin:4px 0}
+details{margin:6px 0} summary{cursor:pointer;color:var(--accent)}
+.turn{padding:3px 6px;border-left:3px solid transparent;font-size:13.5px}
+.turn.on{border-left-color:var(--accent);background:var(--hi)}
+.q{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:6px 0}
+.q b{min-width:min(280px,100%)}
+textarea,input[type=text]{width:100%;font:inherit;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;box-sizing:border-box}
+textarea{min-height:44px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--line);padding:8px 0;z-index:2;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button{font:inherit;padding:4px 10px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+button[disabled]{opacity:.5;cursor:default}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin-right:6px}
+.tag.flag{border-color:var(--flag);color:var(--flag)}
+.reveal{border-top:1px dashed var(--line);margin-top:10px;padding-top:8px}
+</style></head><body><main>
+<h1>__TITLE__</h1>
+<p class="mute">__INTRO__</p>
+<div class="card"><b>The label</b><ul>__DEF__</ul>
+<p class="mute"><b>Blind first.</b> Cards are in a shuffled order and their headings say nothing about the labels. Each card hides why it is on this sheet, the two model labellers' answers, any pre-fill, and the rulings and graders' reasons, until you have answered its first question. At that point your answers are kept as your blind answers; you can still change them after you see the others, and both are exported.</p></div>
+<div class="bar"><span id="progress"></span>
+<button id="export">Export answers</button>
+<button id="show-text" type="button">Show answers as text</button>
+<label class="mute">Import <input type="file" id="import" accept="application/json"></label>
+<span class="msg" id="msg" role="status"></span></div>
+<div class="card" id="fallback" hidden><p class="mute">Your answers as text. Save them as <code>__SHEET___answers.json</code>, or paste them to Claude. This box updates as you answer.</p>
+<textarea id="out" readonly aria-label="Your answers as text" style="min-height:140px;font:12px/1.4 ui-monospace,Menlo,monospace"></textarea>
+<button id="copy" type="button">Copy</button></div>
+<div id="items"></div>
+</main>
+<script>
+const DATA = __DATA__;
+const SHEET = DATA.sheet;
+const KEY = "rely1-m1-" + SHEET + "-" + DATA.items_sha256;
+let canSave = true;
+let answers = {};
+try { answers = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { answers = {}; }
+const FIRST = {statement: "mc", agreement: "agreed"};
+function complete(it) {
+  const a = answers[it.key] || {};
+  return it.kind === "statement" ? !!(a.mc && a.material && a.records) : !!a.agreed;
+}
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch (e) { canSave = false; }
+  const fb = document.getElementById("fallback");
+  if (fb && !fb.hidden) { document.getElementById("out").value = answersText(); document.getElementById("copy").textContent = "Copy"; }
+  const done = DATA.items.filter(complete).length;
+  document.getElementById("progress").textContent = done + " of " + DATA.items.length + " complete" + (canSave ? "" : " · this browser is not saving: export before closing");
+}
+function el(tag, attrs, text) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) e.setAttribute(k, v);
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+function radios(it, field, label, options, onPick) {
+  const q = el("div", {class: "q"});
+  q.appendChild(el("b", {}, label));
+  for (const o of options) {
+    const id = it.key + field + o;
+    const r = el("input", {type: "radio", name: it.key + field, id: id, value: o});
+    if ((answers[it.key] || {})[field] === o) r.checked = true;
+    r.addEventListener("change", () => { (answers[it.key] ||= {})[field] = o; save(); if (onPick) onPick(); });
+    const l = el("label", {for: id}, " " + o);
+    const span = el("span"); span.append(r, l); q.appendChild(span);
+  }
+  return q;
+}
+function conversation(a, turns, label) {
+  const conv = el("details"); conv.appendChild(el("summary", {}, label));
+  a.conversation.forEach((t, i) => {
+    const line = el("div", {class: "turn" + (turns.includes(i + 1) ? " on" : "")});
+    line.textContent = "[T" + (i + 1) + "] " + (t.role === "customer" ? "customer" : "agent") + ": " + t.text + (t.refs.length ? " (lookups " + t.refs.map(n => "L" + n).join(", ") + ")" : "");
+    conv.appendChild(line);
+  });
+  return conv;
+}
+function records(c, a) {
+  const led = el("details"); led.appendChild(el("summary", {}, "Evidence ledger (" + a.ledger.length + " lookups)"));
+  for (const e of a.ledger) led.appendChild(el("pre", {}, "[L" + e.n + "] " + e.tool + " " + JSON.stringify(e.arguments) + " ->" + (e.error ? " ERROR " : " ") + e.result));
+  c.appendChild(led);
+  const pol = el("details"); pol.appendChild(el("summary", {}, "Policy (" + a.domain + ")"));
+  pol.appendChild(el("pre", {}, DATA.policy[a.domain])); c.appendChild(pol);
+}
+function hidden(it, a) {
+  // What stays hidden until the blind answer: the labellers' answers, rulings, graders' reasons.
+  const box = el("div", {class: "reveal"});
+  if (it.selected_because) box.appendChild(el("div", {class: "mute"}, "On this sheet because: " + it.selected_because));
+  if (it.prefilled_mc) box.appendChild(el("span", {class: "tag flag"}, "one of the 14 pre-filled contradictions"));
+  for (const [name, x] of [["Labeller A", it.A], ["Labeller B", it.B]]) box.appendChild(el("div", {}, name + ": " + x.answer + " — " + x.reason));
+  if (it.current) box.appendChild(el("div", {class: "mute"}, "Current agreement label: " + it.current));
+  if (a.rulings) {
+    const tr = a.truth ? (a.truth.should_run ? "should run" : "should not run") + " (" + a.truth.source + ")" : "no truth label";
+    box.appendChild(el("div", {class: "mute"}, "Action truth: " + tr));
+    for (const r of a.rulings) box.appendChild(el("pre", {}, r.who + " — " + r.decision + ": " + (r.reason || "(no reason)")));
+  }
+  for (const cb of it.cited_by || []) box.appendChild(el("div", {class: "mute"}, "Quoted by " + cb.who + (cb.as_false ? " (as false)" : " (as support)") + ": “" + cb.span + "”"));
+  return box;
+}
+// A reveal shows rulings and reasons about the whole action, so it opens only when every card on
+// that action has its first answer, and it freezes the blind answers of all of them.
+function siblings(it) { return DATA.items.filter(x => x.write_id === it.write_id); }
+function ready(it) { return siblings(it).every(x => (answers[x.key] || {})[FIRST[x.kind]]); }
+function freeze(x) {
+  const cur = answers[x.key] ||= {};
+  if (!cur.blind) { cur.blind = {...cur}; delete cur.blind.note; delete cur.blind.blind; delete cur.blind.revealed; }
+}
+const refreshers = [];
+function revealer(c, it, a) {
+  const slot = el("div");
+  const btn = el("button", {type: "button"}, "Show the labellers' answers");
+  const hint = el("span", {class: "mute"});
+  const show = () => { slot.replaceChildren(hidden(it, a)); btn.remove(); hint.remove(); };
+  if ((answers[it.key] || {}).revealed) { c.appendChild(slot); show(); return; }
+  const refresh = () => {
+    btn.disabled = !ready(it);
+    const n = siblings(it).length;
+    hint.textContent = btn.disabled && n > 1 ? " Answer the first question on all " + n + " cards for this action first." : "";
+  };
+  btn.addEventListener("click", () => {
+    if (!ready(it)) return;
+    siblings(it).forEach(freeze);
+    answers[it.key].revealed = new Date().toISOString();
+    save(); show();
+  });
+  c.append(btn, hint, slot);
+  refreshers.push(refresh);
+  refresh();
+}
+function render() {
+  refreshers.length = 0;
+  const root = document.getElementById("items");
+  let block = null;
+  DATA.items.forEach((it, idx) => {
+    const a = DATA.actions[it.write_id];
+    if (it.block !== block) { block = it.block; root.appendChild(el("h2", {}, DATA.blocks[block])); if (DATA.block_notes[block]) root.appendChild(el("p", {class: "mute"}, DATA.block_notes[block])); }
+    const c = el("div", {class: "card"});
+    const head = el("div", {class: "mute"}, "#" + (idx + 1) + " · " + it.id + " · " + a.domain + " task " + a.task_id + " · " + it.write_id + " ");
+    c.appendChild(head);
+    if (it.kind === "statement") {
+      if (it.lead_in) c.appendChild(el("div", {class: "lead"}, "Lead-in: " + it.lead_in));
+      c.appendChild(el("div", {class: "stmt"}, "T" + it.turn + ": " + it.text));
+    } else if (it.why) {
+      c.appendChild(el("div", {class: "stmt"}, it.why));
+    }
+    c.appendChild(el("pre", {}, "Proposed action: " + a.tool + " " + JSON.stringify(a.arguments)));
+    c.appendChild(el("div", {class: "mute"}, a.description));
+    c.appendChild(conversation(a, it.turns || [], it.kind === "statement" ? "Conversation (statement's turn highlighted)" : "Conversation" + ((it.turns || []).length ? " (turns highlighted)" : "")));
+    records(c, a);
+    const pick = () => refreshers.forEach(f => f());
+    if (it.kind === "statement") {
+      c.appendChild(radios(it, "mc", "Material contradiction for this action?", ["yes", "no", "unsure"], pick));
+      c.appendChild(radios(it, "material", "Would correcting it plausibly change the yes?", ["yes", "no", "unsure"], pick));
+      c.appendChild(radios(it, "records", "Do the records back it?", ["supported", "contradicted", "not covered", "unsure"], pick));
+    } else {
+      c.appendChild(radios(it, "agreed", it.question, ["yes", "no", "unsure"], pick));
+      const turns = el("input", {type: "text", placeholder: "Turns that carry the agreement or the refusal, e.g. 12, 14"});
+      turns.value = (answers[it.key] || {}).turns || "";
+      turns.addEventListener("input", () => { (answers[it.key] ||= {}).turns = turns.value; save(); });
+      c.appendChild(turns);
+    }
+    const note = el("textarea", {placeholder: "Note (optional)"});
+    note.value = (answers[it.key] || {}).note || "";
+    note.addEventListener("input", () => { (answers[it.key] ||= {}).note = note.value; save(); });
+    c.appendChild(note);
+    revealer(c, it, a);
+    root.appendChild(c);
+  });
+  save();
+}
+function answersText() {
+  return JSON.stringify({sheet: SHEET, items_sha256: DATA.items_sha256, exported: new Date().toISOString(), answers: answers}, null, 1);
+}
+function say(text) { document.getElementById("msg").textContent = text; }
+function showFallback() {
+  document.getElementById("out").value = answersText();
+  document.getElementById("copy").textContent = "Copy";
+  const fb = document.getElementById("fallback");
+  fb.hidden = false;
+  fb.style.scrollMarginTop = (document.querySelector(".bar").offsetHeight + 8) + "px";
+  fb.scrollIntoView({block: "start"});
+  document.getElementById("out").focus({preventScroll: true});
+}
+// In claude.ai the viewer confirms the save (downloads capability); as a local file it downloads
+// directly; otherwise, and always on request, the answers are shown as text to copy.
+const downloads = window.claude && window.claude.use ? window.claude.use("downloads").catch(() => null) : Promise.resolve(undefined);
+document.getElementById("export").addEventListener("click", async () => {
+  const text = answersText(); const name = SHEET + "_answers.json";
+  say("");
+  const d = await downloads;
+  if (d) {
+    try { await d.save({filename: name, data: text}); say("Saved " + name + "."); }
+    catch (e) { if (e && e.code === "declined") say("Not saved."); else showFallback(); }
+    return;
+  }
+  if (d === null) { showFallback(); return; }
+  try {
+    const blob = new Blob([text], {type: "application/json"});
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  } catch (e) { showFallback(); }
+});
+document.getElementById("show-text").addEventListener("click", () => showFallback());
+document.getElementById("copy").addEventListener("click", () => {
+  const box = document.getElementById("out");
+  try { navigator.clipboard.writeText(box.value).then(() => { document.getElementById("copy").textContent = "Copied"; }, () => { box.focus(); box.select(); }); }
+  catch (e) { box.focus(); box.select(); }
+});
+document.getElementById("import").addEventListener("change", ev => {
+  const f = ev.target.files[0]; if (!f) return;
+  f.text().then(t => { let d; try { d = JSON.parse(t); } catch (e) { d = null; } if (!d || typeof d !== "object") { say("That file is not an answers file; nothing was imported."); return; } if (d.sheet !== SHEET) { say("That file is for another sheet; nothing was imported."); return; } if (d.items_sha256 !== DATA.items_sha256) { say("That file is for another version of this sheet; nothing was imported."); return; } say("Imported."); answers = d.answers || {}; document.getElementById("items").replaceChildren(); render(); }, () => say("That file could not be read; nothing was imported."));
+});
+render();
+</script></body></html>

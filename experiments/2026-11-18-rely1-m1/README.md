@@ -130,6 +130,31 @@ to redo, and writes an incomplete batch split in two under `redo/`. `HOWTO.txt` 
 new chat per batch, memory and personalisation off, the prompt pasted unchanged, the model name
 from the picker and the date written down for each batch.
 
+**Labeller A, reasoning run** (Prithvi, 2026-11-19): A is rerun on the same pack and prompt,
+model pinned (`gpt-6.2-sol`), reasoning effort high (`runs/labeller_a_high`); from here on that
+run is labeller A (`results/labels_a.jsonl`). The no-reasoning run is kept as a comparison
+(`results/labels_a_noreasoning.jsonl`) and reported beside it.
+
+**Comparison and Prithvi's reduced sheet** (`compare_labellers.py` →
+`results/labeller_comparison.json`; `reduced_sheet.py` → `review/prithvi_reduced.html`; Prithvi,
+2026-11-19/20). The sheet holds, with no cap: every statement both labellers marked yes; every
+statement where they disagree; the agreement-question disagreements on actions holding a
+statement either marked yes; and the Gaming Mouse case, shown separately with why it is "no
+agreement". Blind first: cards are shuffled under neutral headings, and each hides why it is on
+the sheet, the labellers' answers, the pre-fill tag, rulings and graders' reasons until its first
+question is answered; those answers are exported as `blind`. Statements keep the three questions
+of the first sheet. The first Prithvi sheet (random 40, agreement pre-fills) is superseded; its
+scorer is kept as `score_first_sheet.py`. John's sheet is unchanged.
+
+**Gate** (`score.py`, rewritten before any answer exists): A vs B for statements and the
+agreement question apart (full tables, raw agreement, kappa, agreement on "yes" alone, without
+example-exposed actions, under / over 8,192 tokens), the same for A(no reasoning); Prithvi's
+rulings, blind and final; the 14 pre-fills; John vs the labellers on his 35; "no agreement"
+counts; the anchors; flagged statements in actions both call agreed; the agreement
+disagreements left off the sheet. Final labels (`results/labels_final.jsonl`): where A and B
+agree, their answer, except "both yes", which takes Prithvi's ruling; disagreements he ruled on,
+his ruling; the rest "unresolved".
+
 ## Review sheets
 
 `review/prithvi_sheet.html`: each statement with its lead-in, the proposed action and tool
@@ -169,11 +194,14 @@ Both thresholds are proposals. If people cannot agree, fix the definition or the
 ## Run order
 
 1. M0: `splits.py`, `packets.py` (packet v2, train + dev), `tokens.py`.
-2. `python agreement.py` → `results/agreement.jsonl` (once; needs `review/agreement_prefill.json`).
-3. `python build.py` → `results/label_set.jsonl`, `results/summary.json` (once).
-4. `python sheet.py` → `review/prithvi_sheet.html`, `review/second_sheet.html`.
-5. `python build_pack.py` → `runs/labeller_pack/`, `results/pack_key.json`,
-   `results/pack_summary.json` (once). Labellers A and B run on the pack.
-6. People label; their answer files go to `review/prithvi_answers.json` and
-   `review/second_answers.json`.
-7. `python score.py` → `results/gate.json` (once) → Report.md.
+2. `python agreement.py` → `results/agreement.jsonl`; `python build.py` → `results/label_set.jsonl`.
+3. `python build_pack.py` → the labeller pack, key and summary.
+4. Labeller A: `labeller/run_codex.py --out labeller_a_high --model gpt-6.2-sol --effort high`,
+   then `labeller/finish_a.py` → `results/labels_a.jsonl` (the no-reasoning run:
+   `--run labeller_a --name labels_a_noreasoning`).
+5. Labeller B: `labeller/build_gemini.py`; Prithvi runs the Gemini app; `labeller/finish_b.py` →
+   `results/labels_b.jsonl`.
+6. `python compare_labellers.py` → `results/labeller_comparison.json`.
+7. `python reduced_sheet.py` → `review/prithvi_reduced.html`; Prithvi's export goes to
+   `review/prithvi_reduced_answers.json`, John's download to `review/second_answers.json`.
+8. `python score.py` → `results/gate.json`, `results/labels_final.jsonl` (once) → Report.md.

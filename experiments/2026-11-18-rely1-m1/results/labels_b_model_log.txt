@@ -13,6 +13,6 @@ batch | model name exactly as shown in the picker | date | notes
 12 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | whole batch
 13 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | whole batch
 F1 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | complete 19/19; fill: P045 P046 (02), P079 P080 P081 (03), P109 P111 (04), P172 (06)
-F2 | Deeper analysis – 4 Neon, Thinking level High (confirm) | 2026-11-19 | fill: P137 P139 P140; complete 5/5 (third attempt; two invalid replies set aside)
+F2 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | fill: P137 P139 P140; complete 5/5 (third attempt; two invalid replies set aside)
 F3 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | fill: P024 P025 P050-P052 P077 P078 P100 P101 P125 P147; complete 11/11
 F4 | Deeper analysis – 4 Neon, Thinking level High | 2026-11-19 | fill: P148 P149 P172-P174; complete 5/5
