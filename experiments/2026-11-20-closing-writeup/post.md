@@ -25,7 +25,8 @@ a small model for it. The model did not beat a stock one, but the attempt change
   bad and stops 4 of 56 good on the held-out folds. Sending only its unsure cases to the frontier models, 63 of 174 actions (36%), gives
   55 and 3.
 - **With rules first, the cascade catches 76 of 91 and stops 3 of 56,** and 32 of the 147 graded
-  actions (22%) reach a frontier model. Adding the broad policy judge after it catches 88 or 89 but stops 11 good actions.
+  actions (22%) reach a frontier model. The backend rejected 47 of the 91 bad actions anyway; of the
+  44 that executed, this design catches 40, with the same 3 of 56 good actions stopped. Adding the broad policy judge after it catches 88 or 89 but stops 11 good actions.
 - **The model I set out to build did not beat a stock one.** A fine-tuned open 4B model rose from an
   AUC of 0.43 to 0.81 on the statement question and stayed clearly below stock Jev. I have dropped it.
 - **The two questions catch different things.** The 11 bad actions where both labellers marked the
@@ -215,7 +216,7 @@ It does not show that a small open model cannot learn this.
 
 ## Prior work
 
-I read eight papers in full. What each does and does not do, with the section behind every
+I read twelve papers in full. What each does and does not do, with the section behind every
 statement, is in [prior_work.md](https://github.com/tessra-ai/agent-action-checks/blob/main/experiments/2026-11-20-closing-writeup/prior_work.md).
 
 - **[JevAct](https://arxiv.org/abs/2610.38620)** is the closest. It gates τ²-bench write calls
@@ -224,10 +225,18 @@ statement, is in [prior_work.md](https://github.com/tessra-ai/agent-action-check
   asking whether the customer agreed is not new as a check. Its compiled question categories do not
   include whether the agent's statements are true; it does not compare against a broad judge, does
   not run a cascade, and has no retail domain.
+- **[SABER](https://arxiv.org/abs/2512.07850)** gates writes before they run in τ-bench airline and
+  retail: before each state-changing action it summarises the call and asks the user to confirm. So
+  a consent step at the point of a write is not new either. It asks for consent rather than judging
+  whether the customer already gave it, and it does not check the agent's statements.
 - **[The Agent Knew](https://arxiv.org/abs/2610.17301)** found, in published τ²-bench airline runs,
   a false statement to the customer that made the write look permitted before 26% of 227
   policy-violating writes. That analysis is offline; the paper's own gate reads the agent's internal
   states rather than asking a model about its statements.
+- **[Corrupt success](https://arxiv.org/abs/2603.03116)** (Cao et al.) audits finished τ-bench
+  airline and retail runs with a GPT-5 judge, including whether the agent's statements match what
+  its tools returned. That is close to the statement question, without its test of whether the
+  error would change the customer's yes, and asked after the run rather than before a write.
 - **[τ-bench](https://arxiv.org/abs/2406.12045)** has policies that require explicit confirmation
   before consequential writes, and its reward does not check confirmation; and lists wrong information that changes what the user does only in a manual
   failure analysis.
@@ -239,14 +248,27 @@ statement, is in [prior_work.md](https://github.com/tessra-ai/agent-action-check
   request before execution on its language track, with no conversation with a customer.
   **[Consent Integrity](https://arxiv.org/abs/2606.02668)** binds an approval dialog to the exact
   action, and replaces the agent's narration rather than checking it.
+- **[Wu et al.](https://arxiv.org/abs/2605.11003)**, a position paper without experiments, argue for
+  checking that a step is within the authorized scope before it takes effect, and for checks aimed
+  at specific sources of failure rather than a generic monitor. The idea of narrow checks is theirs;
+  what this post adds is a measurement.
+- **[JEV-as-a-Judge](https://arxiv.org/abs/2609.26550)** is where the cascade comes from: Jev's
+  answer is accepted when it is confident and the rest go to a stronger LLM judge, with the cut-off
+  set on labelled data from the workload. In an offline simulation on held-out pairs from two
+  evaluation benchmarks, pooled, it was 0.9 points more accurate than GPT-6 alone at 41% of its fee,
+  though slightly below GPT-6 on the harder benchmark; a live prospective test on two new workloads
+  matched GPT-6. It judged finished
+  outputs, not agent actions, and says use inside an agent is untested. My version differs in detail
+  (a band around a cut-off chosen under a cap on good actions stopped, and a fallback that also made
+  the labels) and has no held-out test.
 - **[False success](https://arxiv.org/abs/2606.09863)** found that none of the broad task-completion
   judges it evaluated exceeded an AUROC of 0.65, against a task-disjoint AUROC of 0.83 for cheap TF-IDF detectors, after
   the fact, on public τ²-bench runs.
 
-Among the eight papers I read, I found no reported pre-execution check of the agent's statements
-against the records, and none compares two narrow questions with a broad judge on the same actions. I do not claim the
-cascade is new: JevAct cites a preprint on escalating from a decision model when it is unsure, and I
-have not read it.
+Among the twelve papers I read, I found no reported pre-execution check of the agent's statements
+against the records; Cao et al. check them after the run. None compares two narrow questions with a
+broad judge on the same actions, though Wu et al. argue for narrow checks. The cascade is not mine:
+it is JEV-as-a-Judge's design, applied here to agent actions before they run.
 
 ## What is still open
 

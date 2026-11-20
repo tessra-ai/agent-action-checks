@@ -2,7 +2,7 @@
 
     python experiments/2026-11-20-closing-writeup/check_prior_work.py [--dir PAPERS_DIR]
 
-Downloads the eight PDFs from arXiv into PAPERS_DIR (default: a folder next to this file that git
+Downloads the cited PDFs from arXiv into PAPERS_DIR (default: a folder next to this file that git
 ignores) and converts them with `pdftotext -layout`. The papers are not committed. A quote matches
 when it occurs in a paper's text after whitespace, typographic quotes, ligatures and line-end
 hyphenation are normalised. Two-column pages interleave in the extracted text, so the check also
@@ -34,6 +34,10 @@ PAPERS = {
     6: "2610.05532v1",
     7: "2606.09863v1",
     8: "2610.27548v2",
+    9: "2609.26550v6",
+    10: "2512.07850v1",
+    11: "2603.03116v1",
+    12: "2605.11003v1",
 }
 
 
