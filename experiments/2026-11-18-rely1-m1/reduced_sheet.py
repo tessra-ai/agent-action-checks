@@ -9,10 +9,14 @@ Items come from `results/labeller_comparison.json` (compare_labellers.py), no ca
 4. the Gaming Mouse case, shown separately with why it is "no agreement" and its messages.
 Items among the 14 pre-filled contradictions are tagged.
 
-Blind first (Prithvi, 2026-11-20): the labellers' answers and reasons, the rulings and the graders'
-reasons are hidden on each card until its first question is answered; the answers given then are
-exported as `blind`, beside any later change. Statements keep the three questions of the first
-sheet. Writes review/prithvi_reduced.html and review/prithvi_reduced_artifact.html.
+Adjudication (Prithvi, 2026-11-20, replacing the blind-first layout, which was too slow to use):
+each card shows the sentence (or, for agreement, the customer's last message), the call in plain
+words, the record that bears on it, and both labellers' verdicts and reasons; one click answers
+it ("adjudicated (labellers' answers shown)" in the export). Conversation, full ledger, policy,
+rulings and graders' reasons are folded under "Show details". Groups in order: both said yes,
+statement disagreements, agreement disagreements, the Gaming Mouse case. Answers already given
+on the blind layout carry over (same items, same content) and keep their blind record.
+Writes review/prithvi_reduced.html and review/prithvi_reduced_artifact.html.
 """
 
 from __future__ import annotations
@@ -27,34 +31,50 @@ HERE = Path(__file__).parent
 M0 = HERE.parent / "2026-11-18-rely1-m0"
 sys.path.insert(0, str(HERE))
 from build import rulings as load_rulings  # noqa: E402
-from friend import action_tokens, focused, lookup_turns, norm_tokens, relevant  # noqa: E402
+from friend import (  # noqa: E402
+    action_text,
+    action_tokens,
+    focused,
+    lookup_turns,
+    norm_tokens,
+    relevant,
+)
 from sheet import DEFINITION, action, as_artifact  # noqa: E402
 
 SHEET = "prithvi_reduced"
-PAGE = (HERE / "reduced_template.html").read_text()
-# Neutral headings and a seeded shuffle inside each block: neither the heading nor the position
-# says which group an item came from (both yes, disagreement); that shows only after the blind
-# answer (Codex review, 2026-11-20).
+PAGE = (HERE / "adjudicate_template.html").read_text()
+GROUPS = {
+    "both_yes": {
+        "title": "1. Both labellers say: contradiction",
+        "note": "Confirm or reject. Keys: 1 confirm, 2 reject, 3 unsure; J / K next / previous.",
+        "buttons": [["yes", "Confirm: contradiction"], ["no", "Reject: not a contradiction"],
+                    ["unsure", "Unsure"]],
+    },
+    "statement_disagreement": {
+        "title": "2. The labellers disagree on the statement",
+        "note": "Pick the right verdict. Keys: 1 contradiction, 2 not a contradiction, 3 unsure.",
+        "buttons": [["yes", "Contradiction"], ["no", "Not a contradiction"],
+                    ["unsure", "Unsure"]],
+    },
+    "agreement_disagreement": {
+        "title": "3. The labellers disagree on whether the customer agreed",
+        "note": "Did the customer agree to this exact call? Keys: 1 agreed, 2 not, 3 unsure.",
+        "buttons": [["yes", "Agreed"], ["no", "Not agreed"], ["unsure", "Unsure"]],
+    },
+    "gaming_mouse": {
+        "title": "4. The Gaming Mouse case (shown separately)",
+        "note": "An anchor case, currently 'no agreement' (why, below), so it has no statement "
+        "questions. Confirm or change. Keys: 1 agreed, 2 not agreed, 3 unsure.",
+        "buttons": [["yes", "Agreed"], ["no", "Not agreed"], ["unsure", "Unsure"]],
+    },
+}  # fmt: skip
+# Within each group, cards of one action stay together; actions in a seeded order.
 SEED = 20261118
-# Cards are grouped by action (one conversation and ledger read once), actions in a seeded
-# shuffle, statements before the action's agreement question (Prithvi, 2026-11-20).
-BLOCKS = {
-    "actions": "Actions",
-    "gaming_mouse": "Shown separately: the Gaming Mouse case",
-}
 WHY = {
     "both yes": "both labellers marked it a material contradiction",
     "statement disagreement": "the labellers disagree",
     "agreement disagreement, action has a flagged statement": "the labellers disagree on "
     "agreement, and the action holds a statement either labeller flagged",
-}
-BLOCK_NOTES = {
-    "actions": "Each action's cards are together: read its conversation once. Keys: Y / N / U "
-    "answer the current card's first question, Enter shows the labellers' answers when allowed, "
-    "J / K move to the next / previous card.",
-    "gaming_mouse": "An anchor case. It has no statement questions because its action is labelled "
-    "'no agreement' (reason below) and such actions are left out of the statement labels. Confirm "
-    "or change that label.",
 }
 QUESTIONS = {
     "statement": [
@@ -70,9 +90,6 @@ QUESTIONS = {
         ("agreed", "Did the customer agree to this exact action?", ["yes", "no", "unsure"])
     ],
 }
-for _q in QUESTIONS["statement"]:  # the template must render each question exactly so
-    if f'"{_q[0]}", "{_q[1]}", [{", ".join(json.dumps(o) for o in _q[2])}]' not in PAGE:
-        raise SystemExit(f"reduced_template.html does not render {_q[0]!r} as QUESTIONS says")
 
 
 def key_records(packet: dict, text: str, lead_in: str | None, turn: int) -> list[dict]:
@@ -127,11 +144,19 @@ def main() -> None:
     for x in sheet["items"]:
         i, w = x["id"], x["write_id"]
         block = "actions"
+        group = {"both yes": "both_yes", "statement disagreement": "statement_disagreement"}.get(
+            x["why"], "agreement_disagreement"
+        )
+        p_ = packets[w]
+        cust = [t["text"] for t in p_["conversation"] if t["role"] == "customer"]
         it = {
             "id": i,
             "key": i,
             "write_id": w,
             "block": block,
+            "group": group,
+            "action_words": action_text(p_["proposed_action"]),
+            "last_customer": cust[-1] if cust else "",
             "prefilled_mc": x["prefilled_mc"],
             "selected_because": WHY[x["why"]],
             "A": labeller(a, i),
@@ -176,6 +201,13 @@ def main() -> None:
             "key": gid,
             "write_id": gm["write_id"],
             "block": "gaming_mouse",
+            "group": "gaming_mouse",
+            "action_words": action_text(packets[gm["write_id"]]["proposed_action"]),
+            "last_customer": [
+                t["text"]
+                for t in packets[gm["write_id"]]["conversation"]
+                if t["role"] == "customer"
+            ][-1],
             "kind": "agreement",
             "prefilled_mc": False,
             "question": QUESTIONS["agreement"][0][1] + " (current label: no agreement)",
@@ -194,8 +226,8 @@ def main() -> None:
     )
     import random
 
-    order = list(BLOCKS)
-    actions = sorted({x["write_id"] for x in items if x["block"] == "actions"})
+    order = list(GROUPS)
+    actions = sorted({x["write_id"] for x in items})
     random.Random(SEED).shuffle(actions)
     rank = {w: n for n, w in enumerate(actions)}
 
@@ -203,19 +235,18 @@ def main() -> None:
         tail = i.split(".")[1]
         return int(tail[1:]) if tail.startswith("S") else 10_000
 
-    items.sort(key=lambda x: (order.index(x["block"]), rank.get(x["write_id"], 0), qnum(x["id"])))
+    items.sort(key=lambda x: (order.index(x["group"]), rank[x["write_id"]], qnum(x["id"])))
     acts = {
         w: action(packets[w], rulings.get(w, [])) for w in sorted({x["write_id"] for x in items})
     }
     policy = {p["domain"]: p["policy"] for p in packets.values()}
     fingerprint = hashlib.sha256(
-        json.dumps([items, acts, policy, DEFINITION, QUESTIONS], sort_keys=True).encode()
+        json.dumps([items, acts, policy, DEFINITION, QUESTIONS, GROUPS], sort_keys=True).encode()
     ).hexdigest()
     data = {
         "sheet": SHEET,
         "items": items,
-        "blocks": BLOCKS,
-        "block_notes": BLOCK_NOTES,
+        "groups": GROUPS,
         "actions": acts,
         "policy": policy,
         "items_sha256": fingerprint,
@@ -230,20 +261,19 @@ def main() -> None:
             )
         },
     }
-    counts = {
-        "statement": sum(1 for x in items if x["kind"] == "statement"),
-        "agreement": sum(1 for x in items if x["block"] == "actions" and x["kind"] == "agreement"),
-    }
+    counts = {g: sum(1 for x in items if x["group"] == g) for g in GROUPS}
     intro = (
-        f"{len(items)} items: {counts['statement']} statements, {counts['agreement']} agreement "
-        "questions and the Gaming Mouse case, picked from where two model labellers flagged a "
-        "contradiction or disagreed (each card says which, after your first answer). Labeller A: "
-        "Codex, gpt-6.2-sol, reasoning high. Labeller B: Gemini app, 4 Neon, thinking High. Your "
-        "answers are final. They stay in this browser until you export them."
+        f"{len(items)} quick checks: {counts['both_yes']} statements both model labellers call a "
+        f"contradiction (confirm or reject), {counts['statement_disagreement']} they disagree on, "
+        f"{counts['agreement_disagreement']} agreement questions they disagree on, and the Gaming "
+        "Mouse case. Each card shows what the agent said, the call, the record that bears on it "
+        "and both labellers' verdicts; one click answers it and moves on. Details are folded "
+        "under each card. Labeller A: Codex, gpt-6.2-sol, reasoning high. Labeller B: Gemini app, "
+        "4 Neon, thinking High. Answers stay in this browser until you export them."
     )
     blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     page = (
-        PAGE.replace("__TITLE__", html.escape("Rely-1 M1 review: model labels (Prithvi)"))
+        PAGE.replace("__TITLE__", html.escape("Rely-1 M1: check the model labels"))
         .replace("__INTRO__", html.escape(intro))
         .replace("__DEF__", "".join(f"<li>{d}</li>" for d in DEFINITION))
         .replace("__SHEET__", SHEET)

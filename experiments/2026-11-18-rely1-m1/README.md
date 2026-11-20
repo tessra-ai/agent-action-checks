@@ -140,11 +140,14 @@ run is labeller A (`results/labels_a.jsonl`). The no-reasoning run is kept as a 
 2026-11-19/20). The sheet holds, with no cap: every statement both labellers marked yes; every
 statement where they disagree; the agreement-question disagreements on actions holding a
 statement either marked yes; and the Gaming Mouse case, shown separately with why it is "no
-agreement". Blind first: cards are shuffled under neutral headings, and each hides why it is on
-the sheet, the labellers' answers, the pre-fill tag, rulings and graders' reasons until its first
-question is answered; those answers are exported as `blind`. Statements keep the three questions
-of the first sheet. The first Prithvi sheet (random 40, agreement pre-fills) is superseded; its
-scorer is kept as `score_first_sheet.py`. John's sheet is unchanged.
+agreement". Adjudication (Prithvi, 2026-11-20; it replaced a blind-first layout that was too slow
+to use): each card shows what the agent said (or the customer's last message), both labellers'
+verdicts and reasons, the call in plain words and the record that bears on it; one click answers
+it. Conversation, full ledger, policy, rulings and graders' reasons are folded under each card.
+Rulings are therefore made with the labellers' answers visible, and the report says so; answers
+carried over from the blind layout are counted as blind. Only the material-contradiction
+question is asked (the two explaining questions are dropped). The first Prithvi sheet (random 40,
+agreement pre-fills) is superseded; its scorer is kept as `score_first_sheet.py`. John's sheet is unchanged.
 
 **Gate** (`score.py`, rewritten before any answer exists): A vs B for statements and the
 agreement question apart (full tables, raw agreement, kappa, agreement on "yes" alone, without

@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rely-1 Label Check</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1d1b;--mute:#6b6a65;--line:#e3e0d8;--card:#fff;--hi:#fff3c4;--accent:#2f5d8a;--yes:#2e7d4f;--no:#a63a32;--rec:#eef4fb}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#191917;--fg:#ecebe6;--mute:#a19f97;--line:#34332f;--card:#22221f;--hi:#4a4120;--accent:#8fb6dd;--yes:#7cc79a;--no:#e38c84;--rec:#1e2b38;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#191917;--fg:#ecebe6;--mute:#a19f97;--line:#34332f;--card:#22221f;--hi:#4a4120;--accent:#8fb6dd;--yes:#7cc79a;--no:#e38c84;--rec:#1e2b38;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif;overflow-wrap:anywhere}
+main{max-width:760px;margin:0 auto;padding-block:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1{font-size:20px;margin:8px 0}
+h2{font-size:17px;margin:26px 0 4px}
+.mute{color:var(--mute);font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0}
+.card.cur{outline:2px solid var(--accent);outline-offset:2px}
+.card.done{opacity:.72}
+.lbl{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--mute);margin:10px 0 2px}
+.said{font-size:17px;background:var(--hi);padding:8px 10px;border-radius:6px}
+.box{background:var(--rec);padding:6px 10px;border-radius:6px;white-space:pre-wrap;font-size:14px}
+.v{margin:4px 0;font-size:15px}
+.v b.yes{color:var(--yes)} .v b.no{color:var(--no)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.btns button{flex:1 1 150px;min-height:44px;font:inherit;font-weight:600;border-radius:8px;border:2px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.btns button.on{border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
+details{margin:8px 0} summary{cursor:pointer;color:var(--accent);font-size:14px}
+pre{white-space:pre-wrap;word-break:break-word;font-size:12.5px;margin:4px 0}
+.turn{padding:2px 6px;border-left:3px solid transparent;font-size:13.5px}
+.turn.on{border-left-color:var(--accent);background:var(--hi)}
+textarea{width:100%;box-sizing:border-box;min-height:40px;font:inherit;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--line);padding:8px 0;z-index:2;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.bar button{font:inherit;padding:4px 10px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.msg{font-size:13px;color:var(--accent)}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin-left:6px}
+</style></head><body><main>
+<h1>__TITLE__</h1>
+<p class="mute">__INTRO__</p>
+<details class="card"><summary>The rule (open if you need it)</summary><ul>__DEF__</ul></details>
+<div class="bar"><span id="progress"></span>
+<button id="export">Export answers</button>
+<button id="show-text" type="button">Show answers as text</button>
+<label class="mute">Import <input type="file" id="import" accept="application/json"></label>
+<span class="msg" id="msg" role="status"></span></div>
+<div class="card" id="fallback" hidden><p class="mute">Your answers as text. Save them as <code>__SHEET___answers.json</code>, or paste them to Claude. This box updates as you answer.</p>
+<textarea id="out" readonly aria-label="Your answers as text" style="min-height:140px;font:12px/1.4 ui-monospace,Menlo,monospace"></textarea>
+<button id="copy" type="button">Copy</button></div>
+<div id="items"></div>
+</main>
+<script>
+const DATA = __DATA__;
+const PRIOR = __PRIOR__;  // fingerprints of earlier versions of this sheet (same items)
+const SHEET = DATA.sheet;
+const KEY = "rely1-m1-" + SHEET + "-" + DATA.items_sha256;
+const FIRST = {statement: "mc", agreement: "agreed"};
+let canSave = true, answers = {}, carried = 0;
+try { answers = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { answers = {}; }
+try {
+  for (const sha of PRIOR) {
+    const old = JSON.parse(localStorage.getItem("rely1-m1-" + SHEET + "-" + sha) || "{}");
+    for (const it of DATA.items) if (old[it.key] && !answers[it.key]) { answers[it.key] = old[it.key]; carried++; }
+  }
+} catch (e) {}
+function complete(it) { return !!(answers[it.key] || {})[FIRST[it.kind]]; }
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch (e) { canSave = false; }
+  const fb = document.getElementById("fallback");
+  if (fb && !fb.hidden) { document.getElementById("out").value = answersText(); document.getElementById("copy").textContent = "Copy"; }
+  const done = DATA.items.filter(complete).length;
+  document.getElementById("progress").textContent = done + " of " + DATA.items.length + " done" + (carried ? " · " + carried + " carried over" : "") + (canSave ? "" : " · this browser is not saving: export before closing");
+}
+function el(tag, attrs, text) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) e.setAttribute(k, v);
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+const WORD = {yes: "contradiction", no: "not a contradiction", not_sure: "not sure", agreed: "agreed", not_agreed: "not agreed"};
+function verdict(name, x) {
+  const d = el("div", {class: "v"});
+  d.appendChild(el("span", {}, name + ": "));
+  d.appendChild(el("b", {class: x.answer === "yes" || x.answer === "not_agreed" ? "no" : x.answer === "no" || x.answer === "agreed" ? "yes" : ""}, (WORD[x.answer] || x.answer).toUpperCase()));
+  d.appendChild(el("span", {}, " — " + x.reason));
+  return d;
+}
+function details(it, a) {
+  const d = el("details"); d.appendChild(el("summary", {}, "Show details: conversation, all records, rules"));
+  const turn = it.kind === "statement" ? it.turn : a.conversation.length;
+  a.conversation.forEach((t, i) => {
+    const line = el("div", {class: "turn" + (i + 1 === turn || (it.turns || []).includes(i + 1) ? " on" : "")});
+    line.textContent = "[T" + (i + 1) + "] " + (t.role === "customer" ? "customer" : "agent") + ": " + t.text + (t.refs.length ? " (lookups " + t.refs.map(n => "L" + n).join(", ") + ")" : "");
+    d.appendChild(line);
+  });
+  d.appendChild(el("div", {class: "lbl"}, "Proposed call (exact)"));
+  d.appendChild(el("pre", {}, a.tool + " " + JSON.stringify(a.arguments) + "\n" + a.description));
+  d.appendChild(el("div", {class: "lbl"}, "Evidence ledger (" + a.ledger.length + " lookups)"));
+  for (const e of a.ledger) d.appendChild(el("pre", {}, "[L" + e.n + "] " + e.tool + " " + JSON.stringify(e.arguments) + " ->" + (e.error ? " ERROR " : " ") + e.result));
+  if (a.rulings && a.rulings.length) {
+    d.appendChild(el("div", {class: "lbl"}, "Earlier rulings and graders' reasons"));
+    for (const r of a.rulings) d.appendChild(el("pre", {}, r.who + " — " + r.decision + ": " + (r.reason || "(no reason)")));
+  }
+  if (it.current) d.appendChild(el("div", {class: "mute"}, "Current agreement label: " + it.current));
+  const pol = el("details"); pol.appendChild(el("summary", {}, "Company policy (" + a.domain + ")"));
+  pol.appendChild(el("pre", {}, DATA.policy[a.domain])); d.appendChild(pol);
+  return d;
+}
+// A record trimmed to its first 8 matching lines; the rest folded (full lookup under details).
+function recordBox(r, it_kind) {
+  const lines = r.focus.split("\n").filter(l => !/^\.\.\. \(\d+ more lines? under Show more\)$/.test(l));
+  const wrap = el("div");
+  const when = r.when ? " — " + r.made + (it_kind === "statement" ? ", " + r.when + " the sentence" : "") : "";
+  wrap.appendChild(el("div", {class: "box"}, "[L" + r.n + "] " + r.tool + when + (r.error ? " (ERROR: the lookup failed)" : "") + "\n" + lines.slice(0, 8).join("\n")));
+  if (lines.length > 8) {
+    const d = el("details"); d.appendChild(el("summary", {}, (lines.length - 8) + " more lines"));
+    d.appendChild(el("div", {class: "box"}, lines.slice(8).join("\n"))); wrap.appendChild(d);
+  }
+  return wrap;
+}
+const cardEls = [];
+let current = 0;
+function setCurrent(i, scroll) {
+  if (i < 0 || i >= cardEls.length) return;
+  cardEls[current] && cardEls[current].classList.remove("cur");
+  current = i; cardEls[i].classList.add("cur");
+  if (scroll) { cardEls[i].style.scrollMarginTop = (document.querySelector(".bar").offsetHeight + 8) + "px"; cardEls[i].scrollIntoView({block: "start"}); }
+}
+function nextOpen(from) {
+  for (let i = from + 1; i < DATA.items.length; i++) if (!complete(DATA.items[i])) return i;
+  return -1;
+}
+function choose(idx, value) {
+  const it = DATA.items[idx];
+  const cur = answers[it.key] ||= {};
+  // An answer given earlier on the blind layout keeps its blind record before it is changed.
+  if (cur[FIRST[it.kind]] && !cur.mode && !cur.blind) { cur.blind = {...cur}; delete cur.blind.note; }
+  cur[FIRST[it.kind]] = value;
+  cur.mode = "adjudicated (labellers' answers shown)";
+  save();
+  for (const b of cardEls[idx].querySelectorAll(".btns button")) b.classList.toggle("on", b.dataset.v === value);
+  cardEls[idx].classList.add("done");
+  const n = nextOpen(idx);
+  if (n >= 0) setCurrent(n, true);
+}
+function render() {
+  const root = document.getElementById("items");
+  cardEls.length = 0;
+  let group = null;
+  DATA.items.forEach((it, idx) => {
+    const a = DATA.actions[it.write_id];
+    if (it.group !== group) { group = it.group; root.appendChild(el("h2", {}, DATA.groups[group].title)); root.appendChild(el("p", {class: "mute"}, DATA.groups[group].note)); }
+    const c = el("div", {class: "card" + (complete(it) ? " done" : "")});
+    const head = el("div", {class: "mute"}, "#" + (idx + 1) + " of " + DATA.items.length + " · " + a.domain + " task " + a.task_id);
+    if (it.prefilled_mc) head.appendChild(el("span", {class: "tag"}, "one of the 14 pre-fills"));
+    c.appendChild(head);
+    if (it.kind === "statement") {
+      c.appendChild(el("div", {class: "lbl"}, "The agent said (T" + it.turn + ")"));
+      const s = el("div", {class: "said"});
+      if (it.lead_in) s.appendChild(el("div", {class: "mute"}, it.lead_in));
+      s.appendChild(document.createTextNode(it.text));
+      c.appendChild(s);
+    } else {
+      c.appendChild(el("div", {class: "lbl"}, "Customer's last message"));
+      c.appendChild(el("div", {class: "said"}, it.last_customer || ""));
+      if (it.why) c.appendChild(el("div", {class: "mute"}, it.why));
+    }
+    c.appendChild(el("div", {class: "lbl"}, "What the two labellers said"));
+    c.appendChild(verdict("Labeller A", it.A));
+    c.appendChild(verdict("Labeller B", it.B));
+    c.appendChild(el("div", {class: "lbl"}, "The call the agent is about to make"));
+    c.appendChild(el("div", {class: "box"}, it.action_words));
+    if ((it.records || []).length) {
+      c.appendChild(el("div", {class: "lbl"}, "The record that bears on it"));
+      c.appendChild(recordBox(it.records[0], it.kind));
+      if (it.records.length > 1) {
+        const more = el("details"); more.appendChild(el("summary", {}, (it.records.length - 1) + " more matching record" + (it.records.length > 2 ? "s" : "")));
+        for (const x of it.records.slice(1)) more.appendChild(recordBox(x, it.kind));
+        c.appendChild(more);
+      }
+    }
+    const btns = el("div", {class: "btns"});
+    for (const [v, label] of DATA.groups[it.group].buttons) {
+      const b = el("button", {type: "button"}, label); b.dataset.v = v;
+      if ((answers[it.key] || {})[FIRST[it.kind]] === v) b.classList.add("on");
+      b.addEventListener("click", ev => { ev.stopPropagation(); setCurrent(idx, false); choose(idx, v); });
+      btns.appendChild(b);
+    }
+    c.appendChild(btns);
+    const extra = el("details"); extra.appendChild(el("summary", {}, "Add a note"));
+    const note = el("textarea", {placeholder: "Note (optional)"});
+    note.value = (answers[it.key] || {}).note || "";
+    note.addEventListener("input", () => { (answers[it.key] ||= {}).note = note.value; save(); });
+    extra.appendChild(note); c.appendChild(extra);
+    c.appendChild(details(it, a));
+    c.addEventListener("click", () => setCurrent(idx, false));
+    c.addEventListener("focusin", () => setCurrent(idx, false));
+    root.appendChild(c);
+    cardEls[idx] = c;
+  });
+  save();
+}
+// Keys: 1 / 2 / 3 press the card's buttons; J / K next / previous card.
+document.addEventListener("keydown", ev => {
+  if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
+  const tag = (ev.target.tagName || "").toLowerCase();
+  if (tag === "textarea" || tag === "input" || tag === "select") return;
+  const k = ev.key.toLowerCase();
+  if (k === "j") { setCurrent(current + 1, true); ev.preventDefault(); }
+  else if (k === "k") { setCurrent(current - 1, true); ev.preventDefault(); }
+  else if (["1", "2", "3"].includes(k)) {
+    const opts = DATA.groups[DATA.items[current].group].buttons;
+    const o = opts[Number(k) - 1];
+    if (o) { choose(current, o[0]); ev.preventDefault(); }
+  }
+});
+function answersText() {
+  return JSON.stringify({sheet: SHEET, items_sha256: DATA.items_sha256, exported: new Date().toISOString(), answers: answers}, null, 1);
+}
+function say(text) { document.getElementById("msg").textContent = text; }
+function showFallback() {
+  document.getElementById("out").value = answersText();
+  document.getElementById("copy").textContent = "Copy";
+  const fb = document.getElementById("fallback");
+  fb.hidden = false;
+  fb.style.scrollMarginTop = (document.querySelector(".bar").offsetHeight + 8) + "px";
+  fb.scrollIntoView({block: "start"});
+  document.getElementById("out").focus({preventScroll: true});
+}
+// In claude.ai the viewer confirms the save (downloads capability); as a local file it downloads
+// directly; otherwise, and always on request, the answers are shown as text to copy.
+const downloads = window.claude && window.claude.use ? window.claude.use("downloads").catch(() => null) : Promise.resolve(undefined);
+document.getElementById("export").addEventListener("click", async () => {
+  const text = answersText(); const name = SHEET + "_answers.json";
+  say("");
+  const d = await downloads;
+  if (d) {
+    try { await d.save({filename: name, data: text}); say("Saved " + name + "."); }
+    catch (e) { if (e && e.code === "declined") say("Not saved."); else showFallback(); }
+    return;
+  }
+  if (d === null) { showFallback(); return; }
+  try {
+    const blob = new Blob([text], {type: "application/json"});
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  } catch (e) { showFallback(); }
+});
+document.getElementById("show-text").addEventListener("click", () => showFallback());
+document.getElementById("copy").addEventListener("click", () => {
+  const box = document.getElementById("out");
+  try { navigator.clipboard.writeText(box.value).then(() => { document.getElementById("copy").textContent = "Copied"; }, () => { box.focus(); box.select(); }); }
+  catch (e) { box.focus(); box.select(); }
+});
+document.getElementById("import").addEventListener("change", ev => {
+  const f = ev.target.files[0]; if (!f) return;
+  f.text().then(t => { let d; try { d = JSON.parse(t); } catch (e) { d = null; } if (!d || typeof d !== "object") { say("That file is not an answers file; nothing was imported."); return; } if (d.sheet !== SHEET) { say("That file is for another sheet; nothing was imported."); return; } if (d.items_sha256 !== DATA.items_sha256 && !PRIOR.includes(d.items_sha256)) { say("That file is for another version of this sheet; nothing was imported."); return; } say("Imported."); answers = d.answers || {}; document.getElementById("items").replaceChildren(); render(); setCurrent(Math.max(0, DATA.items.findIndex(x => !complete(x))), true); }, () => say("That file could not be read; nothing was imported."));
+});
+render();
+setCurrent(Math.max(0, DATA.items.findIndex(x => !complete(x))), true);
+</script></body></html>

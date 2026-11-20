@@ -187,9 +187,19 @@ def score(cmp_: dict, sheet: dict, second: dict, pa: dict, sa: dict) -> tuple[di
         ],
     }
     rulings = {}
+
+    # Adjudicated answers (Prithvi, 2026-11-20) were given with the labellers' answers visible.
+    # Only answers carried over from the blind layout count as blind: those with a frozen blind
+    # record, or with no mode (given on the blind layout before any reveal).
+    def is_blind(k: str) -> bool:
+        ans = p.get(k) or {}
+        return bool(ans.get("blind")) or not str(ans.get("mode", "")).startswith("adjudicated")
+
     for when in ("blind", "final"):
         blind = when == "blind"
-        bt = [ruling(k, blind) for k in groups["both_yes"]]
+        pick = (lambda ks: [k for k in ks if is_blind(k)]) if blind else (lambda ks: ks)
+        groups_now = {g: pick(ks) for g, ks in groups.items()}
+        bt = [ruling(k, blind) for k in groups_now["both_yes"]]
         k_yes = sum(r == "yes" for r in bt)
         rulings[when] = {
             "both_yes_confirmed": {
@@ -202,13 +212,13 @@ def score(cmp_: dict, sheet: dict, second: dict, pa: dict, sa: dict) -> tuple[di
             "statement_disagreements": tally(
                 [
                     (ruling(k, blind), a[k]["answer"], b[k]["answer"])
-                    for k in groups["statement_disagreement"]
+                    for k in groups_now["statement_disagreement"]
                 ]
             ),
             "agreement_disagreements": tally(
                 [
                     (ruling(k, blind), a[k]["answer"], b[k]["answer"])
-                    for k in groups["agreement_disagreement"]
+                    for k in groups_now["agreement_disagreement"]
                 ]
             ),
         }
@@ -221,6 +231,8 @@ def score(cmp_: dict, sheet: dict, second: dict, pa: dict, sa: dict) -> tuple[di
         "prithvi_initial_not_blind": ruling(gid, True),
         "prithvi_final": ruling(gid, False),
     }
+    rulings["answered_with_labellers_visible"] = sum(1 for k in items if not is_blind(k))
+    rulings["answered_blind"] = sum(1 for k in items if is_blind(k))
     rulings["changed_after_reveal"] = sum(
         1 for k in items if (p.get(k) or {}).get("blind") and ruling(k, True) != ruling(k, False)
     )
