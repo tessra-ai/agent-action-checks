@@ -367,3 +367,57 @@ def test_gemini_batches_cover_the_pack_unchanged_and_never_mix_kinds():
     assert (pkg / "prompt.txt").read_bytes() == (
         HERE / "runs/labeller_pack/prompt.txt"
     ).read_bytes()
+
+
+def test_kev_pilot_value_swaps_are_wrong_and_plausible():
+    import random
+
+    kp = _load("kev_pilot")
+    rng = random.Random(1)
+    led = '{"r": ["#W1234567", "#W7654321", "#W0000000"], "d": "2024-05-20", "a": 127.0}'
+    assert kp.grounded("money", "$127", led) and not kp.grounded("money", "$12", led)
+    for _ in range(20):
+        new = kp.swap_value("money", "$4,777.75", led, rng)
+        assert new.startswith("$") and "," in new and new != "$4,777.75" and new.count(".") == 1
+        assert kp.swap_value("order", "#W1234567", led, rng) == "#W7654321"  # never the zeros
+        d = kp.swap_value("date", "2024-05-20", led, rng)
+        assert d != "2024-05-20" and d.startswith("2024-05-")
+    assert kp.swap_value("item", "1234567890", led, rng) is None
+
+
+def test_kev_pilot_parsers_refuse_bad_replies():
+    import pytest
+
+    kp = _load("kev_pilot")
+    g = kp.parse_gen(
+        'x {"flip": null, "rephrase": {"unit": "T6.2", "new_text": "Hi."}, "consent": null} y'
+    )
+    assert g["rephrase"]["unit"] == "T6.2"
+    with pytest.raises(ValueError):
+        kp.parse_gen('{"flip": null, "rephrase": null}')
+    ids = {"P1.O1.S": "S", "P1.V1.A": "A"}
+    ok = (
+        '[{"id": "P1.O1.S", "answer": "no", "reason": "r"}, '
+        '{"id": "P1.V1.A", "answer": "not_agreed", "reason": "r"}]'
+    )
+    assert kp.parse_check(ok, ids) == {"P1.O1.S": "no", "P1.V1.A": "not_agreed"}
+    with pytest.raises(ValueError):
+        kp.parse_check(ok.replace("not_agreed", "yes"), ids)
+    with pytest.raises(ValueError):
+        kp.parse_check('[{"id": "P1.O1.S", "answer": "no", "reason": "r"}]', ids)
+
+
+def test_kev_pilot_cutoff_rule_and_auc():
+    kp = _load("kev_pilot")
+    assert kp.auc([0.9, 0.8], [0.1, 0.8]) == 0.875
+    acts = [
+        {"pid": "B1", "ruling": "bad", "stmts": {"B1.S1": 0}},
+        {"pid": "B2", "ruling": "bad", "stmts": {}},
+        {"pid": "G1", "ruling": "good", "stmts": {"G1.S1": 0}},
+    ]
+    ps = {"B1.S1": 0.65, "G1.S1": 0.35}
+    pa = {"B1": 0.9, "B2": 0.25, "G1": 0.9}
+    s, g = kp.choose(acts, lambda x, s, g: kp.stopped(x, ps, pa[x["pid"]], s, g))
+    # both bad stopped, the good one not: statements at 0.4-0.6 and agreement at 0.3-0.9 all do it;
+    # the tie goes to the strictest (highest statement cut-off, lowest agreement cut-off)
+    assert (s, g) == (0.6, 0.3)

@@ -1,0 +1,147 @@
+--- /home/user/kev/skills/kev-finetune/scripts/kev_modal.py	2026-11-18 21:54:16.411129915 +0000
++++ labeller/kev_modal_rely1.py	2026-11-20 08:58:32.465452241 +0000
+@@ -1,5 +1,12 @@
+ """Fine-tune, calibrate, evaluate, serve and publish a Kev decision model on Modal from your own labelled JSONL.
+ 
++RELY-1 KEV PILOT COPY of skills/kev-finetune/scripts/kev_modal.py (kev 2074cc4), patched for long states:
++--max-state is passed to kev.train (default 7552, Kev-4B v1.0's own training length); calibration and development
++are scored at the serving limits (kev.suite.SERVING_CONTEXT) instead of the 384-token training default, which would
++reject every packet; triton is pinned to 3.8.0 (3.9 breaks flash-linear-attention 0.5.2); rows of records marked
++`source: unknowable` (placeholder labels) are left out of the per-question summary and the error list. Nothing
++else changes.
++
+     modal run scripts/kev_modal.py::validate --data data/support --init-from jaredpalmer/kev-4b     # token limits, CPU only
+     modal run scripts/kev_modal.py::train --data data/support --name support-v1                         # delta fine-tune + calibrate + score
+     modal run scripts/kev_modal.py::evaluate --run jaredpalmer/kev-4b --data data/support --name support-base
+@@ -52,7 +59,7 @@
+     .uv_pip_install(f"kev[serve] @ file://{KEV_ROOT}")
+     # Gated DeltaNet kernels for the Qwen3.5 hybrid backbones; torch 2.8 pins triton 3.4, fla needs >= 3.7.1 on Hopper.
+     # Pinned: the endpoint's fused kernels (kev.fused_qwen35) patch this fla's kernel launches and refuse any other version
+-    .uv_pip_install("flash-linear-attention==0.5.2", "triton>=3.7.1")
++    .uv_pip_install("flash-linear-attention==0.5.2", "triton==3.8.0")
+     .env({"HF_HOME": HF, "HF_HUB_DISABLE_PROGRESS_BARS": "1", "TOKENIZERS_PARALLELISM": "false", "PYTHONUNBUFFERED": "1",
+           "TRITON_CACHE_DIR": f"{HF}/triton-cache"})   # compiled DeltaNet kernels persist on the cache volume: saves ~1 min per cold start
+     .env(SETTINGS)
+@@ -73,18 +80,22 @@
+     return str(candidate) if (candidate / "head.pt").exists() else run
+ 
+ 
+-def check_partitions(directory, tok, names=PARTITIONS):
+-    """Load each partition through the training path and count the records Kev's context cannot hold."""
++def check_partitions(directory, tok, names=PARTITIONS, max_state=7552):
++    """Load each partition through the training path and count the records Kev's context cannot hold: the training
++    context at `max_state` for train, the serving limits for calibration and development (rely-1 patch)."""
+     from kev.api import render
+     from kev.data import load_records, materialize
+-    from kev.model import MAX_STATE, fits
++    from kev.model import fits, training_context
++    from kev.suite import SERVING_CONTEXT
+     report = {}
+     for part in names:
+         path = Path(directory) / f"{part}.jsonl"
+         if not path.exists():
+             continue
+         records = load_records(path)
+-        over = [r["_meta"]["id"] for r in records if not fits(materialize(r), tok)]
++        ctx = training_context(max_state) if part == "train" else {k: SERVING_CONTEXT[k] for k in ("max_state", "max_branch", "max_packed")}
++        MAX_STATE = ctx["max_state"]
++        over = [r["_meta"]["id"] for r in records if not fits(materialize(r), tok, **ctx)]
+         state_tokens = sorted(len(tok(render(r["state"]), add_special_tokens=False).input_ids) for r in records)
+         report[part] = {"records": len(records), "over_limit": len(over), "over_limit_ids": over[:20],
+                         "state_tokens": {"median": state_tokens[len(state_tokens) // 2], "max": state_tokens[-1], "limit": MAX_STATE},
+@@ -104,7 +115,7 @@
+     out = []
+     for r in rows:
+         p = probabilities_at_temperature(r, temperature); i = int(p.argmax())
+-        if i == r["label"]: continue
++        if i == r["label"] or r.get("source") == "unknowable": continue   # rely-1 patch: placeholder labels are not errors
+         rec = by_id[r["id"]]
+         out.append({"id": r["id"], "question": r["question"], "confidence": round(float(p[i]), 3), "predicted": r["keys"][i], "label": r["keys"][r["label"]],
+                     "probabilities": {k: round(float(v), 3) for k, v in zip(r["keys"], p)},
+@@ -136,7 +147,8 @@
+     """A LocalPredictor that returns raw logits (temperature 1.0), so the fit above starts from scratch for every checkpoint."""
+     from kev.checkpoint import LoadOptions
+     from kev.predictors import LocalPredictor
+-    return LocalPredictor(run, "cuda", LoadOptions(temperature=1.0))
++    from kev.suite import SERVING_CONTEXT
++    return LocalPredictor(run, "cuda", LoadOptions(temperature=1.0), context=SERVING_CONTEXT)   # rely-1 patch: long packets
+ 
+ 
+ def score_checkpoint(run, development, out, calibration=None):
+@@ -153,7 +165,7 @@
+ def summary_block(report, rows, temperature):
+     """Raw and calibrated metrics on the development rows plus per-question calibrated metrics."""
+     from kev.metrics import grouped_metrics
+-    clean = [r for r in rows if r["variant"] == "clean"]
++    clean = [r for r in rows if r["variant"] == "clean" and r["source"] != "unknowable"]   # rely-1 patch: placeholder labels
+     return {"temperature": temperature, "raw": report["clean"], "calibrated": report["calibrated_clean"],
+             "per_question": grouped_metrics(clean, "question", temperature), "n_questions": len(clean)}
+ 
+@@ -236,12 +248,12 @@
+ # --- remote functions ---------------------------------------------------------------------------------------------------
+ 
+ @app.function(image=image, cpu=2, memory=8192, timeout=1200, volumes=VOLUMES, secrets=hf_secret)
+-def run_validate(name, init_from):
++def run_validate(name, init_from, max_state=7552):
+     from kev.checkpoint import Checkpoint
+     from kev.model import load_tokenizer
+     ck = Checkpoint(resolve_checkpoint(init_from))
+     tok = load_tokenizer(ck.meta.base, revision=ck.meta.base_revision)
+-    return {"base": ck.meta.base, "partitions": check_partitions(Path(RUNS) / name / "data", tok)}
++    return {"base": ck.meta.base, "partitions": check_partitions(Path(RUNS) / name / "data", tok, max_state=max_state)}
+ 
+ 
+ @app.function(image=image, gpu=GPU, cpu=4, memory=(32768, 131072), timeout=4 * 3600, retries=0, volumes=VOLUMES, secrets=hf_secret)
+@@ -264,9 +276,9 @@
+     meta, args = init.meta, init.meta.extra["args"]   # the init checkpoint's own training args are the recipe: batch/accum/checkpointing fit its size, lr is its delta lr
+     cfg = {"lr": min(args["lr"], MAX_DELTA_LR), **{k: args[k] for k in ("batch", "accum", "checkpointing")},
+            **{k: config[k] for k in ("lr", "batch", "accum") if config.get(k)},   # 0 = keep the checkpoint's value
+-           **{k: config[k] for k in ("epochs", "seed", "replay", "p_none_pair")}}
++           **{k: config[k] for k in ("epochs", "seed", "replay", "p_none_pair", "max_state")}}
+     tok = load_tokenizer(meta.base, revision=meta.base_revision)
+-    checks = check_partitions(out / "data", tok)
++    checks = check_partitions(out / "data", tok, max_state=cfg["max_state"])
+     write_json(out / "config.json", {"name": name, "init_from": config["init_from"], "init_resolved": init.path, "base": meta.base, "base_revision": meta.base_revision,
+                                      "config": cfg, "data": checks, "kev_ref": KEV_REF, "gpu": torch.cuda.get_device_name(0)})
+     stage(f"{meta.base} from {config['init_from']}; config {json.dumps(cfg)}; data {json.dumps({k: (v['records'], v['over_limit']) for k, v in checks.items()})}")
+@@ -278,7 +290,7 @@
+            "--base", meta.base, "--lora", meta.lora, "--head_dim", meta.head_dim, "--lora_targets", args["lora_targets"],
+            "--option_isolation", int(meta.option_isolation), "--special_embeddings", int(meta.special_embeddings), "--weights_dtype", meta.weights_dtype,
+            "--epochs", cfg["epochs"], "--lr", cfg["lr"], "--batch", cfg["batch"], "--accum", cfg["accum"], "--checkpointing", cfg["checkpointing"],
+-           "--seed", cfg["seed"], "--p_none_pair", cfg["p_none_pair"]]
++           "--seed", cfg["seed"], "--p_none_pair", cfg["p_none_pair"], "--max_state", cfg["max_state"]]
+     if meta.base_revision: cmd += ["--base_revision", meta.base_revision]
+     if cfg["replay"]: cmd += ["--suite", SUITE, "--replay", cfg["replay"]]
+     cmd = [str(c) for c in cmd]
+@@ -493,12 +505,12 @@
+ 
+ 
+ @app.local_entrypoint()
+-def validate(data: str, name: str = "validate", init_from: str = DEFAULT_INIT):
++def validate(data: str, name: str = "validate", init_from: str = DEFAULT_INIT, max_state: int = 7552):
+     """Tokenizer-level check of a split directory against Kev's training context; CPU only, no GPU cost."""
+     scratch = f"{name}-{int(time.time())}"
+     counts = upload_data(scratch, data, ("train",), ("calibration", "development"))
+     try:
+-        report = run_validate.remote(scratch, init_from)
++        report = run_validate.remote(scratch, init_from, max_state)
+     finally:
+         runs.remove_file(f"/{scratch}", recursive=True)
+     print(json.dumps(report, indent=1))
+@@ -509,12 +521,14 @@
+ 
+ @app.local_entrypoint()
+ def train(data: str, name: str, init_from: str = DEFAULT_INIT, epochs: int = 1, lr: float = 0.0, replay: int = 2000, batch: int = 0, accum: int = 0,
+-          seed: int = 0, p_none_pair: float = 0.25, regression: int = 300, baseline: bool = True, gpu: str = GPU, timeout: int = 10800):
++          seed: int = 0, p_none_pair: float = 0.25, regression: int = 300, baseline: bool = True, gpu: str = GPU, timeout: int = 10800,
++          max_state: int = 7552):
+     """Delta fine-tune `init_from` on data/train.jsonl, calibrate on calibration.jsonl, score development.jsonl against the
+     baseline and pull the reports to runs/<name>/. lr/batch/accum default to the init checkpoint's own training args (lr capped at 5e-5)."""
+     check_name(name)
+     counts = upload_data(name, data, PARTITIONS)
+-    config = {"init_from": init_from, "epochs": epochs, "lr": lr, "replay": replay, "batch": batch, "accum": accum, "seed": seed, "p_none_pair": p_none_pair}
++    config = {"init_from": init_from, "epochs": epochs, "lr": lr, "replay": replay, "batch": batch, "accum": accum, "seed": seed, "p_none_pair": p_none_pair,
++              "max_state": max_state}
+     print(f"uploaded {counts} to /runs/{name}/data; training on {gpu}, cost bound ${bound(gpu, timeout):.2f} for the {timeout}s timeout (typical: 0.8B ~8 min, 4B ~12-15 min for 400-1000 records, 9B ~30 min)", flush=True)
+     result = run_train.with_options(gpu=gpu, timeout=timeout).remote(name, config, baseline, regression)
+     print_result(result)

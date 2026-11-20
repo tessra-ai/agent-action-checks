@@ -67,8 +67,12 @@ addopts = "-ra --strict-markers --disable-socket --allow-unix-socket"
 [tool.ruff]
 line-length = 100
 target-version = "py311"
-# Model-drafted rule modules are saved verbatim and never edited (experiment record).
-extend-exclude = ["experiments/2026-11-05-model-drafted-rules/results/drafts"]
+# Model-drafted rule modules are saved verbatim and never edited (experiment record). The Kev
+# fine-tune wrapper is a patched upstream copy, kept in upstream style so its patch stays minimal.
+extend-exclude = [
+  "experiments/2026-11-05-model-drafted-rules/results/drafts",
+  "experiments/2026-11-18-rely1-m1/labeller/kev_modal_rely1.py",
+]
 
 [tool.ruff.format]
 # SPEC.md code blocks are transcribed from the design doc; keep them as written.

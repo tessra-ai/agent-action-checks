@@ -1,135 +1,165 @@
-# Kev-4B fine-tuning pilot: plan and cost (NOT STARTED; waiting for Prithvi's go)
+# Kev-4B fine-tuning pilot: plan and cost (APPROVED 2026-11-20, hard cap $40)
 
-Written 2026-11-20. Nothing here has been run. All labels are provisional and model-labelled (the
-labellers' consensus). Only train and dev data; no test data.
+Prithvi approved the plan with five changes, all folded in below: a wider bar, outcome rules, a
+trimmed / not-trimmed split, planted results kept apart from natural ones, and step-by-step Mac
+commands. Everything here was fixed before any Kev training ran. All labels are provisional and
+model-labelled (the labellers' consensus, or a planted edit). Only train and dev data; no test data.
 
-## The bar (fixed before any training)
+## The bar (fixed in advance)
 
-Same statements as stock Jev: the 21 both-yes and 345 both-no statements (train+dev). Kev's score for
-each statement comes from the fold model that did not see that statement's task (out-of-fold).
-Pooled over the five folds, the pilot passes only if both hold:
+Kev is compared with stock Jev (jev-1.14.0) on the same data and folds, on three things. Kev's
+scores are out-of-fold: each comes from the fold model that never trained on that action's task.
 
-1. AUC above stock Jev's 0.926.
-2. At the cut-off where Kev flags at most 13 of the 345 both-no statements (Jev's count at 0.5), Kev
-   catches more than 12 of the 21 both-yes.
+- **(a) Statements.** The 21 both-yes and 345 both-no statements:
+  - AUC above Jev's 0.926;
+  - more than 12 of 21 caught at the cut-off where at most 13 of the 345 are flagged.
+- **(b) Agreement.** AUC against the labellers' consensus (112 both agreed, 46 both not agreed),
+  versus Jev's 0.971.
+- **(c) Combined per action.** An action is stopped when any of its statements scores at or above a
+  statement cut-off, or its P(agreed) is below an agreement cut-off. Counted: bad caught of 91, good
+  stopped of 56.
+  - Cut-offs are chosen per held-out fold, never on that fold. Selection uses the dev actions in the
+    other four folds (22–38 actions per fold). No fold model trains on those, so the selection is
+    clean for Kev, and Jev uses the same selection set.
+  - The rule: maximise bad-caught rate minus good-stopped rate. Ties go to fewer good stopped, then
+    more bad caught, then the stricter cut-offs. The grid is 0.1 to 0.9 in steps of 0.1 for each
+    question, or that question off.
+  - Jev rerun under this protocol: **66 of 91 bad caught, 16 of 56 good stopped** (ungraded 18 of
+    27). The earlier 51 and 5 used cut-offs picked on the same data they were scored on. With every
+    other-fold action as Jev's selection set instead, Jev gets 59 and 11. That variant is reported
+    for comparison only, because Kev can't use trained-on actions for selection.
+  - This rule was chosen before any Kev result existed. Jev's rerun numbers were seen after the rule
+    was written into the scorer, and the rule was not changed.
 
-With 21 positives, one statement is about 5 points of catch rate, and the AUC is uncertain by about
-±0.05. A win by less than that is reported as "not separable", not as a win. Stock Kev-4B scored AUC
-0.428 on the same statements.
+**Noise.** Paired bootstrap of Kev minus Jev, resampling the 42 tasks: 2,000 draws, fixed seed. It
+covers (a) AUC and catch rate, (b) AUC, and (c) bad-caught and good-stopped rates.
 
-Also reported, but not part of the bar:
+## Outcome rules (fixed in advance)
 
-- Agreement: Kev vs Jev's AUC of 0.971 against the consensus.
-- The two questions combined per action, next to Jev's table.
-- The skill's forgetting check on 300 public records.
+- **Pass:** Kev matches or beats Jev on (c) within the measured noise, and is not clearly worse on
+  (a) or (b).
+  - (c) matches when, for bad caught, Kev ≥ Jev or the 95% CI of the difference includes 0. Good
+    stopped must hold the same way: Kev ≤ Jev or the CI includes 0.
+  - "Clearly worse" on (a) or (b) means the 95% CI of Kev minus Jev lies wholly below 0. For (a)
+    this applies to either the AUC or the catch rate.
+- **Retry once:** not a pass, but statement AUC ≥ 0.70 (stock Kev: 0.43). In that case I tell you the
+  cost of one more run with about three times the planted data, under the same cap rules, and wait.
+- **Stop:** statement AUC below 0.60 (barely moved).
+- **Between 0.60 and 0.70:** I report and ask; there's no automatic retry.
 
 ## Test: cross-validation grouped by task
 
 - M0 `splits/folds.json`: k=5, seed 20261118, grouped by task (42 tasks, 174 actions).
-- Fold model *k* trains only on conversations from tasks outside fold *k*, and is scored only on fold
-  *k*'s statements and agreement questions.
-- No planted or natural example from a fold-*k* task enters fold *k*'s training, so the same
-  conversation never appears on both sides.
+- The fold-*k* model trains only on train-split actions outside fold *k*.
+- It is scored on every fold-*k* action: train and dev, every statement and the agreement question.
+  The packets are exactly the ones the labellers and Jev saw.
+- Questions without a consensus label are scored too, since the combined check needs them, but they
+  are kept out of every metric that needs a label. In Kev's files they sit in records marked
+  "unknowable", which Kev's own metrics and temperature fit skip.
 
-## Training data (built per fold)
+## Training data (per fold, from train-split actions outside the fold)
 
-**Source.** Train-split conversations only: 133 actions, 40 conversations, 31 tasks. Per fold, about
-four fifths of these (about 105 actions). Dev conversations are only ever tested, never trained on.
+The instructions are word-for-word the labellers' wording, as used for Jev. Records are packed so
+that each one fits Kev's own `fits()` check at a 7,552-token state. A record with too many questions
+for that is split into several records on the same state.
 
-**Record shape.** One record is one action's packet, the same state the labellers and Jev saw, with
-several yes/no questions on that state. The instructions are word-for-word the labellers' wording, as
-used for Jev:
+- **Natural packets.** The consensus statements, plus up to 5 untouched sentences per action asked as
+  "no" (each confirmed "no" by the Codex check), plus the consensus agreement label.
+- **Planted statement copies.** One edit per copy: the edited sentence plus 3 checked untouched
+  sentences asked as "no".
+  - Value swaps (by script): 232 made across 119 actions. A stated amount, date, flight, item,
+    order or reservation ID that appears in the records is swapped for a wrong but plausible one:
+    amounts ×0.5–2, dates ±1–3 days, other IDs of the same kind taken from the same records.
+  - Policy and eligibility flips: written by Codex, one per action where something fits.
+  - True rephrasings: written by Codex, asked as "no".
+- **Planted "not agreed" copies,** for both-agreed actions only:
+  - consent edits: Codex rewrites the customer's go-ahead turn;
+  - argument edits: by script, one argument of the proposed action changed to another value of the
+    same kind from the records; a date is shifted.
+- **The check.** Every planted edit and every untouched "no" sentence goes to a fresh Codex call. It
+  gets the labellers' full prompt, the packet, and the edit described as a variant. An edit is kept
+  only when the check gives the intended answer.
+  - Checking one call per action, rather than one call per edited copy, is a cost choice:
+    subscription usage, not money.
+  - Make and keep counts per kind are reported.
+- **Codex disclosure:** Codex (gpt-6.2-sol, high, labeller A's setup) wrote about a third of the
+  planted edits and checked all of them. It is also labeller A. The planted set therefore leans
+  toward A's reading, and planted results are reported apart from natural ones.
+- **Not done:** the "true but misleading" hard negatives like P112.S4. Writing them reliably needs
+  more than a rewrite prompt; left out of this pilot.
+- **Training recipe:**
+  - 2,000 public replay records;
+  - one epoch, warm-starting the released Kev-4B delta;
+  - lr 2e-5, batch 2, accum 4;
+  - `--max_state 7552`.
 
-- the statement question on 4–6 agent sentences;
-- the agreement question.
+  These are Kev-4B v1.0's own recipe values.
 
-### Planted errors (about 400 across the 133 train actions; about 320 per fold)
+## Long packets: what changed from the plan
 
-Every planted positive must be material under the M0 definition: it bears on whether the proposed
-action should run. Every untouched sentence asked as "no" must be checked the same way, since one could
-already hold a real contradiction. The check is a fresh Codex call on the edited packet with the
-labellers' wording. A planted positive it doesn't call "yes" is dropped. An untouched sentence it calls
-"yes" is dropped from the negatives. Drop rates are reported.
+The plan said packets over 7,552 tokens would be trimmed with the M0 trim. That trim (dedup plus
+caps) still leaves 14 of 174 packets over 7,552, because the length is in the conversation, not the
+ledger. So nothing is trimmed:
 
-Each copy plants exactly one error into an action's packet, by rewriting one agent sentence said before
-the action. The planted sentence is asked as "yes"; 3–5 untouched sentences in the same copy are asked
-as "no". There are three copies per action, each with a different sentence and kind of error.
+- **Training:** packets over 7,552 tokens are left out; the count per fold is reported.
+- **Test:** both models score the full, untrimmed packets, the same data.
 
-1. **Value swaps (programmatic, about 2/3).** Start from the M0 claim audit: 490 claims in train, 267
-   sentences with a claim checkable against the records. Swap the stated value for a wrong but plausible
-   one: an amount, date, count, order or flight ID, cabin, status, or item option. Take the wrong value
-   from elsewhere in the same records where possible. A script confirms that the new value contradicts
-   the record the claim cites.
-2. **Policy and eligibility flips (Codex, about 1/3).** Examples: "is eligible" → "is not eligible";
-   "refundable" → "non-refundable"; a wrong fee or a wrong rule.
-   - Written by Codex CLI on the subscription, with no API key, in the same isolated, read-only setup
-     as labeller A.
-   - A planted error is kept only if a fresh Codex call, given the edited packet, answers "yes".
-   - Caveat: Codex is labeller A, so this part leans toward A's reading. Reported apart.
-3. **Hard negatives (asked as "no"):**
-   - true rephrasings of claim sentences (Codex, checked the same way);
-   - "true but misleading" sentences, like P112.S4, which is out of scope by Decision B.
+Results are reported separately for test packets within 7,552 tokens and over 7,552 tokens. The
+long ones are longer than anything Kev trained on.
 
-### Natural statements
+## Code changes
 
-The other folds' consensus statements from train-split actions only (both filters: not in fold *k*,
-and in `train.json`) are added as questions on their original packets: 172–222 "no" and 8–15 "yes" per
-fold.
+`labeller/kev_modal_rely1.py` is a patched copy of the skill's `kev_modal.py`. The full diff is in
+`labeller/kev_modal_rely1.patch`.
 
-### Agreement examples
+- `--max_state 7552` is passed to `kev.train`.
+- Calibration and development are scored at the serving limits. Unpatched, the scorer uses the
+  384-token training limit and would reject every packet.
+- triton is pinned to 3.8.0: 3.9 breaks flash-linear-attention 0.5.2, as in the stock Kev deploy.
 
-- **Natural.** The other folds' consensus on train-split actions only (the same two filters): both
-  agreed means true, both not agreed means false. Splits are left out. 90–98 per fold.
-- **Planted "not agreed", about 60 per fold.** Built from both-agreed train actions in two ways. The
-  edited copy is labelled false, and the unedited original true, so the two differ only in the edit.
-  - **Consent edit.** Rewrite the customer's go-ahead turn into a decline, a hedge ("let me think
-    about it"), or a question.
-  - **Argument edit.** Change one argument of the proposed action away from what the customer asked
-    for: a different item, flight, payment method or amount.
+## GPU time and cost (hard cap $40)
 
-### Size per fold
-
-- About 500 records and 2,500–3,000 labels.
-- Plus the skill's 2,000 public replay records, one epoch, warm-starting the released Kev-4B delta.
-- Learning rate: the default, 2e-5.
-
-## Context length (the one code change)
-
-- The fine-tune wrapper (`skills/kev-finetune/scripts/kev_modal.py`) trains at the 384-token state
-  default.
-- Our states are long: median 4,306 tokens, p95 10,382, and 30 of 174 are over 7,552.
-- `kev.train` accepts `--max_state` up to 64k. The patch passes `--max_state 7552`, the length Kev-4B
-  was trained on, through the wrapper.
-- Packets over 7,552 tokens are trimmed with the M0 trim (dropping early records the action doesn't
-  cite), not cut from the end. The trainer's own truncation would cut the end and lose the action.
-- The 63 test statements in states over 8,192 tokens are reported apart, as for Jev.
-
-## GPU time and cost
-
-The skill's figure of about $1 and 12 minutes per run applies to short states. Ours are about 10× longer,
-so step 1 measures the real throughput before anything else.
-
-| Step | GPU | Time | Cost |
+| Step | GPU | Timeout (cost ceiling) | Expected |
 | --- | --- | --- | --- |
-| 1. Smoke run: fold 0, 100 records, measure tokens/s | H100 | ~15 min | ~$1 |
-| 2. Five fold runs, about 500 records + 2,000 replay each | H100 | ~45–60 min each, ~4–5 h total | ~$16–20 |
-| 3. Out-of-fold scoring: about 75 statements + 35 agreement questions per fold | H100 / L4 | ~5 min each | ~$2 |
-| Data generation: scripts plus Codex on the subscription | none | ~1 h wall clock | $0 |
-| **Total** | | **~5–6 GPU-hours** | **~$20 expected; hard cap $40** |
+| Smoke run: 100 fold-0 records, 6 test packets | H100 | 45 min ($2.96) | ~15 min, ~$1 |
+| Five fold runs | H100 | 90 min each ($5.93 each, $29.63 total) | ~30–50 min each, ~$12–17 |
+| **Ceiling** | | **$32.59** | **~$15–20** |
 
-- Each run gets a `--timeout` so the cap holds.
-- If step 1 shows throughput more than 2× worse than assumed, I stop and re-quote before step 2.
-- Modal can't run from this container (its gRPC traffic doesn't pass the proxy), so each step is one
-  command on your Mac, as for the stock Kev deploy. That's about 7 commands in all.
+- Modal's `--timeout` stops a run at its ceiling, so even a run that hangs can't push the total past
+  $33. Ceilings are at $3.95/h, the wrapper's own H100 rate.
+- After the smoke run I re-estimate the per-fold time from its measured speed. If a fold would need
+  more than 90 minutes, I stop and re-quote before any fold runs.
+- Modal can't run from this container, so each step is one command on Prithvi's Mac. Each step prints
+  a short JSON block to paste back.
 
-## What I would deliver
+## Changes made while running (2026-11-20, Prithvi's approval)
 
-`results/kev_pilot.json` with:
+- **GPU: A100-80GB, not H100.** Both H100 and H200 sat in Modal's queue for over 8 minutes; the
+  A100-80GB started at once. The smoke run (`rely1-kev-smoke-4`) trained 100 records plus 2,000
+  replay in about 30 minutes and scored 46 full-length packets in about 13. Modal's actual rate,
+  including CPU and memory, was about $3.15/h.
+- **The stock-Kev baseline and the forgetting check were dropped** (`--no-baseline --regression 0`)
+  to save about a quarter of each fold's cost. Neither feeds the outcome rules: the only stock-Kev
+  number they use is its statement AUC of 0.43, already measured on the same statements. Both can
+  be run later on the saved checkpoints for under $1 if the pilot passes.
+- **Fold timeout: 8,400 seconds.** At about $3.15/h that is about $7.35 per fold at worst, so the
+  five folds plus the smoke runs stay under $40. If a fold times out after training, its checkpoint
+  is saved and is scored on its own.
+- **Planted set, after Codex's check:** the check kept 39 of 232 value swaps. Most changed a value
+  that was false but not material to the proposed action, such as another order's total or a card
+  the customer did not choose. So 118 of the 157 planted contradictions (75%) are written by Codex,
+  not the planned third. Codex also checked all of them, and it is labeller A. Planted results are
+  reported apart from natural ones.
 
-- out-of-fold scores;
-- the bar verdict;
-- the per-fold numbers;
-- agreement and combined tables next to Jev's;
-- the forgetting check.
+## What I deliver
 
-Plus the data builder and the patch. No M2 work.
+`results/kev_pilot.json`:
+
+- the verdict under the rules above, and (a), (b), (c) for Kev, Jev and stock Kev under the same
+  protocol;
+- bootstrap CIs;
+- within / over 7,552 tokens;
+- planted make and keep counts, apart from the natural results;
+- per-fold run facts and the forgetting check.
+
+No M2 work.

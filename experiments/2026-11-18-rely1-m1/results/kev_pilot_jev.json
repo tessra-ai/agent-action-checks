@@ -1,0 +1,119 @@
+{
+ "status": "PROVISIONAL, MODEL-LABELLED: statement and agreement truth is the labellers' consensus (A: Codex gpt-6.2-sol reasoning high; B: Gemini 4 Neon High); good / bad are the existing action rulings. Train and dev only. Combined cut-offs chosen outside each held-out fold.",
+ "model": "jev-1.14.0 (stock)",
+ "dev_outside_fold": {
+  "a": {
+   "both_yes": 21,
+   "both_no": 345,
+   "auc": 0.926,
+   "cutoff_flagging_at_most_13": 0.5,
+   "caught": 12,
+   "flagged": 13
+  },
+  "b": {
+   "both_agreed": 112,
+   "both_not_agreed": 46,
+   "auc": 0.971
+  },
+  "c": {
+   "bad": {
+    "n": 91,
+    "stopped": 66
+   },
+   "good": {
+    "n": 56,
+    "stopped": 16
+   },
+   "ungraded": {
+    "n": 27,
+    "stopped": 18
+   }
+  },
+  "c_cutoffs": {
+   "0": {
+    "stmt_cut": 0.3,
+    "agree_cut": 0.5,
+    "selection_actions": 37
+   },
+   "1": {
+    "stmt_cut": 0.3,
+    "agree_cut": 0.5,
+    "selection_actions": 36
+   },
+   "2": {
+    "stmt_cut": 0.3,
+    "agree_cut": 0.4,
+    "selection_actions": 22
+   },
+   "3": {
+    "stmt_cut": 0.3,
+    "agree_cut": 0.5,
+    "selection_actions": 38
+   },
+   "4": {
+    "stmt_cut": 0.3,
+    "agree_cut": 0.6,
+    "selection_actions": 31
+   }
+  },
+  "selection": "dev_outside_fold"
+ },
+ "all_outside_fold": {
+  "a": {
+   "both_yes": 21,
+   "both_no": 345,
+   "auc": 0.926,
+   "cutoff_flagging_at_most_13": 0.5,
+   "caught": 12,
+   "flagged": 13
+  },
+  "b": {
+   "both_agreed": 112,
+   "both_not_agreed": 46,
+   "auc": 0.971
+  },
+  "c": {
+   "bad": {
+    "n": 91,
+    "stopped": 59
+   },
+   "good": {
+    "n": 56,
+    "stopped": 11
+   },
+   "ungraded": {
+    "n": 27,
+    "stopped": 15
+   }
+  },
+  "c_cutoffs": {
+   "0": {
+    "stmt_cut": 0.4,
+    "agree_cut": 0.6,
+    "selection_actions": 140
+   },
+   "1": {
+    "stmt_cut": 0.4,
+    "agree_cut": 0.4,
+    "selection_actions": 143
+   },
+   "2": {
+    "stmt_cut": 0.4,
+    "agree_cut": 0.6,
+    "selection_actions": 133
+   },
+   "3": {
+    "stmt_cut": 0.4,
+    "agree_cut": 0.6,
+    "selection_actions": 138
+   },
+   "4": {
+    "stmt_cut": 0.4,
+    "agree_cut": 0.6,
+    "selection_actions": 142
+   }
+  },
+  "selection": "all_outside_fold"
+ },
+ "note": "dev_outside_fold is the primary protocol: the same selection actions as Kev (dev actions outside the held-out fold, which no Kev fold model trains on). all_outside_fold is Jev with every other-fold action for selection, for comparison."
+}
