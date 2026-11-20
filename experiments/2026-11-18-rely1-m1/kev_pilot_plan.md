@@ -1,4 +1,6 @@
-# Kev-4B fine-tuning pilot: plan and cost (APPROVED 2026-11-20, hard cap $40)
+# Kev-4B fine-tuning pilot: plan and cost (APPROVED 2026-11-20, hard cap $40; CLOSED)
+
+**Verdict (Prithvi, 2026-11-20): improved over stock, clearly below Jev, not pursued.** No retry.
 
 Prithvi approved the plan with five changes, all folded in below: a wider bar, outcome rules, a
 trimmed / not-trimmed split, planted results kept apart from natural ones, and step-by-step Mac
@@ -176,7 +178,7 @@ scorer reads them:
     mkdir -p runs/kev_pilot/results && cp results/kev_pilot_folds/fold*.json runs/kev_pilot/results/
     python kev_pilot.py score
 
-### Retry cost estimate (awaiting Prithvi's decision; nothing started)
+### Retry cost estimate (declined 2026-11-20: no retry)
 
 A retry means one more five-fold run with about three times the planted data.
 
