@@ -1,0 +1,102 @@
+{
+ "status": "PROVISIONAL, MODEL-LABELLED: truth is the consensus of labeller A and B (both yes / both no); no person has reviewed it. Train and dev only. Stock models, untrained.",
+ "both_yes": 21,
+ "both_no": 345,
+ "models": {
+  "jev": {
+   "model_ids": [
+    "jev-1.14.0"
+   ],
+   "questions_scored": 380,
+   "input_tokens": 900874,
+   "median_seconds_per_call": 0.21,
+   "cost_usd": 0.0378,
+   "all": {
+    "both_yes_n": 21,
+    "both_no_n": 345,
+    "missing": 0,
+    "cut_0.3": {
+     "both_yes_caught": 18,
+     "both_no_flagged": 71
+    },
+    "cut_0.5": {
+     "both_yes_caught": 12,
+     "both_no_flagged": 13
+    },
+    "cut_0.7": {
+     "both_yes_caught": 6,
+     "both_no_flagged": 0
+    },
+    "cut_0.9": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 0
+    }
+   },
+   "under_8192": {
+    "both_yes_n": 20,
+    "both_no_n": 283,
+    "missing": 0,
+    "cut_0.3": {
+     "both_yes_caught": 18,
+     "both_no_flagged": 56
+    },
+    "cut_0.5": {
+     "both_yes_caught": 12,
+     "both_no_flagged": 9
+    },
+    "cut_0.7": {
+     "both_yes_caught": 6,
+     "both_no_flagged": 0
+    },
+    "cut_0.9": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 0
+    }
+   },
+   "over_8192": {
+    "both_yes_n": 1,
+    "both_no_n": 62,
+    "missing": 0,
+    "cut_0.3": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 15
+    },
+    "cut_0.5": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 4
+    },
+    "cut_0.7": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 0
+    },
+    "cut_0.9": {
+     "both_yes_caught": 0,
+     "both_no_flagged": 0
+    }
+   },
+   "p_yes_both_yes": {
+    "P012.S2": 0.59,
+    "P013.S1": 0.29,
+    "P021.S3": 0.34,
+    "P027.S3": 0.28,
+    "P029.S2": 0.58,
+    "P030.S1": 0.76,
+    "P033.S1": 0.6,
+    "P052.S2": 0.53,
+    "P058.S2": 0.46,
+    "P060.S1": 0.76,
+    "P066.S3": 0.37,
+    "P070.S4": 0.29,
+    "P072.S2": 0.86,
+    "P078.S2": 0.8,
+    "P106.S4": 0.69,
+    "P120.S1": 0.81,
+    "P152.S2": 0.5,
+    "P157.S2": 0.76,
+    "P159.S4": 0.3,
+    "P165.S2": 0.3,
+    "P165.S3": 0.37
+   }
+  }
+ }
+}
