@@ -2,7 +2,7 @@
 title: "A stock decision model beat my fine-tune at checking AI agent actions before they run"
 date: 2026-11-20
 description: "I tried to build a small model for the hard middle question of my last post. It did not beat a stock one. What came out instead, on train and dev data: two narrow questions, a stock decision model that ranks them well against frontier labels, and a clearer view of what each catch is worth."
-image: "/blog/two-questions-og.png"
+image: "/blog/two-questions-og-v2.png"
 subtitle: "A follow-up to Three questions before an AI agent acts: two narrow questions in place of one broad judge, a cascade from a cheap decision model to frontier models, and a fine-tune that scored below the stock model.\n\nShort version: on these train and dev actions, asking whether the customer agreed to this exact action, and whether the agent said something false that mattered, caught most of the bad actions with few false stops. Stock Jev ranked both questions well against the labellers' consensus, the cascade routed its unsure cases to the frontier labellers, and my fine-tune scored below stock Jev. No held-out test has been run."
 ---
 
