@@ -37,11 +37,15 @@
   "labeller_A": {
    "statements_yes": 29,
    "not_agreed": 58,
+   "statements_not_sure": 0,
+   "agreement_not_sure": 1,
    "setup": "Codex CLI, gpt-6.2-sol, reasoning effort high (results/labels_a_summary.json)"
   },
   "labeller_B": {
    "statements_yes": 26,
    "not_agreed": 50,
+   "statements_not_sure": 2,
+   "agreement_not_sure": 0,
    "setup": "Gemini app, Deeper analysis - 4 Neon, Thinking level High"
   },
   "statement_agreement": {

@@ -3,9 +3,7 @@ title: "Two questions before an AI agent acts: what a week of trying to build a 
 date: 2026-11-20
 description: "I tried to build a small model for the hard middle question of my last post. It did not beat a stock one. What came out instead, on train and dev data: two narrow questions, a stock decision model that ranks them well against frontier labels, and a clearer view of what each catch is worth."
 image: "/blog/two-questions-og.png"
-subtitle: "A follow-up to Three questions before an AI agent acts: two narrow questions in place of one broad judge, a cascade from a cheap decision model to frontier models, and a fine-tune that scored below the stock model.
-
-Short version: on these train and dev actions, asking whether the customer agreed to this exact action, and whether the agent said something false that mattered, caught most of the bad actions with few false stops. Stock Jev ranked both questions well against the labellers' consensus, the cascade routed its unsure cases to the frontier labellers, and my fine-tune scored below stock Jev. No held-out test has been run."
+subtitle: "A follow-up to Three questions before an AI agent acts: two narrow questions in place of one broad judge, a cascade from a cheap decision model to frontier models, and a fine-tune that scored below the stock model.\n\nShort version: on these train and dev actions, asking whether the customer agreed to this exact action, and whether the agent said something false that mattered, caught most of the bad actions with few false stops. Stock Jev ranked both questions well against the labellers' consensus, the cascade routed its unsure cases to the frontier labellers, and my fine-tune scored below stock Jev. No held-out test has been run."
 ---
 
 ## Summary
@@ -37,7 +35,7 @@ a small model for it. The model did not beat a stock one, but the attempt change
 These are train and dev numbers on τ²-bench actions by GPT-4.1-family agents, with model-made
 labels. A held-out test has not been run.
 
-![The 91 bad actions by what the labellers' consensus flags, split by whether the backend executed them or rejected them anyway.](/blog/bad_actions_by_question.png)
+![The 91 bad actions by what the labellers' consensus flags, split by whether the backend executed them or rejected them anyway.](/blog/two-questions-bad_actions_by_question.png)
 
 ## What I tried to build
 
@@ -82,7 +80,8 @@ week and do not depend on this week's labels.
 | Actions called not agreed (of 174) | 58 | 50 |
 
 They agreed on 366 of 380 statements (Cohen's kappa 0.74) and 158 of 174 agreement questions (kappa
-0.79). A label below is their consensus: a statement counts when both said yes (21), an action as
+0.79). Labeller B answered "not sure" on 2 statements and labeller A on 1 agreement
+question; those count as disagreements. A label below is their consensus: a statement counts when both said yes (21), an action as
 not agreed when both said so (46). For statement labels, labeller A rerun without reasoning had a kappa of
 0.89 against its reasoning run.
 
@@ -128,14 +127,17 @@ exact 95% upper bounds (Clopper–Pearson), as in the first post.
 | Labellers' consensus alone | 53 | 51% | 1 | 8% | all |
 | Cascade: Jev, consensus when unsure (5% selection cap, width 0.2) | 55 | 49% | 3 | 13% | 63 of 174 actions (36%) |
 | A: rules, then the cascade (width 0.2) | 76 | 24% | 3 | 13% | 32 of 147 (22%) |
-| B: rules, then Jev (cut-offs selected so rules and Jev together stay under the 5% cap; the judge is not counted), then the rubric judge | 88 and 86 | 8% and 11% | 12 and 12 | 32% | 74 of 147 (50%) |
+| B: rules, Jev at the 5% cap\*, then the rubric judge | 88 and 86 | 8% and 11% | 12 and 12 | 32% | 74 of 147 (50%) |
 | C: rules, the cascade (width 0.2), then the rubric judge | 89 and 88 | 7% and 8% | 11 and 11 | 30% | 82 of 147 (56%) |
+
+\* In B, Jev's cut-offs are selected so that rules and Jev together stop at most 5% of good actions
+on the other folds; the rubric judge's stops are not counted toward the cap.
 
 B and C show the rubric judge's two runs. Their "reach a frontier model" counts each graded action
 that reaches any frontier stage once; the frontier-share figures for the designs use the 147 graded
 actions, and the cascade's uses all 174.
 
-![Bad caught against good stopped, with cut-offs chosen out of fold.](/blog/tradeoff.png)
+![Bad caught against good stopped, with cut-offs chosen out of fold.](/blog/two-questions-tradeoff.png)
 
 A note on cut-offs. Earlier in this work I quoted Jev at 51 bad caught and 5 good stopped, at
 cut-offs of 0.5 on both questions picked while looking at this data. That is a different operating point from the
@@ -162,7 +164,7 @@ they ran, including 24 of those 39 never-agreed ones. On the 44 bad actions that
 | B: rules, Jev, then the rubric judge | 42 and 40 |
 | C: rules, the cascade, then the rubric judge | 43 and 42 |
 
-![Catches on the 44 bad actions that actually executed.](/blog/executed_only.png)
+![Catches on the 44 bad actions that actually executed.](/blog/two-questions-executed_only.png)
 
 The statement question pulls more weight than its count. The backend accepted all 11 bad actions
 where both labellers marked the customer as agreeing and flagged a material contradiction: by the labels, the agent said something false, the customer said yes, and the system
@@ -202,7 +204,7 @@ family also checked every planted edit. Labeller A is that family too.
 | Statement question, AUC | 0.43 | 0.81 | 0.93 |
 | Agreement question, AUC | not run | 0.89 | 0.97 |
 
-![The fine-tune moved Kev-4B a long way, and stayed below stock Jev.](/blog/finetune.png)
+![The fine-tune moved Kev-4B a long way, and stayed below stock Jev.](/blog/two-questions-finetune.png)
 
 The fine-tune moved Kev a long way and stayed clearly below Jev on both questions; under the same
 fold protocol it caught 55 bad actions and stopped 19 good ones, against Jev's 66 and 16. I recorded

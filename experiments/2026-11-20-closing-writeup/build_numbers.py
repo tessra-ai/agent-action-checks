@@ -171,11 +171,17 @@ def main() -> None:
         "labeller_A": {
             "statements_yes": a_yes,
             "not_agreed": a_na,
+            # "not sure" answers count as disagreements in the agreement counts and kappas
+            "statements_not_sure": sum(s["A"] == "not_sure" for _, _, s in stm),
+            "agreement_not_sure": sum(x["agreement"]["A"] == "not_sure" for x in acts.values()),
             "setup": cmpf["labellers"]["A"],
         },
         "labeller_B": {
             "statements_yes": b_yes,
             "not_agreed": b_na,
+            # "not sure" answers count as disagreements in the agreement counts and kappas
+            "statements_not_sure": sum(s["B"] == "not_sure" for _, _, s in stm),
+            "agreement_not_sure": sum(x["agreement"]["B"] == "not_sure" for x in acts.values()),
             "setup": cmpf["labellers"]["B"],
         },
         "statement_agreement": frac(st_agree, len(stm)),
