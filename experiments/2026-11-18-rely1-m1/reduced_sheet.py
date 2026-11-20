@@ -72,7 +72,8 @@ GROUPS = {
     },
 }  # fmt: skip
 # Statements shown although neither labeller flagged them (Prithvi, 2026-11-20).
-ALSO_SHOW = ["P112.S4"]
+# P112.S4 was here; decided out of scope (true but misleading), 2026-11-20
+ALSO_SHOW: list[str] = []
 # Within each group, cards of one action stay together; actions in a seeded order.
 SEED = 20261118
 WHY = {

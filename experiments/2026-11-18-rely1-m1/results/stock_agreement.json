@@ -1,0 +1,112 @@
+{
+ "status": "PROVISIONAL, MODEL-LABELLED: truth is the labellers' consensus (A: Codex gpt-6.2-sol reasoning high; B: Gemini 4 Neon High); rulings are the existing action labels. Train and dev only. Stock Jev (jev-1.14.0), untrained.",
+ "agreement_vs_consensus": {
+  "both_agreed": 112,
+  "both_not_agreed": 46,
+  "labellers_split": 16,
+  "auc_not_agreed": 0.971,
+  "called_not_agreed_if_P(agreed)<0.3": {
+   "of_both_not_agreed": 29,
+   "of_both_agreed": 2
+  },
+  "called_not_agreed_if_P(agreed)<0.5": {
+   "of_both_not_agreed": 38,
+   "of_both_agreed": 9
+  },
+  "called_not_agreed_if_P(agreed)<0.7": {
+   "of_both_not_agreed": 46,
+   "of_both_agreed": 32
+  }
+ },
+ "agreement_vs_rulings": {
+  "bad": {
+   "n": 91,
+   "labellers_both_not_agreed": 39,
+   "jev_P(agreed)<0.3": 28,
+   "jev_P(agreed)<0.5": 41,
+   "jev_P(agreed)<0.7": 57
+  },
+  "good": {
+   "n": 56,
+   "labellers_both_not_agreed": 0,
+   "jev_P(agreed)<0.3": 0,
+   "jev_P(agreed)<0.5": 3,
+   "jev_P(agreed)<0.7": 15
+  },
+  "ungraded": {
+   "n": 27,
+   "labellers_both_not_agreed": 7,
+   "jev_P(agreed)<0.3": 3,
+   "jev_P(agreed)<0.5": 6,
+   "jev_P(agreed)<0.7": 13
+  }
+ },
+ "both_questions_per_action": {
+  "labellers_consensus": {
+   "bad": {
+    "n": 91,
+    "stopped": 53,
+    "by_statement_any": 15,
+    "by_agreement_any": 39
+   },
+   "good": {
+    "n": 56,
+    "stopped": 1,
+    "by_statement_any": 1,
+    "by_agreement_any": 0
+   },
+   "ungraded": {
+    "n": 27,
+    "stopped": 10,
+    "by_statement_any": 4,
+    "by_agreement_any": 7
+   }
+  },
+  "jev": {
+   "stmt>=0.5, P(agreed)<0.3": {
+    "bad_caught": 42,
+    "good_stopped": 3,
+    "ungraded_stopped": 9
+   },
+   "stmt>=0.5, P(agreed)<0.5": {
+    "bad_caught": 51,
+    "good_stopped": 5,
+    "ungraded_stopped": 12
+   },
+   "stmt>=0.5, agreement off": {
+    "bad_caught": 14,
+    "good_stopped": 3,
+    "ungraded_stopped": 7
+   },
+   "stmt>=0.7, P(agreed)<0.3": {
+    "bad_caught": 30,
+    "good_stopped": 0,
+    "ungraded_stopped": 7
+   },
+   "stmt>=0.7, P(agreed)<0.5": {
+    "bad_caught": 43,
+    "good_stopped": 3,
+    "ungraded_stopped": 10
+   },
+   "stmt>=0.7, agreement off": {
+    "bad_caught": 2,
+    "good_stopped": 0,
+    "ungraded_stopped": 4
+   },
+   "stmt off, P(agreed)<0.3": {
+    "bad_caught": 28,
+    "good_stopped": 0,
+    "ungraded_stopped": 3
+   },
+   "stmt off, P(agreed)<0.5": {
+    "bad_caught": 41,
+    "good_stopped": 3,
+    "ungraded_stopped": 6
+   }
+  }
+ },
+ "cost": {
+  "agreement_input_tokens": 947563,
+  "agreement_usd": 0.0398
+ }
+}
