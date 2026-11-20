@@ -1,5 +1,5 @@
 ---
-title: "Two questions before an AI agent acts: what a week of trying to build a model for them found"
+title: "A stock decision model beat my fine-tune at checking AI agent actions before they run"
 date: 2026-11-20
 description: "I tried to build a small model for the hard middle question of my last post. It did not beat a stock one. What came out instead, on train and dev data: two narrow questions, a stock decision model that ranks them well against frontier labels, and a clearer view of what each catch is worth."
 image: "/blog/two-questions-og.png"
